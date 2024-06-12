@@ -1,0 +1,11 @@
+.pdf {
+    width: 100%;
+    /* aspect-ratio: 16 / 9; */
+}
+.pdf,
+html,
+body {
+    height: 99%;
+    margin: 0;
+    padding: 0;
+}
