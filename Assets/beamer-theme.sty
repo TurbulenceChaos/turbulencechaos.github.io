@@ -1,0 +1,27 @@
+\ProvidesPackage{beamer-theme}
+
+\hypersetup{pdfpagemode=FullScreen}
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usefonttheme{serif}
+\providecommand{\Assets}{../../../Assets}
+
+% packages
+\usepackage{import}
+\usepackage[url=false,doi=false,isbn=false,style=ieee]{biblatex}
+\addbibresource{\Assets/Paper.bib}
+\AtEveryBibitem{%
+	\clearfield{pagetotal}%
+}
+\graphicspath{ {./Images/} }
+
+\author{Peng}
+\institute{}
+\date{\today}
+
+\AtBeginSection
+{
+	\begin{frame}{Table of Contents}
+		\tableofcontents[currentsection]
+	\end{frame}
+}

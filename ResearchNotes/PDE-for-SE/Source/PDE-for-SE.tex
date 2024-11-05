@@ -1,0 +1,43 @@
+\documentclass[aspectratio=169]{beamer}
+\usepackage{../../../Assets/beamer-theme}
+\title{PDE for Scientists and Engineers \autocite{farlow_2012_-PartialDifferentialEquationsScientistsEngineers}}
+\begin{document}
+%------------------------------------------------------------
+% Title page
+\import{\Assets/}{beamer-titlepage}
+%------------------------------------------------------------
+% Main frames
+\section{Introduction to PDE}
+\begin{frame}{How to solve a PDE?}
+	\begin{block}{Methods}
+		\begin{itemize}
+			\item Separation of Variables
+			\item Integral Transforms
+			\item Change of Coordinates
+			\item Numerical Methods
+			\item Perturbation Methods
+			\item Impulse-response Technique
+			\item Integral Equations
+			\item Calculus of Variations Methods
+			\item Eigenfunction Expansion
+		\end{itemize}
+	\end{block}
+\end{frame}
+
+\begin{frame}{Kinds of PDEs}
+	\begin{block}{Three Basic Types of \emph{Linear} Equations}
+		\begin{equation*}
+			Au_{xx} + Bu_{xy} + Cu_{yy} + Du_{x} + Eu_{y} + Fu = G
+		\end{equation*}
+
+		\begin{itemize}
+			\item Parabolic: $B^{2} - 4AC = 0$
+			\item Hyperbolic: $B^{2} - 4AC > 0$
+			\item Elliptic: $B^{2} - 4AC < 0$
+		\end{itemize}
+	\end{block}
+\end{frame}
+%------------------------------------------------------------
+% Print bibliography
+\import{\Assets/}{beamer-printbibliography}
+\end{document}

@@ -1,0 +1,9 @@
+[submodule "ResearchNotes/Sloshing-paper-notes"]
+	path = ResearchNotes/Sloshing-paper-notes
+	url = https://github.com/TurbulenceChaos/Sloshing-paper-notes.git
+[submodule "ResearchNotes/Multimodal-method"]
+	path = ResearchNotes/Multimodal-method
+	url = https://github.com/TurbulenceChaos/Multimodal-method.git
+[submodule "LifeNotes"]
+	path = LifeNotes
+	url = https://github.com/TurbulenceChaos/LifeNotes.git

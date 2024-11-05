@@ -1,0 +1,58 @@
+body {
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #000; /* black font */
+  background-color: #fff; /* white background */
+}
+
+a {
+  color: #03a9f4; /* blue link */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #007bff; /* darker blue on hover */
+}
+
+iframe {
+  width: 100%;
+  height: 95vh; /* adjust the height as needed */
+  border: none;
+  overflow: hidden;
+}
+
+/* add some basic styling for headings */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: bold;
+  color: #333; /* dark gray */
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 28px;
+}
+
+h3 {
+  font-size: 22px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 16px;
+}
+
+h6 {
+  font-size: 14px;
+}
