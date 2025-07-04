@@ -1,2 +1,3 @@
 # turbulencechaos.github.io
-My GitHub blog
+
+Peng's blog for mathematics: https://turbulencechaos.github.io/
