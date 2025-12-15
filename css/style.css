@@ -5,5 +5,18 @@ body {
 }
 
 pre {
+    position: relative;
     background: #f4f4f4;
+    padding: 10px;
+}
+
+pre::before {
+    content: attr(lang);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: #333;
+    color: #fff;
+    padding: 2px;
+    font-size: 0.8em;
 }
