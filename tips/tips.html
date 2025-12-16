@@ -15,8 +15,27 @@
   <pre lang="Mathematica"><code>If[Length[Names["`*"]] > 0, Remove["`*"]];
 SetDirectory[NotebookDirectory[]];</code></pre>
 
+  <p>Plot style:</p>
+  <pre><code>GraphicsGrid[{{
+    Labeled[plot1, "(a) plot 1", Bottom, Spacings -> 2],
+    Labeled[plot2, "(b) plot 2", Bottom, Spacings -> 2]
+  }}]</code></pre>
+
+  <pre><code>FrameLabel -> {Row["x\n", Style["title", FontSize -> 12]], None}</code></pre>
+
+  <pre><code></code>plotStyle = Sequence[PlotTheme -> {"Scientific", "Monochrome"},
+   BaseStyle -> {FontSize -> 10, FontFamily -> "Times"},
+   LabelStyle -> {FontSize -> 10, FontFamily -> "Times"}
+   ];
+plot=Plot[Sin[x], {x, 0, 1}, Evaluate[plotStyle]]</code></pre>
+
   <p>Plot export:</p>
-  <pre lang="Mathematica"><code>ImageResolution -> 600, RasterSize -> Round[8/2.54*600]</code></pre>
+  <pre><code>PlotExport[name_, plot_, width_] := 
+  Export[name, plot, ImageResolution -> 600, 
+   RasterSize -> Round[width/2.54*600]];</code></pre>
+
+  <p>Collect:</p>
+  <pre><code>Collect[eq, {Cos[_], Sin[_], a[_], b[_]}, Simplify]</code></pre>
 
   <h2>Microsoft Word</h2>
   <p>Type <kbd>Alt</kbd> + <kbd>F9</kbd> when citation references display error.</p>

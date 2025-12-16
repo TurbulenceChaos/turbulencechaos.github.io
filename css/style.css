@@ -6,7 +6,7 @@ body {
 
 pre {
     position: relative;
-    background: #f4f4f4;
+    background: lightgray;
     padding: 10px;
 }
 
@@ -15,8 +15,11 @@ pre::before {
     position: absolute;
     top: 0;
     right: 0;
-    background: #333;
-    color: #fff;
+    background: black;
+    color: white;
+}
+
+pre[lang]::before {
     padding: 2px;
     font-size: 0.8em;
 }
