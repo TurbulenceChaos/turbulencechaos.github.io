@@ -10,29 +10,32 @@
   <h1>Tips</h1>
   <h2>Wolfram Mathematica</h2>
 
-  <p>At the beginning of the code:</p>
+  <p>Initialize the notebook:</p>
 
   <pre lang="Mathematica"><code>If[Length[Names["`*"]] > 0, Remove["`*"]];
 SetDirectory[NotebookDirectory[]];</code></pre>
 
   <p>Plot style:</p>
-  <pre><code>GraphicsGrid[{{
-    Labeled[plot1, "(a) plot 1", Bottom, Spacings -> 2],
-    Labeled[plot2, "(b) plot 2", Bottom, Spacings -> 2]
-  }}]</code></pre>
-
-  <pre><code>FrameLabel -> {Row["x\n", Style["title", FontSize -> 12]], None}</code></pre>
-
-  <pre><code></code>plotStyle = Sequence[PlotTheme -> {"Scientific", "Monochrome"},
+  <pre><code></code>plotStyle[width_ : 8] := 
+   Sequence[PlotTheme -> {"Scientific", "Monochrome"},
    BaseStyle -> {FontSize -> 10, FontFamily -> "Times"},
-   LabelStyle -> {FontSize -> 10, FontFamily -> "Times"}
+   LabelStyle -> {FontSize -> 10, FontFamily -> "Times"},
+   ImageSize -> width/2.54*100
    ];
-plot=Plot[Sin[x], {x, 0, 1}, Evaluate[plotStyle]]</code></pre>
+
+plot=Plot[Sin[x], {x, 0, 1}, Evaluate[plotStyle[]]]</code></pre>
 
   <p>Plot export:</p>
-  <pre><code>PlotExport[name_, plot_, width_] := 
-  Export[name, plot, ImageResolution -> 600, 
-   RasterSize -> Round[width/2.54*600]];</code></pre>
+  <pre><code>PlotExport[file_, plot_, width_ : 8] := Module[{dir},
+   dir = DirectoryName[file];
+   dir = If[dir === "", NotebookDirectory[], dir];
+   If[! DirectoryQ[dir], 
+    CreateDirectory[dir, CreateIntermediateDirectories -> True]];
+   Export[file, plot, ImageResolution -> 600, 
+    RasterSize -> Round[width/2.54*600]]
+   ];
+  
+PlotExport["plot.png", plot];</code></pre>
 
   <p>Collect:</p>
   <pre><code>Collect[eq, {Cos[_], Sin[_], a[_], b[_]}, Simplify]</code></pre>
