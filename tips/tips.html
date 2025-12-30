@@ -7,6 +7,7 @@
 </head>
 
 <body>
+  <!-- for mathematica -->
   <h1>Tips</h1>
   <h2>Wolfram Mathematica</h2>
 
@@ -40,7 +41,26 @@ PlotExport["plot.png", plot];</code></pre>
   <p>Collect:</p>
   <pre><code>Collect[eq, {Cos[_], Sin[_], a[_], b[_]}, Simplify]</code></pre>
 
+  <!-- for openfoam -->
+  <h2>OpenFOAM</h2>
+  <p>Test dynamic mesh motion without fluid fields:</p>
+
+  <p><code>system/controlDict</code> file:</p>
+
+  <pre lang="C++"><code>application moveDynamicMesh;</code></pre>
+
+  <p>Shell script:</p>
+
+  <pre lang="Shell"><code>#!/bin/bash
+foamCleanTutorials
+blockMesh
+moveDynamicMesh</code></pre>
+
+  <p>Apply linear motion before rotational motion to ensure the rotational origin attached to the moving body.</p>
+
+  <!-- for word -->
   <h2>Microsoft Word</h2>
+
   <p>Type <kbd>Alt</kbd> + <kbd>F9</kbd> when citation references display error.</p>
 
   <p><a href="../index.html">home page</a></p>
