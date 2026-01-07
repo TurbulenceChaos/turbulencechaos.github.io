@@ -1,0 +1,35 @@
+body {
+    font-family: Arial;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+pre {
+    position: relative;
+    background: lightgray;
+    padding: 1lh;
+}
+
+pre code {
+    display: block;
+}
+
+pre code::before {
+    content: '';
+    display: block;
+    margin-bottom: -1lh;
+}
+
+pre::before {
+    content: attr(lang);
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: black;
+    color: white;
+}
+
+pre[lang]::before {
+    padding: 2px;
+    font-size: 0.8em;
+}

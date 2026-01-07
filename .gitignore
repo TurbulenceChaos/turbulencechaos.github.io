@@ -1,0 +1,17 @@
+*.aux
+*.bbl
+*.bcf
+*.blg
+*fdb_latexmk
+*.fls
+*.log
+*.nav
+*.out
+*.xml
+*.snm
+*.synctex.gz
+*.toc
+*.bib
+_region_*
+*~
+*.fmt

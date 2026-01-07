@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Tips</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <!-- for mathematica -->
+
+  <h1>Tips</h1>
+
+  <h2>Wolfram Mathematica</h2>
+
+  <p>
+    Initialize the notebook:
+  </p>
+
+  <pre lang="Mathematica"><code>
+If[$InputFileName === "",
+  SetDirectory[NotebookDirectory[]],
+  SetDirectory[DirectoryName[$InputFileName]]
+];
+</code></pre>
+
+  <p>
+    Plot style:
+  </p>
+
+  <pre><code>
+plotStyle[width_ : 8] := 
+   Sequence[PlotTheme -> {"Scientific", "Monochrome"},
+   BaseStyle -> {FontSize -> 10, FontFamily -> "Times"},
+   LabelStyle -> {FontSize -> 10, FontFamily -> "Times"},
+   ImageSize -> width/2.54*100
+   ];
+
+plot=Plot[Sin[x], {x, 0, 1}, Evaluate[plotStyle[]]]
+</code></pre>
+
+  <p>
+    Plot export:
+  </p>
+
+  <pre><code>
+PlotExport[file_, plot_, width_ : 8] := Module[{dir},
+   dir = DirectoryName[file];
+   dir = If[dir === "", NotebookDirectory[], dir];
+   If[! DirectoryQ[dir], 
+    CreateDirectory[dir, CreateIntermediateDirectories -> True]];
+   Export[file, plot, ImageResolution -> 600, 
+    RasterSize -> Round[width/2.54*600]]
+   ];
+  
+PlotExport["plot.png", plot];
+</code></pre>
+
+  <p>
+    Collect:
+  </p>
+
+  <pre><code>
+Collect[eq, {Cos[_], Sin[_], a[_], b[_]}, Simplify]
+</code></pre>
+
+  <p>
+    vscode settings.json of Wolfram Language plugin developedby Wolfram
+    Research:
+  </p>
+
+  <pre><code>
+{
+    "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
+    "[wolfram]": {"editor.formatOnSave": false},
+}
+</code></pre>
+
+  <!-- for openfoam -->
+
+  <h2>OpenFOAM</h2>
+
+  <p>
+    Installation:
+  </p>
+
+  <pre lang="Shell"><code>
+#!/bin/bash
+
+cd $HOME/OpenFOAM/
+
+sudo rm -rf OpenFOAM-v2512
+sudo tar -xzf OpenFOAM-v2512.tgz -C .
+sudo rm -rf ThirdParty-v2512
+sudo tar -xzf  ThirdParty-v2512.tar.gz -C .
+
+sudo chmod -R 777 OpenFOAM-v2512
+sudo chmod -R 777 ThirdParty-v2512
+
+cd OpenFOAM-v2512
+
+source ./etc/bashrc
+
+foamSystemCheck
+
+./Allwmake -with-bear -j 4 -s -q -l
+</code></pre>
+
+  <pre><code>
+alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
+</code></pre>
+
+  <p>
+    Test dynamic mesh motion without fluid fields:
+  </p>
+
+  <pre><code>
+#!/bin/bash
+foamCleanTutorials
+blockMesh
+moveDynamicMesh -noFunctionObjects
+</code></pre>
+
+  <p>
+    Apply linear motion before rotational motion to ensure the rotational
+    origin attached to the moving body.
+  </p>
+
+  <!-- for shell -->
+
+  <h2>Shell Scripts</h2>
+
+  <p>
+    Compress pdf:
+  </p>
+
+  <pre><code>
+ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
+    -sOutputFile=file-new.pdf file.pdf
+</code></pre>
+
+  <p>
+    Convert mp4 to gif:
+  </p>
+
+  <pre><code>
+ffmpeg -i file.mp4 file.gif
+</code></pre>
+
+  <p>
+    proxy for wsl:
+  </p>
+
+  <pre><code>
+export all_proxy="socks5://$(awk '/nameserver/ {print $2}' /etc/resolv.conf):${Port:-7890}"
+
+git config --global proxy.https "${all_proxy:-}"
+</code></pre>
+
+  <p>
+    proxy for vscode settings.json:
+  </p>
+
+  <pre><code>
+{
+    "http.proxyStrictSSL": false,
+    "http.proxy": "http://ipconfig-IPv4 Address:7890",  
+}
+</code></pre>
+
+  <p>
+    mpirun test:
+  </p>
+
+  <pre><code>
+mpirun -np 4 hostname
+</code></pre>
+
+  <!-- for word -->
+
+  <h2>Microsoft Word</h2>
+
+  <p>
+    Type <kbd>Alt</kbd> + <kbd>F9</kbd> when citation references display error.
+  </p>
+
+  <p><a href="../index.html">home page</a></p>
+</body>
+
+</html>
