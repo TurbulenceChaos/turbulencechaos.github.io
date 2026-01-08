@@ -18,6 +18,8 @@
   </p>
 
   <pre lang="Mathematica"><code>
+If[Length[Names["`*"]]>0,Remove["`*"]];
+
 If[$InputFileName === "",
   SetDirectory[NotebookDirectory[]],
   SetDirectory[DirectoryName[$InputFileName]]
