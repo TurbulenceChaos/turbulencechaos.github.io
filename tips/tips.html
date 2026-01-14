@@ -27,36 +27,33 @@ If[$InputFileName === "",
 </code></pre>
 
   <p>
-    Plot style:
+    Plot:
   </p>
 
   <pre><code>
-plotStyle[width_ : 8] := 
-   Sequence[PlotTheme -> {"Scientific", "Monochrome"},
-   BaseStyle -> {FontSize -> 10, FontFamily -> "Times"},
-   LabelStyle -> {FontSize -> 10, FontFamily -> "Times"},
-   ImageSize -> width/2.54*100
-   ];
+PlotBasicStyle[width_:8]:=Sequence[PlotTheme->{"Scientific","Monochrome"},
+BaseStyle->{FontSize->10,FontFamily->"Times"},
+LabelStyle->{FontSize->10,FontFamily->"Times"},
+ImageSize->width/2.54*100
+];
 
-plot=Plot[Sin[x], {x, 0, 1}, Evaluate[plotStyle[]]]
+
+PlotExport[file_,plot_,width_:8]:=Module[{dir},
+dir=DirectoryName[file];
+dir=If[dir==="",NotebookDirectory[],dir];
+If[!DirectoryQ[dir],CreateDirectory[dir,CreateIntermediateDirectories->True]];
+Export[file,plot,ImageResolution->600,RasterSize->Round[width/2.54*600],Background->None]
+];
+
+
+width=8;
+
+plot=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[width]]]
+
+PlotExport["plot.png",plot,width];
 </code></pre>
 
-  <p>
-    Plot export:
-  </p>
-
-  <pre><code>
-PlotExport[file_, plot_, width_ : 8] := Module[{dir},
-   dir = DirectoryName[file];
-   dir = If[dir === "", NotebookDirectory[], dir];
-   If[! DirectoryQ[dir], 
-    CreateDirectory[dir, CreateIntermediateDirectories -> True]];
-   Export[file, plot, ImageResolution -> 600, 
-    RasterSize -> Round[width/2.54*600]]
-   ];
-  
-PlotExport["plot.png", plot];
-</code></pre>
+  </code></pre>
 
   <p>
     Collect:
