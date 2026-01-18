@@ -2,48 +2,58 @@
 <html>
 
 <head>
-  <title>Tips</title>
+  <title>
+    Tips
+  </title>
+
   <link rel="stylesheet" href="../css/style.css" />
 </head>
 
 <body>
   <!-- for mathematica -->
 
-  <h1>Tips</h1>
+  <h1>
+    Tips
+  </h1>
 
-  <h2>Wolfram Mathematica</h2>
+  <h2>
+    Wolfram Mathematica
+  </h2>
 
   <p>
-    If changes to a custom pkg do not take effect, it is because <code>Needs["pkg"]</code> is evaluated
-    only during the first runtime.
+    <code>Needs["pkg`"]</code> is only evaluated for the first time!
   </p>
 
   <p>
     Initialize the notebook:
   </p>
 
-  <pre lang="Mathematica"><code>
+  <pre>
+    <code>
 If[Length[Names["`*"]]>0,Remove["`*"]];
 
 If[$InputFileName === "",
   SetDirectory[NotebookDirectory[]],
   SetDirectory[DirectoryName[$InputFileName]]
 ];
-</code></pre>
+</code>
+</pre>
 
   <p>
     Plot:
   </p>
 
-  <pre><code>
-PlotBasicStyle[width_:8]:=Sequence[PlotTheme->{"Scientific","Monochrome"},
+  <pre>
+    <code>
+PlotBasicStyle[width_]:=Sequence[PlotTheme->{"Scientific","Monochrome"},
 BaseStyle->{FontSize->10,FontFamily->"Times"},
 LabelStyle->{FontSize->10,FontFamily->"Times"},
-ImageSize->width/2.54*100
+ImageSize->width/2.54*100,
+AspectRatio->1/GoldenRatio
 ];
 
 
-PlotExport[file_,plot_,width_:8]:=Module[{dir},
+PlotExport[file_,plot_,width_]:=Module[{dir},
 dir=DirectoryName[file];
 dir=If[dir==="",NotebookDirectory[],dir];
 If[!DirectoryQ[dir],CreateDirectory[dir,CreateIntermediateDirectories->True]];
@@ -51,42 +61,50 @@ Export[file,plot,ImageResolution->600,RasterSize->Round[width/2.54*600],Backgrou
 ];
 
 
-width=8;
+figNum=1;
 
-plot=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[width]]]
+figWidth=8;
 
-PlotExport["plot.png",plot,width];
-</code></pre>
+plot[figNum]=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[figWidth]]]
 
-  </code></pre>
-
-  <p>
-    Collect:
-  </p>
-
-  <pre><code>
-Collect[eq, {Cos[_], Sin[_], a[_], b[_]}, Simplify]
-</code></pre>
+PlotExport["plot.png",plot[figNum],figWidth];
+</code>
+</pre>
 
   <p>
-    vscode settings.json of Wolfram Language plugin developedby Wolfram
-    Research:
+    Collect coefficients:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
+Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
+</code>
+</pre>
+
+  <p>
+    Vscode setting:
+  </p>
+
+  <pre>
+    <code>
 {
-    "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
-    "[wolfram]": {"editor.formatOnSave": false},
+  "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
+  "wolfram.systemKernel": "/usr/local/Wolfram/Wolfram/14.3/Executables/WolframKernel",
+  "[wolfram]": {"editor.formatOnSave": false},
 }
-</code></pre>
+</code>
+</pre>
 
   <!-- Matlab -->
 
-  <h2>Matlab</h2>
+  <h2>
+    Matlab
+  </h2>
 
   Matlab install in linux:
 
-  <pre lang="Shell"><code>
+  <pre>
+    <code>
 sudo apt install unrar
 
 unrar x MathWorks.part1.rar 
@@ -96,13 +114,15 @@ xhost +SI:localuser:root
 sudo -H ./install
 
 xhost -SI:localuser:root
-</code></pre>
+</code>
+</pre>
 
   <p>
-    Add matlab application icon:
+    Add matlab app:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 sudo vim /usr/share/applications/matlab.desktop
 
 
@@ -116,25 +136,30 @@ Icon=/usr/local/MATLAB/R2025b/ui/install/installer_login/images/bg_global_logo.j
 
 
 sudo chmod +x /usr/share/applications/matlab.desktop
-</code></pre>
+</code>
+</pre>
 
   <!-- for openfoam -->
 
-  <h2>OpenFOAM</h2>
+  <h2>
+    OpenFOAM
+  </h2>
 
   <p>
-    Installation:
+    OpenFOAM install in linux:
   </p>
 
-  <pre lang="Shell"><code>
+  <pre>
+    <code>
 #!/bin/bash
 
 cd $HOME/OpenFOAM/
 
 sudo rm -rf OpenFOAM-v2512
-sudo tar -xzf OpenFOAM-v2512.tgz -C .
+sudo tar -xzf OpenFOAM-v2512.tgz
+
 sudo rm -rf ThirdParty-v2512
-sudo tar -xzf  ThirdParty-v2512.tar.gz -C .
+sudo tar -xzf  ThirdParty-v2512.tar.gz
 
 sudo chmod -R 777 OpenFOAM-v2512
 sudo chmod -R 777 ThirdParty-v2512
@@ -146,17 +171,21 @@ source ./etc/bashrc
 foamSystemCheck
 
 ./Allwmake -with-bear -j 4 -s -q -l
-</code></pre>
+</code>
+</pre>
 
-  <pre><code>
+  <pre>
+    <code>
 alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
-</code></pre>
+</code>
+</pre>
 
   <p>
-    Test dynamic mesh motion without fluid fields:
+    Test dynamicMeshDict:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 #!/bin/bash
 
 foamCleanTutorials
@@ -164,128 +193,169 @@ foamCleanTutorials
 blockMesh
 
 moveDynamicMesh -noFunctionObjects
-</code></pre>
+</code>
+</pre>
 
   <p>
-    Apply linear motion before rotational motion to ensure the rotational
-    origin attached to the moving body.
+    Apply linear motion before rotational motion to make rotational
+    origin attached to the body.
   </p>
 
   <p>
-    Paraview for linux:
+    Paraview install in linux:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 sudo apt-get install libxcb-cursor-dev
-</code></pre>
+</code>
+</pre>
 
   <p>
-    Add paraview application icon:
+    Add paraview app:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 sudo vim /usr/share/applications/paraview.desktop
 
 
 [Desktop Entry]
 Version=1.0
 Name=ParaView 6.0.1
-Exec=/home/phd/paraview/ParaView/bin/paraview
+Exec=$HOME/paraview/ParaView/bin/paraview
 Terminal=false
-Icon=/home/phd/paraview/ParaView-6.0.1/share/icons/hicolor/96x96/apps/paraview.png
+Icon=$HOME/paraview/ParaView-6.0.1/share/icons/hicolor/96x96/apps/paraview.png
 Type=Application
 
 
 sudo chmod +x /usr/share/applications/paraview.desktop
-</code></pre>
+</code>
+</pre>
 
   <p>
-    The <code>interfaceHeight</code> positions must not overlap the decomposePar mesh boundaries.
+    The <code>interfaceHeight</code> position can not overlap the decomposeParDict mesh boundaries!
   </p>
 
   <!-- for shell -->
 
-  <h2>Shell Scripts</h2>
+  <h2>
+    Bash Scripts
+  </h2>
 
   <p>
-    git config:
+    Git config:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 git config --global user.name "Peng Peng"
 
-git config --global user.email "email"
+git config --global user.email "211110103110@stu.just.edu.cn"
+</code>
+</pre>
 
+  <p>
+    Git uppercase to lowercase:
+  </p>
+
+  <pre>
+    <code>
 git mv Uppercase lowercase
-</code></pre>
+</code>
+</pre>
 
   <p>
     Compress pdf:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
-    -sOutputFile=file-new.pdf file.pdf
-</code></pre>
+    -sOutputFile=out.pdf file.pdf
+</code>
+</pre>
 
   <p>
     Convert mp4 to gif:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 ffmpeg -i file.mp4 file.gif
-</code></pre>
+</code>
+</pre>
 
   <p>
-    proxy for wsl:
+    Proxy for WSL2:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 export all_proxy="socks5://$(awk '/nameserver/ {print $2}' /etc/resolv.conf):${Port:-7890}"
 
 git config --global proxy.https "${all_proxy:-}"
-</code></pre>
+</code>
+</pre>
 
   <p>
-    proxy for vscode settings.json:
+    Vscode proxy setting:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 {
-    "http.proxyStrictSSL": false,
-    "http.proxy": "http://ipconfig-IPv4 Address:7890",  
+  "http.proxyStrictSSL": false,
+  "http.proxy": "http://ipconfig-IPv4 Address:7890",  
 }
-</code></pre>
+</code>
+</pre>
 
   <p>
     mpirun test:
   </p>
 
-  <pre><code>
+  <pre>
+    <code>
 mpirun -np 4 hostname
-</code></pre>
+</code>
+</pre>
+
+  <p>
+    For desktop, WSL2 mirror network may affect mpirun!
+  </p>
 
   <!-- for word -->
 
-  <h2>Microsoft Word</h2>
+  <h2>
+    Microsoft Word
+  </h2>
 
   <p>
-    Type <kbd>Alt</kbd> + <kbd>F9</kbd> to display field codes.
+    Display raw fields codes: <kbd>Alt + F9</kbd>
   </p>
 
   <!-- for OBS -->
 
-  <h2>OBS</h2>
+  <h2>
+    OBS
+  </h2>
 
-  <pre><code>
+  <p>
+    OBS setting:
+  </p>
+
+  <pre>
+    <code>
 settings -> Video -> General:
-  Base and Output Resolution: 2560*1440
+  Base and Output Resolution: 2560*1440;
   Common FPS Values: 10
 
 settings -> Output -> Recording:
-  Recording Format: MPEG-4 (.mp4)
+  Recording Format: MPEG-4 (.mp4);
   Recording Quality: High Quality, Medium File Size
-</code></pre>
+</code>
+</pre>
 
   <p><a href="../index.html">Home page</a></p>
 </body>
