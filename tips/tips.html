@@ -29,7 +29,7 @@
   </p>
 
   <pre>
-    <code>
+<code>
 If[Length[Names["`*"]]>0,Remove["`*"]];
 
 If[$InputFileName === "",
@@ -44,7 +44,7 @@ If[$InputFileName === "",
   </p>
 
   <pre>
-    <code>
+<code>
 PlotBasicStyle[width_]:=Sequence[PlotTheme->{"Scientific","Monochrome"},
 BaseStyle->{FontSize->10,FontFamily->"Times"},
 LabelStyle->{FontSize->10,FontFamily->"Times"},
@@ -76,7 +76,7 @@ PlotExport["plot.png",plot[figNum],figWidth];
   </p>
 
   <pre>
-    <code>
+<code>
 Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
 </code>
 </pre>
@@ -86,7 +86,7 @@ Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
   </p>
 
   <pre>
-    <code>
+<code>
 {
   "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
   "wolfram.systemKernel": "/usr/local/Wolfram/Wolfram/14.3/Executables/WolframKernel",
@@ -104,7 +104,7 @@ Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
   Matlab install in linux:
 
   <pre>
-    <code>
+<code>
 sudo apt install unrar
 
 unrar x MathWorks.part1.rar 
@@ -122,7 +122,7 @@ xhost -SI:localuser:root
   </p>
 
   <pre>
-    <code>
+<code>
 sudo vim /usr/share/applications/matlab.desktop
 
 
@@ -150,7 +150,7 @@ sudo chmod +x /usr/share/applications/matlab.desktop
   </p>
 
   <pre>
-    <code>
+<code>
 #!/bin/bash
 
 cd $HOME/OpenFOAM/
@@ -175,7 +175,7 @@ foamSystemCheck
 </pre>
 
   <pre>
-    <code>
+<code>
 alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
 </code>
 </pre>
@@ -185,7 +185,7 @@ alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
   </p>
 
   <pre>
-    <code>
+<code>
 #!/bin/bash
 
 foamCleanTutorials
@@ -206,7 +206,7 @@ moveDynamicMesh -noFunctionObjects
   </p>
 
   <pre>
-    <code>
+<code>
 sudo apt-get install libxcb-cursor-dev
 </code>
 </pre>
@@ -216,7 +216,7 @@ sudo apt-get install libxcb-cursor-dev
   </p>
 
   <pre>
-    <code>
+<code>
 sudo vim /usr/share/applications/paraview.desktop
 
 
@@ -248,7 +248,7 @@ sudo chmod +x /usr/share/applications/paraview.desktop
   </p>
 
   <pre>
-    <code>
+<code>
 git config --global user.name "Peng Peng"
 
 git config --global user.email "211110103110@stu.just.edu.cn"
@@ -260,7 +260,7 @@ git config --global user.email "211110103110@stu.just.edu.cn"
   </p>
 
   <pre>
-    <code>
+<code>
 git mv Uppercase lowercase
 </code>
 </pre>
@@ -270,7 +270,7 @@ git mv Uppercase lowercase
   </p>
 
   <pre>
-    <code>
+<code>
 ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
     -sOutputFile=out.pdf file.pdf
 </code>
@@ -281,7 +281,7 @@ ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH 
   </p>
 
   <pre>
-    <code>
+<code>
 ffmpeg -i file.mp4 file.gif
 </code>
 </pre>
@@ -291,7 +291,7 @@ ffmpeg -i file.mp4 file.gif
   </p>
 
   <pre>
-    <code>
+<code>
 export all_proxy="socks5://$(awk '/nameserver/ {print $2}' /etc/resolv.conf):${Port:-7890}"
 
 git config --global proxy.https "${all_proxy:-}"
@@ -303,7 +303,7 @@ git config --global proxy.https "${all_proxy:-}"
   </p>
 
   <pre>
-    <code>
+<code>
 {
   "http.proxyStrictSSL": false,
   "http.proxy": "http://ipconfig-IPv4 Address:7890",  
@@ -316,7 +316,7 @@ git config --global proxy.https "${all_proxy:-}"
   </p>
 
   <pre>
-    <code>
+<code>
 mpirun -np 4 hostname
 </code>
 </pre>
@@ -346,7 +346,7 @@ mpirun -np 4 hostname
   </p>
 
   <pre>
-    <code>
+<code>
 settings -> Video -> General:
   Base and Output Resolution: 2560*1440;
   Common FPS Values: 10
