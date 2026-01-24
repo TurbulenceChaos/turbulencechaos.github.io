@@ -101,7 +101,9 @@ Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
     Matlab
   </h2>
 
-  Matlab install in linux:
+  <p>
+    Matlab install in linux:
+  </p>
 
   <pre>
 <code>
@@ -324,6 +326,18 @@ mpirun -np 4 hostname
   <p>
     For desktop, WSL2 mirror network may affect mpirun!
   </p>
+
+  <p>
+    Unable to mount: wrong fs type
+  </p>
+
+  <pre>
+    <code>
+sudo apt install ntfs-3g
+
+sudo ntfsfix -d /dev/sda3
+</code>
+</pre>
 
   <!-- for word -->
 
