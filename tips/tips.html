@@ -367,6 +367,42 @@ sudo ntfsfix -d /dev/sda3
 </code>
 </pre>
 
+  <!-- for latex tikz -->
+  <h2>
+    LaTeX Tikz
+  </h2>
+
+  <pre>
+<code>
+#!/bin/bash
+
+tikz2png(){
+    local page=$1
+    local outname=$2
+    convert -density 600 -units pixelsperinch -quality 100 -alpha remove "pde.pdf[$page]" -trim "./$outname.png"
+}
+
+tikz2png 0 transport-equation
+</code>
+</pre>
+
+  <pre>
+<code>
+\documentclass[tikz]{standalone}
+
+\tikzstyle{basic}=[font=\fontsize{8}{10}\selectfont]
+
+\begin{document}
+
+% Fig. 1: transport equation
+\begin{tikzpicture}[basic]
+
+\end{tikzpicture}
+
+\end{document}
+</code>
+</pre>
+
   <!-- for fortran -->
 
   <h2>
