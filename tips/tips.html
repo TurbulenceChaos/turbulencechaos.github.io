@@ -367,7 +367,7 @@ sudo ntfsfix -d /dev/sda3
 </code>
 </pre>
 
-  <!-- for latex tikz -->
+  <!-- for latex -->
   <h2>
     LaTeX Tikz
   </h2>
@@ -398,6 +398,54 @@ tikz2png 0 transport-equation
 \begin{tikzpicture}[basic]
 
 \end{tikzpicture}
+
+\end{document}
+</code>
+</pre>
+
+  <pre>
+<code>
+\documentclass{article}
+
+% \usepackage{import}
+
+% \import{../template/}{article}
+
+\usepackage{amsmath} % math formulas
+\usepackage{amsthm} % proof
+\usepackage{amssymb} % \mathbb{R}
+\usepackage{mathtools} % dcases
+\usepackage{graphics} % \includegraphics
+\usepackage{booktabs} % three-line table
+\usepackage{biblatex} % \autocite{}
+\usepackage[left=1.57cm,right=1.57cm,top=0.95cm,bottom=2.54cm]{geometry}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{exercise}{Exercise}[section]
+
+\addbibresource{../Library.bib}
+
+\title{Partial Differential Equations}
+\author{Peng Peng}
+\date{Created: March 22 2026, Version: \today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Four Fundamental Linear PDEs}
+
+\printbibliography
 
 \end{document}
 </code>
