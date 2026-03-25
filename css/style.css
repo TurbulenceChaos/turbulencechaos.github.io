@@ -9,3 +9,7 @@ pre {
     overflow-x: auto;
     padding: 1lh;
 }
+
+blockquote {
+    font-style: italic;
+}
