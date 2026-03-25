@@ -381,12 +381,15 @@ sudo ntfsfix -d /dev/sda3
 #!/bin/bash
 
 tikz2png(){
-    local page=$1
-    local outname=$2
-    convert -density 600 -units pixelsperinch -quality 100 -alpha remove "pde.pdf[$page]" -trim "./$outname.png"
+    local filename=$1
+    local page=$2
+    local outname=$3
+    convert -density 600 -units pixelsperinch -quality 100 -alpha remove "$filename.pdf[$page]" -trim "$outname.png"
 }
 
-tikz2png 0 transport-equation
+# source ../../template/tikz.sh
+
+tikz2png pde-tikz 0 transport-equation
 </code>
 </pre>
 
