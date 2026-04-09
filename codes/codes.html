@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>
+    Tips
+  </title>
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body>
+  <h1>
+    Codes
+  </h1>
+
+  <!-- for mathematica -->
+
+  <h2>
+    Wolfram Mathematica
+  </h2>
+
+  <p>
+    <code>Needs["pkg`"]</code> is only evaluated for the first time!
+  </p>
+
+  <p>
+    Initialize the notebook:
+  </p>
+
+  <pre>
+<code>
+If[Length[Names["`*"]]>0,Remove["`*"]];
+
+If[$InputFileName === "",
+  SetDirectory[NotebookDirectory[]],
+  SetDirectory[DirectoryName[$InputFileName]]
+];
+</code>
+</pre>
+
+  <p>
+    Plot:
+  </p>
+
+  <pre>
+<code>
+PlotBasicStyle[width_]:=Sequence[PlotTheme->{"Scientific","Monochrome"},
+BaseStyle->{FontSize->10,FontFamily->"Times"},
+LabelStyle->{FontSize->10,FontFamily->"Times"},
+ImageSize->width/2.54*100,
+AspectRatio->1/GoldenRatio
+];
+
+
+PlotExport[file_,plot_,width_]:=Module[{dir},
+dir=DirectoryName[file];
+dir=If[dir==="",NotebookDirectory[],dir];
+If[!DirectoryQ[dir],CreateDirectory[dir,CreateIntermediateDirectories->True]];
+Export[file,plot,ImageResolution->600,RasterSize->Round[width/2.54*600],Background->None]
+];
+
+
+figNum=1;
+
+figWidth=8;
+
+plot[figNum]=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[figWidth]]]
+
+PlotExport["plot.png",plot[figNum],figWidth];
+</code>
+</pre>
+
+  <p>
+    Collect coefficients:
+  </p>
+
+  <pre>
+<code>
+Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
+</code>
+</pre>
+
+  <p>
+    Vscode setting:
+  </p>
+
+  <pre>
+<code>
+{
+  "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
+  "wolfram.systemKernel": "/usr/local/Wolfram/Wolfram/14.3/Executables/WolframKernel",
+  "[wolfram]": {"editor.formatOnSave": false},
+}
+</code>
+</pre>
+
+  <!-- Matlab -->
+
+  <h2>
+    Matlab
+  </h2>
+
+  <p>
+    Matlab install in linux:
+  </p>
+
+  <pre>
+<code>
+sudo apt install unrar
+
+unrar x MathWorks.part1.rar 
+
+xhost +SI:localuser:root
+
+sudo -H ./install
+
+xhost -SI:localuser:root
+</code>
+</pre>
+
+  <p>
+    Add matlab app:
+  </p>
+
+  <pre>
+<code>
+sudo vim /usr/share/applications/matlab.desktop
+
+
+[Desktop Entry]
+
+Type=Application
+Terminal=False
+Exec=/usr/local/MATLAB/R2025b/bin/matlab -desktop
+Name=MATLAB R2025b
+Icon=/usr/local/MATLAB/R2025b/ui/install/installer_login/images/bg_global_logo.jpg
+
+
+sudo chmod +x /usr/share/applications/matlab.desktop
+</code>
+</pre>
+
+  <!-- for openfoam -->
+
+  <h2>
+    OpenFOAM
+  </h2>
+
+  <p>
+    OpenFOAM install in linux:
+  </p>
+
+  <pre>
+<code>
+#!/bin/bash
+
+cd $HOME/OpenFOAM/
+
+sudo rm -rf OpenFOAM-v2512
+sudo tar -xzf OpenFOAM-v2512.tgz
+
+sudo rm -rf ThirdParty-v2512
+sudo tar -xzf  ThirdParty-v2512.tar.gz
+
+sudo chmod -R 777 OpenFOAM-v2512
+sudo chmod -R 777 ThirdParty-v2512
+
+cd OpenFOAM-v2512
+
+source ./etc/bashrc
+
+foamSystemCheck
+
+./Allwmake -with-bear -j 4 -s -q -l
+</code>
+</pre>
+
+  <pre>
+<code>
+alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
+</code>
+</pre>
+
+  <p>
+    Test dynamicMeshDict:
+  </p>
+
+  <pre>
+<code>
+#!/bin/bash
+
+foamCleanTutorials
+
+blockMesh
+
+moveDynamicMesh -noFunctionObjects
+</code>
+</pre>
+
+  <p>
+    Apply linear motion before rotational motion to make rotational
+    origin attached to the body.
+  </p>
+
+  <p>
+    Paraview install in linux:
+  </p>
+
+  <pre>
+<code>
+sudo apt-get install libxcb-cursor-dev
+</code>
+</pre>
+
+  <p>
+    Add paraview app:
+  </p>
+
+  <pre>
+<code>
+sudo vim /usr/share/applications/paraview.desktop
+
+
+[Desktop Entry]
+Version=1.0
+Name=ParaView 6.0.1
+Exec=$HOME/paraview/ParaView/bin/paraview
+Terminal=false
+Icon=$HOME/paraview/ParaView-6.0.1/share/icons/hicolor/96x96/apps/paraview.png
+Type=Application
+
+
+sudo chmod +x /usr/share/applications/paraview.desktop
+</code>
+</pre>
+
+  <p>
+    The <code>interfaceHeight</code> position can not overlap the decomposeParDict mesh boundaries!
+  </p>
+
+  <!-- for shell -->
+
+  <h2>
+    Bash Scripts
+  </h2>
+
+  <p>
+    Git config:
+  </p>
+
+  <pre>
+<code>
+git config --global user.name "Peng Peng"
+
+git config --global user.email "211110103110@stu.just.edu.cn"
+</code>
+</pre>
+
+  <p>
+    Git uppercase to lowercase:
+  </p>
+
+  <pre>
+<code>
+git mv Uppercase lowercase
+</code>
+</pre>
+
+  <p>
+    Compress pdf:
+  </p>
+
+  <pre>
+<code>
+ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
+    -sOutputFile=out.pdf file.pdf
+</code>
+</pre>
+
+  <p>
+    Convert mp4 to gif:
+  </p>
+
+  <pre>
+<code>
+ffmpeg -i file.mp4 file.gif
+</code>
+</pre>
+
+  <p>
+    Proxy for WSL2:
+  </p>
+
+  <pre>
+<code>
+export all_proxy="socks5://$(awk '/nameserver/ {print $2}' /etc/resolv.conf):${Port:-7890}"
+
+git config --global proxy.https "${all_proxy:-}"
+</code>
+</pre>
+
+  <p>
+    Vscode proxy setting:
+  </p>
+
+  <pre>
+<code>
+{
+  "http.proxyStrictSSL": false,
+  "http.proxy": "http://ipconfig-IPv4 Address:7890",  
+}
+</code>
+</pre>
+
+  <p>
+    mpirun test:
+  </p>
+
+  <pre>
+<code>
+mpirun -np 4 hostname
+</code>
+</pre>
+
+  <p>
+    For desktop, WSL2 mirror network may affect mpirun!
+  </p>
+
+  <p>
+    Unable to mount: wrong fs type
+  </p>
+
+  <pre>
+    <code>
+sudo apt install ntfs-3g
+
+sudo ntfsfix -d /dev/sda3
+</code>
+</pre>
+
+  <!-- for latex -->
+  <h2>
+    LaTeX
+  </h2>
+
+  <p>
+    Convert tikz to png:
+  </p>
+
+  <pre>
+<code>
+#!/bin/bash
+
+tikz2png(){
+    local filename=$1
+    local page=$2
+    local outname=$3
+    convert -density 600 -units pixelsperinch -quality 100 -alpha remove "$filename.pdf[$page]" -trim "$outname.png"
+}
+
+# source ../../template/tikz.sh
+
+tikz2png pde-tikz 0 transport-equation
+</code>
+</pre>
+
+  <pre>
+<code>
+\documentclass[tikz]{standalone}
+
+\tikzstyle{basic}=[font=\fontsize{8}{10}\selectfont]
+
+\begin{document}
+
+% Fig. 1: transport equation
+
+\begin{tikzpicture}[basic]
+
+\end{tikzpicture}
+
+\end{document}
+</code>
+</pre>
+
+  <pre>
+<code>
+\documentclass{article}
+
+% \usepackage{import}
+
+% \import{../template/}{article}
+
+\usepackage{amsmath} % math formulas
+\usepackage{amsthm} % proof
+\usepackage{amssymb} % \mathbb{R}
+\usepackage{mathtools} % dcases
+\usepackage{graphics} % \includegraphics
+\usepackage{float} % figure[H]
+\usepackage{booktabs} % three-line table
+\usepackage{biblatex} % \autocite{}
+\usepackage[left=1.57cm,right=1.57cm,top=0.95cm,bottom=2.54cm]{geometry}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{example}{Example}[section]
+\newtheorem{exercise}{Exercise}[section]
+
+\addbibresource{../Library.bib}
+
+\title{Partial Differential Equations}
+\author{Peng Peng}
+\date{Created: March 22 2026, Version: \today}
+
+\begin{document}
+
+\maketitle
+
+\tableofcontents
+
+\section{Four Fundamental Linear PDEs}
+
+\printbibliography
+
+\end{document}
+</code>
+</pre>
+
+  <!-- for fortran -->
+
+  <h2>
+    Fortran
+  </h2>
+
+  <p>
+    Vscode config:
+  </p>
+
+  <pre>
+<code>
+sudo apt install gdb
+</code>
+</pre>
+
+  <!-- for word -->
+
+  <h2>
+    Microsoft Word
+  </h2>
+
+  <p>
+    Display raw fields codes: <kbd>Alt + F9</kbd>
+  </p>
+
+  <!-- for OBS -->
+
+  <h2>
+    OBS
+  </h2>
+
+  <p>
+    OBS setting:
+  </p>
+
+  <pre>
+<code>
+settings -> Video -> General:
+  Base and Output Resolution: 2560*1440;
+  Common FPS Values: 10
+
+settings -> Output -> Recording:
+  Recording Format: MPEG-4 (.mp4);
+  Recording Quality: High Quality, Medium File Size
+</code>
+</pre>
+
+  <p><a href="../index.html">Home page</a></p>
+</body>
+
+</html>
