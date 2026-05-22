@@ -30,12 +30,20 @@
 
   <pre>
 <code>
-If[Length[Names["`*"]]>0,Remove["`*"]];
-
-If[$InputFileName === "",
-  SetDirectory[NotebookDirectory[]],
-  SetDirectory[DirectoryName[$InputFileName]]
+If[Length @ Names["`*"] > 0,
+	Remove["`*"]
 ];
+
+If[StringContainsQ[$InputFileName, "ForWolframLanguageForJupyter.wl"],
+	
+	SetDirectory @ Directory[]
+	,
+	If[$InputFileName === "",
+		SetDirectory @ NotebookDirectory[]
+		,
+		SetDirectory @ DirectoryName[$InputFileName]
+	]
+]
 </code>
 </pre>
 
@@ -45,29 +53,44 @@ If[$InputFileName === "",
 
   <pre>
 <code>
-PlotBasicStyle[width_]:=Sequence[PlotTheme->{"Scientific","Monochrome"},
-BaseStyle->{FontSize->10,FontFamily->"Times"},
-LabelStyle->{FontSize->10,FontFamily->"Times"},
-ImageSize->width/2.54*100,
-AspectRatio->1/GoldenRatio
-];
+PlotBasicStyle[figWidth_, fontSize_] :=
+	Sequence[PlotTheme -> {"Scientific", "Monochrome"}, BaseStyle -> {FontSize
+		 -> fontSize / 72 * 100, FontFamily -> "Times"}, LabelStyle -> {FontSize
+		 -> fontSize / 72 * 100, FontFamily -> "Times"}, ImageSize -> figWidth
+		 / 2.54 * 100, AspectRatio -> 1 / GoldenRatio];
 
+PlotExport[exportFile_, plot_, figWidth_] :=
+	Module[{dir},
+		dir = DirectoryName[exportFile];
+		dir =
+			If[dir === "",
+				If[StringContainsQ[$InputFileName, "ForWolframLanguageForJupyter.wl"
+					],
+					Directory[]
+					,
+					If[$InputFileName === "",
+						NotebookDirectory[]
+						,
+						DirectoryName[$InputFileName]
+					]
+				]
+				,
+				dir
+			];
+		If[!DirectoryQ[dir],
+			CreateDirectory[dir, CreateIntermediateDirectories -> True]
+		];
+		Export[exportFile, plot, ImageResolution -> 600, RasterSize -> Round[
+			figWidth / 2.54 * 600], Background -> None]
+	];
 
-PlotExport[file_,plot_,width_]:=Module[{dir},
-dir=DirectoryName[file];
-dir=If[dir==="",NotebookDirectory[],dir];
-If[!DirectoryQ[dir],CreateDirectory[dir,CreateIntermediateDirectories->True]];
-Export[file,plot,ImageResolution->600,RasterSize->Round[width/2.54*600],Background->None]
-];
+fontSize = 8;
 
+figWidth = 8;
 
-figNum=1;
+plot=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[figWidth,fontSize]]]
 
-figWidth=8;
-
-plot[figNum]=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[figWidth]]]
-
-PlotExport["plot.png",plot[figNum],figWidth];
+PlotExport["plot.png",plot,figWidth];
 </code>
 </pre>
 
