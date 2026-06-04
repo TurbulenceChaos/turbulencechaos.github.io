@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-  <title>
-    Tips
-  </title>
+  <head>
+    <title>
+      Programming
+    </title>
 
-  <link rel="stylesheet" href="../css/style.css" />
-</head>
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
 
-<body>
-  <h1>
-    Codes
-  </h1>
+  <body>
+    <h1>
+      Codes
+    </h1>
 
-  <!-- for mathematica -->
+    <!-- for mathematica -->
 
-  <h2>
-    Wolfram Mathematica
-  </h2>
+    <h2>
+      Wolfram Mathematica
+    </h2>
 
-  <p>
-    <code>Needs["pkg`"]</code> is only evaluated for the first time!
-  </p>
+    <p>
+      <code>Needs["pkg`"]</code> is only evaluated for the first time!
+    </p>
 
-  <p>
-    Initialize the notebook:
-  </p>
+    <p>
+      Initialize the notebook:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 If[Length @ Names["`*"] > 0,
 	Remove["`*"]
 ];
@@ -44,92 +44,70 @@ If[StringContainsQ[$InputFileName, "ForWolframLanguageForJupyter.wl"],
 		SetDirectory @ DirectoryName[$InputFileName]
 	]
 ]
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Plot:
-  </p>
+    <p>
+      Plot:
+    </p>
 
-  <pre>
-<code>
-PlotBasicStyle[figWidth_, fontSize_] :=
-	Sequence[PlotTheme -> {"Scientific", "Monochrome"}, BaseStyle -> {FontSize
-		 -> fontSize / 72 * 100, FontFamily -> "Times"}, LabelStyle -> {FontSize
-		 -> fontSize / 72 * 100, FontFamily -> "Times"}, ImageSize -> figWidth
-		 / 2.54 * 100, AspectRatio -> 1 / GoldenRatio];
-
-PlotExport[exportFile_, plot_, figWidth_] :=
-	Module[{dir},
-		dir = DirectoryName[exportFile];
-		dir =
-			If[dir === "",
-				If[StringContainsQ[$InputFileName, "ForWolframLanguageForJupyter.wl"
-					],
-					Directory[]
-					,
-					If[$InputFileName === "",
-						NotebookDirectory[]
-						,
-						DirectoryName[$InputFileName]
-					]
-				]
-				,
-				dir
-			];
-		If[!DirectoryQ[dir],
-			CreateDirectory[dir, CreateIntermediateDirectories -> True]
-		];
-		Export[exportFile, plot, ImageResolution -> 600, RasterSize -> Round[
-			figWidth / 2.54 * 600], Background -> None]
-	];
-
+    <pre>
+      <code>
 fontSize = 8;
 
-figWidth = 8;
+Resolution = 300;
 
-plot=Plot[Sin[x],{x,0,1},Evaluate[PlotBasicStyle[figWidth,fontSize]]]
+SetOptions[{Plot, ListLinePlot, ContourPlot}, PlotTheme -> {"Scientific",
+	 "Monochrome"}, BaseStyle -> {FontSize -> fontSize / 72 * 100, FontFamily
+	 -> "Times"}, LabelStyle -> {FontSize -> fontSize / 72 * 100, FontFamily
+	 -> "Times"}];
 
-PlotExport["plot.png",plot,figWidth];
-</code>
-</pre>
+(* Example:
 
-  <p>
-    Collect coefficients:
-  </p>
+imgWidth = 8;
+plot = Plot[Sin[x], {x, 0, 2 * Pi}, ImageSize -> imgWidth / 2.54 * 100, AspectRatio -> 1 / GoldenRatio]
+Export["/path/to/img.png", plot, ImageResolution -> Resolution, RasterSize -> Round[imgWidth / 2.54 * Resolution]]
 
-  <pre>
-<code>
+*)
+      </code>
+    </pre>
+
+    <p>
+      Collect coefficients:
+    </p>
+
+    <pre>
+      <code>
 Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Vscode setting:
-  </p>
+    <p>
+      Vscode setting:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 {
   "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
   "wolfram.systemKernel": "/usr/local/Wolfram/Wolfram/14.3/Executables/WolframKernel",
   "[wolfram]": {"editor.formatOnSave": false},
 }
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <!-- Matlab -->
+    <!-- Matlab -->
 
-  <h2>
-    Matlab
-  </h2>
+    <h2>
+      Matlab
+    </h2>
 
-  <p>
-    Matlab install in linux:
-  </p>
+    <p>
+      Matlab install in linux:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 sudo apt install unrar
 
 unrar x MathWorks.part1.rar 
@@ -139,15 +117,15 @@ xhost +SI:localuser:root
 sudo -H ./install
 
 xhost -SI:localuser:root
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Add matlab app:
-  </p>
+    <p>
+      Add matlab app:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 sudo vim /usr/share/applications/matlab.desktop
 
 
@@ -161,21 +139,21 @@ Icon=/usr/local/MATLAB/R2025b/ui/install/installer_login/images/bg_global_logo.j
 
 
 sudo chmod +x /usr/share/applications/matlab.desktop
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <!-- for openfoam -->
+    <!-- for openfoam -->
 
-  <h2>
-    OpenFOAM
-  </h2>
+    <h2>
+      OpenFOAM
+    </h2>
 
-  <p>
-    OpenFOAM install in linux:
-  </p>
+    <p>
+      OpenFOAM install in linux:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 #!/bin/bash
 
 cd $HOME/OpenFOAM/
@@ -196,21 +174,21 @@ source ./etc/bashrc
 foamSystemCheck
 
 ./Allwmake -with-bear -j 4 -s -q -l
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Test dynamicMeshDict:
-  </p>
+    <p>
+      Test dynamicMeshDict:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 #!/bin/bash
 
 foamCleanTutorials
@@ -218,30 +196,30 @@ foamCleanTutorials
 blockMesh
 
 moveDynamicMesh -noFunctionObjects
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Apply linear motion before rotational motion to make rotational
-    origin attached to the body.
-  </p>
+    <p>
+      Apply linear motion before rotational motion to make rotational
+      origin attached to the body.
+    </p>
 
-  <p>
-    Paraview install in linux:
-  </p>
+    <p>
+      Paraview install in linux:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 sudo apt-get install libxcb-cursor-dev
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Add paraview app:
-  </p>
+    <p>
+      Add paraview app:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 sudo vim /usr/share/applications/paraview.desktop
 
 
@@ -255,125 +233,127 @@ Type=Application
 
 
 sudo chmod +x /usr/share/applications/paraview.desktop
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    The <code>interfaceHeight</code> position can not overlap the decomposeParDict mesh boundaries!
-  </p>
+    <p>
+      The <code>interfaceHeight</code> position can not overlap the decomposeParDict mesh boundaries!
+    </p>
 
-  <!-- for shell -->
+    <!-- for shell -->
 
-  <h2>
-    Bash Scripts
-  </h2>
+    <h2>
+      Bash Scripts
+    </h2>
 
-  <p>
-    Git config:
-  </p>
+    <p>
+      Git config:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 git config --global user.name "Peng Peng"
 
 git config --global user.email "211110103110@stu.just.edu.cn"
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Git uppercase to lowercase:
-  </p>
+    <p>
+      Git uppercase to lowercase:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 git mv Uppercase lowercase
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Compress pdf:
-  </p>
+    <p>
+      Compress pdf:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
     -sOutputFile=out.pdf file.pdf
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Convert mp4 to gif:
-  </p>
+    <p>
+      Convert mp4 to gif:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 ffmpeg -i file.mp4 file.gif
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Proxy for WSL2:
-  </p>
+    <p>
+      Proxy for WSL2:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 export all_proxy="socks5://$(awk '/nameserver/ {print $2}' /etc/resolv.conf):${Port:-7890}"
 
 git config --global proxy.https "${all_proxy:-}"
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    Vscode proxy setting:
-  </p>
+    <p>
+      Vscode proxy setting:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 {
   "http.proxyStrictSSL": false,
   "http.proxy": "http://ipconfig-IPv4 Address:7890",  
 }
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    mpirun test:
-  </p>
+    <p>
+      mpirun test:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 mpirun -np 4 hostname
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p>
-    For desktop, WSL2 mirror network may affect mpirun!
-  </p>
+    <p>
+      For desktop, WSL2 mirror network may affect mpirun!
+    </p>
 
-  <p>
-    Unable to mount: wrong fs type
-  </p>
+    <p>
+      Unable to mount: wrong fs type
+    </p>
 
-  <pre>
-    <code>
+    <pre>
+      <code>
 sudo apt install ntfs-3g
 
 sudo ntfsfix -d /dev/sda3
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <!-- for latex -->
-  <h2>
-    LaTeX
-  </h2>
+    <!-- for latex -->
+    <h2>
+      LaTeX
+    </h2>
 
-  <p>
-    Convert tikz to png:
-  </p>
+    <p>
+      Convert tikz to png:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 #!/bin/bash
+
+# mkdir -p ../../images/tikz
 
 tikz2png(){
     local filename=$1
@@ -385,35 +365,52 @@ tikz2png(){
 # source ../../template/tikz.sh
 
 tikz2png pde-tikz 0 transport-equation
-</code>
-</pre>
+# tikz2png pde-tikz 1 filename
+      </code>
+    </pre>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 \documentclass[tikz]{standalone}
+% \usepackage{newtxtext,newtxmath} % Times New Roman
 
-\tikzstyle{basic}=[font=\fontsize{8}{10}\selectfont]
+\definecolor{fuchsin}{HTML}{FF00FF}
+
+\tikzset{
+  basic/.style={font=\fontsize{8}{10}\selectfont,>=latex},
+  image/.style={draw=none,inner sep=0pt}
+}
+
+\newcommand{\grid}{
+  \draw[brown](-4,-4)grid(4,4);
+  \foreach \x in {-4,-3.5,...,4} {
+    \node at (\x,0) {\tiny \x};
+    \node at (0,\x) {\tiny \x};
+  }
+}
 
 \begin{document}
-
-% Fig. 1: transport equation
-
+%% Figure 1
+% figure name
 \begin{tikzpicture}[basic]
-
+  \node[image]at(0,0){
+    \includegraphics[width=7.5cm]{/path/to/image.png}
+  };
 \end{tikzpicture}
 
 \end{document}
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 \documentclass{article}
 
 % \usepackage{import}
 
 % \import{../template/}{article}
 
+\usepackage[left=1.57cm,right=1.57cm,top=0.95cm,bottom=2.54cm]{geometry}
 \usepackage{amsmath} % math formulas
 \usepackage{amsthm} % proof
 \usepackage{amssymb} % \mathbb{R}
@@ -422,7 +419,6 @@ tikz2png pde-tikz 0 transport-equation
 \usepackage{float} % figure[H]
 \usepackage{booktabs} % three-line table
 \usepackage{biblatex} % \autocite{}
-\usepackage[left=1.57cm,right=1.57cm,top=0.95cm,bottom=2.54cm]{geometry}
 
 \numberwithin{equation}{section}
 \numberwithin{figure}{section}
@@ -430,10 +426,15 @@ tikz2png pde-tikz 0 transport-equation
 
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{definition}{Definition}[section]
+% \newtheorem{definition}{Definition}[section]
+% \newtheorem{assumption}{Assumption}[section]
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{assumption}[theorem]{Assumption}
 \theoremstyle{definition}
-\newtheorem{example}{Example}[section]
-\newtheorem{exercise}{Exercise}[section]
+% \newtheorem{example}{Example}[section]
+% \newtheorem{exercise}{Exercise}[section]
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
 
 \addbibresource{../Library.bib}
 
@@ -452,47 +453,47 @@ tikz2png pde-tikz 0 transport-equation
 \printbibliography
 
 \end{document}
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <!-- for fortran -->
+    <!-- for fortran -->
 
-  <h2>
-    Fortran
-  </h2>
+    <h2>
+      Fortran
+    </h2>
 
-  <p>
-    Vscode config:
-  </p>
+    <p>
+      Vscode config:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 sudo apt install gdb
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <!-- for word -->
+    <!-- for word -->
 
-  <h2>
-    Microsoft Word
-  </h2>
+    <h2>
+      Microsoft Word
+    </h2>
 
-  <p>
-    Display raw fields codes: <kbd>Alt + F9</kbd>
-  </p>
+    <p>
+      Display raw fields codes: <kbd>Alt + F9</kbd>
+    </p>
 
-  <!-- for OBS -->
+    <!-- for OBS -->
 
-  <h2>
-    OBS
-  </h2>
+    <h2>
+      OBS
+    </h2>
 
-  <p>
-    OBS setting:
-  </p>
+    <p>
+      OBS setting:
+    </p>
 
-  <pre>
-<code>
+    <pre>
+      <code>
 settings -> Video -> General:
   Base and Output Resolution: 2560*1440;
   Common FPS Values: 10
@@ -500,10 +501,10 @@ settings -> Video -> General:
 settings -> Output -> Recording:
   Recording Format: MPEG-4 (.mp4);
   Recording Quality: High Quality, Medium File Size
-</code>
-</pre>
+      </code>
+    </pre>
 
-  <p><a href="../index.html">Home page</a></p>
-</body>
+    <p><a href="../index.html">Home page</a></p>
+  </body>
 
 </html>

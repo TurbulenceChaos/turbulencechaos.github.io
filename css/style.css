@@ -1,15 +1,16 @@
 body {
-    font-family: Arial;
-    max-width: 800px;
-    margin: auto;
+  font-family: Arial;
+  max-width: 800px;
+  margin: auto;
 }
 
 pre {
-    background: lightgray;
-    overflow-x: auto;
-    padding: 1lh;
+  font-family: monospace;
+  background: #f3f5f6;
+  overflow-x: auto;
+  padding: 1lh;
 }
 
 blockquote {
-    font-style: italic;
+  font-style: italic;
 }
