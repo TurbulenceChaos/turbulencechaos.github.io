@@ -28,8 +28,7 @@
       Initialize the notebook:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 If[Length @ Names["`*"] > 0,
 	Remove["`*"]
 ];
@@ -44,15 +43,13 @@ If[StringContainsQ[$InputFileName, "ForWolframLanguageForJupyter.wl"],
 		SetDirectory @ DirectoryName[$InputFileName]
 	]
 ]
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Plot:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 fontSize = 8;
 
 Resolution = 300;
@@ -69,32 +66,27 @@ plot = Plot[Sin[x], {x, 0, 2 * Pi}, ImageSize -> imgWidth / 2.54 * 100, AspectRa
 Export["/path/to/img.png", plot, ImageResolution -> Resolution, RasterSize -> Round[imgWidth / 2.54 * Resolution]]
 
 *)
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Collect coefficients:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Vscode setting:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 {
   "wolfram.systemKernel": "/usr/local/Wolfram/WolframEngine/14.3/Executables/WolframKernel",
   "wolfram.systemKernel": "/usr/local/Wolfram/Wolfram/14.3/Executables/WolframKernel",
   "[wolfram]": {"editor.formatOnSave": false},
 }
-      </code>
-    </pre>
+    </code></pre>
 
     <!-- Matlab -->
 
@@ -106,8 +98,7 @@ Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
       Matlab install in linux:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 sudo apt install unrar
 
 unrar x MathWorks.part1.rar 
@@ -117,15 +108,13 @@ xhost +SI:localuser:root
 sudo -H ./install
 
 xhost -SI:localuser:root
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Add matlab app:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 sudo vim /usr/share/applications/matlab.desktop
 
 
@@ -139,8 +128,7 @@ Icon=/usr/local/MATLAB/R2025b/ui/install/installer_login/images/bg_global_logo.j
 
 
 sudo chmod +x /usr/share/applications/matlab.desktop
-      </code>
-    </pre>
+    </code></pre>
 
     <!-- for openfoam -->
 
@@ -152,8 +140,7 @@ sudo chmod +x /usr/share/applications/matlab.desktop
       OpenFOAM install in linux:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 #!/bin/bash
 
 cd $HOME/OpenFOAM/
@@ -174,21 +161,17 @@ source ./etc/bashrc
 foamSystemCheck
 
 ./Allwmake -with-bear -j 4 -s -q -l
-      </code>
-    </pre>
+    </code></pre>
 
-    <pre>
-      <code>
+    <pre><code>
 alias of2512='source ~/openfoam/OpenFOAM-v2512/etc/bashrc'
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Test dynamicMeshDict:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 #!/bin/bash
 
 foamCleanTutorials
@@ -196,8 +179,7 @@ foamCleanTutorials
 blockMesh
 
 moveDynamicMesh -noFunctionObjects
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Apply linear motion before rotational motion to make rotational
@@ -208,18 +190,15 @@ moveDynamicMesh -noFunctionObjects
       Paraview install in linux:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 sudo apt-get install libxcb-cursor-dev
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Add paraview app:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 sudo vim /usr/share/applications/paraview.desktop
 
 
@@ -233,8 +212,7 @@ Type=Application
 
 
 sudo chmod +x /usr/share/applications/paraview.desktop
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       The <code>interfaceHeight</code> position can not overlap the decomposeParDict mesh boundaries!
@@ -250,79 +228,65 @@ sudo chmod +x /usr/share/applications/paraview.desktop
       Git config:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 git config --global user.name "Peng Peng"
 
 git config --global user.email "211110103110@stu.just.edu.cn"
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Git uppercase to lowercase:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 git mv Uppercase lowercase
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Compress pdf:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
     -sOutputFile=out.pdf file.pdf
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Convert mp4 to gif:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 ffmpeg -i file.mp4 file.gif
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Proxy for WSL2:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 export all_proxy="socks5://$(awk '/nameserver/ {print $2}' /etc/resolv.conf):${Port:-7890}"
 
 git config --global proxy.https "${all_proxy:-}"
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       Vscode proxy setting:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 {
   "http.proxyStrictSSL": false,
   "http.proxy": "http://ipconfig-IPv4 Address:7890",  
 }
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       mpirun test:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 mpirun -np 4 hostname
-      </code>
-    </pre>
+    </code></pre>
 
     <p>
       For desktop, WSL2 mirror network may affect mpirun!
@@ -332,13 +296,11 @@ mpirun -np 4 hostname
       Unable to mount: wrong fs type
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 sudo apt install ntfs-3g
 
 sudo ntfsfix -d /dev/sda3
-      </code>
-    </pre>
+    </code></pre>
 
     <!-- for latex -->
     <h2>
@@ -349,11 +311,10 @@ sudo ntfsfix -d /dev/sda3
       Convert tikz to png:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 #!/bin/bash
 
-# mkdir -p ../../images/tikz
+# mkdir -p /path/to/imgFolder
 
 tikz2png(){
     local filename=$1
@@ -366,11 +327,9 @@ tikz2png(){
 
 tikz2png pde-tikz 0 transport-equation
 # tikz2png pde-tikz 1 filename
-      </code>
-    </pre>
+    </code></pre>
 
-    <pre>
-      <code>
+    <pre><code>
 \documentclass[tikz]{standalone}
 % \usepackage{newtxtext,newtxmath} % Times New Roman
 
@@ -399,11 +358,9 @@ tikz2png pde-tikz 0 transport-equation
 \end{tikzpicture}
 
 \end{document}
-      </code>
-    </pre>
+    </code></pre>
 
-    <pre>
-      <code>
+    <pre><code>
 \documentclass{article}
 
 % \usepackage{import}
@@ -453,8 +410,7 @@ tikz2png pde-tikz 0 transport-equation
 \printbibliography
 
 \end{document}
-      </code>
-    </pre>
+    </code></pre>
 
     <!-- for fortran -->
 
@@ -466,11 +422,9 @@ tikz2png pde-tikz 0 transport-equation
       Vscode config:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 sudo apt install gdb
-      </code>
-    </pre>
+    </code></pre>
 
     <!-- for word -->
 
@@ -492,8 +446,7 @@ sudo apt install gdb
       OBS setting:
     </p>
 
-    <pre>
-      <code>
+    <pre><code>
 settings -> Video -> General:
   Base and Output Resolution: 2560*1440;
   Common FPS Values: 10
@@ -501,8 +454,7 @@ settings -> Video -> General:
 settings -> Output -> Recording:
   Recording Format: MPEG-4 (.mp4);
   Recording Quality: High Quality, Medium File Size
-      </code>
-    </pre>
+    </code></pre>
 
     <p><a href="../index.html">Home page</a></p>
   </body>
