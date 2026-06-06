@@ -12,8 +12,6 @@
   <body>
     <h1 class="title">Codes</h1>
 
-    <!-- for mathematica -->
-
     <h1>Wolfram Mathematica</h1>
 
     <p>
@@ -84,8 +82,6 @@ Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
 }
     </code></pre>
 
-    <!-- Matlab -->
-
     <h1>Matlab</h1>
 
     <p>
@@ -123,8 +119,6 @@ Icon=/usr/local/MATLAB/R2025b/ui/install/installer_login/images/bg_global_logo.j
 
 sudo chmod +x /usr/share/applications/matlab.desktop
     </code></pre>
-
-    <!-- for openfoam -->
 
     <h1>OpenFOAM</h1>
 
@@ -210,8 +204,6 @@ sudo chmod +x /usr/share/applications/paraview.desktop
       The <code>interfaceHeight</code> position can not overlap the decomposeParDict mesh boundaries!
     </p>
 
-    <!-- for shell -->
-
     <h1>Bash Scripts</h1>
 
     <p>
@@ -292,7 +284,6 @@ sudo apt install ntfs-3g
 sudo ntfsfix -d /dev/sda3
     </code></pre>
 
-    <!-- for latex -->
     <h1>LaTeX</h1>
 
     <p>
@@ -400,8 +391,6 @@ tikz2png pde-tikz 0 transport-equation
 \end{document}
     </code></pre>
 
-    <!-- for fortran -->
-
     <h1>Fortran</h1>
 
     <p>
@@ -412,15 +401,55 @@ tikz2png pde-tikz 0 transport-equation
 sudo apt install gdb
     </code></pre>
 
-    <!-- for word -->
+    <h1>CPP</h1>
+
+    <p>CMakeLists.txt:</p>
+
+    <pre><code>
+cmake_minimum_required(VERSION 3.20)
+
+project(MyApplication LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+add_executable(MyApplication main.cpp utils.cpp)
+    </code></pre>
+
+    <pre><code>
+#!/bin/bash
+
+cmake -B build
+
+cmake --build build
+
+ln -nsfv build/compile_commands.json compile_commands.json
+    </code></pre>
+
+    <p>.clang-format</p>
+
+    <pre><code>
+BasedOnStyle: LLVM
+UseTab: Never
+IndentWidth: 4
+TabWidth: 4
+BreakBeforeBraces: Allman
+AllowShortIfStatementsOnASingleLine: false
+IndentCaseLabels: false
+ColumnLimit: 0
+AccessModifierOffset: -4
+NamespaceIndentation: All
+FixNamespaceComments: false
+    </code></pre>
 
     <h1>Microsoft Word</h1>
 
     <p>
       Display raw fields codes: <kbd>Alt + F9</kbd>
     </p>
-
-    <!-- for OBS -->
 
     <h1>OBS</h1>
 
