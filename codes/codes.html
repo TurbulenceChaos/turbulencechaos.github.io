@@ -2,9 +2,7 @@
 <html>
 
   <head>
-    <title>
-      Programming
-    </title>
+    <title>Programming</title>
 
     <link rel="stylesheet" href="../css/style.css?v=0.2">
   </head>
@@ -23,20 +21,24 @@
     </p>
 
     <pre><code>
-If[Length @ Names["`*"] > 0,
-	Remove["`*"]
+If[Length[Names["`*"]] > 0,
+    Remove["`*"]
 ];
 
-If[StringContainsQ[$InputFileName, "ForWolframLanguageForJupyter.wl"],
-	
-	SetDirectory @ Directory[]
+dir =
+    Which[
+	SameQ[$InputFileName, ""],
+	    Quiet @ Check[NotebookDirectory[], Directory[]]
 	,
-	If[$InputFileName === "",
-		SetDirectory @ NotebookDirectory[]
-		,
-		SetDirectory @ DirectoryName[$InputFileName]
-	]
-]
+	StringContainsQ[$InputFileName, "WolframLanguageForJupyter"],
+
+	    Directory[]
+	,
+	True,
+	    DirectoryName[$InputFileName]
+    ];
+
+SetDirectory[dir]
     </code></pre>
 
     <p>
@@ -91,7 +93,7 @@ Collect[eq,{Cos[_],Sin[_],a[_],b[_]},Simplify]
     <pre><code>
 sudo apt install unrar
 
-unrar x MathWorks.part1.rar 
+unrar x MathWorks.part1.rar
 
 xhost +SI:localuser:root
 
@@ -258,7 +260,7 @@ git config --global proxy.https "${all_proxy:-}"
     <pre><code>
 {
   "http.proxyStrictSSL": false,
-  "http.proxy": "http://ipconfig-IPv4 Address:7890",  
+  "http.proxy": "http://ipconfig-IPv4 Address:7890",
 }
     </code></pre>
 
