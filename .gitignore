@@ -11,8 +11,8 @@
 *.snm
 *.synctex.gz
 *.toc
-*.bib
 _region_*
 *~
 *.fmt
 images/
+*-tikz.pdf
