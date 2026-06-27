@@ -1,0 +1,38 @@
+\documentclass{article}
+\usepackage{import}
+\import{../template/}{article}
+\graphicspath{{../../images}}
+\addbibresource{../template/library.bib}
+
+\title{Fluid Dynamics}
+\author{PENG}
+\date{Created: 20260627, Version: 20260627}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Physical Properties of Fluids}
+\begin{definition}
+    Martial derivatives \autocite{BATCHELOR_2000_AN_INTRODUCTION_TO_FLUID_DYNAMICS}:
+
+    \begin{equation}
+        \frac{D}{Dt} = \frac{\partial }{\partial t} + \boldsymbol{u} \cdot \nabla
+        = \frac{\partial }{\partial t} + [u_{1} u_{2} \dots u_{n}]
+        \begin{bmatrix}
+            \frac{\partial}{\partial x_{1}} \\
+            \frac{\partial}{\partial x_{2}} \\
+            \vdots                          \\
+            \frac{\partial}{\partial x_{n}} \\
+        \end{bmatrix}
+        = \frac{\partial }{\partial t} + \sum_{i=1}^{n} u_{i}\frac{\partial}{\partial x_{i}}
+    \end{equation}
+\end{definition}
+
+\begin{assumption}
+    Volumn of deformed fluid under any force = C
+\end{assumption}
+
+Compressibility: gases $\gg$ liquids
+
+\printbibliography
+\end{document}

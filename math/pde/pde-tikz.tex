@@ -1,0 +1,22 @@
+\documentclass[tikz]{standalone}
+\usepackage{import}
+\import{../template/}{tikz}
+
+\begin{document}
+% @fig{transport-equation.png}
+\begin{tikzpicture}[basic]
+  % \draw[very thin,color=gray] (0,0) grid (4,4);
+  \draw[-latex] (0,0) -- ++(4,0) node[right] {$t$};
+  \draw[-latex] (2,1) -- ++(1,0);
+  \draw[thick] plot[smooth,domain=0:2] (\x,{2*exp(-4*(\x-1)^2)});
+\end{tikzpicture}
+
+% @fig{outward-derivative.png}
+\begin{tikzpicture}[basic]
+  % \draw[very thin,color=gray] (0,0) grid (4,4);
+  \draw[fill=gray!20] plot [smooth cycle,tension=2] coordinates { (0,3) (2,2) (4,3) };
+  \draw[-latex] (2,2) -- ++(0,-1) node[right] {$\vec{v}$};
+  \draw (2,3) node[below] {$U$};
+  \draw (3,2) node[below] {$\partial U$};
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,366 @@
+\documentclass{article}
+\usepackage{import}
+\import{../template/}{article}
+\graphicspath{{../../images}}
+\addbibresource{../template/library.bib}
+
+\title{Partial Differential Equations}
+\author{PENG}
+\date{Created: 20260322, Version: 20260627}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Four Fundamental Linear PDEs}
+Four fundamental linear PDEs \autocite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS}:
+
+\begin{itemize}
+\item Transport equation
+\item Laplace's equation
+\item Heat equation
+\item Wave equation
+\end{itemize}
+
+\subsection{Transport Equation}
+\begin{definition}
+  Gradient vector:
+
+  \begin{equation}
+    Du = \nabla u := \begin{bmatrix}
+      \frac{\partial u}{\partial x_{1}} \\
+      \frac{\partial u}{\partial x_{2}} \\
+      \vdots                            \\
+      \frac{\partial u}{\partial x_{n}}
+    \end{bmatrix}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  Dot product and matrix multiplication:
+
+  \begin{equation}
+    A_{n \times 1} \cdot B_{n \times 1} = A^{T} B =
+    [a_{1} a_{2} \dots a_{n}]
+    \begin{bmatrix}
+      b_{1}  \\
+      b_{2}  \\
+      \vdots \\
+      b_{n}
+    \end{bmatrix}
+    = a_{1}b_{1} + a_{2}b_{2} + \dots + a_{n}b_{n}
+  \end{equation}
+\end{definition}
+
+Transport equation:
+
+\begin{equation}
+  \label{equ:transport-equation}
+  u_{t} + c \cdot Du =
+  \frac{\partial u}{\partial t} +
+  [c_{1} c_{2} \dots c_{n}]
+  \begin{bmatrix}
+    \frac{\partial u}{\partial x_{1}} \\
+    \frac{\partial u}{\partial x_{2}} \\
+    \vdots                            \\
+    \frac{\partial u}{\partial x_{n}}
+  \end{bmatrix}
+  =
+  \frac{\partial u}{\partial t} + \sum_{i=n}^{n} c_{i} \frac{\partial u}{\partial x_{i}} = 0
+\end{equation}
+
+\begin{example}
+  For 1D and 2D cases:
+  \begin{equation*}
+    \frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = 0
+  \end{equation*}
+
+  \begin{equation*}
+    \frac{\partial u}{\partial t} + c_{1} \frac{\partial u}{\partial x} + c_{2} \frac{\partial u}{\partial y} = 0
+  \end{equation*}
+\end{example}
+
+\begin{lemma}
+  \begin{equation}
+    \frac{dy}{d(x+C)} = \frac{\frac{dy}{dx}}{\frac{d(x+C)}{dx}} = \frac{dy}{dx}
+  \end{equation}
+\end{lemma}
+
+\begin{example}
+  Initial-value problem:
+
+  \begin{equation*}
+    \begin{cases}
+      \frac{\partial u}{\partial t} + c \cdot \frac{\partial u}{\partial x} = 0 \\
+      u(x,0) = g(x)
+    \end{cases}
+  \end{equation*}
+
+  Let $z(s) := u(x+sc,t+s) \quad (s \in \mathbb{R})$
+
+  \begin{equation*}
+    \frac{dz}{ds} = \frac{\partial u}{\partial (x+sc)}\frac{d (x+sc)}{ds} + \frac{\partial u}{\partial (t+s)}\frac{d (t+s)}{ds}
+    = \frac{\partial u}{\partial x} c + \frac{\partial u}{\partial t}
+    = 0
+  \end{equation*}
+
+  \begin{equation*}
+    z(s) = u(x+sc,t+s) = C = u(x,t) = u(x-tc,0) = g(x-tc)
+  \end{equation*}
+\end{example}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{transport-equation.png}
+  \caption{Transport equation.}
+  \label{fig:transport-equation}
+\end{figure}
+
+\begin{example}
+  Nonhomogenous problem:
+
+  \begin{equation*}
+    \begin{cases}
+      \frac{\partial u}{\partial t} + c \cdot \frac{\partial u}{\partial x} = f(x,t) \\
+      u(x,0) = g(x)
+    \end{cases}
+  \end{equation*}
+
+  Let $z(s) := u(x+sc,t+s)$
+
+  \begin{equation*}
+    \frac{dz}{ds} = f(x+sc,t+s)
+  \end{equation*}
+
+  \begin{equation*}
+    z(s) = u(x+sc,t+s) = \int f(x+sc,t+s) ds
+  \end{equation*}
+
+  \begin{equation*}
+    z(0) - z(-t) = u(x,t) - u(x-tc,0) = u(x,t) - g(x-tc) = \int_{-t}^{0} f(x+sc,t+s) ds
+  \end{equation*}
+
+  \begin{equation*}
+    u(x,t) = g(x-tc) + \int_{-t}^{0} f(x+sc,t+s) ds
+  \end{equation*}
+\end{example}
+
+\subsection{Laplace's Equation}
+\begin{definition}
+  Laplace's equation:
+  \begin{equation}
+    \label{eq:laplace-equation}
+    \Delta u = \nabla \cdot \nabla u = \nabla^{2} u =
+    \left[ \frac{\partial}{\partial x_{1}} \frac{\partial}{\partial x_{2}} \dots \frac{\partial}{\partial x_{n}} \right]
+    \begin{bmatrix}
+      \frac{\partial u}{\partial x_{1}} \\
+      \frac{\partial u}{\partial x_{2}} \\
+      \vdots                            \\
+      \frac{\partial u}{\partial x_{n}}
+    \end{bmatrix}
+    = \sum_{i=1}^{n} \frac{\partial^{2} u}{\partial x_{i}^{2}} = 0
+  \end{equation}
+\end{definition}
+
+\begin{example}
+  For 1D and 2D cases:
+  \begin{equation*}
+    \frac{\partial^2 u}{\partial x^{2}} = 0
+  \end{equation*}
+
+  \begin{equation*}
+    \frac{\partial^2 u}{\partial x^{2}} + \frac{\partial^2 u}{\partial y^{2}} = 0
+  \end{equation*}
+\end{example}
+
+\begin{definition}
+  Outward derivative:
+
+  \begin{equation*}
+    \frac{\partial u}{\partial v} := \boldsymbol{v} \cdot Du =
+    [v_{1} v_{2} \dots v_{n}]
+    \begin{bmatrix}
+      \frac{\partial u}{\partial x_{1}} \\
+      \frac{\partial u}{\partial x_{2}} \\
+      \vdots                            \\
+      \frac{\partial u}{\partial x_{n}} \\
+    \end{bmatrix}
+    = \sum_{i=1}^{n} v_{i} \frac{\partial u}{\partial x_{i}}
+  \end{equation*}
+  where $\boldsymbol{v}$ is the unit outer normal vector of $\partial U$.
+\end{definition}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{outward-derivative.png}
+  \caption{Outward derivative.}
+  \label{fig:outward-derivative}
+\end{figure}
+
+\begin{example}
+  For 1D and 2D cases:
+
+  \begin{equation*}
+    \frac{\partial u}{\partial v} = v\frac{\partial u}{\partial x}
+  \end{equation*}
+
+  \begin{equation*}
+    \frac{\partial u}{\partial v} = v_{1}\frac{\partial u}{\partial x} + v_{2}\frac{\partial u}{\partial y}
+  \end{equation*}
+\end{example}
+
+\begin{theorem}
+  Gauss-Green theorem:
+
+  \begin{equation}
+    \begin{aligned}
+      & \int_{U} \nabla \cdot \boldsymbol{u} dx =
+        \int_{U}
+        \left[ \frac{\partial}{\partial x_{1}} \frac{\partial}{\partial x_{2}} \dots \frac{\partial}{\partial x_{n}} \right]
+        \begin{bmatrix}
+          u_{1}  \\
+          u_{2}  \\
+          \vdots \\
+          u_{n}
+        \end{bmatrix} dx
+        = \int_{U} \sum_{i=1}^{n} \frac{\partial u_{i}}{\partial x_{i}} dx \\
+      = & \int_{\partial U} \boldsymbol{u} \cdot \boldsymbol{v} dS
+          = \int_{\partial U}
+          \left[ u_{1} u_{2} \dots u_{3} \right]
+          \begin{bmatrix}
+            v_{1}  \\
+            v_{2}  \\
+            \vdots \\
+            v_{n}
+          \end{bmatrix} dS
+          = \int_{\partial U} \sum_{i=1}^{n} u_{i}v_{i} dS
+    \end{aligned}
+  \end{equation}
+\end{theorem}
+
+\begin{example}
+  For 1D and 2D cases:
+
+  \begin{equation*}
+    \int_{U} \frac{\partial u}{\partial x} dx = \int_{\partial U} uv  dS
+  \end{equation*}
+
+  \begin{equation*}
+    \int_{U} \frac{\partial u_{1}}{\partial x} + \frac{\partial u_{2}}{\partial y} dx =
+    \int_{\partial U} u_{1}v_{1} + u_{2}v_{2} dS
+  \end{equation*}
+\end{example}
+
+Fundamental solution:
+
+\begin{equation*}
+  u(x) = v(r)  
+\end{equation*}
+
+\begin{equation*}
+  r = |x| = \left( \sum_{i=1}^{n}x_{i}^{2} \right)^{\frac{1}{2}}
+\end{equation*}
+
+\begin{equation*}
+  \frac{\partial r}{\partial x_{i}} = \frac{x_{i}}{r}
+\end{equation*}
+
+\begin{equation*}
+  \frac{\partial u}{\partial x_{i}} = \frac{dv}{dr} \frac{x_{i}}{r} 
+\end{equation*}
+
+\begin{equation*}
+  \frac{\partial^{2} u}{\partial x_{i}^{2}} = \frac{d^{2}v}{dr^{2}} \frac{x_{i}^{2}}{r^{2}}
+  + \frac{dv}{dr} \frac{r^{2} - x_{i}^{2}}{r^{3}}
+\end{equation*}
+
+\begin{equation*}
+  \Delta u = \sum_{i=1}^{n} \frac{\partial^{2} u}{\partial x_{i}^{2}} = \frac{d^{2}v}{dr^{2}} + \frac{dv}{dr}\frac{n-1}{r} = 0
+\end{equation*}
+
+For $n = 1$:
+
+\begin{equation*}
+  \frac{d^{2}v}{dr^{2}} = 0
+\end{equation*}
+
+\begin{equation*}
+  v(r) = r + C
+\end{equation*}
+
+For $n \geq 2$:
+
+\begin{equation*}
+  \frac{d^{2}v}{dr^{2}} + \frac{dv}{dr}\frac{n-1}{r} = 0
+\end{equation*}
+
+\begin{equation*}
+  \frac{v''(r)}{v'(r)} = \ln\left(\left| v'(r) \right|\right)' = \frac{1-n}{r}
+\end{equation*}
+
+\begin{equation*}
+  \ln\left(\left| v'(r) \right|\right) = (1-n)\ln(r) + \ln(C) = \ln\left( \frac{C}{r^{n-1}} \right)
+\end{equation*}
+
+\begin{equation*}
+  \left| v'(r) \right| = \frac{C}{r^{n-1}}
+\end{equation*}
+
+\begin{equation*}
+  v'(r) = \frac{C}{r^{n-1}}
+\end{equation*}
+
+For $n = 2$:
+
+\begin{equation*}
+  v'(r) = \frac{C}{r}
+\end{equation*}
+
+\begin{equation*}
+  v(r) = C_{1}\ln(r) + C_{2}
+\end{equation*}
+
+For $n \geq 3$:
+
+\begin{equation*}
+  v(r) = \frac{C_{1}}{2-n} \frac{1}{r^{n-2}} + C_{2} = \frac{C_{1}}{r^{n-2}} + C_{2}
+\end{equation*}
+
+\begin{definition}
+  Fundamental solution of Laplace's equation:
+
+  \begin{equation}
+    \label{eq:fundamental-solution-laplace-equation}
+    \Phi(|x|) :=
+    \begin{cases}
+      -\frac{1}{2\pi}\ln|x| \quad & (n = 2) \\
+      \frac{1}{n(n-2)\alpha(n)}\frac{1}{|x|^{n-2}} \quad & (n \geq 3)
+    \end{cases}
+  \end{equation}
+\end{definition}
+
+\begin{definition}
+  Poisson's equation:
+
+  \begin{equation}
+    \label{eq:poisson-equation}
+    -\Delta u = -\sum_{i=1}^{n} \frac{\partial^{2} u}{\partial x_{i}^{2}} = f
+  \end{equation}
+\end{definition}
+
+\begin{theorem}
+  Solution of Poisson's equation:
+
+  \begin{equation}
+    \label{eq:solution-poisson-equation}
+    u(x) = \int_{y \in \mathbb{R}^{n}} \Phi(|x-y|) f(y) dy =
+    \begin{cases}
+      -\frac{1}{2\pi} \int_{\mathbb{R}^{n}} \ln\left( |x-y| \right) f(y) dy \quad & (n = 2) \\
+      \frac{1}{n(n-2)\alpha(n)} \int_{\mathbb{R}^{n}} \frac{f(y)}{|x-y|^{n-2}} dy \quad & (n \geq 3)
+    \end{cases}
+  \end{equation}
+\end{theorem}
+
+\printbibliography
+\end{document}
+
+

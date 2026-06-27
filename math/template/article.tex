@@ -1,0 +1,19 @@
+\usepackage{geometry}
+\geometry{a4paper, left=2.54cm, right=2.54cm, bottom=2.54cm, top=2.54cm}
+\usepackage{amsmath}  % formula
+\usepackage{amsthm}   % proof
+\usepackage{amssymb}  % \mathbb{R}
+\usepackage{graphics} % \includegraphics
+\usepackage{biblatex} % \autocite{}
+\addbibresource{../template/library.bib}
+
+\numberwithin{equation}{section}
+\numberwithin{figure}{section}
+\numberwithin{table}{section}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}

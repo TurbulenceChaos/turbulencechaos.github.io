@@ -1,0 +1,186 @@
+\documentclass{article}
+\usepackage{import}
+\import{../template/}{article}
+\graphicspath{{../../images}}
+\addbibresource{../template/library.bib}
+
+\title{Manifold Theory}
+\author{PENG}
+\date{Created: 20260324, Version: 20260627}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Set Theory}
+\subsection{Relations}
+\begin{definition}
+    Equivalence relation $\sim$:
+
+    \begin{itemize}
+        \item reflexive: $x \sim x$
+        \item symmetric: $x \sim y \Rightarrow y \sim x$
+        \item transitive: $x \sim y, y \sim z \Rightarrow x \sim z$
+    \end{itemize}
+\end{definition}
+
+\begin{definition}
+    Equivalence class of each $x \in X$:
+
+    $[x] = \{y \in X : y \sim x\}$
+\end{definition}
+
+\begin{definition}
+    The collection of all $[x]$ is $X/\sim$
+\end{definition}
+
+\begin{example}
+    Let $A = \{1,2,3\}$, $R = \{(x,y) : x = y\}$ on $A$
+
+    \begin{itemize}
+        \item reflexive: $x=x$
+        \item symmetric: $x=y \Rightarrow y=x$
+        \item transitive: $x=y,y=z \Rightarrow x=z$
+    \end{itemize}
+
+    Thus $R$ is an equivalence relation.
+
+    Equivalence class:
+
+    $[1] = \{1\}$
+
+    $[2] = \{2\}$
+
+    $[3] = \{3\}$
+\end{example}
+
+\begin{example}
+    Let $A = \{1,2,3\}$, $R = \{(x,y) : x + y \text{ is even}\}$ on $A$
+
+    \begin{itemize}
+        \item reflexive: $x+x$ is even
+        \item symmetric: $x+y \text{ is even} \Rightarrow y+x \text{ is even}$
+        \item transitive: $x+y \text{ is even}, y+z \text{ is even} \Rightarrow \begin{cases}
+                      x \text{ is even}, y \text{ is even}, z \text{ is even} \\
+                      x \text{ is odd}, y \text{ is odd}, z \text{ is odd}
+                  \end{cases} \Rightarrow x+z \text{ is even}$
+    \end{itemize}
+
+    Thus $R$ is an equivalence relation.
+
+    Equivalence class:
+
+    $[1] = \{1,3\}$
+
+    $[2] = \{2\}$
+
+    $[3] = \{1,3\}$
+\end{example}
+
+\begin{definition}
+    A partition of $X$ is a collection of disjoint nonempty subsets of $X$ whose union is $X$.
+\end{definition}
+
+\begin{example}
+    $X = \{1,2,3\}$
+
+    $P = \{\{2\},\{1,3\}\}$
+
+    $P = \{\{1\},\{3\},\{2\}\}$
+
+    $P = \{\{1,2,3\}\}$
+
+    $\{\{1\},\{2\},\{\}\}$: nonempty
+
+    $\{\{1\},\{2\}\}$: union is not $X$
+
+    $\{\{1,3\},\{2,3\}\}$: disjoint
+
+    $\{\{1,3\},\{2,4\}\}$: union is not $X$
+\end{example}
+
+\begin{exercise}
+    Collection of equivalence class $\Rightarrow$ partition
+
+    Partition $\Rightarrow$ unique equivalence relation
+\end{exercise}
+
+\begin{proof}
+    $X/\sim \Rightarrow$ partition:
+
+    For $\forall x_{1}, x_{2} \in X:$
+
+    $[x_{1}]=\{y \in X: y \sim x_{1}\}$
+
+    $[x_{2}]=\{y \in X: y \sim x_{2}\}$
+
+
+    If $x_{1} \nsim x_{2}, \forall y \in [x_{1}] \Rightarrow y \notin [x_{2}] \Rightarrow$ disjoint nonempty subsets
+
+    If $x_{1} \sim x_{2}, \forall y \in [x_{1}] \Rightarrow y \in [x_{2}] \Rightarrow [x_{1}] = [x_{2}]$
+\end{proof}
+
+\begin{proof}
+    Partition $\Rightarrow \sim$
+\end{proof}
+
+\section{Euclidean Spaces}
+
+\begin{equation*}
+    x =
+    \begin{bmatrix}
+        x_{1}  \\
+        x_{2}  \\
+        \vdots \\
+        x_{n}
+    \end{bmatrix}
+    \in \mathbb{R}^{n}
+\end{equation*}
+
+\begin{definition}
+    For vectors:
+
+    \begin{equation*}
+        x \cdot y = x^{T}y = x_{1}y_{1} + x_{2}y_{2} + \dots + x_{n}y_{n}
+    \end{equation*}
+\end{definition}
+
+\begin{definition}
+    Norm of $x$:
+
+    \begin{equation*}
+        |x| = \sqrt{(x_{1})^2 + (x_{2})^2 + \dots + (x_{n})^2}
+    \end{equation*}
+\end{definition}
+
+\begin{exercise}
+    \begin{equation*}
+        \max \{|x_{1}|,|x_{2}|,\dots,|x_{n}|\} \leq |x| \leq \sqrt{n} \max \{|x_{1}|,|x_{2}|,\dots,|x_{n}|\}
+    \end{equation*}
+\end{exercise}
+
+\begin{proof}
+    Let $x_{m} = \max \{|x_{1}|,|x_{2}|,\dots,|x_{n}|\}$:
+
+    \begin{equation*}
+        \sqrt{(x_{m})^2} \leq \sqrt{(x_{1})^2 + \dots + (x_{m})^2 + \dots + (x_{n})^2} \leq \sqrt{(x_{m})^2 + \dots + (x_{m})^2}
+    \end{equation*}
+\end{proof}
+
+\begin{definition}
+    $\theta$ between $x$ and $y$:
+\end{definition}
+
+\section{Topological Spaces}
+Topology \autocite{LEE_2010_INTRODUCTION_TO_TOPOLOGICAL_MANIFOLDS}
+
+Four mechanisms (normal, segment, merge, torus) exist in every fluid point: fractal.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics{sloshing-topology.png}
+    \caption{Sloshing topology.}
+    \label{fig:sloshing-topology}
+\end{figure}
+
+\printbibliography
+\end{document}
