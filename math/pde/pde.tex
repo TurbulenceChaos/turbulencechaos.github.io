@@ -26,7 +26,8 @@ Four fundamental linear PDEs \autocite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS
   Gradient vector:
 
   \begin{equation}
-    Du = \nabla u := \begin{bmatrix}
+    Du = \nabla u :=
+    \begin{bmatrix}
       \frac{\partial u}{\partial x_{1}} \\
       \frac{\partial u}{\partial x_{2}} \\
       \vdots                            \\
@@ -36,7 +37,7 @@ Four fundamental linear PDEs \autocite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS
 \end{definition}
 
 \begin{definition}
-  Dot product and matrix multiplication:
+  Vector dot product $\Leftrightarrow$ matrix multiplication:
 
   \begin{equation}
     A_{n \times 1} \cdot B_{n \times 1} = A^{T} B =
@@ -64,12 +65,12 @@ Transport equation:
     \vdots                            \\
     \frac{\partial u}{\partial x_{n}}
   \end{bmatrix}
-  =
-  \frac{\partial u}{\partial t} + \sum_{i=n}^{n} c_{i} \frac{\partial u}{\partial x_{i}} = 0
+  = \frac{\partial u}{\partial t} + \sum_{i=n}^{n} c_{i} \frac{\partial u}{\partial x_{i}} = 0
 \end{equation}
 
 \begin{example}
   For 1D and 2D cases:
+
   \begin{equation*}
     \frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = 0
   \end{equation*}
@@ -253,7 +254,7 @@ Transport equation:
 Fundamental solution:
 
 \begin{equation*}
-  u(x) = v(r)  
+  u(x) = v(r)
 \end{equation*}
 
 \begin{equation*}
@@ -265,7 +266,7 @@ Fundamental solution:
 \end{equation*}
 
 \begin{equation*}
-  \frac{\partial u}{\partial x_{i}} = \frac{dv}{dr} \frac{x_{i}}{r} 
+  \frac{\partial u}{\partial x_{i}} = \frac{dv}{dr} \frac{x_{i}}{r}
 \end{equation*}
 
 \begin{equation*}
@@ -362,5 +363,3 @@ For $n \geq 3$:
 
 \printbibliography
 \end{document}
-
-
