@@ -6,14 +6,78 @@
 
 \title{Machine Learning}
 \author{PENG}
-\date{Created: 20260411, Version: 20260627}
+\date{Created: 20260411, Version: 20260720}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Singular Value Decomposition}
+\section{Linear Algebra}
+\begin{definition}
+  Linear dependency:
 
-Machine learning \autocite{BRUNTON_2022_DATA_DRIVEN_SCIENCE_AND_ENGINEERING_MACHINE_LEARNING_DYNAMICAL_SYSTEMS_AND_CONTROL}
+  \begin{gather*}
+    A_{n \times n} x_{n \time 1} = 0 \\
+    \begin{bmatrix}\vdots \\ a_{1} \\ \vdots\end{bmatrix} x_{1}
+    + \begin{bmatrix}\vdots \\ a_{2} \\ \vdots\end{bmatrix} x_{2}
+    + \begin{bmatrix}\vdots \\ a_{n} \\ \vdots\end{bmatrix} x_{n} = 0
+  \end{gather*}
+
+  If $a_{1}, \dots, a_{n}$ is linearly independent $\Rightarrow x_{1} = \dots = x_{n} = 0$
+  
+  If $a_{1}, \dots, a_{n}$ is linearly dependent $\Leftrightarrow det(A) = 0 \Rightarrow$ nonzero solution
+\end{definition}
+
+\begin{definition}
+  Eigenvalue:
+  \begin{gather}
+      A_{n \times n}x_{n \time 1} = \lambda x_{n \times 1} \label{eq:eigen-value} \\
+      (A - \lambda I) x = 0 \nonumber \\
+      |A - \lambda I| = 0
+  \end{gather}
+
+\end{definition}
+
+\begin{definition}
+Orthogonal:
+\end{definition}
+
+\section{Singular Value Decomposition}
+\begin{definition}
+  SVD \autocite{BRUNTON_2022_DATA_DRIVEN_SCIENCE_AND_ENGINEERING_MACHINE_LEARNING_DYNAMICAL_SYSTEMS_AND_CONTROL}:
+
+  \begin{equation}
+    \label{eq:svd}
+    X_{n \times m} = U_{n \times n}\Sigma_{n \times m}V_{m \times m}^{T}
+  \end{equation}
+  
+  where 
+
+  $UU^{T} = U^{T}U = I_{n \times n}$
+
+  $VV^{T} = V^{T}V = I_{m \times m}$
+  
+  $\Sigma_{n \times m} = \begin{bmatrix} \lambda_{1}>0 & & \\ & \ddots & \\ & & \lambda_{m}>\lambda_{m-1} \\ & \vdots & \\ \end{bmatrix}$
+\end{definition}
+
+\begin{definition}
+  Economy SVD ($n \geq m$):
+
+  \begin{equation}
+    \label{eq:economy-svd}
+    \begin{aligned}
+      X_{n \times m} & =
+                       \begin{bmatrix}
+                         \hat{U}_{n \times m} & \hat{U}_{n \times (n-m)}^{\perp}
+                       \end{bmatrix}
+                       \begin{bmatrix}
+                         \hat{\Sigma}_{m \times m} \\
+                         0_{(n-m) \times m}
+                       \end{bmatrix}
+                       V_{m \times m}^{T} \\
+                     & = \hat{U}_{n \times m} \hat{\Sigma}_{m \times m} V_{m \times m}^{T}
+    \end{aligned}
+  \end{equation}
+\end{definition}
 
 \printbibliography
 \end{document}

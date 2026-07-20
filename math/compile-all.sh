@@ -4,7 +4,8 @@ pdf2png() {
     local PDF=$1
     local PAGE=$2
     local PNG=$3
-    convert -density 300 -units pixelsperinch -quality 100 -alpha remove "$PDF[$PAGE]" -trim "$PNG"
+    local DPI=$4
+    convert -density $DPI -units pixelsperinch -quality 100 -alpha remove "$PDF[$PAGE]" -trim "$PNG"
     echo "Convert $PDF page $PAGE to $PNG"
 }
 
@@ -12,29 +13,31 @@ pdf2png() {
 # pdf2png PDF PAGE PNG
 
 IMG_DIR="../../images"
+DPI=300
+
 mkdir -p "$IMG_DIR"
 
 for TEX in */; do
     if [[ "$TEX" == "template/" ]]; then
-	continue
+        continue
     fi
 
     TEX=$(basename "$TEX")
     TIKZ="$TEX-tikz"
     (
-	cd "$TEX"
-	if [ -f "$TIKZ.tex" ]; then
-	    echo "compiling $TIKZ.tex"
-	    latexmk -pdf "$TIKZ.tex" &> "$TIKZ.log"
-	    echo "compile done"
-	    mapfile -t PNG < <(grep -Po "^% @fig{\K.+(?=})" "$TIKZ.tex")
-	    for i in "${!PNG[@]}"; do
-		pdf2png "$TIKZ.pdf" "$i" "${IMG_DIR}/${PNG[$i]}"
-	    done
-	fi
-	echo "compiling $TEX.tex"
-	latexmk -pdf "$TEX.tex" &> "$TEX.log"
-	echo "compile done"
+        cd "$TEX"
+        if [ -f "$TIKZ.tex" ]; then
+            echo "compiling $TIKZ.tex"
+            latexmk -pdf "$TIKZ.tex" &> "$TIKZ.log"
+            echo "compile done"
+
+            mapfile -t PNG < <(grep -Po "^% @fig{\K.+(?=})" "$TIKZ.tex")
+            for i in "${!PNG[@]}"; do
+                pdf2png "$TIKZ.pdf" "$i" "${IMG_DIR}/${PNG[$i]}" "$DPI"
+            done
+        fi
+        echo "compiling $TEX.tex"
+        latexmk -pdf "$TEX.tex" &> "$TEX.log"
+        echo "compile done"
     )
 done
-
