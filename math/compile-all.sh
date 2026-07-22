@@ -15,7 +15,7 @@ pdf2png() {
 IMG_DIR="../../images"
 DPI=300
 
-mkdir -p "$IMG_DIR"
+mkdir -p "../images"
 
 for TEX in */; do
     if [[ "$TEX" == "template/" ]]; then
