@@ -11,8 +11,33 @@
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Sloshsing}
-Nonlinear resonance is a mechanism by which energy is continuously transferred between a small number of nonlinear wave modes \autocite{DUREY_2023_RESONANT_TRIAD_INTERACTIONS_OF_GRAVITY_WAVES_IN_CYLINDRICAL_BASINS}.
+\section{Potential Flow}
+\begin{assumption}
+  For potential flow:
+  \begin{itemize}
+  \item irrotational
+  \item inviscid
+  \item incompressible
+  \end{itemize}
+\end{assumption}
+
+\begin{definition}
+  Governing equations:
+  \begin{alignat}{3}
+    \label{eq:continuity-equation}
+    \Delta\phi + \phi_{zz} & = 0 \quad & & \text{for } x \in D, \quad & & -h<z<\epsilon\eta \\
+    \label{eq:dynamic-equation}
+    \phi_{t} + \eta + \frac{\epsilon}{2}\left( |\nabla\phi|^{2} + \phi_{z}^{2} \right) & = 0 \quad & & \text{for } x \in D, \quad & & z = \epsilon\eta \\
+    \label{eq:kinematic-equation}
+    \eta_{t} + \epsilon\nabla\phi\cdot\nabla\eta & = \phi_{z} \quad & & \text{for } x \in D, \quad & & z = \epsilon\eta \\
+    \label{eq:no-flux-vertial-walls}
+    n\cdot\nabla\phi & = 0 \quad & & \text{for } x \in \partial D, \quad & & -h<z<\epsilon\eta \\
+    \label{eq:no-flux-horizontal-base}
+    \phi_{z} & = 0 \quad & & \text{for } x \in D, \quad & & z=-h
+  \end{alignat}
+\end{definition}
+
+Nonlinear resonance is due to the exchange of energy between linear wave modes \autocite{DUREY_2023_RESONANT_TRIAD_INTERACTIONS_OF_GRAVITY_WAVES_IN_CYLINDRICAL_BASINS}.
 
 \printbibliography
 \end{document}
