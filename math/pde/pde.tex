@@ -1,8 +1,8 @@
 \documentclass{article}
 \usepackage{import}
-\import{../template/}{article-style}
+\import{../../template/}{article-style}
 \graphicspath{{../../images}}
-\addbibresource{../template/library.bib}
+\addbibresource{../../template/library.bib}
 
 \title{Partial Differential Equations}
 \author{PENG}
@@ -12,7 +12,7 @@
 \maketitle
 \tableofcontents
 \section{Four Fundamental Linear PDEs}
-Four fundamental linear PDEs \autocite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS}:
+Four fundamental linear PDEs \cite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS}:
 
 \begin{itemize}
 \item Transport equation
@@ -24,7 +24,6 @@ Four fundamental linear PDEs \autocite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS
 \subsection{Transport Equation}
 \begin{definition}
   Gradient vector:
-
   \begin{equation}
     Du = \nabla u :=
     \begin{bmatrix}
@@ -38,7 +37,6 @@ Four fundamental linear PDEs \autocite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS
 
 \begin{definition}
   Vector dot product $\Leftrightarrow$ matrix multiplication:
-
   \begin{equation}
     A_{n \times 1} \cdot B_{n \times 1} = A^{T} B =
     [a_{1} a_{2} \dots a_{n}]
@@ -70,7 +68,6 @@ Transport equation:
 
 \begin{example}
   For 1D and 2D cases:
-
   \begin{equation*}
     \frac{\partial u}{\partial t} + c \frac{\partial u}{\partial x} = 0
   \end{equation*}
@@ -88,7 +85,6 @@ Transport equation:
 
 \begin{example}
   Initial-value problem:
-
   \begin{equation*}
     \begin{cases}
       \frac{\partial u}{\partial t} + c \cdot \frac{\partial u}{\partial x} = 0 \\
@@ -118,7 +114,6 @@ Transport equation:
 
 \begin{example}
   Nonhomogenous problem:
-
   \begin{equation*}
     \begin{cases}
       \frac{\partial u}{\partial t} + c \cdot \frac{\partial u}{\partial x} = f(x,t) \\
@@ -175,7 +170,6 @@ Transport equation:
 
 \begin{definition}
   Outward derivative:
-
   \begin{equation*}
     \frac{\partial u}{\partial v} := \boldsymbol{v} \cdot Du =
     [v_{1} v_{2} \dots v_{n}]
@@ -199,7 +193,6 @@ Transport equation:
 
 \begin{example}
   For 1D and 2D cases:
-
   \begin{equation*}
     \frac{\partial u}{\partial v} = v\frac{\partial u}{\partial x}
   \end{equation*}
@@ -211,7 +204,6 @@ Transport equation:
 
 \begin{theorem}
   Gauss-Green theorem:
-
   \begin{equation}
     \begin{aligned}
       & \int_{U} \nabla \cdot \boldsymbol{u} dx =
@@ -240,7 +232,6 @@ Transport equation:
 
 \begin{example}
   For 1D and 2D cases:
-
   \begin{equation*}
     \int_{U} \frac{\partial u}{\partial x} dx = \int_{\partial U} uv  dS
   \end{equation*}
@@ -328,9 +319,8 @@ For $n \geq 3$:
 
 \begin{definition}
   Fundamental solution of Laplace's equation:
-
   \begin{equation}
-    \label{eq:fundamental-solution-laplace-equation}
+    \label{eq:laplace-equation-solution}
     \Phi(|x|) :=
     \begin{cases}
       -\frac{1}{2\pi}\ln|x| \quad & (n = 2) \\
@@ -341,7 +331,6 @@ For $n \geq 3$:
 
 \begin{definition}
   Poisson's equation:
-
   \begin{equation}
     \label{eq:poisson-equation}
     -\Delta u = -\sum_{i=1}^{n} \frac{\partial^{2} u}{\partial x_{i}^{2}} = f
@@ -350,9 +339,8 @@ For $n \geq 3$:
 
 \begin{theorem}
   Solution of Poisson's equation:
-
   \begin{equation}
-    \label{eq:solution-poisson-equation}
+    \label{eq:poisson-equation-solution}
     u(x) = \int_{y \in \mathbb{R}^{n}} \Phi(|x-y|) f(y) dy =
     \begin{cases}
       -\frac{1}{2\pi} \int_{\mathbb{R}^{n}} \ln\left( |x-y| \right) f(y) dy \quad & (n = 2) \\
@@ -360,6 +348,9 @@ For $n \geq 3$:
     \end{cases}
   \end{equation}
 \end{theorem}
+
+\section{Asymptotics}
+\subsection{Singular Perturbations}
 
 \printbibliography
 \end{document}

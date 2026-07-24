@@ -16,3 +16,4 @@ _region_*
 *.fmt
 images/
 *-tikz.pdf
+template/library.bib
