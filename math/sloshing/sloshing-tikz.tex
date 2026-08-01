@@ -1,0 +1,38 @@
+\documentclass[tikz]{standalone}
+\usepackage{import}
+\import{../../template}{tikz-style}
+
+\tikzset{
+  water/.style={draw=blue,fill=blue!20,thick}
+}
+
+\begin{document}
+% @fig{faraday-wave-modes.png}
+\begin{tikzpicture}[basic,scale=2]
+  % \grid
+  % t=0
+  \begin{scope}
+    \draw(0,0)rectangle(2,1);
+    \draw[water] plot[domain=0:2] (\x,{tan(10)*(\x-1) + 0.4})--(2,0)--(0,0)--cycle;
+    \draw[gray,dashed](0,0.4)--(2,0.4);
+    \node[below left] at (2,1) {$t=0$};
+    \draw[red,thick,<->](1,0.2)--(1,0.6) node[black,above] {Heave excitation};
+  \end{scope}
+
+  % mode 1
+  \begin{scope}[yshift=-1.1 cm]
+    \draw(0,0)rectangle(2,1);
+    \draw[water] plot[domain=0:2] (\x,{-0.2*cos(pi/2*\x r) + 0.4}) --(2,0)--(0,0)--cycle;
+    \draw[gray,dashed](0,0.4)--(2,0.4);
+    \node[below left] at (2,1) {mode 1};
+  \end{scope}
+
+  % mode 2
+  \begin{scope}[yshift=-2.2 cm]
+    \draw(0,0)rectangle(2,1);
+    \draw[water] plot[domain=0:2] (\x,{-0.2*cos(pi*\x r) + 0.4})--(2,0)--(0,0)--cycle;
+    \draw[gray,dashed](0,0.4)--(2,0.4);
+    \node[below left] at (2,1) {mode 2};
+  \end{scope}
+\end{tikzpicture}
+\end{document}

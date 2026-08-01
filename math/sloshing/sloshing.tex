@@ -6,14 +6,16 @@
 
 \title{Sloshing}
 \author{PENG}
-\date{Created: 20260722, Version: 20260722}
+\date{Created: 20260722, Version: 20260801}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Potential Flow}
+\section{Analytical Method}
+Nonlinear resonance is due to the exchange of energy between linear wave modes \cite{DUREY_2023_RESONANT_TRIAD_INTERACTIONS_OF_GRAVITY_WAVES_IN_CYLINDRICAL_BASINS}.
+
 \begin{assumption}
-  For potential flow:
+  Potential flow:
   \begin{itemize}
   \item irrotational
   \item inviscid
@@ -25,19 +27,26 @@
   Governing equations:
   \begin{alignat}{3}
     \label{eq:continuity-equation}
-    \Delta\phi + \phi_{zz} & = 0 \quad & & \text{for } x \in D, \quad & & -h<z<\epsilon\eta \\
+    \Delta\phi + \phi_{zz}                                                             & = 0 \quad        &  & \text{for } x \in D, \quad          &  & -h<z<\epsilon\eta \\
     \label{eq:dynamic-equation}
-    \phi_{t} + \eta + \frac{\epsilon}{2}\left( |\nabla\phi|^{2} + \phi_{z}^{2} \right) & = 0 \quad & & \text{for } x \in D, \quad & & z = \epsilon\eta \\
+    \phi_{t} + \eta + \frac{\epsilon}{2}\left( |\nabla\phi|^{2} + \phi_{z}^{2} \right) & = 0 \quad        &  & \text{for } x \in D, \quad          &  & z = \epsilon\eta  \\
     \label{eq:kinematic-equation}
-    \eta_{t} + \epsilon\nabla\phi\cdot\nabla\eta & = \phi_{z} \quad & & \text{for } x \in D, \quad & & z = \epsilon\eta \\
+    \eta_{t} + \epsilon\nabla\phi\cdot\nabla\eta                                       & = \phi_{z} \quad &  & \text{for } x \in D, \quad          &  & z = \epsilon\eta  \\
     \label{eq:no-flux-vertial-walls}
-    n\cdot\nabla\phi & = 0 \quad & & \text{for } x \in \partial D, \quad & & -h<z<\epsilon\eta \\
+    n\cdot\nabla\phi                                                                   & = 0 \quad        &  & \text{for } x \in \partial D, \quad &  & -h<z<\epsilon\eta \\
     \label{eq:no-flux-horizontal-base}
-    \phi_{z} & = 0 \quad & & \text{for } x \in D, \quad & & z=-h
+    \phi_{z}                                                                           & = 0 \quad        &  & \text{for } x \in D, \quad          &  & z=-h
   \end{alignat}
 \end{definition}
 
-Nonlinear resonance is due to the exchange of energy between linear wave modes \cite{DUREY_2023_RESONANT_TRIAD_INTERACTIONS_OF_GRAVITY_WAVES_IN_CYLINDRICAL_BASINS}.
+\emph{Why does heave excitation lead to either symmetrical or asymmetrical modes?}
+
+\begin{figure}[h]
+  \centering
+  \includegraphics{faraday-wave-modes.png}
+  \caption{Faraday wave modes}
+  \label{fig:faraday-wave-modes}
+\end{figure}
 
 \printbibliography
 \end{document}
