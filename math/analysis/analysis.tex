@@ -1,5 +1,4 @@
 \documentclass{article}
-
 \usepackage{import}
 \import{../../template/}{article-style}
 \graphicspath{{../../template/images/}}
@@ -7,13 +6,33 @@
 
 \title{Analysis}
 \author{PENG}
-\date{Created: 20260801, Version: 20260801}
+\date{Created: 20260801, Version: 20260802}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Numbers}
-\cite{TAO_2022_ANALYSIS_I}
+\section{Numbers \cite{TAO_2022_ANALYSIS_I}}
+\subsection{Natural Numbers}
+\begin{axiom}
+  0 is a natural number.
+\end{axiom}
+
+\begin{axiom}
+  If $n$ is a natural number, then $n++$ is also a natural number. 
+\end{axiom}
+
+\begin{definition}
+  \begin{gather*}
+    1 := 0++ \\
+    2 := 1++ \\
+    3 := 2++ \\
+    \vdots
+  \end{gather*}
+\end{definition}
+
+\begin{proposition}
+  3 is a natural number.
+\end{proposition}
 
 \printbibliography
 \end{document}
