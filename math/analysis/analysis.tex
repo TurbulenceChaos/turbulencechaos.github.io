@@ -4,35 +4,81 @@
 \graphicspath{{../../template/images/}}
 \addbibresource{../../template/library.bib}
 
+\newcommand{\pp}{\!+\!+}
+
 \title{Analysis}
 \author{PENG}
-\date{Created: 20260801, Version: 20260802}
+\date{Created: 20260801, Version: 20260803}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Numbers \cite{TAO_2022_ANALYSIS_I}}
-\subsection{Natural Numbers}
-\begin{axiom}
-  0 is a natural number.
-\end{axiom}
+
+\section{Numbers}
+\subsection{Natural Number system}
+\begin{itemize}
+\item This is how mathematics works - it treats its objects abstractly, caring only about what properties the objects have, not what the objects are or what they mean \cite{TAO_2022_ANALYSIS_I}.
+\item It is pointless, at least from a mathematician's standpoint, as to argue about which model is the true one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
+\end{itemize}
 
 \begin{axiom}
-  If $n$ is a natural number, then $n++$ is also a natural number. 
+  \label{axiom:peano-axioms}
+  Peano axioms:
+
+  \begin{enumerate}
+  \item 0 is a natural number.
+  \item If $n$ is a natural number, then $n\pp$ is also a natural number.
+  \item $n\pp \neq 0$
+  \item $n \neq m \Rightarrow n\pp \neq m\pp$
+
+    $n\pp = m\pp \Rightarrow n = m$
+  \item Principle of mathematical induction:
+
+  Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
+  \end{enumerate}
 \end{axiom}
 
 \begin{definition}
+  Natural number system $\mathbb{N}$:
+
   \begin{gather*}
-    1 := 0++ \\
-    2 := 1++ \\
-    3 := 2++ \\
+    1 := 0\pp \\
+    2 := 1\pp \\
+    3 := 2\pp \\
     \vdots
   \end{gather*}
 \end{definition}
 
-\begin{proposition}
-  3 is a natural number.
-\end{proposition}
+\begin{definition}
+  Addition:
+
+  Let $m$ be a natural number.
+
+  \begin{align*}
+    0 + m & := m \\
+    (n\pp) + m & := (n+m)\pp
+  \end{align*}
+\end{definition}
+
+\begin{lemma}
+  For any natural number $n$, $n + 0 = n$.
+\end{lemma}
+
+\begin{proof}
+  $0 + 0 = 0$
+  
+  Suppose $n + 0 = n$
+
+  $(n\pp) + 0 = (n+0)\pp = n\pp$
+\end{proof}
+
+\begin{lemma}
+  For any natural number $n$ and $m$, $n + (m\pp) = (n+m)\pp$.
+\end{lemma}
+
+\begin{proof}
+  
+\end{proof}
 
 \printbibliography
 \end{document}
