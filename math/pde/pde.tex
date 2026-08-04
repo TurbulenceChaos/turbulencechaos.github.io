@@ -49,34 +49,6 @@
   \end{equation}
 \end{definition}
 
-\subsection{Transport Equation}
-\begin{definition}
-  Transport equation:
-
-  \begin{equation}
-    \label{equ:transport-equation}
-    u_{t} + c \cdot Du =
-    \frac{\partial u}{\partial t} +
-    [c_{1} c_{2} \dots c_{n}]
-    \begin{bmatrix}
-      \frac{\partial u}{\partial x_{1}} \\
-      \frac{\partial u}{\partial x_{2}} \\
-      \vdots                            \\
-      \frac{\partial u}{\partial x_{n}}
-    \end{bmatrix}
-    = \frac{\partial u}{\partial t} + \sum_{i=n}^{n}c_{i}\frac{\partial u}{\partial x_{i}} = 0
-  \end{equation}
-\end{definition}
-
-\begin{example}
-  For 1D and 2D cases:
-
-  \begin{gather*}
-    \frac{\partial u}{\partial t} + b \frac{\partial u}{\partial x} = 0 \\
-    \frac{\partial u}{\partial t} + b_{1} \frac{\partial u}{\partial x} + b_{2} \frac{\partial u}{\partial y} = 0
-  \end{gather*}
-\end{example}
-
 \begin{lemma}
   \begin{equation}
     \frac{dy}{d(x+b)} = \frac{dy}{dx}
@@ -89,36 +61,66 @@
   \end{equation*}
 \end{proof}
 
+\subsection{Transport Equation}
+\begin{definition}
+  Transport equation:
+
+  \begin{equation}
+    \label{equ:transport-equation}
+    u_{t} + b \cdot Du =
+    \frac{\partial u}{\partial t} +
+    [b_{1} b_{2} \dots b_{n}]
+    \begin{bmatrix}
+      \frac{\partial u}{\partial x_{1}} \\
+      \frac{\partial u}{\partial x_{2}} \\
+      \vdots                            \\
+      \frac{\partial u}{\partial x_{n}}
+    \end{bmatrix}
+    = \frac{\partial u}{\partial t} + \sum_{i=n}^{n}b_{i}\frac{\partial u}{\partial x_{i}} = 0
+  \end{equation}
+\end{definition}
+
 \begin{example}
+  For 1D and 2D cases:
+
+  \begin{gather*}
+    \frac{\partial u}{\partial t} + b \frac{\partial u}{\partial x} = 0 \\
+    \frac{\partial u}{\partial t} + b_{1} \frac{\partial u}{\partial x} + b_{2} \frac{\partial u}{\partial y} = 0
+  \end{gather*}
+\end{example}
+
+\begin{theorem}
+  \label{theo:transport-equation-solution}
+  For Eq. \ref{equ:transport-equation}, $u$ is constant on the line $(x,t) + (b,1)s$ for $s \in \mathbb{R}$.
+\end{theorem}
+
+\begin{proof}
+  Let $z(s) := u(x+bs,t+s)$.
+
+  \begin{gather*}
+    \frac{dz}{ds} = \frac{\partial u}{\partial (t+s)}\frac{d(t+s)}{ds} + \frac{\partial u}{\partial (x+sb)}\frac{d (x+sb)}{ds}
+    = \frac{\partial u}{\partial t} + b\frac{\partial u}{\partial x}
+    \overset{\text{Eq. \ref{equ:transport-equation}}}{=} 0 \\
+    z(s) = u(x+sb,t+s) = C
+  \end{gather*}
+\end{proof}
+
+\begin{proposition}
   Initial-value problem:
+
   \begin{equation*}
     \begin{cases}
-      \frac{\partial u}{\partial t} + b \cdot \frac{\partial u}{\partial x} = 0 \\
+      \frac{\partial u}{\partial t} + b\frac{\partial u}{\partial x} = 0 \\
       u(x,0) = g(x)
     \end{cases}
   \end{equation*}
 
-  Let $z(s) := u(x+sb,t+s) \quad (s \in \mathbb{R})$
-
   \begin{equation*}
-    \frac{dz}{ds} = \frac{\partial u}{\partial (x+sb)}\frac{d (x+sb)}{ds} + \frac{\partial u}{\partial (t+s)}\frac{d(t+s)}{ds}
-    = \frac{\partial u}{\partial x} b + \frac{\partial u}{\partial t}
-    = 0
+    u(x,t) \overset{\text{Theo. \ref{theo:transport-equation-solution}}}{=} u(x-tb,0) = g(x-tb)
   \end{equation*}
+\end{proposition}
 
-  \begin{equation*}
-    z(s) = u(x+sb,t+s) = C = u(x,t) = u(x-tb,0) = g(x-tb)
-  \end{equation*}
-\end{example}
-
-\begin{figure}[h]
-  \centering
-  \includegraphics{transport-equation.png}
-  \caption{Transport equation.}
-  \label{fig:transport-equation}
-\end{figure}
-
-\begin{example}
+\begin{proposition}
   Nonhomogenous problem:
   \begin{equation*}
     \begin{cases}
@@ -135,7 +137,7 @@
     z(0) - z(-t) = u(x,t) - u(x-tb,0) = u(x,t) - g(x-tb) = \int_{-t}^{0} f(x+sb,t+s) ds \\
     u(x,t) = g(x-tb) + \int_{-t}^{0} f(x+sb,t+s) ds
   \end{gather*}
-\end{example}
+\end{proposition}
 
 \subsection{Laplace's Equation}
 \begin{definition}
