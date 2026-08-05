@@ -21,6 +21,7 @@
 \item It is pointless, at least from a mathematician's standpoint, as to argue about which model is the true one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
 \end{itemize}
 
+\subsubsection{The Peano Axioms}
 \begin{axiom}
   \label{axiom:peano-axioms}
   Peano axioms:
@@ -46,19 +47,23 @@
   \end{gather*}
 \end{definition}
 
+\subsubsection{Addition}
 \begin{definition}
-  Addition:
-  \begin{align*}
-    0 + m & := m \\
-    (n\pp) + m & := (n+m)\pp
-  \end{align*}
+  Addition.
+  
+  Let $n$ and $m$ be natural numbers.
+  \begin{enumerate}
+  \item $0+m:=m$
+  \item $(n\pp)+m:=(n+m)\pp$
+  \end{enumerate}
 \end{definition}
 
 \begin{lemma}
-  \begin{gather*}
-    n + 0 = n \\
-    n + (m\pp) = (n+m)\pp
-  \end{gather*}
+  Let $n$ and $m$ be natural numbers.
+  \begin{enumerate}
+  \item $n+0=n$
+  \item $n+(m\pp)=(n+m)\pp$
+  \end{enumerate}
 \end{lemma}
 
 \begin{proposition}
@@ -86,18 +91,17 @@
 
 \begin{proof}
   Prop. \ref{prop:positive-natural-numbers} (1)
-  \begin{gather*}
-    a+0=a \text{ is positive.}                \\
-    \text{Suppose } a+b \text{ is positive.} \\
-    a+b\pp = (a+b)\pp \overset{\text{Axiom \ref{axiom:peano-axioms} (3)}}{\neq} 0 \text{ is positive.}
-  \end{gather*}
+  
+  $a+0=a$ is positive.
+  Suppose that $a+b$ is positive.
+  Then $a+b\pp=(a+b)\pp \neq 0$ is positive.
+\end{proof}
 
+\begin{proof}
   Prop. \ref{prop:positive-natural-numbers} (3)
-  \begin{gather*}
-    1=0\pp                 \\
-    \text{Suppose } a=b\pp \\
-    a\pp=(a)\pp
-  \end{gather*}
+
+  Suppose that $a=b\pp$.
+  Then $a\pp=(a)\pp$.
 \end{proof}
 
 \begin{definition}
@@ -123,12 +127,10 @@
 
 \begin{proof}
   Prop. \ref{prop:natural-numbers-order} (5)
-  \begin{gather*}
-    b=a+d \text{ and } b \neq a \\
-    d=0 \Rightarrow b=a         \\
-    d=n\pp                      \\
-    b=a+n\pp=(a\pp)+n \Rightarrow a\pp \leq b
-  \end{gather*}
+
+  $b=a+d$ and $b \neq a \Rightarrow d \neq 0 \Rightarrow d = n\pp$
+
+  $b=a+(n\pp)=(a\pp)+n \Rightarrow a\pp \leq b$
 \end{proof}
 
 \begin{proposition}
@@ -147,16 +149,91 @@
 \end{proposition}
 
 \begin{proof}
-  
+  Let $Q(n)$ be the property that $P(m)$ is true for all $m_{0} \leq m < n$.
+
+  Suppose that if $Q(n)$ is true, then $P(m)$ is also true.
+
+  Then $P(m)$ is true for all $m_{0} \leq m < n\pp$.
 \end{proof}
+
+\begin{example}
+  Fibonacci numbers.
+  \begin{gather}
+    \label{eq:fibonacci-numbers}
+    F_{n} = \frac{\phi^{n} - \psi^{n}}{\phi-\psi} \\
+    F_{n+2} = F_{n+1} + F_{n}
+  \end{gather}
+  where $\phi=\frac{1+\sqrt{5}}{2}$ and $\psi=\frac{1-\sqrt{5}}{2}$
+\end{example}
 
 \begin{exercise}
   Principle of backwards induction.
+
+  Let $n$ be a natural number. Whenever $P(m\pp)$ is true, $P(m)$ is true.
+  If $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
 \end{exercise}
+
+\begin{proof}
+  Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
+  If $P(n\pp)$ is true, then $P(m)$ is true for all $m \leq n\pp$.
+\end{proof}
 
 \begin{exercise}
   Principle of induction starting from the base case $n$.
+
+  Let $n$ be a natural number. Whenever $P(m)$ is true, $P(m\pp)$ is true.
+  If $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
 \end{exercise}
+
+\begin{proof}
+  If $P(0)$ is true, suppose that $P(m)$ is true.
+  Then $P(m\pp)$ is also true.
+  Then $P(m)$ is true for all $m \geq 0$.
+  Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
+  If $P(n\pp)$ is true, then $P(m)$ is true for all $m \geq n\pp$.
+\end{proof}
+
+\subsubsection{Multiplication}
+\begin{definition}
+  Let $n$ and $m$ be natural numbers.
+  \begin{enumerate}
+  \item $0 \times m := 0$
+  \item $(n\pp) \times m := (n \times m)+m$
+  \end{enumerate}
+\end{definition}
+
+\begin{lemma}
+  Let $n$ and $m$ be natural numbers.
+  \begin{enumerate}
+  \item $n \times m = m \times n$
+  \item $n \times m = 0$ iff at least one of $n$ and $m$ is equal to 0.
+  \end{enumerate}
+\end{lemma}
+
+\begin{proposition}
+  Let $a$, $b$, $c$ be natural numbers.
+  \begin{enumerate}
+  \item $a(b+c)=(b+c)a=bc+ca$
+  \item $(ab)c=a(bc)$
+  \item If $a<b$ and $c$ is positive, then $ac<nc$.
+  \item If $ac=bc$ and $c$ is positive, then $a=b$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{lemma}
+  Euclid's division lemma.
+
+  Let $n$ be a natural number and $q$ be a positive natural number. Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
+\end{lemma}
+
+\begin{definition}
+  Exponentiation.
+
+  \begin{enumerate}
+  \item $m^{0}:=1$ and $0^{0}:=1$
+  \item $m^{n\pp}:=m^{n} \times m$
+  \end{enumerate}
+\end{definition}
 
 \printbibliography
 \end{document}
