@@ -8,7 +8,7 @@
 
 \title{Analysis}
 \author{PENG}
-\date{Created: 20260801, Version: 20260803}
+\date{Created: 20260801, Version: 20260805}
 
 \begin{document}
 \maketitle
@@ -24,7 +24,6 @@
 \begin{axiom}
   \label{axiom:peano-axioms}
   Peano axioms:
-
   \begin{enumerate}
   \item 0 is a natural number.
   \item If $n$ is a natural number, then $n\pp$ is also a natural number.
@@ -34,13 +33,11 @@
     $n\pp = m\pp \Rightarrow n = m$
   \item Principle of mathematical induction:
 
-  Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
+    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
   \end{enumerate}
 \end{axiom}
 
 \begin{definition}
-  Natural number system $\mathbb{N}$:
-
   \begin{gather*}
     1 := 0\pp \\
     2 := 1\pp \\
@@ -51,9 +48,6 @@
 
 \begin{definition}
   Addition:
-
-  Let $m$ be a natural number.
-
   \begin{align*}
     0 + m & := m \\
     (n\pp) + m & := (n+m)\pp
@@ -61,24 +55,108 @@
 \end{definition}
 
 \begin{lemma}
-  For any natural number $n$, $n + 0 = n$.
+  \begin{gather*}
+    n + 0 = n \\
+    n + (m\pp) = (n+m)\pp
+  \end{gather*}
 \end{lemma}
 
-\begin{proof}
-  $0 + 0 = 0$
-  
-  Suppose $n + 0 = n$
+\begin{proposition}
+  Let $a$, $b$, $c$ be natural numbers.
+  \begin{enumerate}
+  \item $a+b=b+a$
+  \item $(a+b)+c=a+(b+c)$
+  \item $a+b=a+c \Rightarrow b=c$
+  \end{enumerate}
+\end{proposition}
 
-  $(n\pp) + 0 = (n+0)\pp = n\pp$
+\begin{definition}
+  A natural number $n$ is positive iff (if and only if) $n \neq 0$.
+\end{definition}
+
+\begin{proposition}
+  \label{prop:positive-natural-numbers}
+  Let $a$ and $b$ be natural numbers.
+  \begin{enumerate}
+  \item If $a$ is positive, then $a+b$ is positive.
+  \item $a+b=0 \Rightarrow a=b=0$.
+  \item If $a$ is positive, then there exists only one natural number $b$ such that $b\pp=a$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Prop. \ref{prop:positive-natural-numbers} (1)
+  \begin{gather*}
+    a+0=a \text{ is positive.}                \\
+    \text{Suppose } a+b \text{ is positive.} \\
+    a+b\pp = (a+b)\pp \overset{\text{Axiom \ref{axiom:peano-axioms} (3)}}{\neq} 0 \text{ is positive.}
+  \end{gather*}
+
+  Prop. \ref{prop:positive-natural-numbers} (3)
+  \begin{gather*}
+    1=0\pp                 \\
+    \text{Suppose } a=b\pp \\
+    a\pp=(a)\pp
+  \end{gather*}
 \end{proof}
 
-\begin{lemma}
-  For any natural number $n$ and $m$, $n + (m\pp) = (n+m)\pp$.
-\end{lemma}
+\begin{definition}
+  Let $n$ and $m$ be natural numbers.
+  \begin{enumerate}
+  \item $n \geq m$ or $m \leq n$ iff $n=m+a$
+  \item $n>m$ or $m<n$ iff $n \geq m$ and $n \neq m$
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  \label{prop:natural-numbers-order}
+  Let $a$, $b$, $c$ be natural numbers.
+  \begin{enumerate}
+  \item $a \geq a$
+  \item If $a \geq b$ and $b \geq c$, then $a \geq c$
+  \item If $a \geq b$ and $b \geq a$, then $a=b$
+  \item $a \geq b$ iff $a+c \geq b+c$
+  \item $a<b$ iff $a\pp \leq b$
+  \item $a<b$ iff $b=a+d$ for some positive number $d$
+  \end{enumerate}
+\end{proposition}
+
+\begin{proof}
+  Prop. \ref{prop:natural-numbers-order} (5)
+  \begin{gather*}
+    b=a+d \text{ and } b \neq a \\
+    d=0 \Rightarrow b=a         \\
+    d=n\pp                      \\
+    b=a+n\pp=(a\pp)+n \Rightarrow a\pp \leq b
+  \end{gather*}
+\end{proof}
+
+\begin{proposition}
+  Let $a$ and $b$ be natural numbers. Then exactly one of following statement is true:
+  $a<b$, $a=b$, or $a>b$.
+\end{proposition}
+
+\begin{proof}
+  If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (3)}}{\Rightarrow} a=b$ contradiction
+\end{proof}
+
+\begin{proposition}
+  Strong principle of induction.
+
+  Let $m_{0}$ be a natural number. Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$, then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
+\end{proposition}
 
 \begin{proof}
   
 \end{proof}
+
+\begin{exercise}
+  Principle of backwards induction.
+\end{exercise}
+
+\begin{exercise}
+  Principle of induction starting from the base case $n$.
+\end{exercise}
 
 \printbibliography
 \end{document}
