@@ -50,13 +50,17 @@
 \subsubsection{Addition}
 \begin{definition}
   Addition.
-  
+
   Let $n$ and $m$ be natural numbers.
   \begin{enumerate}
   \item $0+m:=m$
   \item $(n\pp)+m:=(n+m)\pp$
   \end{enumerate}
 \end{definition}
+
+\begin{proposition}
+  Let $n$ and $m$ be natural numbers. Then $n+m$ is also a natural number.
+\end{proposition}
 
 \begin{lemma}
   Let $n$ and $m$ be natural numbers.
@@ -91,7 +95,7 @@
 
 \begin{proof}
   Prop. \ref{prop:positive-natural-numbers} (1)
-  
+
   $a+0=a$ is positive.
   Suppose that $a+b$ is positive.
   Then $a+b\pp=(a+b)\pp \neq 0$ is positive.
@@ -198,15 +202,31 @@
   Let $n$ and $m$ be natural numbers.
   \begin{enumerate}
   \item $0 \times m := 0$
-  \item $(n\pp) \times m := (n \times m)+m$
+  \item $(n\pp) \times m := (n \times m) + m$
   \end{enumerate}
 \end{definition}
+
+\begin{proposition}
+  Let $n$ and $m$ be natural numbers. Then $n \times m$ is also a natural number.
+\end{proposition}
 
 \begin{lemma}
   Let $n$ and $m$ be natural numbers.
   \begin{enumerate}
+  \item $n \times 0 = 0 \times n$
+  \item $n \times (m\pp) = (n \times m) + n$
+  \end{enumerate}
+\end{lemma}
+
+\begin{lemma}
+  \label{lemma:multiplication-commutative}
+  Commutative.
+
+  Let $n$ and $m$ be natural numbers.
+  \begin{enumerate}
   \item $n \times m = m \times n$
   \item $n \times m = 0$ iff at least one of $n$ and $m$ is equal to 0.
+    If $n$ and $m$ are both positive, then $nm$ is also positive.
   \end{enumerate}
 \end{lemma}
 
@@ -226,6 +246,14 @@
   Let $n$ be a natural number and $q$ be a positive natural number. Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
 \end{lemma}
 
+\begin{proof}
+  $0 = 0 \times q + 0$ and $0 \leq r < q$.
+  Suppose that $n=mq+r$ and $0 \leq r < q$.
+  Then $n\pp=mq+(r\pp)$ and $0 \leq r\pp \leq q$.
+  If $r\pp=q$, $n\pp=mq+q=(m+1)q+0$.
+  If $r\pp<q$, $n\pp=mq+r\pp$.
+\end{proof}
+
 \begin{definition}
   Exponentiation.
 
@@ -234,6 +262,8 @@
   \item $m^{n\pp}:=m^{n} \times m$
   \end{enumerate}
 \end{definition}
+
+\subsection{Set Theory}
 
 \printbibliography
 \end{document}
