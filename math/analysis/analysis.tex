@@ -14,14 +14,13 @@
 \maketitle
 \tableofcontents
 
-\section{Numbers}
-\subsection{Natural Number system}
+\section{Natural Number system}
 \begin{itemize}
 \item This is how mathematics works - it treats its objects abstractly, caring only about what properties the objects have, not what the objects are or what they mean \cite{TAO_2022_ANALYSIS_I}.
 \item It is pointless, at least from a mathematician's standpoint, as to argue about which model is the true one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
 \end{itemize}
 
-\subsubsection{The Peano Axioms}
+\subsection{The Peano Axioms}
 \begin{axiom}
   \label{axiom:peano-axioms}
   Peano axioms:
@@ -47,7 +46,7 @@
   \end{gather*}
 \end{definition}
 
-\subsubsection{Addition}
+\subsection{Addition}
 \begin{definition}
   Addition.
 
@@ -197,7 +196,7 @@
   If $P(n\pp)$ is true, then $P(m)$ is true for all $m \geq n\pp$.
 \end{proof}
 
-\subsubsection{Multiplication}
+\subsection{Multiplication}
 \begin{definition}
   Let $n$ and $m$ be natural numbers.
   \begin{enumerate}
@@ -263,7 +262,54 @@
   \end{enumerate}
 \end{definition}
 
-\subsection{Set Theory}
+\section{Set Theory}
+\begin{definition}
+  A set $A$ is any unordered collection of objects.
+  $x \in A$ if $x$ lies in the collection, otherwise $x \notin A$.
+\end{definition}
+
+\begin{axiom}
+  \begin{enumerate}
+  \item If $A$ is a set, then $A$ is also an object.
+  \item $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
+  \item There exists an empty set $\emptyset$, such that every object $x \notin \emptyset$.
+  \item Let $A$ be a non-empty set. Then there exist an object $x \in \emptyset$.
+  \item Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
+    Pair set $\{a,b\}$: $y \in \{a,b\}$ iff $y=a$ or $y=b$.
+  \item $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
+  \end{enumerate}
+\end{axiom}
+
+\begin{example}
+  $\{a,a\} = \{a\}$
+\end{example}
+
+\begin{exercise}
+  $\emptyset$, $\{\emptyset\}$, $\{\{\emptyset\}\}$, $\{\emptyset,\{\emptyset\}\}$ are all distinct.
+\end{exercise}
+
+\begin{proof}
+  $y \notin \emptyset$.
+
+  $y=\emptyset \in \{\emptyset\}$.
+
+  $y=\{\emptyset\} \in \{\{\emptyset\}\}$.
+
+  $y=\emptyset$ or $y=\{\emptyset\} \in \{\emptyset,\{\emptyset\}\}$.
+\end{proof}
+
+\begin{lemma}
+  Let $a$, $b$ are objects, and $A$, $B$, $C$ are sets.
+  \begin{enumerate}
+  \item $\{a,b\}=\{a\}\cup\{b\}$
+  \item $A \cup B = B \cup A$
+  \item $(A \cup B) \cup C = A \cup (B \cup C)$
+  \end{enumerate}
+\end{lemma}
+
+\begin{proof}
+  
+\end{proof}
 
 \printbibliography
 \end{document}
