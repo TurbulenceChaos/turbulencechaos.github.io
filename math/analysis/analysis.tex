@@ -86,14 +86,14 @@
   \label{prop:positive-natural-numbers}
   Let $a$ and $b$ be natural numbers.
   \begin{enumerate}
-  \item If $a$ is positive, then $a+b$ is positive.
-  \item $a+b=0 \Rightarrow a=b=0$.
-  \item If $a$ is positive, then there exists only one natural number $b$ such that $b\pp=a$.
+  \item \label{item:positive-natural-numbers-1} If $a$ is positive, then $a+b$ is positive.
+  \item \label{item:positive-natural-numbers-2} $a+b=0 \Rightarrow a=b=0$.
+  \item \label{item:positive-natural-numbers-3} If $a$ is positive, then there exists only one natural number $b$ such that $b\pp=a$.
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:positive-natural-numbers} (1)
+  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-1})
 
   $a+0=a$ is positive.
   Suppose that $a+b$ is positive.
@@ -101,7 +101,7 @@
 \end{proof}
 
 \begin{proof}
-  Prop. \ref{prop:positive-natural-numbers} (3)
+  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-3})
 
   Suppose that $a=b\pp$.
   Then $a\pp=(a)\pp$.
@@ -119,17 +119,17 @@
   \label{prop:natural-numbers-order}
   Let $a$, $b$, $c$ be natural numbers.
   \begin{enumerate}
-  \item $a \geq a$
-  \item If $a \geq b$ and $b \geq c$, then $a \geq c$
-  \item If $a \geq b$ and $b \geq a$, then $a=b$
-  \item $a \geq b$ iff $a+c \geq b+c$
-  \item $a<b$ iff $a\pp \leq b$
-  \item $a<b$ iff $b=a+d$ for some positive number $d$
+  \item \label{item:natural-numbers-order-1} $a \geq a$
+  \item \label{item:natural-numbers-order-2} If $a \geq b$ and $b \geq c$, then $a \geq c$
+  \item \label{item:natural-numbers-order-3} If $a \geq b$ and $b \geq a$, then $a=b$
+  \item \label{item:natural-numbers-order-4} $a \geq b$ iff $a+c \geq b+c$
+  \item \label{item:natural-numbers-order-5} $a<b$ iff $a\pp \leq b$
+  \item \label{item:natural-numbers-order-6} $a<b$ iff $b=a+d$ for some positive number $d$
   \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:natural-numbers-order} (5)
+  Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-5})
 
   $b=a+d$ and $b \neq a \Rightarrow d \neq 0 \Rightarrow d = n\pp$
 
@@ -142,7 +142,7 @@
 \end{proposition}
 
 \begin{proof}
-  If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (3)}}{\Rightarrow} a=b$ contradiction
+  If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-3})}}{\Rightarrow} a=b$ contradiction
 \end{proof}
 
 \begin{proposition}
@@ -264,7 +264,7 @@
 
 \section{Set Theory}
 \begin{definition}
-  A set $A$ is any unordered collection of objects.
+  Set $A$ is any unordered collection of objects.
   $x \in A$ if $x$ lies in the collection, otherwise $x \notin A$.
 \end{definition}
 
@@ -277,6 +277,7 @@
   \item Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
     Pair set $\{a,b\}$: $y \in \{a,b\}$ iff $y=a$ or $y=b$.
   \item $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
+  \item $y \in \{x \in A : P(x) \text{ is true}\} \Leftrightarrow y \in A \text{ and } P(x) \text{ is true}$.
   \end{enumerate}
 \end{axiom}
 
@@ -307,9 +308,49 @@
   \end{enumerate}
 \end{lemma}
 
-\begin{proof}
-  
-\end{proof}
+\begin{definition}
+  \begin{gather*}
+    \{a,b,c\} := \{a\}\cup\{b\}\cup\{c\} \\
+    \{a,b,c,d\} := \{a\}\cup\{b\}\cup\{c\}\cup\{d\} \\
+    \vdots
+  \end{gather*}
+\end{definition}
+
+\begin{definition}
+  Subsets.
+  \begin{enumerate}
+  \item $A \subseteq B \Leftrightarrow$ for any object $x \in A$, then $x \in B$.
+  \item $A \subsetneq B$ if $A \subseteq B$ and $A \neq B$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let $A$, $B$, $C$ be sets.
+  \begin{enumerate}
+  \item If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+  \item If $A \subseteq B$ and $B \subseteq A$, then $A = C$.
+  \item If $A \subsetneq B$ and $B \subsetneq C$, then $A \subsetneq C$.
+  \end{enumerate}
+\end{proposition}
+
+\begin{definition}
+  Let $A$, $B$ be sets.
+  \begin{enumerate}
+  \item $A \cap B := \{x \in A : x \in B\}$.
+  \item $A - B := \{x \in A : x \notin B\}$.
+  \end{enumerate}
+\end{definition}
+
+\begin{proposition}
+  Let $A$, $B$, $C$ be sets, and $\{A,B,C\} \subseteq X$.
+  \begin{enumerate}
+  \item $A \cup \emptyset = A$ and $A \cap \emptyset = \emptyset$.
+  \item $A \cup X = X$ and $A \cap X = A$.
+  \item $A \cup A = A$ and $A \cap A = A$.
+  \item $A \cup B = B \cup A$ and $A \cap B = B \cap A$.
+  \item 
+  \end{enumerate}
+\end{proposition}
 
 \printbibliography
 \end{document}
