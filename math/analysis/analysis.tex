@@ -21,9 +21,8 @@
 \end{itemize}
 
 \subsection{The Peano Axioms}
-\begin{axiom}
+\begin{axiom}[Peano axioms]~
   \label{axiom:peano-axioms}
-  Peano axioms:
   \begin{enumerate}
   \item 0 is a natural number.
   \item If $n$ is a natural number, then $n\pp$ is also a natural number.
@@ -47,9 +46,7 @@
 \end{definition}
 
 \subsection{Addition}
-\begin{definition}
-  Addition.
-
+\begin{definition}[Addition]
   Let $n$ and $m$ be natural numbers.
   \begin{enumerate}
   \item $0+m:=m$
@@ -93,7 +90,7 @@
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-1})
+  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-1}).
 
   $a+0=a$ is positive.
   Suppose that $a+b$ is positive.
@@ -101,7 +98,7 @@
 \end{proof}
 
 \begin{proof}
-  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-3})
+  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-3}).
 
   Suppose that $a=b\pp$.
   Then $a\pp=(a)\pp$.
@@ -129,7 +126,7 @@
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-5})
+  Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-5}).
 
   $b=a+d$ and $b \neq a \Rightarrow d \neq 0 \Rightarrow d = n\pp$
 
@@ -145,9 +142,7 @@
   If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-3})}}{\Rightarrow} a=b$ contradiction
 \end{proof}
 
-\begin{proposition}
-  Strong principle of induction.
-
+\begin{proposition}[Strong principle of induction]
   Let $m_{0}$ be a natural number. Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$, then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
 \end{proposition}
 
@@ -217,10 +212,8 @@
   \end{enumerate}
 \end{lemma}
 
-\begin{lemma}
+\begin{lemma}[Commutative]
   \label{lemma:multiplication-commutative}
-  Commutative.
-
   Let $n$ and $m$ be natural numbers.
   \begin{enumerate}
   \item $n \times m = m \times n$
@@ -239,9 +232,7 @@
   \end{enumerate}
 \end{proposition}
 
-\begin{lemma}
-  Euclid's division lemma.
-
+\begin{lemma}[Euclid's division lemma]
   Let $n$ be a natural number and $q$ be a positive natural number. Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
 \end{lemma}
 
@@ -253,9 +244,7 @@
   If $r\pp<q$, $n\pp=mq+r\pp$.
 \end{proof}
 
-\begin{definition}
-  Exponentiation.
-
+\begin{definition}[Exponentiation]~
   \begin{enumerate}
   \item $m^{0}:=1$ and $0^{0}:=1$
   \item $m^{n\pp}:=m^{n} \times m$
@@ -268,7 +257,7 @@
   $x \in A$ if $x$ lies in the collection, otherwise $x \notin A$.
 \end{definition}
 
-\begin{axiom}
+\begin{axiom}~
   \begin{enumerate}
   \item If $A$ is a set, then $A$ is also an object.
   \item $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
@@ -316,8 +305,7 @@
   \end{gather*}
 \end{definition}
 
-\begin{definition}
-  Subsets.
+\begin{definition}[Subsets]
   \begin{enumerate}
   \item $A \subseteq B \Leftrightarrow$ for any object $x \in A$, then $x \in B$.
   \item $A \subsetneq B$ if $A \subseteq B$ and $A \neq B$.
@@ -337,20 +325,52 @@
   Let $A$, $B$ be sets.
   \begin{enumerate}
   \item $A \cap B := \{x \in A : x \in B\}$.
-  \item $A - B := \{x \in A : x \notin B\}$.
+  \item $A \backslash B := \{x \in A : x \notin B\}$.
   \end{enumerate}
 \end{definition}
 
 \begin{proposition}
+  \label{prop:sets-boolean-algebra}
   Let $A$, $B$, $C$ be sets, and $\{A,B,C\} \subseteq X$.
   \begin{enumerate}
-  \item $A \cup \emptyset = A$ and $A \cap \emptyset = \emptyset$.
-  \item $A \cup X = X$ and $A \cap X = A$.
-  \item $A \cup A = A$ and $A \cap A = A$.
-  \item $A \cup B = B \cup A$ and $A \cap B = B \cap A$.
-  \item 
+  \item \label{item:sets-boolean-algebra-1} $A \cup \emptyset = A$ and $A \cap \emptyset = \emptyset$.
+  \item \label{item:sets-boolean-algebra-2} $A \cup X = X$ and $A \cap X = A$.
+  \item \label{item:sets-boolean-algebra-3} $A \cup A = A$ and $A \cap A = A$.
+  \item \label{item:sets-boolean-algebra-4} $A \cup B = B \cup A$ and $A \cap B = B \cap A$.
+  \item \label{item:sets-boolean-algebra-5} $(A \cup B) \cup C = A \cup (B \cup C)$ and $(A \cap B) \cap C = A \cap (B \cap C)$.
+  \item \label{item:sets-boolean-algebra-6} $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+  \item \label{item:sets-boolean-algebra-7} $A \cup (X \backslash A) = X$ and $A \cap (X \backslash A) = \emptyset$.
+  \item \label{item:sets-boolean-algebra-8} De Morgan laws: $X \backslash (A \cup B) = (x \backslash A) \cap (X \backslash B)$ and $X \backslash (A \cap B) = (X \backslash A) \cup (X \backslash B)$.
   \end{enumerate}
 \end{proposition}
+
+\begin{proof}
+  Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-5}).
+
+  $x \in A \cap X \Leftrightarrow x \in A \Rightarrow A \cap X = A$.
+\end{proof}
+
+\begin{proof}
+  Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-6}).
+
+  $x \in A \cap (B \cup C) \Rightarrow x \in A \text{ and } (x \in B \text{ or } x \in C) \Rightarrow x \in A \cap B \text{ or } x \in A \cap C \Rightarrow x \in (A \cap B) \cup (A \cap C)$.
+  
+  $x \in (A \cap B) \cup (A \cap C) \Rightarrow x \in (A \cap B) \text{ or } x \in (A \cap C) \Rightarrow x \in A \text{ and } x \in B \cup C \Rightarrow x \in A \cap (B \cup C)$.
+\end{proof}
+
+\begin{lemma}[De mongan laws]~
+  !(A or B) = !A and !B.
+
+  !(A and B) = !A or !B.
+\end{lemma}
+
+\begin{proof}
+  Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-8}).
+
+  $x \in X \backslash (A \cup B) \Rightarrow x \in X \text{ and } (x \notin A \text{ and } x \notin B)$.
+
+  $x \in X \backslash (A \cap B) \Rightarrow x \in X \text{ and } (x \notin A \text{ or } x \notin B)$.
+\end{proof}
 
 \printbibliography
 \end{document}
