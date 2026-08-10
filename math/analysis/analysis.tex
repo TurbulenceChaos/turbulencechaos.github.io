@@ -258,15 +258,18 @@
 \end{definition}
 
 \begin{axiom}~
+  \label{axiom:sets}
   \begin{enumerate}
-  \item If $A$ is a set, then $A$ is also an object.
-  \item $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
-  \item There exists an empty set $\emptyset$, such that every object $x \notin \emptyset$.
-  \item Let $A$ be a non-empty set. Then there exist an object $x \in \emptyset$.
-  \item Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
+  \item \label{item:sets-1} If $A$ is a set, then $A$ is also an object.
+  \item \label{item:sets-2} $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
+  \item \label{item:sets-3} There exists an empty set $\emptyset$, such that every object $x \notin \emptyset$.
+  \item \label{item:sets-4} Let $A$ be a non-empty set. Then there exist an object $x \in A$.
+  \item \label{item:sets-5} Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
     Pair set $\{a,b\}$: $y \in \{a,b\}$ iff $y=a$ or $y=b$.
-  \item $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
-  \item $y \in \{x \in A : P(x) \text{ is true}\} \Leftrightarrow y \in A \text{ and } P(x) \text{ is true}$.
+  \item \label{item:sets-6} $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
+  \item \label{item:sets-7} $y \in \{x \in A : P(x) \text{ is true}\} \Leftrightarrow y \in A \text{ and } P(x) \text{ is true}$.
+  \item \label{item:sets-8} $z \in \{y : P(x,y) \text{ is true for some } x \in A\} \Leftrightarrow P(x,z) \text{ is true for some } x \in A$.
+  \item \label{item:sets-9} There exists a set $\mathbb{N}$, whose elements are called natural numbers, and an object $n\pp$ assigned to every $n \in \mathbb{N}$, such that the Peano axioms \ref{axiom:peano-axioms} hold.
   \end{enumerate}
 \end{axiom}
 
@@ -359,6 +362,7 @@
 \end{proof}
 
 \begin{lemma}[De mongan laws]~
+  
   !(A or B) = !A and !B.
 
   !(A and B) = !A or !B.
@@ -371,6 +375,24 @@
 
   $x \in X \backslash (A \cap B) \Rightarrow x \in X \text{ and } (x \notin A \text{ or } x \notin B)$.
 \end{proof}
+
+\begin{example}~
+
+  $\{y : y=f(x) \text{ for some } x \in A\} = \{f(x) : x \in A\}$.
+
+  $\{x \in A : P(x) \text{ is true}\} \Rightarrow \{f(x) : x \in A; P(x) \text{ is true}\}$.
+\end{example}
+
+\begin{example}
+  $\{n+3 : n \in \mathbb{N}, 0 \leq n \leq 5\} = \{8-m : m \in \mathbb{N}, 0 \leq m \leq 3\}$.
+\end{example}
+
+\begin{exercise}[Axiom \ref{axiom:sets} (\ref{item:sets-8}) $\Rightarrow$ Axiom \ref{axiom:sets} (\ref{item:sets-7})]~
+  
+  $y \in \{x:P(x) \text{ is true for some } x \in A\} \Rightarrow y \in \{x \in A : P(x) \text{ is true}\}$.
+\end{exercise}
+
+\subsection{Functions}
 
 \printbibliography
 \end{document}
