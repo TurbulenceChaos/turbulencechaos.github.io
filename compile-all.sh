@@ -17,7 +17,7 @@ mkdir -p "images"
 IMG_DIR="../../images"
 DPI=300
 
-for DIR in math philosophy; do
+for DIR in math programming literature; do
     (
         cd $DIR
         for TEX in */; do
