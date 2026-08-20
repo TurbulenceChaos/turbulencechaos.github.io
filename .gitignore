@@ -17,3 +17,4 @@ _region_*
 images/
 *-tikz.pdf
 template/library.bib
+/programming/cpp/src/
