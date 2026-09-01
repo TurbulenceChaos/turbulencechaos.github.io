@@ -17,33 +17,33 @@
 \section{Automatic Indentation of code}
 Automatic indentation \cite{LEWIS_1998_GNU_EMACS_LISP_REFERENCE_MANUAL}:
 \begin{itemize}
-\item What is the right indentation of a line?
-\item When to reindent a line?
+        \item What is the right indentation of a line?
+        \item When to reindent a line?
 \end{itemize}
 
 Indentation function:
 \begin{itemize}
-\item parsing forward from some safe starting point until the position of interest
-\item parsing backward from the position of interest
+        \item parsing forward from some safe starting point until the position of interest
+        \item parsing backward from the position of interest
 \end{itemize}
 
 Generic indentation engine:
 \begin{itemize}
-\item CC-mode indentation code
-\item SMIE
-\item Tree-sitter
+        \item CC-mode indentation code
+        \item SMIE
+        \item Tree-sitter
 \end{itemize}
 
 \subsection{Simple Minded Indentation Engine}
 \begin{itemize}
-\item operator precedence grammar
-\item unable to detect syntax error
-\item most programming languages cannot be parsed correctly by SMIE
+        \item operator precedence grammar
+        \item unable to detect syntax error
+        \item most programming languages cannot be parsed correctly by SMIE
 \end{itemize}
 
 \begin{definition}[smie-setup]~
-  \label{def:smie-setup}
-\begin{verbatim}
+        \label{def:smie-setup}
+        \begin{verbatim}
 (smie-setup grammar rules-function :forward-token :backward-token)
 \end{verbatim}
 \end{definition}
@@ -52,6 +52,12 @@ Generic indentation engine:
 Parser-based indentation
 
 \section{Language Server Protocol}
+
+\section{Dynamic Module}
+% https://www.phimulambda.org/blog/emacs-dynamic-module.html
+
+\section{Canvas}
+% https://monadicsheep.org/blog/an-introduction-to-canvas-in-emacs.html
 
 \printbibliography
 \end{document}
