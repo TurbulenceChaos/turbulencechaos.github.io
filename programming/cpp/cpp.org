@@ -1,0 +1,52 @@
+#+TITLE: CPP
+#+AUTHOR: PENG
+#+EMAIL: p.peng01@outlook.com
+#+DATE: 20260901
+
+* Basics
+** Variables and Basic Types
+#+name: cpp-type-conversion
+#+begin_src cpp
+#include <iostream>
+
+int main()
+{
+    bool b = 42;
+
+    int i = b;
+
+    std::cout << b << "\n" << i << "\n";
+
+    return 0;
+}
+#+end_src
+
+#+RESULTS: cpp-type-conversion
+| 1 |
+| 1 |
+
+#+name: cpp-signed-unsigned
+#+begin_src cpp
+#include <iostream>
+
+int main()
+{
+    unsigned u = 0;
+
+    int i = -1;
+
+    std::cout << u + i << "\n";
+
+    unsigned u1 = 30, u2 = 10;
+
+    std::cout << u2 - u1 << "\n";
+
+    return 0;
+}
+#+end_src
+
+#+RESULTS: cpp-signed-unsigned
+| 4294967295 |
+| 4294967276 |
+
+** Statement

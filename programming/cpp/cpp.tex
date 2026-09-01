@@ -6,7 +6,7 @@
 
 \title{C++}
 \author{PENG}
-\date{Created: 20260817, Version: 20260817}
+\date{Created: 20260817, Version: 20260831}
 
 \begin{document}
 \maketitle
@@ -14,20 +14,40 @@
 \section{Basics}
 \subsection{Variables and Basic Types}
 \begin{definition}[Primitive builtin types]~
-  \begin{enumerate}
-  \item arithmetic types
+  \begin{itemize}
+  \item arithmetic types:
     \begin{itemize}
     \item integral types
       \begin{itemize}
-      \item characters
-      \item integers
-      \item boolean values
+      \item characters: \verb|char|
+      \item integers: \verb|int|: \verb|signed| or \verb|unsigned| ($\geq 0$)
+      \item boolean values: \verb|bool|
       \end{itemize}
-    \item floating-point types
+    \item floating-point types: \verb|double|
     \end{itemize}
   \item void
-  \end{enumerate}
+  \end{itemize}
 \end{definition}
+
+\begin{remark}
+  Use \verb|double| for floating-point computations.
+\end{remark}
+
+\begin{example}[Type conversions]~
+\begin{verbatim}
+bool b = 20; // 0 for false and nonzero values for true
+int i = b;   // true for 1 and false for 0
+\end{verbatim}
+\end{example}
+
+\begin{example}[signed and unsigned]~
+\begin{verbatim}
+unsigned u = -1; // if 32-bit ints, 4294967295
+int a = -1;
+unsigned b = 1;
+a * b // int value is converted to unsigned before addition
+\end{verbatim}
+\end{example}
 
 \subsection{Statement}
 
