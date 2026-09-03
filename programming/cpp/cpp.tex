@@ -11,15 +11,16 @@
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Basics}
-\subsection{Variables and Basic Types}
+\section{Variables and Basic Types}
+\subsection{Primitive Built-in Types}
+\subsubsection{Arithmetic Types}
 \begin{definition}[Primitive builtin types]~
         \begin{itemize}
                 \item arithmetic types:
                       \begin{itemize}
                               \item integral types
                                     \begin{itemize}
-                                            \item characters: \verb|char|
+                                            \item characters: \verb|char|, \verb|std::string|
                                             \item integers: \verb|int|: \verb|signed| or \verb|unsigned| ($\geq 0$)
                                             \item boolean values: \verb|bool|
                                     \end{itemize}
@@ -33,6 +34,7 @@
         Use \verb|double| for floating-point computations.
 \end{remark}
 
+\subsubsection{Type Conversions}
 \begin{example}[Type conversions]~
         \begin{verbatim}
 bool b = 20; // 0 for false and nonzero values for true
@@ -40,7 +42,7 @@ int i = b;   // true for 1 and false for 0
 \end{verbatim}
 \end{example}
 
-\begin{example}[signed and unsigned]~
+\begin{example}[Signed and unsigned]~
         \begin{verbatim}
 unsigned u = -1; // if 32-bit ints, 4294967295
 int a = -1;
@@ -49,7 +51,51 @@ a * b // int value is converted to unsigned before addition
 \end{verbatim}
 \end{example}
 
-\subsection{Statement}
+\subsubsection{Literals}
+\begin{definition}[Literals]~
+
+        Integer literals:
+        \begin{itemize}
+                \item decimal
+                \item octal: \verb|0-|
+                \item hexadecimal: \verb|0x-|
+                \item suffix:
+                      \begin{itemize}
+                              \item \verb|u|: unsigned
+                              \item \verb|L|: long
+                      \end{itemize}
+        \end{itemize}
+
+        Floating-point literals (\verb|double| by default):
+        \begin{itemize}
+                \item decimal point
+                \item \verb|E: 1E-2|
+                \item suffix: \verb|f/F|: float
+        \end{itemize}
+
+        character and string literals:
+        \verb|"Hello"| = \verb|"Hello\0"|
+\end{definition}
+
+\begin{definition}[Escape sequences]~
+        \begin{itemize}
+                \item newline: \verb|\n|
+                \item horizontal tab: \verb|\t|
+                \item null: \verb|\0|
+        \end{itemize}
+\end{definition}
+
+\subsection{Variables}
+\subsubsection{Variable Definitions}
+\begin{remark}~
+        \begin{itemize}
+                \item Variables defined outside any function body are initialized to 0.
+                \item  Initialize every object of built-in type.
+                \item \verb|std::cin >> int i;| error, should be \verb|int i; std::cin >> i;|.
+        \end{itemize}
+\end{remark}
+
+\subsubsection{Variable Declarations and Definitions}
 
 \printbibliography
 \end{document}

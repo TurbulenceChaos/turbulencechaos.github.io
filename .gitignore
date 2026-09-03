@@ -19,3 +19,6 @@ images/
 template/library.bib
 /programming/cpp/src/
 /TAGS
+
+/programming/cpp/.clang-format
+/programming/cpp/*.cpp

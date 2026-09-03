@@ -3,22 +3,16 @@
 #+EMAIL: p.peng01@outlook.com
 #+DATE: 20260901
 
-* Basics
-** Variables and Basic Types
+#+PROPERTY: header-args:cpp :includes '(<iostream>)
+
+* Variables and Basic Types
+** Primitive Built-in Types
+*** Type Conversions
 #+name: cpp-type-conversion
 #+begin_src cpp
-#include <iostream>
-
-int main()
-{
-    bool b = 42;
-
-    int i = b;
-
-    std::cout << b << "\n" << i << "\n";
-
-    return 0;
-}
+bool b = 42;
+int i = b;
+std::cout << b << "\n" << i << "\n";
 #+end_src
 
 #+RESULTS: cpp-type-conversion
@@ -27,26 +21,69 @@ int main()
 
 #+name: cpp-signed-unsigned
 #+begin_src cpp
-#include <iostream>
+unsigned u = 0;
+int i = -1;
+std::cout << u + i << "\n";
 
-int main()
-{
-    unsigned u = 0;
-
-    int i = -1;
-
-    std::cout << u + i << "\n";
-
-    unsigned u1 = 30, u2 = 10;
-
-    std::cout << u2 - u1 << "\n";
-
-    return 0;
-}
+unsigned u1 = 30, u2 = 10;
+std::cout << u2 - u1 << "\n";
 #+end_src
 
 #+RESULTS: cpp-signed-unsigned
 | 4294967295 |
 | 4294967276 |
 
-** Statement
+** Variables
+*** Variable Definitions
+#+name: cpp-variables
+#+begin_src cpp
+std::string global_str;
+int global_i;
+
+int main()
+{
+    std::string local_str;
+    int local_i;
+    std::cout << global_str << "\n";
+    std::cout << global_i << "\n";
+    std::cout << local_str << "\n";
+    std::cout << local_i << "\n";
+    return 0;
+}
+#+end_src
+
+#+RESULTS: cpp-variables
+|       |
+|     0 |
+|       |
+| 32766 |
+
+*** Declaration and Definitions
+
+* Linked List
+#+name: cpp-linked-list
+#+begin_src cpp
+struct Node
+{
+    int val;
+    Node *next;
+    Node(int x) : val(x), next(nullptr) {}
+};
+
+int main()
+{
+    Node *n1 = new Node(1);
+    Node *n2 = new Node(2);
+    n1->next = n2;
+    while (n1 != nullptr)
+    {
+        std::cout << n1->val << std::endl;
+        n1 = n1->next;
+    }
+    return 0;
+}
+#+end_src
+
+#+RESULTS: cpp-linked-list
+| 1 |
+| 2 |
