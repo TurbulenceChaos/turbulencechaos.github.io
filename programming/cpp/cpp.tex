@@ -95,10 +95,38 @@ a * b // int value is converted to unsigned before addition
         \end{itemize}
 \end{remark}
 
-\subsubsection{Variable Declarations and Definitions}
-File A define the variable \verb|int ix;|. Other files: \verb|extern int ix;|.
+\subsubsection{Variable Declarations}
+\begin{itemize}
+        \item File A define the variable \verb|int ix;|. Other files: \verb|extern int ix;|.
+        \item All variables must be declared before being used.
+\end{itemize}
 
-All variables must be declared before being used.
+\subsubsection{Identifiers}
+Naming conventions:
+\begin{itemize}
+        \item Variable name: lowercase
+        \item Class name: uppercase
+\end{itemize}
+
+\subsubsection{Scope of a Name}
+\begin{itemize}
+        \item Global scope: \verb|::global_var|
+        \item Block scope
+\end{itemize}
+
+\begin{remark}
+        It is almost always a bad idea to define a local variable with the same name as a global variable that the function uses.
+\end{remark}
+
+\subsection{Compound Types}
+\subsubsection{References}
+\begin{itemize}
+        \item A reference is an alias.
+        \item The type of a reference and the object must match exactly.
+\end{itemize}
+
+\subsubsection{Pointers}
+
 
 \printbibliography
 \end{document}

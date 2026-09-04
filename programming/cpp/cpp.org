@@ -58,7 +58,47 @@ int main()
 |       |
 | 32766 |
 
-*** Declaration and Definitions
+*** Scope of a name
+#+name: cpp-scope
+#+begin_src cpp
+int reused = 10;
+int main ()
+{
+    std::cout << reused << "\n";
+    int reused = 0;
+    std::cout << reused << "\n";
+    std::cout << ::reused << "\n";
+
+    int i = 100, sum = 0;
+    for(int i = 0; i != 10; ++i)
+        sum += i;
+    std::cout << i << " " << sum << "\n";
+
+    return 0;
+}
+#+end_src
+
+#+RESULTS: cpp-scope
+|  10 |    |
+|   0 |    |
+|  10 |    |
+| 100 | 45 |
+
+** Compound Types
+*** References
+#+name: cpp-references
+#+begin_src cpp
+int i = 0, &r1 = i;
+double d = 0, &r2 = d;
+r2 = 3.14;
+std::cout << d << " " << r2 << "\n";
+r1 = r2;
+std::cout << i << " " << r1 << "\n";
+#+end_src
+
+#+RESULTS: cpp-references
+| 3.14 | 3.14 |
+|    3 |    3 |
 
 * Linked List
 #+name: cpp-linked-list
