@@ -84,6 +84,8 @@ int main ()
 |  10 |    |
 | 100 | 45 |
 
+** Const
+
 ** Compound Types
 *** References
 #+name: cpp-references
@@ -99,6 +101,27 @@ std::cout << i << " " << r1 << "\n";
 #+RESULTS: cpp-references
 | 3.14 | 3.14 |
 |    3 |    3 |
+
+*** Pointers
+#+name: cpp-pointers
+#+begin_src cpp
+int ival = 10;
+int *pi = &ival;
+int **ppi = &pi;
+std::cout<< &pi << " " << pi << " " << *pi <<"\n";
+std::cout<< ppi << " " << *ppi << " " << **ppi <<"\n";
+
+int i = 10;
+int *p;
+int *&r = p;
+r = &i;
+std::cout << *r << "\n";
+#+end_src
+
+#+RESULTS: cpp-pointers
+| 0x7fffb578aea8 | 0x7fffb578aea0 | 10 |
+| 0x7fffb578aea8 | 0x7fffb578aea0 | 10 |
+|             10 |                |    |
 
 * Linked List
 #+name: cpp-linked-list

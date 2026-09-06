@@ -14,36 +14,36 @@
 \section{Variables and Basic Types}
 \subsection{Primitive Built-in Types}
 \subsubsection{Arithmetic Types}
-\begin{definition}[Primitive builtin types]~
-        \begin{itemize}
-                \item arithmetic types:
-                      \begin{itemize}
-                              \item integral types
-                                    \begin{itemize}
-                                            \item characters: \verb|char|, \verb|std::string|
-                                            \item integers: \verb|int|: \verb|signed| or \verb|unsigned| ($\geq 0$)
-                                            \item boolean values: \verb|bool|
-                                    \end{itemize}
-                              \item floating-point types: \verb|double|
-                      \end{itemize}
-                \item void
-        \end{itemize}
+\begin{definition}[Primitive builtin types \cite{LIPPMAN_2012_C_PRIMER}]~
+    \begin{itemize}
+        \item arithmetic types:
+              \begin{itemize}
+                  \item integral types
+                        \begin{itemize}
+                            \item characters: \verb|char|, \verb|std::string|
+                            \item integers: \verb|int|: \verb|signed| or \verb|unsigned| ($\geq 0$)
+                            \item boolean values: \verb|bool|
+                        \end{itemize}
+                  \item floating-point types: \verb|double|
+              \end{itemize}
+        \item void
+    \end{itemize}
 \end{definition}
 
 \begin{remark}
-        Use \verb|double| for floating-point computations.
+    Use \verb|double| for floating-point computations.
 \end{remark}
 
 \subsubsection{Type Conversions}
 \begin{example}[Type conversions]~
-        \begin{verbatim}
+    \begin{verbatim}
 bool b = 20; // 0 for false and nonzero values for true
 int i = b;   // true for 1 and false for 0
 \end{verbatim}
 \end{example}
 
 \begin{example}[Signed and unsigned]~
-        \begin{verbatim}
+    \begin{verbatim}
 unsigned u = -1; // if 32-bit ints, 4294967295
 int a = -1;
 unsigned b = 1;
@@ -54,79 +54,129 @@ a * b // int value is converted to unsigned before addition
 \subsubsection{Literals}
 \begin{definition}[Literals]~
 
-        Integer literals:
-        \begin{itemize}
-                \item decimal
-                \item octal: \verb|0-|
-                \item hexadecimal: \verb|0x-|
-                \item suffix:
-                      \begin{itemize}
-                              \item \verb|u|: unsigned
-                              \item \verb|L|: long
-                      \end{itemize}
-        \end{itemize}
+    Integer literals:
+    \begin{itemize}
+        \item decimal
+        \item octal: \verb|0-|
+        \item hexadecimal: \verb|0x-|
+        \item suffix:
+              \begin{itemize}
+                  \item \verb|u|: unsigned
+                  \item \verb|L|: long
+              \end{itemize}
+    \end{itemize}
 
-        Floating-point literals (\verb|double| by default):
-        \begin{itemize}
-                \item decimal point
-                \item \verb|E: 1E-2|
-                \item suffix: \verb|f/F|: float
-        \end{itemize}
+    Floating-point literals (\verb|double| by default):
+    \begin{itemize}
+        \item decimal point
+        \item \verb|E: 1E-2|
+        \item suffix: \verb|f/F|: float
+    \end{itemize}
 
-        character and string literals:
-        \verb|"Hello"| = \verb|"Hello\0"|
+    character and string literals:
+    \verb|"Hello"| = \verb|"Hello\0"|
 \end{definition}
 
 \begin{definition}[Escape sequences]~
-        \begin{itemize}
-                \item newline: \verb|\n|
-                \item horizontal tab: \verb|\t|
-                \item null: \verb|\0|
-        \end{itemize}
+    \begin{itemize}
+        \item newline: \verb|\n|
+        \item horizontal tab: \verb|\t|
+        \item null: \verb|\0|
+    \end{itemize}
 \end{definition}
 
 \subsection{Variables}
 \subsubsection{Variable Definitions}
 \begin{remark}~
-        \begin{itemize}
-                \item Variables defined outside any function body are initialized to 0.
-                \item  Initialize every object of built-in type.
-                \item \verb|std::cin >> int i;| error, should be \verb|int i; std::cin >> i;|.
-        \end{itemize}
+    \begin{itemize}
+        \item Variables defined outside any function body are initialized to 0.
+        \item  Initialize every object of built-in type.
+        \item \verb|std::cin >> int i;| error, should be \verb|int i; std::cin >> i;|.
+    \end{itemize}
 \end{remark}
 
 \subsubsection{Variable Declarations}
 \begin{itemize}
-        \item File A define the variable \verb|int ix;|. Other files: \verb|extern int ix;|.
-        \item All variables must be declared before being used.
+    \item File A define the variable \verb|int ix;|. Other files: \verb|extern int ix;|.
+    \item All variables must be declared before being used.
 \end{itemize}
 
 \subsubsection{Identifiers}
 Naming conventions:
 \begin{itemize}
-        \item Variable name: lowercase
-        \item Class name: uppercase
+    \item Variable name: lowercase
+    \item Class name: uppercase
 \end{itemize}
 
 \subsubsection{Scope of a Name}
 \begin{itemize}
-        \item Global scope: \verb|::global_var|
-        \item Block scope
+    \item Global scope: \verb|::global_var|
+    \item Block scope
 \end{itemize}
 
 \begin{remark}
-        It is almost always a bad idea to define a local variable with the same name as a global variable that the function uses.
+    It is almost always a bad idea to define a local variable with the same name as a global variable that the function uses.
 \end{remark}
 
 \subsection{Compound Types}
 \subsubsection{References}
+\begin{definition}[Reference]
+    A reference defines an alternative name for an object.
+    \begin{verbatim}
+int ival = 0;
+int &refVal = ival;
+\end{verbatim}
+\end{definition}
+
 \begin{itemize}
-        \item A reference is an alias.
-        \item The type of a reference and the object must match exactly.
+    \item A reference is an alias, not an object.
+    \item The type of a reference and the object must match exactly.
+    \item A reference can only refer to the object to which it was initially bound.
 \end{itemize}
 
 \subsubsection{Pointers}
+\begin{definition}[Pointer]
+    A pointer holds the address of another object.
+    \begin{verbatim}
+int ival = 0;
+int *pi = &ival;
+*pi = 10;
+int* p1, p2; // legal, but might be misleading. p2 is int.
+\end{verbatim}
+\end{definition}
 
+\begin{itemize}
+    \item A pointer is an object.
+          The type of the pointer and the object to which it points must match.
+    \item Dereferencing a pointer yields the object to which the pointer points.
+    \item States of address value stored in a pointer:
+          \begin{itemize}
+              \item point to an object
+              \item null pointer, not bound to any object: \verb|nullptr|
+          \end{itemize}
+\end{itemize}
+
+\begin{remark}[Initialize all pointers]
+    Define a pointer only after the object to which it should point, or initialize the pointer to \verb|nullptr|.
+\end{remark}
+
+\begin{example}[Pointers to pointers]~
+    \begin{verbatim}
+int ival = 1;
+int *pi = &ival;
+int **ppi = &pi;
+\end{verbatim}
+\end{example}
+
+\begin{example}[References to pointers]~
+    \begin{verbatim}
+int i = 1;
+int *p;
+int *&r = p;
+\end{verbatim}
+\end{example}
+
+\subsection{const}
 
 \printbibliography
 \end{document}
