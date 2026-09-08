@@ -176,7 +176,81 @@ int *&r = p;
 \end{verbatim}
 \end{example}
 
-\subsection{const}
+\subsection{Qualifier}
+\begin{definition}
+    \verb|const|:
+    \begin{itemize}
+        \item Make a variable unchangeable.
+        \item Must be initialized.
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    Share a \verb|const| object among multiple files:
+    \begin{verbatim}
+extern const i = 10; // file A
+extern const i; // other files
+\end{verbatim}
+\end{example}
+
+\subsubsection{Reference to const}
+\begin{definition}[reference to const]
+    Reference to const only restricts what we can do through that reference.
+
+    Reference to const can refer to a nonconst object.
+    \begin{verbatim}
+const int ci = 10;
+const int &r1 = ci;
+int i = 1;
+const int &r2 = i;
+const int &r3 = 2;
+double d = 3.14;
+const int &r4 = d;
+\end{verbatim}
+\end{definition}
+
+\subsubsection{Pointer to const}
+\begin{definition}[Pointer to const: low-level]
+    Pointer to const only affects what we can do with the pointer.
+
+    Pointer to const can point to a nonconst object.
+    \begin{verbatim}
+double pi = 3.14;
+const double *ptr = &pi;
+\end{verbatim}
+\end{definition}
+
+\subsubsection{Top-Level const}
+\begin{definition}[const pointer: top-level]
+    const pointer must be initialized.
+    \begin{verbatim}
+int i = 10;
+int *const pi = &i;
+\end{verbatim}
+\end{definition}
+
+\begin{remark}
+    Low-level \verb|const| is never ignored when copying an object.
+    Both objects must have the same low-level qualification or binding const to nonconst.
+
+    \begin{verbatim}
+const int i = 1;
+const int *p1 = &i;
+const int *const p2 = p1;
+int *p3 = 0;
+p1 = p3;
+\end{verbatim}
+\end{remark}
+
+\subsubsection{Constant Expressions}
+\begin{definition}[constexpr]~
+    \begin{verbatim}
+const int sz = get_size(); // not const expression
+constexpr int sz = size(); // ok only if size is a constexpr function
+\end{verbatim}
+\end{definition}
+
+
 
 \printbibliography
 \end{document}

@@ -123,6 +123,48 @@ std::cout << *r << "\n";
 | 0x7fffb578aea8 | 0x7fffb578aea0 | 10 |
 |             10 |                |    |
 
+** Qualifier
+#+name: cpp-const
+#+begin_src cpp
+int i = 10;
+const int &r1 = i;
+const int &r2 = 2;
+i = 15;
+double d = 3.14;
+const int &r3 = d;
+d = 1.12;
+std::cout << r1 << "\n";
+std::cout << r2 << "\n";
+std::cout << r3 << "\n";
+
+double pi = 3.14;
+const double *ptr;
+ptr = &pi;
+std::cout << *ptr << "\n";
+
+int *const p = &i;
+const double dval = 3.14;
+const double *const pip = &dval;
+#+end_src
+
+#+RESULTS: cpp-const
+|   15 |
+|    2 |
+|    3 |
+| 3.14 |
+
+#+begin_src cpp
+const int i = 1;
+const int *p1 = &i;
+const int *const p2 = p1;
+int *p3 = 0;
+p1 = p3;
+std::cout << p1 << "\n";
+#+end_src
+
+#+RESULTS:
+: 0
+
 * Linked List
 #+name: cpp-linked-list
 #+begin_src cpp
