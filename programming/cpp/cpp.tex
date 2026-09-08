@@ -247,10 +247,57 @@ p1 = p3;
     \begin{verbatim}
 const int sz = get_size(); // not const expression
 constexpr int sz = size(); // ok only if size is a constexpr function
+const int *p = 0;     // pointer to const int
+constexpr int *q = 0; // const pointer to int: top-level const
 \end{verbatim}
 \end{definition}
 
+\begin{remark}~
+    \begin{itemize}
+        \item Variables defined inside a function are not stored at a fixed address.
+        \item The address of an object defined outside of any function is a constant expression.
+    \end{itemize}
+\end{remark}
 
+\subsection{Dealing with Types}
+\subsubsection{Type Aliases}
+\begin{definition}[type alias]
+    \begin{verbatim}
+typedef double wages;
+typedef wages base, *p; // p for double*
+base d = 3.14;
+p p1 = &d, p2 = &d;
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[pointer, const, type alias]~
+    \begin{verbatim}
+typedef char *pstring;  // char*
+const pstring cstr = 0; // char *const
+const pstring *ps;      // char **const
+\end{verbatim}
+\end{definition}
+
+\subsubsection{The Auto Type Specifier}
+\begin{definition}[auto]
+    A variable that uses \verb|auto| must have an initializer.
+
+    The initializers for all the variables in the declaration must have consistent types.
+    \begin{verbatim}
+auto i = 0, *p = &i;
+auto sz = 0, pi = 3.14;
+\end{verbatim}
+\end{definition}
+
+\begin{example}[compound types, const, and auto]~
+    \begin{verbatim}
+int i = 1;
+const int ci = i;
+auto a = ci;  // int
+auto b = &i;  // int*
+auto c = &ci; // const int*
+\end{verbatim}
+\end{example}
 
 \printbibliography
 \end{document}
