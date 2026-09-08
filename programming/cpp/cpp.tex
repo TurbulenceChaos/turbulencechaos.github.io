@@ -293,11 +293,35 @@ auto sz = 0, pi = 3.14;
     \begin{verbatim}
 int i = 1;
 const int ci = i;
-auto a = ci;  // int
-auto b = &i;  // int*
-auto c = &ci; // const int*
+auto a = ci;       // int, top level const is dropped
+const auto b = ci; // const int
+auto c = &i;       // int*
+auto d = &ci;      // const int* (& of a const object is low-level const)
 \end{verbatim}
 \end{example}
+
+\section{}
+\begin{verbatim}
+struct Node
+{
+    int val;
+    Node *next;
+    Node(int x) : val(x), next(nullptr) {}
+};
+
+int main()
+{
+    Node *n1 = new Node(1);
+    Node *n2 = new Node(2);
+    n1->next = n2;
+    while (n1 != nullptr)
+    {
+        std::cout << n1->val << std::endl;
+        n1 = n1->next;
+    }
+    return 0;
+}
+\end{verbatim}
 
 \printbibliography
 \end{document}

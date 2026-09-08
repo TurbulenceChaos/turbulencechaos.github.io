@@ -19,8 +19,8 @@ images/
 template/library.bib
 /programming/cpp/src/
 /TAGS
-
 /programming/cpp/.clang-format
 /programming/cpp/*.cpp
+/programming/cpp/cpp.org
 *.bbl-SAVE-ERROR
 tmp/
