@@ -14,5 +14,65 @@
 \section{Introduction}
 Lean is a strict pure functional language with dependent types \cite{CHRISTIANSEN_2023_FUNCTIONAL_PROGRAMMING_IN_LEAN}.
 
+\subsection{Ealuating Expressions}
+\subsection{Types}
+Every expression in Lean must have a type before it can be evaluated.
+
+\begin{definition}[type]~
+    \begin{itemize}
+        \item \verb|Nat|: default, natural numbers $\geq 0$
+        \item \verb|Int|
+        \item \verb|String|
+        \item \verb|Bool|
+    \end{itemize}
+\end{definition}
+
+\begin{example}~
+    \begin{verbatim}
+#eval (1 - 2 : Nat) -- 0
+#check (1 - 2 : Int) -- check the type of an expression
+\end{verbatim}
+\end{example}
+
+\subsection{Functions and Definitions}
+\begin{definition}[definition]~
+    \begin{verbatim}
+def var : type := value
+\end{verbatim}
+\end{definition}
+
+\begin{example}~
+    \begin{verbatim}
+def hello := "Hello"
+def lean : String := "Lean"
+#eval String.append hello (String.append " " lean)
+\end{verbatim}
+\end{example}
+
+\subsubsection{Defining Functions}
+\begin{definition}[function]~
+    \begin{verbatim}
+def func (arg1 : type) ... (argn : type) : type := body
+\end{verbatim}
+\end{definition}
+
+\begin{example}~
+    \begin{verbatim}
+def maximum (n : Nat) (m : Nat) : Nat :=
+if n < m then
+m
+else n
+#eval maximum 2 3
+#check maximum
+\end{verbatim}
+\end{example}
+
+\begin{remark}
+    All functions actually expect precisely one argument.
+    Functions to take more than one arguments are in fact functions that take one argument and then return a new function.
+\end{remark}
+
+\subsubsection{Defining Types}
+
 \printbibliography
 \end{document}
