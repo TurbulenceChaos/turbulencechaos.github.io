@@ -1,6 +1,6 @@
 \documentclass{article}
 \usepackage{import}
-\import{../../template/}{article-style}
+\import{../../template/}{article-template}
 \graphicspath{{../../images/}}
 \addbibresource{../../template/library.bib}
 
@@ -16,380 +16,380 @@
 
 \section{Natural Number system}
 \begin{itemize}
-\item This is how mathematics works - it treats its objects abstractly, caring only about what properties the objects have, not what the objects are or what they mean \cite{TAO_2022_ANALYSIS_I}.
-\item It is pointless, at least from a mathematician's standpoint, as to argue about which model is the true one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
+    \item This is how mathematics works - it treats its objects abstractly, caring only about what properties the objects have, not what the objects are or what they mean \cite{TAO_2022_ANALYSIS_I}.
+    \item It is pointless, at least from a mathematician's standpoint, as to argue about which model is the true one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
 \end{itemize}
 
 \subsection{The Peano Axioms}
 \begin{axiom}[Peano axioms]~
-  \label{axiom:peano-axioms}
-  \begin{enumerate}
-  \item 0 is a natural number.
-  \item If $n$ is a natural number, then $n\pp$ is also a natural number.
-  \item $n\pp \neq 0$
-  \item $n \neq m \Rightarrow n\pp \neq m\pp$
+    \label{axiom:peano-axioms}
+    \begin{enumerate}
+        \item 0 is a natural number.
+        \item If $n$ is a natural number, then $n\pp$ is also a natural number.
+        \item $n\pp \neq 0$
+        \item $n \neq m \Rightarrow n\pp \neq m\pp$
 
-    $n\pp = m\pp \Rightarrow n = m$
-  \item Principle of mathematical induction:
+              $n\pp = m\pp \Rightarrow n = m$
+        \item Principle of mathematical induction:
 
-    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
-  \end{enumerate}
+              Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
+    \end{enumerate}
 \end{axiom}
 
 \begin{definition}
-  \begin{gather*}
-    1 := 0\pp \\
-    2 := 1\pp \\
-    3 := 2\pp \\
-    \vdots
-  \end{gather*}
+    \begin{gather*}
+        1 := 0\pp \\
+        2 := 1\pp \\
+        3 := 2\pp \\
+        \vdots
+    \end{gather*}
 \end{definition}
 
 \subsection{Addition}
 \begin{definition}[Addition]
-  Let $n$ and $m$ be natural numbers.
-  \begin{enumerate}
-  \item $0+m:=m$
-  \item $(n\pp)+m:=(n+m)\pp$
-  \end{enumerate}
+    Let $n$ and $m$ be natural numbers.
+    \begin{enumerate}
+        \item $0+m:=m$
+        \item $(n\pp)+m:=(n+m)\pp$
+    \end{enumerate}
 \end{definition}
 
 \begin{proposition}
-  Let $n$ and $m$ be natural numbers. Then $n+m$ is also a natural number.
+    Let $n$ and $m$ be natural numbers. Then $n+m$ is also a natural number.
 \end{proposition}
 
 \begin{lemma}
-  Let $n$ and $m$ be natural numbers.
-  \begin{enumerate}
-  \item $n+0=n$
-  \item $n+(m\pp)=(n+m)\pp$
-  \end{enumerate}
+    Let $n$ and $m$ be natural numbers.
+    \begin{enumerate}
+        \item $n+0=n$
+        \item $n+(m\pp)=(n+m)\pp$
+    \end{enumerate}
 \end{lemma}
 
 \begin{proposition}
-  Let $a$, $b$, $c$ be natural numbers.
-  \begin{enumerate}
-  \item $a+b=b+a$
-  \item $(a+b)+c=a+(b+c)$
-  \item $a+b=a+c \Rightarrow b=c$
-  \end{enumerate}
+    Let $a$, $b$, $c$ be natural numbers.
+    \begin{enumerate}
+        \item $a+b=b+a$
+        \item $(a+b)+c=a+(b+c)$
+        \item $a+b=a+c \Rightarrow b=c$
+    \end{enumerate}
 \end{proposition}
 
 \begin{definition}
-  A natural number $n$ is positive iff (if and only if) $n \neq 0$.
+    A natural number $n$ is positive iff (if and only if) $n \neq 0$.
 \end{definition}
 
 \begin{proposition}
-  \label{prop:positive-natural-numbers}
-  Let $a$ and $b$ be natural numbers.
-  \begin{enumerate}
-  \item \label{item:positive-natural-numbers-1} If $a$ is positive, then $a+b$ is positive.
-  \item \label{item:positive-natural-numbers-2} $a+b=0 \Rightarrow a=b=0$.
-  \item \label{item:positive-natural-numbers-3} If $a$ is positive, then there exists only one natural number $b$ such that $b\pp=a$.
-  \end{enumerate}
+    \label{prop:positive-natural-numbers}
+    Let $a$ and $b$ be natural numbers.
+    \begin{enumerate}
+        \item \label{item:positive-natural-numbers-1} If $a$ is positive, then $a+b$ is positive.
+        \item \label{item:positive-natural-numbers-2} $a+b=0 \Rightarrow a=b=0$.
+        \item \label{item:positive-natural-numbers-3} If $a$ is positive, then there exists only one natural number $b$ such that $b\pp=a$.
+    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-1}).
+    Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-1}).
 
-  $a+0=a$ is positive.
-  Suppose that $a+b$ is positive.
-  Then $a+b\pp=(a+b)\pp \neq 0$ is positive.
+    $a+0=a$ is positive.
+    Suppose that $a+b$ is positive.
+    Then $a+b\pp=(a+b)\pp \neq 0$ is positive.
 \end{proof}
 
 \begin{proof}
-  Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-3}).
+    Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-3}).
 
-  Suppose that $a=b\pp$.
-  Then $a\pp=(a)\pp$.
+    Suppose that $a=b\pp$.
+    Then $a\pp=(a)\pp$.
 \end{proof}
 
 \begin{definition}
-  Let $n$ and $m$ be natural numbers.
-  \begin{enumerate}
-  \item $n \geq m$ or $m \leq n$ iff $n=m+a$
-  \item $n>m$ or $m<n$ iff $n \geq m$ and $n \neq m$
-  \end{enumerate}
+    Let $n$ and $m$ be natural numbers.
+    \begin{enumerate}
+        \item $n \geq m$ or $m \leq n$ iff $n=m+a$
+        \item $n>m$ or $m<n$ iff $n \geq m$ and $n \neq m$
+    \end{enumerate}
 \end{definition}
 
 \begin{proposition}
-  \label{prop:natural-numbers-order}
-  Let $a$, $b$, $c$ be natural numbers.
-  \begin{enumerate}
-  \item \label{item:natural-numbers-order-1} $a \geq a$
-  \item \label{item:natural-numbers-order-2} If $a \geq b$ and $b \geq c$, then $a \geq c$
-  \item \label{item:natural-numbers-order-3} If $a \geq b$ and $b \geq a$, then $a=b$
-  \item \label{item:natural-numbers-order-4} $a \geq b$ iff $a+c \geq b+c$
-  \item \label{item:natural-numbers-order-5} $a<b$ iff $a\pp \leq b$
-  \item \label{item:natural-numbers-order-6} $a<b$ iff $b=a+d$ for some positive number $d$
-  \end{enumerate}
+    \label{prop:natural-numbers-order}
+    Let $a$, $b$, $c$ be natural numbers.
+    \begin{enumerate}
+        \item \label{item:natural-numbers-order-1} $a \geq a$
+        \item \label{item:natural-numbers-order-2} If $a \geq b$ and $b \geq c$, then $a \geq c$
+        \item \label{item:natural-numbers-order-3} If $a \geq b$ and $b \geq a$, then $a=b$
+        \item \label{item:natural-numbers-order-4} $a \geq b$ iff $a+c \geq b+c$
+        \item \label{item:natural-numbers-order-5} $a<b$ iff $a\pp \leq b$
+        \item \label{item:natural-numbers-order-6} $a<b$ iff $b=a+d$ for some positive number $d$
+    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-5}).
+    Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-5}).
 
-  $b=a+d$ and $b \neq a \Rightarrow d \neq 0 \Rightarrow d = n\pp$
+    $b=a+d$ and $b \neq a \Rightarrow d \neq 0 \Rightarrow d = n\pp$
 
-  $b=a+(n\pp)=(a\pp)+n \Rightarrow a\pp \leq b$
+    $b=a+(n\pp)=(a\pp)+n \Rightarrow a\pp \leq b$
 \end{proof}
 
 \begin{proposition}
-  Let $a$ and $b$ be natural numbers. Then exactly one of following statement is true:
-  $a<b$, $a=b$, or $a>b$.
+    Let $a$ and $b$ be natural numbers. Then exactly one of following statement is true:
+    $a<b$, $a=b$, or $a>b$.
 \end{proposition}
 
 \begin{proof}
-  If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-3})}}{\Rightarrow} a=b$ contradiction
+    If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-3})}}{\Rightarrow} a=b$ contradiction
 \end{proof}
 
 \begin{proposition}[Strong principle of induction]
-  Let $m_{0}$ be a natural number. Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$, then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
+    Let $m_{0}$ be a natural number. Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$, then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
 \end{proposition}
 
 \begin{proof}
-  Let $Q(n)$ be the property that $P(m)$ is true for all $m_{0} \leq m < n$.
+    Let $Q(n)$ be the property that $P(m)$ is true for all $m_{0} \leq m < n$.
 
-  Suppose that if $Q(n)$ is true, then $P(m)$ is also true.
+    Suppose that if $Q(n)$ is true, then $P(m)$ is also true.
 
-  Then $P(m)$ is true for all $m_{0} \leq m < n\pp$.
+    Then $P(m)$ is true for all $m_{0} \leq m < n\pp$.
 \end{proof}
 
 \begin{example}
-  Fibonacci numbers.
-  \begin{gather}
-    \label{eq:fibonacci-numbers}
-    F_{n} = \frac{\phi^{n} - \psi^{n}}{\phi-\psi} \\
-    F_{n+2} = F_{n+1} + F_{n}
-  \end{gather}
-  where $\phi=\frac{1+\sqrt{5}}{2}$ and $\psi=\frac{1-\sqrt{5}}{2}$
+    Fibonacci numbers.
+    \begin{gather}
+        \label{eq:fibonacci-numbers}
+        F_{n} = \frac{\phi^{n} - \psi^{n}}{\phi-\psi} \\
+        F_{n+2} = F_{n+1} + F_{n}
+    \end{gather}
+    where $\phi=\frac{1+\sqrt{5}}{2}$ and $\psi=\frac{1-\sqrt{5}}{2}$
 \end{example}
 
 \begin{exercise}
-  Principle of backwards induction.
+    Principle of backwards induction.
 
-  Let $n$ be a natural number. Whenever $P(m\pp)$ is true, $P(m)$ is true.
-  If $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
+    Let $n$ be a natural number. Whenever $P(m\pp)$ is true, $P(m)$ is true.
+    If $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
 \end{exercise}
 
 \begin{proof}
-  Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
-  If $P(n\pp)$ is true, then $P(m)$ is true for all $m \leq n\pp$.
+    Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
+    If $P(n\pp)$ is true, then $P(m)$ is true for all $m \leq n\pp$.
 \end{proof}
 
 \begin{exercise}
-  Principle of induction starting from the base case $n$.
+    Principle of induction starting from the base case $n$.
 
-  Let $n$ be a natural number. Whenever $P(m)$ is true, $P(m\pp)$ is true.
-  If $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
+    Let $n$ be a natural number. Whenever $P(m)$ is true, $P(m\pp)$ is true.
+    If $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
 \end{exercise}
 
 \begin{proof}
-  If $P(0)$ is true, suppose that $P(m)$ is true.
-  Then $P(m\pp)$ is also true.
-  Then $P(m)$ is true for all $m \geq 0$.
-  Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
-  If $P(n\pp)$ is true, then $P(m)$ is true for all $m \geq n\pp$.
+    If $P(0)$ is true, suppose that $P(m)$ is true.
+    Then $P(m\pp)$ is also true.
+    Then $P(m)$ is true for all $m \geq 0$.
+    Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
+    If $P(n\pp)$ is true, then $P(m)$ is true for all $m \geq n\pp$.
 \end{proof}
 
 \subsection{Multiplication}
 \begin{definition}
-  Let $n$ and $m$ be natural numbers.
-  \begin{enumerate}
-  \item $0 \times m := 0$
-  \item $(n\pp) \times m := (n \times m) + m$
-  \end{enumerate}
+    Let $n$ and $m$ be natural numbers.
+    \begin{enumerate}
+        \item $0 \times m := 0$
+        \item $(n\pp) \times m := (n \times m) + m$
+    \end{enumerate}
 \end{definition}
 
 \begin{proposition}
-  Let $n$ and $m$ be natural numbers. Then $n \times m$ is also a natural number.
+    Let $n$ and $m$ be natural numbers. Then $n \times m$ is also a natural number.
 \end{proposition}
 
 \begin{lemma}
-  Let $n$ and $m$ be natural numbers.
-  \begin{enumerate}
-  \item $n \times 0 = 0 \times n$
-  \item $n \times (m\pp) = (n \times m) + n$
-  \end{enumerate}
+    Let $n$ and $m$ be natural numbers.
+    \begin{enumerate}
+        \item $n \times 0 = 0 \times n$
+        \item $n \times (m\pp) = (n \times m) + n$
+    \end{enumerate}
 \end{lemma}
 
 \begin{lemma}[Commutative]
-  \label{lemma:multiplication-commutative}
-  Let $n$ and $m$ be natural numbers.
-  \begin{enumerate}
-  \item $n \times m = m \times n$
-  \item $n \times m = 0$ iff at least one of $n$ and $m$ is equal to 0.
-    If $n$ and $m$ are both positive, then $nm$ is also positive.
-  \end{enumerate}
+    \label{lemma:multiplication-commutative}
+    Let $n$ and $m$ be natural numbers.
+    \begin{enumerate}
+        \item $n \times m = m \times n$
+        \item $n \times m = 0$ iff at least one of $n$ and $m$ is equal to 0.
+              If $n$ and $m$ are both positive, then $nm$ is also positive.
+    \end{enumerate}
 \end{lemma}
 
 \begin{proposition}
-  Let $a$, $b$, $c$ be natural numbers.
-  \begin{enumerate}
-  \item $a(b+c)=(b+c)a=bc+ca$
-  \item $(ab)c=a(bc)$
-  \item If $a<b$ and $c$ is positive, then $ac<nc$.
-  \item If $ac=bc$ and $c$ is positive, then $a=b$.
-  \end{enumerate}
+    Let $a$, $b$, $c$ be natural numbers.
+    \begin{enumerate}
+        \item $a(b+c)=(b+c)a=bc+ca$
+        \item $(ab)c=a(bc)$
+        \item If $a<b$ and $c$ is positive, then $ac<nc$.
+        \item If $ac=bc$ and $c$ is positive, then $a=b$.
+    \end{enumerate}
 \end{proposition}
 
 \begin{lemma}[Euclid's division lemma]
-  Let $n$ be a natural number and $q$ be a positive natural number. Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
+    Let $n$ be a natural number and $q$ be a positive natural number. Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
 \end{lemma}
 
 \begin{proof}
-  $0 = 0 \times q + 0$ and $0 \leq r < q$.
-  Suppose that $n=mq+r$ and $0 \leq r < q$.
-  Then $n\pp=mq+(r\pp)$ and $0 \leq r\pp \leq q$.
-  If $r\pp=q$, $n\pp=mq+q=(m+1)q+0$.
-  If $r\pp<q$, $n\pp=mq+r\pp$.
+    $0 = 0 \times q + 0$ and $0 \leq r < q$.
+    Suppose that $n=mq+r$ and $0 \leq r < q$.
+    Then $n\pp=mq+(r\pp)$ and $0 \leq r\pp \leq q$.
+    If $r\pp=q$, $n\pp=mq+q=(m+1)q+0$.
+    If $r\pp<q$, $n\pp=mq+r\pp$.
 \end{proof}
 
 \begin{definition}[Exponentiation]~
-  \begin{enumerate}
-  \item $m^{0}:=1$ and $0^{0}:=1$
-  \item $m^{n\pp}:=m^{n} \times m$
-  \end{enumerate}
+    \begin{enumerate}
+        \item $m^{0}:=1$ and $0^{0}:=1$
+        \item $m^{n\pp}:=m^{n} \times m$
+    \end{enumerate}
 \end{definition}
 
 \section{Set Theory}
 \begin{definition}
-  Set $A$ is any unordered collection of objects.
-  $x \in A$ if $x$ lies in the collection, otherwise $x \notin A$.
+    Set $A$ is any unordered collection of objects.
+    $x \in A$ if $x$ lies in the collection, otherwise $x \notin A$.
 \end{definition}
 
 \begin{axiom}~
-  \label{axiom:sets}
-  \begin{enumerate}
-  \item \label{item:sets-1} If $A$ is a set, then $A$ is also an object.
-  \item \label{item:sets-2} $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
-  \item \label{item:sets-3} There exists an empty set $\emptyset$, such that every object $x \notin \emptyset$.
-  \item \label{item:sets-4} Let $A$ be a non-empty set. Then there exist an object $x \in A$.
-  \item \label{item:sets-5} Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
-    Pair set $\{a,b\}$: $y \in \{a,b\}$ iff $y=a$ or $y=b$.
-  \item \label{item:sets-6} $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
-  \item \label{item:sets-7} $y \in \{x \in A : P(x) \text{ is true}\} \Leftrightarrow y \in A \text{ and } P(x) \text{ is true}$.
-  \item \label{item:sets-8} $z \in \{y : P(x,y) \text{ is true for some } x \in A\} \Leftrightarrow P(x,z) \text{ is true for some } x \in A$.
-  \item \label{item:sets-9} There exists a set $\mathbb{N}$, whose elements are called natural numbers, and an object $n\pp$ assigned to every $n \in \mathbb{N}$, such that the Peano axioms \ref{axiom:peano-axioms} hold.
-  \end{enumerate}
+    \label{axiom:sets}
+    \begin{enumerate}
+        \item \label{item:sets-1} If $A$ is a set, then $A$ is also an object.
+        \item \label{item:sets-2} $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
+        \item \label{item:sets-3} There exists an empty set $\emptyset$, such that every object $x \notin \emptyset$.
+        \item \label{item:sets-4} Let $A$ be a non-empty set. Then there exist an object $x \in A$.
+        \item \label{item:sets-5} Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
+              Pair set $\{a,b\}$: $y \in \{a,b\}$ iff $y=a$ or $y=b$.
+        \item \label{item:sets-6} $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
+        \item \label{item:sets-7} $y \in \{x \in A : P(x) \text{ is true}\} \Leftrightarrow y \in A \text{ and } P(x) \text{ is true}$.
+        \item \label{item:sets-8} $z \in \{y : P(x,y) \text{ is true for some } x \in A\} \Leftrightarrow P(x,z) \text{ is true for some } x \in A$.
+        \item \label{item:sets-9} There exists a set $\mathbb{N}$, whose elements are called natural numbers, and an object $n\pp$ assigned to every $n \in \mathbb{N}$, such that the Peano axioms \ref{axiom:peano-axioms} hold.
+    \end{enumerate}
 \end{axiom}
 
 \begin{example}
-  $\{a,a\} = \{a\}$
+    $\{a,a\} = \{a\}$
 \end{example}
 
 \begin{exercise}
-  $\emptyset$, $\{\emptyset\}$, $\{\{\emptyset\}\}$, $\{\emptyset,\{\emptyset\}\}$ are all distinct.
+    $\emptyset$, $\{\emptyset\}$, $\{\{\emptyset\}\}$, $\{\emptyset,\{\emptyset\}\}$ are all distinct.
 \end{exercise}
 
 \begin{proof}
-  $y \notin \emptyset$.
+    $y \notin \emptyset$.
 
-  $y=\emptyset \in \{\emptyset\}$.
+    $y=\emptyset \in \{\emptyset\}$.
 
-  $y=\{\emptyset\} \in \{\{\emptyset\}\}$.
+    $y=\{\emptyset\} \in \{\{\emptyset\}\}$.
 
-  $y=\emptyset$ or $y=\{\emptyset\} \in \{\emptyset,\{\emptyset\}\}$.
+    $y=\emptyset$ or $y=\{\emptyset\} \in \{\emptyset,\{\emptyset\}\}$.
 \end{proof}
 
 \begin{lemma}
-  Let $a$, $b$ are objects, and $A$, $B$, $C$ are sets.
-  \begin{enumerate}
-  \item $\{a,b\}=\{a\}\cup\{b\}$
-  \item $A \cup B = B \cup A$
-  \item $(A \cup B) \cup C = A \cup (B \cup C)$
-  \end{enumerate}
+    Let $a$, $b$ are objects, and $A$, $B$, $C$ are sets.
+    \begin{enumerate}
+        \item $\{a,b\}=\{a\}\cup\{b\}$
+        \item $A \cup B = B \cup A$
+        \item $(A \cup B) \cup C = A \cup (B \cup C)$
+    \end{enumerate}
 \end{lemma}
 
 \begin{definition}
-  \begin{gather*}
-    \{a,b,c\} := \{a\}\cup\{b\}\cup\{c\} \\
-    \{a,b,c,d\} := \{a\}\cup\{b\}\cup\{c\}\cup\{d\} \\
-    \vdots
-  \end{gather*}
+    \begin{gather*}
+        \{a,b,c\} := \{a\}\cup\{b\}\cup\{c\} \\
+        \{a,b,c,d\} := \{a\}\cup\{b\}\cup\{c\}\cup\{d\} \\
+        \vdots
+    \end{gather*}
 \end{definition}
 
 \begin{definition}[Subsets]
-  \begin{enumerate}
-  \item $A \subseteq B \Leftrightarrow$ for any object $x \in A$, then $x \in B$.
-  \item $A \subsetneq B$ if $A \subseteq B$ and $A \neq B$.
-  \end{enumerate}
+    \begin{enumerate}
+        \item $A \subseteq B \Leftrightarrow$ for any object $x \in A$, then $x \in B$.
+        \item $A \subsetneq B$ if $A \subseteq B$ and $A \neq B$.
+    \end{enumerate}
 \end{definition}
 
 \begin{proposition}
-  Let $A$, $B$, $C$ be sets.
-  \begin{enumerate}
-  \item If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
-  \item If $A \subseteq B$ and $B \subseteq A$, then $A = C$.
-  \item If $A \subsetneq B$ and $B \subsetneq C$, then $A \subsetneq C$.
-  \end{enumerate}
+    Let $A$, $B$, $C$ be sets.
+    \begin{enumerate}
+        \item If $A \subseteq B$ and $B \subseteq C$, then $A \subseteq C$.
+        \item If $A \subseteq B$ and $B \subseteq A$, then $A = C$.
+        \item If $A \subsetneq B$ and $B \subsetneq C$, then $A \subsetneq C$.
+    \end{enumerate}
 \end{proposition}
 
 \begin{definition}
-  Let $A$, $B$ be sets.
-  \begin{enumerate}
-  \item $A \cap B := \{x \in A : x \in B\}$.
-  \item $A \backslash B := \{x \in A : x \notin B\}$.
-  \end{enumerate}
+    Let $A$, $B$ be sets.
+    \begin{enumerate}
+        \item $A \cap B := \{x \in A : x \in B\}$.
+        \item $A \backslash B := \{x \in A : x \notin B\}$.
+    \end{enumerate}
 \end{definition}
 
 \begin{proposition}
-  \label{prop:sets-boolean-algebra}
-  Let $A$, $B$, $C$ be sets, and $\{A,B,C\} \subseteq X$.
-  \begin{enumerate}
-  \item \label{item:sets-boolean-algebra-1} $A \cup \emptyset = A$ and $A \cap \emptyset = \emptyset$.
-  \item \label{item:sets-boolean-algebra-2} $A \cup X = X$ and $A \cap X = A$.
-  \item \label{item:sets-boolean-algebra-3} $A \cup A = A$ and $A \cap A = A$.
-  \item \label{item:sets-boolean-algebra-4} $A \cup B = B \cup A$ and $A \cap B = B \cap A$.
-  \item \label{item:sets-boolean-algebra-5} $(A \cup B) \cup C = A \cup (B \cup C)$ and $(A \cap B) \cap C = A \cap (B \cap C)$.
-  \item \label{item:sets-boolean-algebra-6} $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
-  \item \label{item:sets-boolean-algebra-7} $A \cup (X \backslash A) = X$ and $A \cap (X \backslash A) = \emptyset$.
-  \item \label{item:sets-boolean-algebra-8} De Morgan laws: $X \backslash (A \cup B) = (x \backslash A) \cap (X \backslash B)$ and $X \backslash (A \cap B) = (X \backslash A) \cup (X \backslash B)$.
-  \end{enumerate}
+    \label{prop:sets-boolean-algebra}
+    Let $A$, $B$, $C$ be sets, and $\{A,B,C\} \subseteq X$.
+    \begin{enumerate}
+        \item \label{item:sets-boolean-algebra-1} $A \cup \emptyset = A$ and $A \cap \emptyset = \emptyset$.
+        \item \label{item:sets-boolean-algebra-2} $A \cup X = X$ and $A \cap X = A$.
+        \item \label{item:sets-boolean-algebra-3} $A \cup A = A$ and $A \cap A = A$.
+        \item \label{item:sets-boolean-algebra-4} $A \cup B = B \cup A$ and $A \cap B = B \cap A$.
+        \item \label{item:sets-boolean-algebra-5} $(A \cup B) \cup C = A \cup (B \cup C)$ and $(A \cap B) \cap C = A \cap (B \cap C)$.
+        \item \label{item:sets-boolean-algebra-6} $A \cap (B \cup C) = (A \cap B) \cup (A \cap C)$ and $A \cup (B \cap C) = (A \cup B) \cap (A \cup C)$.
+        \item \label{item:sets-boolean-algebra-7} $A \cup (X \backslash A) = X$ and $A \cap (X \backslash A) = \emptyset$.
+        \item \label{item:sets-boolean-algebra-8} De Morgan laws: $X \backslash (A \cup B) = (x \backslash A) \cap (X \backslash B)$ and $X \backslash (A \cap B) = (X \backslash A) \cup (X \backslash B)$.
+    \end{enumerate}
 \end{proposition}
 
 \begin{proof}
-  Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-5}).
+    Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-5}).
 
-  $x \in A \cap X \Leftrightarrow x \in A \Rightarrow A \cap X = A$.
+    $x \in A \cap X \Leftrightarrow x \in A \Rightarrow A \cap X = A$.
 \end{proof}
 
 \begin{proof}
-  Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-6}).
+    Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-6}).
 
-  $x \in A \cap (B \cup C) \Rightarrow x \in A \text{ and } (x \in B \text{ or } x \in C) \Rightarrow x \in A \cap B \text{ or } x \in A \cap C \Rightarrow x \in (A \cap B) \cup (A \cap C)$.
-  
-  $x \in (A \cap B) \cup (A \cap C) \Rightarrow x \in (A \cap B) \text{ or } x \in (A \cap C) \Rightarrow x \in A \text{ and } x \in B \cup C \Rightarrow x \in A \cap (B \cup C)$.
+    $x \in A \cap (B \cup C) \Rightarrow x \in A \text{ and } (x \in B \text{ or } x \in C) \Rightarrow x \in A \cap B \text{ or } x \in A \cap C \Rightarrow x \in (A \cap B) \cup (A \cap C)$.
+
+    $x \in (A \cap B) \cup (A \cap C) \Rightarrow x \in (A \cap B) \text{ or } x \in (A \cap C) \Rightarrow x \in A \text{ and } x \in B \cup C \Rightarrow x \in A \cap (B \cup C)$.
 \end{proof}
 
 \begin{lemma}[De mongan laws]~
-  
-  !(A or B) = !A and !B.
 
-  !(A and B) = !A or !B.
+    !(A or B) = !A and !B.
+
+    !(A and B) = !A or !B.
 \end{lemma}
 
 \begin{proof}
-  Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-8}).
+    Prop. \ref{prop:sets-boolean-algebra} (\ref{item:sets-boolean-algebra-8}).
 
-  $x \in X \backslash (A \cup B) \Rightarrow x \in X \text{ and } (x \notin A \text{ and } x \notin B)$.
+    $x \in X \backslash (A \cup B) \Rightarrow x \in X \text{ and } (x \notin A \text{ and } x \notin B)$.
 
-  $x \in X \backslash (A \cap B) \Rightarrow x \in X \text{ and } (x \notin A \text{ or } x \notin B)$.
+    $x \in X \backslash (A \cap B) \Rightarrow x \in X \text{ and } (x \notin A \text{ or } x \notin B)$.
 \end{proof}
 
 \begin{example}~
 
-  $\{y : y=f(x) \text{ for some } x \in A\} = \{f(x) : x \in A\}$.
+    $\{y : y=f(x) \text{ for some } x \in A\} = \{f(x) : x \in A\}$.
 
-  $\{x \in A : P(x) \text{ is true}\} \Rightarrow \{f(x) : x \in A; P(x) \text{ is true}\}$.
+    $\{x \in A : P(x) \text{ is true}\} \Rightarrow \{f(x) : x \in A; P(x) \text{ is true}\}$.
 \end{example}
 
 \begin{example}
-  $\{n+3 : n \in \mathbb{N}, 0 \leq n \leq 5\} = \{8-m : m \in \mathbb{N}, 0 \leq m \leq 3\}$.
+    $\{n+3 : n \in \mathbb{N}, 0 \leq n \leq 5\} = \{8-m : m \in \mathbb{N}, 0 \leq m \leq 3\}$.
 \end{example}
 
 \begin{exercise}[Axiom \ref{axiom:sets} (\ref{item:sets-8}) $\Rightarrow$ Axiom \ref{axiom:sets} (\ref{item:sets-7})]~
-  
-  $y \in \{x:P(x) \text{ is true for some } x \in A\} \Rightarrow y \in \{x \in A : P(x) \text{ is true}\}$.
+
+    $y \in \{x:P(x) \text{ is true for some } x \in A\} \Rightarrow y \in \{x \in A : P(x) \text{ is true}\}$.
 \end{exercise}
 
 \subsection{Functions}
