@@ -25,3 +25,5 @@ template/library.bib
 *.bbl-SAVE-ERROR
 tmp/
 /programming/lean/*.lean
+/literature/music/*.ly
+/literature/music/lilypond.pdf
