@@ -1,0 +1,67 @@
+\documentclass{article}
+\usepackage{import}
+\import{../../template/}{article-template}
+\graphicspath{{../../images/}}
+\addbibresource{../../template/library.bib}
+
+\title{Haskell}
+\author{PENG}
+\date{Created: 20260913, Version: 20260913}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+\url{https://www.engineering.upenn.edu/~cis1940/spring13/}
+
+Haskell is a \textit{lazy}, \textit{functional} programming language created in the late 1980s.
+
+\subsection{Functional}
+\begin{definition}[functional]~
+    \begin{itemize}
+        \item functions are values
+        \item evaluating expressions rather than executing instructions
+    \end{itemize}
+\end{definition}
+
+\subsection{Pure}
+\begin{definition}[referentially transparent]~
+    \begin{itemize}
+        \item everything (var, data structures) is immutable
+        \item expressions have no side effects
+        \item same function and arguments = same output
+    \end{itemize}
+\end{definition}
+
+benefits:
+\begin{itemize}
+    \item replace equals by equals
+    \item parallelism
+\end{itemize}
+
+\subsection{Lazy}
+\begin{definition}[lazy]
+    Haskell expressions are not evaluated until their results are actually needed.
+\end{definition}
+
+consequences:
+\begin{itemize}
+    \item define a control structure by defining a function
+    \item define infinite data structures
+    \item time and space usage become more complicated
+\end{itemize}
+
+\subsection{Statically Typed}
+\begin{definition}[statically typed]
+    Each Haskell expression has a type, and types are all checked at compile-time.
+\end{definition}
+
+\subsection{Themes}
+\begin{itemize}
+    \item Static type system
+    \item Abstraction
+    \item Wholemeal programming
+\end{itemize}
+
+\printbibliography
+\end{document}
