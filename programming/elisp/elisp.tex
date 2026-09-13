@@ -12,6 +12,121 @@
 \maketitle
 \tableofcontents
 
+\section{Introduction}
+\subsection{Lisp History}
+Lisp (List Processing Language) was first developed in the late 1950s.
+
+Common Lisp (cl-lib), Scheme (Guile)
+
+\section{Lisp Data Types}
+\begin{definition}[object]
+    A Lisp object is a piece of data.
+\end{definition}
+
+\begin{definition}[primitive types]~
+    \begin{itemize}
+        \item integer
+        \item float
+        \item cons
+        \item symbol
+        \item string
+        \item vector
+        \item hash-table
+        \item subr
+        \item byte-code function
+        \item record
+        \item buffer
+    \end{itemize}
+\end{definition}
+
+\begin{remark}
+    The primitive type of each object is \textbf{implicit} in the object itself.
+\end{remark}
+
+\subsection{Printed Representation and Read Syntax}
+\begin{definition}[printed representation and read syntax]
+    \verb|prin1| and \verb|read|
+\end{definition}
+
+\begin{remark}
+    In most cases, an object's printed representation is also a read syntax for the object.
+\end{remark}
+
+\begin{example}[objects have no read syntax]
+    \verb|#<type varname>| cannot be read.
+    \begin{verbatim}
+(current-buffer) => #<buffer elisp.tex>
+\end{verbatim}
+\end{example}
+
+An expression is primarily a Lisp object.
+
+Interactive evaluation process: read the text $\Rightarrow$ produce a Lisp object $\Rightarrow$ evaluate that object. Evaluation and reading are separate activities.
+
+\subsection{Special Read Syntax}
+\begin{definition}[special hash notations]~
+    \begin{itemize}
+        \item \verb|#<>| : objects have no read syntax
+        \item \verb|#'| : shortcut for function
+    \end{itemize}
+\end{definition}
+
+\subsection{Comments}
+\begin{definition}[comment]
+    \verb|;| continues to the end of line.
+\end{definition}
+
+The Lisp reader discards comments.
+
+\subsection{Lisp Programming Types}
+Two categories of types:
+\begin{itemize}
+    \item Lisp programming types:
+          \begin{itemize}
+              \item integer
+              \item floating-point
+              \item character
+              \item symbol
+              \item sequence
+              \item array
+              \item string
+              \item vector
+              \item char-table
+              \item bool-vector
+              \item hash table
+              \item function
+              \item macro
+              \item primitive function
+              \item closure
+              \item record
+              \item type descriptors
+              \item type specifiers
+              \item autoload
+              \item finalizer
+          \end{itemize}
+    \item editing (unique to Emacs Lisp)
+\end{itemize}
+
+\subsubsection{Integer Type}
+\begin{definition}[integer]~
+    \begin{itemize}
+        \item fixnums : small integers, minimum range: 30 bits
+        \item bignums : large integers, arbitrary precision
+    \end{itemize}
+\end{definition}
+
+\begin{example}[compare]~
+    \begin{verbatim}
+(eql 1 1.) ; or
+(= 1 1.)   ; for all numbers
+(eq 1 1.)  ; for fixnums
+\end{verbatim}
+\end{example}
+
+Read syntax for integer: \verb|1. => 1|
+
+\subsubsection{Floating-Point Type}
+
 \section{Regular Expression}
 
 \section{Automatic Indentation of code}
