@@ -58,10 +58,72 @@ consequences:
 
 \subsection{Themes}
 \begin{itemize}
-    \item Static type system
-    \item Abstraction
-    \item Wholemeal programming
+    \item static type system
+    \item abstraction principle:
+          \textit{every idea, algorithm, and piece of data should occur exactly once in your code}
+    \item wholemeal programming:
+          \textit{first solve a more general problem, then transform it into more specialized ones}
 \end{itemize}
+
+\subsection{Declarations and variables}
+\begin{definition}[=]
+    = denotes definition such that variables are not mutable
+\end{definition}
+
+\begin{example}
+    \begin{verbatim}
+x :: Int
+x = 3
+x = 4 -- error, multiple declaration of x
+y :: Int
+y = y + 1 -- <<loop>>
+\end{verbatim}
+\end{example}
+
+\subsection{Basic Types}
+\begin{itemize}
+    \item \verb|Int| : at least up to $\pm 2^{29}$
+    \item \verb|Integer|
+    \item \verb|Double|
+    \item \verb|Float|
+    \item \verb|Bool|
+    \item \verb|Char|
+    \item \verb|String|
+\end{itemize}
+
+\subsection{Arithmetic}
+\begin{example}~
+    \begin{verbatim}
+mod 18 5
+18 `mod` 5
+2 / 2 -- floating-point division
+div 2 2 -- integer division
+2 `div` 2
+\end{verbatim}
+\end{example}
+
+\subsection{Boolean Logic}
+\begin{definition}[boolean logic]
+    \verb|&&|, \verb~||~, \verb|not|
+\end{definition}
+
+\begin{definition}[equality and order]~
+    \begin{itemize}
+        \item \verb|==| or \verb|/=|
+        \item \verb|>|, \verb|<|, \verb|>=|, \verb|<=|
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[if-expression]
+    \verb|if b then t else f|
+\end{definition}
+
+\begin{remark}
+    For if-expression, the \verb|else| part is required.
+\end{remark}
+
+\subsection{Defining Basic Functions}
+
 
 \printbibliography
 \end{document}

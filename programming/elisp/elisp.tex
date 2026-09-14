@@ -23,20 +23,8 @@ Common Lisp (cl-lib), Scheme (Guile)
     A Lisp object is a piece of data.
 \end{definition}
 
-\begin{definition}[primitive types]~
-    \begin{itemize}
-        \item integer
-        \item float
-        \item cons
-        \item symbol
-        \item string
-        \item vector
-        \item hash-table
-        \item subr
-        \item byte-code function
-        \item record
-        \item buffer
-    \end{itemize}
+\begin{definition}[primitive types]
+    integer, float, cons, symbol, string, vector, hash-table, subr, byte-code function, record, buffer
 \end{definition}
 
 \begin{remark}
@@ -126,6 +114,32 @@ Two categories of types:
 Read syntax for integer: \verb|1. => 1|
 
 \subsubsection{Floating-Point Type}
+
+\section{Variables}
+\subsection{Scoping Rules for Variable Bindings}
+\subsubsection{Lexical Binding}
+\begin{definition}[lexical binding]
+    Any reference to the variable must be located textually within the binding construct.
+\end{definition}
+
+Lisp evaluator get the value of a variable process:
+look first in the lexical environment $\Rightarrow$ if not then look in the dynamic value cell.
+
+\begin{definition}[closure]
+    A closure is created when you define a named or anonymous function with lexical binding enabled.
+\end{definition}
+
+\begin{example}~
+    \begin{verbatim}
+(let ((x 0))
+  (defun var ()
+    (setq x (1+ x))))
+
+(var) => 0
+(var) => 1
+(var) => 2
+\end{verbatim}
+\end{example}
 
 \section{Regular Expression}
 
