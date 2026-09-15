@@ -13,6 +13,115 @@
 \tableofcontents
 
 \section{Introduction}
+\subsection{PDE}
+\begin{definition}[$n$-dimensional real Euclidean space]
+    $\mathbb{R}^{n}$
+\end{definition}
+
+\begin{definition}[point in $\mathbb{R}^{n}$]
+    \begin{equation}
+        \label{eq:x}
+        x :=
+        \begin{bmatrix}
+            x_{1} \\ \vdots \\ x_{n}  \\
+        \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$u(x)$]
+    \begin{equation}
+        \label{eq:u}
+        u : U \to \mathbb{R} \Leftrightarrow u(x) := u(x_{1}, x_{2}, \ldots, x_{n}) \quad (x \in U)
+    \end{equation}
+\end{definition}
+
+\begin{definition}[standard coordinate vector]
+    \begin{equation}
+        \label{eq:ei}
+        e_{i} = i^{\text{th}} :=
+        \begin{bmatrix}
+            0 \\ \vdots \\ 0 \\ 1 \\ \vdots \\ 0
+        \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[derivative]
+    \begin{equation}
+        \label{eq:derivative}
+        u_{x_{i}} := \frac{\partial u}{\partial x_{i}}(x) = \lim_{h \to 0} \frac{u(x+he_{i}) - u(x)}{h}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[smooth]
+    $u$ is smooth provided $u$ is \textbf{infinitely differentiable}.
+\end{definition}
+
+\begin{definition}[gradient vector]
+    \begin{equation}
+        Du = \nabla u :=
+        \begin{bmatrix}
+            \frac{\partial u}{\partial x_{1}} \\
+            \vdots                            \\
+            \frac{\partial u}{\partial x_{n}}
+        \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$A_{m \times n}$]
+    $A = ((a_{ij}))$ is an $m \times n$ matrix with $(i,j)^{\text{th}}$ entry $a_{ij}$.
+\end{definition}
+
+\begin{definition}[$A:B$]
+    \begin{equation}
+        \label{eq:A:B}
+        A : B = \sum_{i=1}^{m}\sum_{j=1}^{n}a_{ij}b_{ij}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$|A|$]
+    \begin{equation}
+        \label{eq:|A|}
+        |A| = \sqrt{\sum_{i=1}^{m}\sum_{j=1}^{n} a_{ij}^{2}}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[vector dot product and matrix multiplication]
+    \begin{equation}
+        A_{n \times 1} \cdot B_{n \times 1} = A^{T} B =
+        [a_{1} a_{2} \dots a_{n}]
+        \begin{bmatrix}
+            b_{1} \\ \vdots \\ b_{n}
+        \end{bmatrix}
+        = \sum_{i=1}^{n} a_{i}b_{i}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[radial derivative]
+    \begin{equation}
+        \label{eq:radial-derivative}
+        \begin{aligned}
+            u_{r} := & \frac{x}{|x|} \cdot Du
+            = \frac{1}{|x|} [x_{1} \ldots x_{n}]
+            \begin{bmatrix}
+                \frac{\partial u}{\partial x_{1}} \\
+                \vdots                            \\
+                \frac{\partial u}{\partial x_{n}}
+            \end{bmatrix}                                               \\
+            =        & \frac{\sum_{i=1}^{n} x_{i}\frac{\partial u}{\partial x_{i}}}{\sqrt{\sum_{i=1}^{n} x_{i}^{2}}}
+            \quad (x \neq 0)
+        \end{aligned}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[k\textsuperscript{th}-order PDE]
+    \begin{equation}
+        \label{eq:pde}
+        F(D^{k}u(x), D^{k-1}u(x), \ldots, Du(x), u(x), x) = 0
+    \end{equation}
+    where $x \in U$, $u : U \to \mathbb{R}$, and $F : \mathbb{R}^{n^{k}} \times \mathbb{R}^{n^{k-1}} \times \ldots \times \mathbb{R}^{n} \times \mathbb{R} \times U \to \mathbb{R}$
+\end{definition}
+
+\subsection{Solutions to PDE}
 \begin{definition}[solutions to PDE \cite{EVANS_2022_PARTIAL_DIFFERENTIAL_EQUATIONS}]~
     \begin{itemize}
         \item classic solutions
@@ -43,29 +152,6 @@
         \item Heat equation
         \item Wave equation
     \end{itemize}
-\end{definition}
-
-\begin{definition}[gradient vector]
-    \begin{equation}
-        Du = \nabla u :=
-        \begin{bmatrix}
-            \frac{\partial u}{\partial x_{1}} \\
-            \frac{\partial u}{\partial x_{2}} \\
-            \vdots                            \\
-            \frac{\partial u}{\partial x_{n}}
-        \end{bmatrix}
-    \end{equation}
-\end{definition}
-
-\begin{definition}[Vector dot product and matrix multiplication]
-    \begin{equation}
-        A_{n \times 1} \cdot B_{n \times 1} = A^{T} B =
-        [a_{1} a_{2} \dots a_{n}]
-        \begin{bmatrix}
-            b_{1} \\ b_{2} \\ \vdots \\ b_{n}
-        \end{bmatrix}
-        = \sum_{i=1}^{n} a_{i}b_{i}
-    \end{equation}
 \end{definition}
 
 \begin{lemma}
