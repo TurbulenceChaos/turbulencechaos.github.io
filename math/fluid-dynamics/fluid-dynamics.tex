@@ -11,28 +11,39 @@
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Physical Properties of Fluids}
-\begin{definition}
-    Martial derivatives \cite{BATCHELOR_2000_AN_INTRODUCTION_TO_FLUID_DYNAMICS}:
-
+\section{The Physical Properties of Fluids}
+\begin{definition}[martial derivative \cite{BATCHELOR_2000_AN_INTRODUCTION_TO_FLUID_DYNAMICS}]
+    Rate of change at a point moving with the fluid locally:
     \begin{equation}
         \frac{D}{Dt} = \frac{\partial}{\partial t} + \boldsymbol{u} \cdot \nabla
-        = \frac{\partial}{\partial t} + [u_{1} u_{2} \dots u_{n}]
+        = \frac{\partial}{\partial t} + [u_{x} u_{y} u_{z}]
         \begin{bmatrix}
-            \frac{\partial}{\partial x_{1}} \\
-            \frac{\partial}{\partial x_{2}} \\
-            \vdots                          \\
-            \frac{\partial}{\partial x_{n}} \\
+            \frac{\partial}{\partial x} \\
+            \frac{\partial}{\partial y} \\
+            \frac{\partial}{\partial z}
         \end{bmatrix}
-        = \frac{\partial }{\partial t} + \sum_{i=1}^{n} u_{i}\frac{\partial}{\partial x_{i}}
+        = \frac{\partial }{\partial t} + u_{i}\frac{\partial}{\partial x_{i}}
     \end{equation}
 \end{definition}
 
-\begin{assumption}
-    Volumn of deformed fluid under any force = C
+\subsection{Solids, Liquids, and Gases}
+\begin{assumption}[simple fluid]
+    The fluid cannot withstand any tendency by applied forces to deform it with the volume $\equiv C$.
 \end{assumption}
 
-Compressibility: gases $\gg$ liquids
+\begin{definition}[resistance]
+    The resistance cannot prevent the deformation such that resisting force vanishes with the rate of deformation.
+\end{definition}
+
+\begin{definition}[compressibility]
+    gases $\gg$ liquids
+\end{definition}
+
+\begin{definition}[pressure]
+
+\end{definition}
+
+\subsection{The Continuum Hypothesis}
 
 \printbibliography
 \end{document}

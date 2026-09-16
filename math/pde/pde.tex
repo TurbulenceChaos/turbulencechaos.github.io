@@ -56,8 +56,34 @@
     $u$ is smooth provided $u$ is \textbf{infinitely differentiable}.
 \end{definition}
 
+\begin{definition}[multi-index of order]
+    \begin{gather}
+        \label{eq:alpha}
+        \alpha = \begin{bmatrix} \alpha_{1} \\ \vdots \\ \alpha_{n} \end{bmatrix} \\
+        \label{eq:|alpha|}
+        |\alpha| = \alpha_{1} + \ldots + \alpha_{n}
+    \end{gather}
+    where $\alpha_{i} \geq 0$
+\end{definition}
+
+\begin{definition}[$D^{\alpha}$]
+    \begin{equation}
+        \label{eq:D-alpha}
+        D^{\alpha} u(x) := \frac{\partial^{|\alpha|} u(x)}{\partial x_{1}^{\alpha_{1}} \ldots \partial x_{n}^{\alpha_{n}}}
+        = \partial_{x_{1}}^{\alpha_{1}} \ldots \partial_{x_{n}}^{\alpha_{n}} u
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$D^{k}$]
+    \begin{equation}
+        \label{eq:D-n}
+        D^{k} u(x) := \{D^{\alpha} u(x) : |\alpha| = k\}
+    \end{equation}
+\end{definition}
+
 \begin{definition}[gradient vector]
     \begin{equation}
+        \label{eq:D}
         Du = \nabla u :=
         \begin{bmatrix}
             \frac{\partial u}{\partial x_{1}} \\
@@ -65,10 +91,6 @@
             \frac{\partial u}{\partial x_{n}}
         \end{bmatrix}
     \end{equation}
-\end{definition}
-
-\begin{definition}[$A_{m \times n}$]
-    $A = ((a_{ij}))$ is an $m \times n$ matrix with $(i,j)^{\text{th}}$ entry $a_{ij}$.
 \end{definition}
 
 \begin{definition}[$A:B$]
@@ -87,7 +109,7 @@
 
 \begin{definition}[vector dot product and matrix multiplication]
     \begin{equation}
-        A_{n \times 1} \cdot B_{n \times 1} = A^{T} B =
+        A \cdot B = A^{T} B =
         [a_{1} a_{2} \dots a_{n}]
         \begin{bmatrix}
             b_{1} \\ \vdots \\ b_{n}
@@ -119,6 +141,15 @@
         F(D^{k}u(x), D^{k-1}u(x), \ldots, Du(x), u(x), x) = 0
     \end{equation}
     where $x \in U$, $u : U \to \mathbb{R}$, and $F : \mathbb{R}^{n^{k}} \times \mathbb{R}^{n^{k-1}} \times \ldots \times \mathbb{R}^{n} \times \mathbb{R} \times U \to \mathbb{R}$
+\end{definition}
+
+\begin{definition}[linear PDE]
+    \begin{equation}
+        \label{eq:linear-pde}
+        \sum_{|\alpha| \leq k} a_{\alpha}(x) D^{\alpha} u = f(x)
+    \end{equation}
+
+    $f \equiv 0 \Rightarrow$ homogeneous
 \end{definition}
 
 \subsection{Solutions to PDE}

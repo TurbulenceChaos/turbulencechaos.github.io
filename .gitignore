@@ -25,5 +25,9 @@ template/library.bib
 *.bbl-SAVE-ERROR
 tmp/
 /programming/lean/*.lean
-/literature/music/*.ly
+*.mid
+*.ly
+*.ps
 /literature/music/lilypond.pdf
+*.midi
+/programming/lilypond/music.pdf
