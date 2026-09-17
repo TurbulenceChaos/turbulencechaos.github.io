@@ -13,7 +13,7 @@
 \tableofcontents
 
 \section{Introduction}
-\subsection{PDE}
+\subsection{Notation}
 \begin{definition}[$n$-dimensional real Euclidean space]
     $\mathbb{R}^{n}$
 \end{definition}
@@ -31,14 +31,14 @@
 \begin{definition}[$u(x)$]
     \begin{equation}
         \label{eq:u}
-        u : U \to \mathbb{R} \Leftrightarrow u(x) := u(x_{1}, x_{2}, \ldots, x_{n}) \quad (x \in U)
+        u : U \to \mathbb{R} \Leftrightarrow u(x) := u(x_{1}, \ldots, x_{n}) \quad (x \in U)
     \end{equation}
 \end{definition}
 
 \begin{definition}[standard coordinate vector]
     \begin{equation}
         \label{eq:ei}
-        e_{i} = i^{\text{th}} :=
+        e_{i} :=
         \begin{bmatrix}
             0 \\ \vdots \\ 0 \\ 1 \\ \vdots \\ 0
         \end{bmatrix}
@@ -76,7 +76,7 @@
 
 \begin{definition}[$D^{k}$]
     \begin{equation}
-        \label{eq:D-n}
+        \label{eq:Dk}
         D^{k} u(x) := \{D^{\alpha} u(x) : |\alpha| = k\}
     \end{equation}
 \end{definition}
@@ -89,6 +89,20 @@
             \frac{\partial u}{\partial x_{1}} \\
             \vdots                            \\
             \frac{\partial u}{\partial x_{n}}
+        \end{bmatrix}
+        \in \mathbb{R}^{n}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[Hessian matrix]
+    Real symmetrical matrices:
+    \begin{equation}
+        \label{eq:D2}
+        D^{2}u :=
+        \begin{bmatrix}
+            u_{x_{1}x_{1}} & \dots  & u_{x_{1}x_{n}} \\
+            \vdots         & \ddots & \vdots         \\
+            u_{x_{n}x_{1}} & \dots  & u_{x_{n}x_{n}}
         \end{bmatrix}
     \end{equation}
 \end{definition}
@@ -110,7 +124,7 @@
 \begin{definition}[vector dot product and matrix multiplication]
     \begin{equation}
         A \cdot B = A^{T} B =
-        [a_{1} a_{2} \dots a_{n}]
+        [a_{1} \dots a_{n}]
         \begin{bmatrix}
             b_{1} \\ \vdots \\ b_{n}
         \end{bmatrix}
@@ -123,7 +137,7 @@
         \label{eq:radial-derivative}
         \begin{aligned}
             u_{r} := & \frac{x}{|x|} \cdot Du
-            = \frac{1}{|x|} [x_{1} \ldots x_{n}]
+            = \frac{1}{|x|} [x_{1} \dots x_{n}]
             \begin{bmatrix}
                 \frac{\partial u}{\partial x_{1}} \\
                 \vdots                            \\
@@ -135,13 +149,60 @@
     \end{equation}
 \end{definition}
 
+\begin{definition}[$\boldsymbol{u}$]
+    \begin{equation}
+        \label{eq:us}
+        \boldsymbol{u} : U \to \mathbb{R}^{m} \Leftrightarrow \boldsymbol{u} :=
+        \begin{bmatrix}
+            u^{1} \\ \vdots \\ u^{m}
+        \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$D^{\alpha}\boldsymbol{u}$]
+    \begin{equation}
+        \label{eq:Ds-alpha}
+        D^{\alpha} \boldsymbol{u} :=
+        \begin{bmatrix}
+            D^{\alpha}u^{1} \\ \vdots \\ D^{\alpha}u^{n}
+        \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$D^{k}\boldsymbol{u}$]
+    \begin{equation}
+        \label{eq:Dsk}
+        D^{k} \boldsymbol{u} := \{D^{\alpha} \boldsymbol{u} : |\alpha| = k\}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[gradient matrix]
+    \begin{equation}
+        \label{eq:Ds}
+        D\boldsymbol{u} :=
+        \begin{bmatrix}
+            u_{x_{1}}^{1} & \dots  & u_{x_{n}}^{1} \\
+            \vdots        & \ddots & \vdots        \\
+            u_{x_{1}}^{m} & \dots  & u_{x_{n}}^{m}
+        \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+\subsection{PDE}
 \begin{definition}[k\textsuperscript{th}-order PDE]
     \begin{equation}
         \label{eq:pde}
-        F(D^{k}u(x), D^{k-1}u(x), \ldots, Du(x), u(x), x) = 0
+        F(D^{k}u(x), D^{k-1}u(x), \dots, Du(x), u(x), x) = 0
     \end{equation}
-    where $x \in U$, $u : U \to \mathbb{R}$, and $F : \mathbb{R}^{n^{k}} \times \mathbb{R}^{n^{k-1}} \times \ldots \times \mathbb{R}^{n} \times \mathbb{R} \times U \to \mathbb{R}$
+    where $x \in U$, $u : U \to \mathbb{R}$, and $F : \mathbb{R}^{n^{k}} \times \mathbb{R}^{n^{k-1}} \times \dots \times \mathbb{R}^{n} \times \mathbb{R} \times U \to \mathbb{R}$
 \end{definition}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=6cm]{ns-equation.png}
+    \caption{FINITE TIME BLOWUP FOR NAVIER–STOKES \cite{OPENAI_2026_FINITE_TIME_BLOWUP_FOR_NAVIERSTOKES}.}
+    \label{fig:ns-equation}
+\end{figure}
 
 \begin{definition}[linear PDE]
     \begin{equation}
@@ -150,6 +211,32 @@
     \end{equation}
 
     $f \equiv 0 \Rightarrow$ homogeneous
+\end{definition}
+
+\begin{definition}[semi-linear]
+    \begin{equation}
+        \label{eq:semi-linear}
+        \sum_{|\alpha| = k} a_{\alpha}(x) D^{\alpha}u + a_{0} (D^{k-1}u, \dots, Du, u, x) = 0
+    \end{equation}
+\end{definition}
+
+\begin{definition}[quasi-linear]
+    \begin{equation}
+        \label{eq:quasi-linear}
+        \sum_{|\alpha| = k} a_{\alpha}(D^{k-1}u, \dots, Du, u, x) D^{\alpha}u + a_{0} (D^{k-1}u, \dots, Du, u, x) = 0
+    \end{equation}
+\end{definition}
+
+\begin{remark}[nonlinear]
+    Full non-linearity depends on the highest order derivatives.
+\end{remark}
+
+\begin{definition}[k\textsuperscript{th}-order system of PDE]
+    \begin{equation}
+        \label{eq:pde-system}
+        F(D^{k}\boldsymbol{u}(x), D^{k-1}\boldsymbol{u}(x), \dots, D\boldsymbol{u}(x), \boldsymbol{u}(x), x) = 0
+    \end{equation}
+    where $x \in U$, $\boldsymbol{u} : U \to \mathbb{R}^{m}$, and $F : \mathbb{R}^{mn^{k}} \times \mathbb{R}^{mn^{k-1}} \times \dots \times \mathbb{R}^{mn} \times \mathbb{R}^{m} \times U \to \mathbb{R}^{m}$
 \end{definition}
 
 \subsection{Solutions to PDE}
@@ -168,15 +255,8 @@
     Existence is the prime attribute of what we study.
 \end{remark}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=6cm]{ns-equation.png}
-    \caption{FINITE TIME BLOWUP FOR NAVIER–STOKES \cite{OPENAI_2026_FINITE_TIME_BLOWUP_FOR_NAVIERSTOKES}.}
-    \label{fig:ns-equation}
-\end{figure}
-
-\section{Four Fundamental Linear PDEs}
-\begin{definition}[Fundamental linear PDEs]~
+\section{Four Fundamental Linear PDE}
+\begin{definition}[Fundamental linear PDE]~
     \begin{itemize}
         \item Transport equation
         \item Laplace's equation

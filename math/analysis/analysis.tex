@@ -8,42 +8,62 @@
 
 \title{Analysis}
 \author{PENG}
-\date{Created: 20260801, Version: 20260805}
+\date{Created: 20260801, Version: 20260916}
 
 \begin{document}
 \maketitle
 \tableofcontents
 
+\section{Introduction}
+Mathematics treats its objects abstractly, caring only about what \textbf{properties} the objects have \cite{TAO_2022_ANALYSIS_I}.
+
 \section{Natural Number system}
-\begin{itemize}
-    \item This is how mathematics works - it treats its objects abstractly, caring only about what properties the objects have, not what the objects are or what they mean \cite{TAO_2022_ANALYSIS_I}.
-    \item It is pointless, at least from a mathematician's standpoint, as to argue about which model is the true one; as long as it obeys all the axioms and does all the right things, that's good enough to do maths.
-\end{itemize}
-
 \subsection{The Peano Axioms}
-\begin{axiom}[Peano axioms]~
-    \label{axiom:peano-axioms}
-    \begin{enumerate}
-        \item 0 is a natural number.
-        \item If $n$ is a natural number, then $n\pp$ is also a natural number.
-        \item $n\pp \neq 0$
+\begin{axiom}
+    \label{axiom:peano-axioms-1}
+    0 is a natural number.
+\end{axiom}
+
+\begin{axiom}
+    \label{axiom:peano-axioms-2}
+    If $n$ is a natural number, then $n\pp$ is also a natural number.
+\end{axiom}
+
+\begin{axiom}
+    \label{axiom:peano-axioms-3}
+    $n\pp \neq 0$
+\end{axiom}
+
+\begin{axiom}~
+    \label{axiom:peano-axioms-4}
+    \begin{itemize}
         \item $n \neq m \Rightarrow n\pp \neq m\pp$
+        \item $n\pp = m\pp \Rightarrow n = m$
+    \end{itemize}
+\end{axiom}
 
-              $n\pp = m\pp \Rightarrow n = m$
-        \item Principle of mathematical induction:
-
-              Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
-    \end{enumerate}
+\begin{axiom}[principle of mathematical induction]
+    \label{axiom:peano-axioms-5}
+    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
 \end{axiom}
 
 \begin{definition}
-    \begin{gather*}
-        1 := 0\pp \\
-        2 := 1\pp \\
-        3 := 2\pp \\
-        \vdots
-    \end{gather*}
+    $1 := 0\pp$, $2 := 1\pp$, $3 := 2\pp$, $\dots$
 \end{definition}
+
+\begin{proposition}
+    3 is a natural number.
+\end{proposition}
+
+\begin{proof}
+    By Axiom \ref{axiom:peano-axioms-1}, 0 is a natural number.
+
+    By Axiom \ref{axiom:peano-axioms-2}, $0\pp = 1$ is a natural number.
+
+    By Axiom \ref{axiom:peano-axioms-2}, $1\pp = 2$ is a natural number.
+
+    By Axiom \ref{axiom:peano-axioms-2}, $2\pp = 3$ is a natural number.
+\end{proof}
 
 \subsection{Addition}
 \begin{definition}[Addition]

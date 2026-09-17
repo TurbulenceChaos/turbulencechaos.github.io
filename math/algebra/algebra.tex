@@ -1,0 +1,66 @@
+\documentclass{article}
+\usepackage{import}
+\import{../../template/}{article-template}
+\graphicspath{{../../images/}}
+\addbibresource{../../template/library.bib}
+
+\title{Algebra}
+\author{PENG}
+\date{Created: 20260916, Version: 20260916}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+\begin{definition}[mapping] Let $A$, $B$ be sets.
+    \begin{equation}
+        \label{eq:mapping}
+        f : A \to B
+    \end{equation}
+\end{definition}
+
+\begin{definition}[$f$]
+    \begin{equation}
+        \label{eq:fx}
+        x \mapsto f(x)
+    \end{equation}
+
+    \begin{itemize}
+        \item injective : $x \neq y \Rightarrow f(x) \neq f(y)$
+        \item surjective : $\forall b \in B \Rightarrow \exists a \in A, f(a) = b$
+        \item bijective : both surjective and injective
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[composite map $g \circ f$]
+    \begin{equation}
+        \label{eq:composite-map}
+        (g \circ f)(x) = g(f(x))
+    \end{equation}
+\end{definition}
+
+\begin{definition}[commutative]
+    Composite maps are equal.
+    \begin{gather*}
+        A_{1} \xrightarrow{f_{1}} A_{2} \xrightarrow{f_{2}} \dots \xrightarrow{f_{n-1}} A_{n} \\
+        A_{1} \xrightarrow{g_{1}} B_{2} \xrightarrow{g_{2}} \dots \xrightarrow{g_{m-1}} B_{m} = A_{n} \\
+        f_{n-1} \circ \cdots \circ f_{1} = g_{m-1} \circ \cdots \circ g_{1}
+    \end{gather*}
+\end{definition}
+
+\section{Groups}
+\subsection{Monoids}
+\begin{definition}[law of composition]
+    Let $S$ be a set:
+    \begin{equation}
+        \label{eq:composition}
+        S \times S \to S
+    \end{equation}
+\end{definition}
+
+\begin{definition}[monoid]
+
+\end{definition}
+
+\printbibliography
+\end{document}
