@@ -76,7 +76,7 @@ def maximum (n : Nat) (m : Nat) : Nat := if n < m then m else n
     \begin{verbatim}
 def Str : Type := String -- overloaded
 abbrev N : Type := Nat -- unfolded
-    \end{verbatim}
+\end{verbatim}
 \end{definition}
 
 \begin{definition}[overloaded]
@@ -88,7 +88,45 @@ abbrev N : Type := Nat -- unfolded
 \end{definition}
 
 \subsection{Structures}
+\begin{definition}[structure]~
+    \begin{verbatim}
+structure Point where
+x : Float
+y : Float
+def origin : Point := {x:=0.0,y:=0.0}
+#eval origin.x
+#check {x:=0.0,y:=0.0:Point}
+\end{verbatim}
+\end{definition}
 
+\begin{definition}[updating structures]
+    \begin{verbatim}
+def zeroX (p : Point) := {p with x:=0}   
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[constructor]~
+    \begin{verbatim}
+structure Point where
+point::
+x : Float
+y : Float
+#check Point.point 1.0 2.0
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[accessor]~
+    \begin{verbatim}
+#eval Point.x {x:=1.0,y:=2.0}
+\end{verbatim}
+
+    \begin{verbatim}
+-- TARGET.func ARG1 ... ARGn
+#eval "hello".append " Lean"
+def Point.modifyBoth (f : Float -> Float) (p : Point) : Point := {x:=f p.x,y:=f p.y}
+#eval {x:=3,y:=4 : Point}.modifyBoth Float.floor
+\end{verbatim}
+\end{definition}
 
 \printbibliography
 \end{document}

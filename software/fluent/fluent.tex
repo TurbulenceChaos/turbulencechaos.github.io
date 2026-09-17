@@ -1,0 +1,52 @@
+\documentclass{article}
+\usepackage{import}
+\import{../../template/}{article-template}
+\graphicspath{{../../images/}}
+\addbibresource{../../template/library.bib}
+
+\title{Fluent}
+\author{PENG}
+\date{Created: 20260917, Version: 20260917}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+\href{https://ansyshelp.ansys.com/public/account/secured?returnurl=/Views/Secured/corp/v261/en/flu_ug/flu_ug.html}{Fluent User's Guide}
+
+\begin{definition}[Ansys Fluent]
+    Ansys Fluent a computer program written in C for modelling fluid flow, heat transfer, and chemical reactions in complex geometries.
+\end{definition}
+
+\section{Basic Steps for CFD Analysis}
+\begin{enumerate}
+    \item define the modeling goals:
+          simplifying assumptions, boundary conditions
+    \item create the model geometry and mesh:
+          \begin{itemize}
+              \item unstructured meshes, default units: meters
+              \item mesh resolution sufficient in each region of the domain
+              \item mesh check: cell skewness $< 0.98$
+          \end{itemize}
+    \item set up the solver and physical models
+          \begin{itemize}
+              \item boundary conditions at all boundary zones
+              \item initial solution
+              \item converged solution is not necessarily a correct one
+              \item use \textbf{second-order upwind discretization} for better accuracy
+          \end{itemize}
+    \item compute and monitor the solution
+          \begin{itemize}
+              \item number of iterations to reach a converged solution
+          \end{itemize}
+    \item examine and save the results
+          \begin{itemize}
+              \item flow features: flow pattern, separation, .etc
+              \item quantitative results: forces and moments
+          \end{itemize}
+    \item revisions to the numerical or physical model parameters
+\end{enumerate}
+
+\section{Executing Ansys Fluent}
+
+\end{document}
