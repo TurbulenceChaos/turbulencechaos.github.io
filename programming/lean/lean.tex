@@ -227,15 +227,14 @@ else Nat.succ (div (n-k) k)
 \begin{example}~
     \begin{verbatim}
 -- structure take types as arguments
--- a for \alpha
-structure PPoint (a : Type) where
-x : a
-y : a
+structure PPoint (\alpha : Type) where
+x : \alpha
+y : \alpha
 def natOrigin : PPoint Nat := {x:=Nat.zero,y:=Nat.zero}
 #check natOrigin
 
 -- definition take types as arguments
-def replaceX (a : Type) (point : PPoint a) (newX : a) : PPoint a :=
+def replaceX (\alpha : Type) (point : PPoint \alpha) (newX : \alpha) : PPoint \alpha :=
 {point with x:=newX}
 #check replaceX
 #eval replaceX Nat natOrigin 2
@@ -262,17 +261,17 @@ match s with
     A \verb|List a| can be built with either \verb|nil| or \verb|cons|.
     A list that contains $n$ entries contains $n$ \verb|cons| constructors, the last of which has \verb|nil| as its tail.
     \begin{verbatim}
-inductive List (a : Type) where
-| nil : List a
-| cons : a -> List a -> List a
-def primeUnder10 : List Nat := [2,3,5,7]
+inductive List (\alpha : Type) where
+| nil : List \alpha
+| cons : \alpha -> List \alpha -> List \alpha
+def primesUnder10 : List Nat := [2,3,5,7]
 #eval List.cons 2 (List.cons 3 (List.cons 5 (List.cons 7 List.nil)))
 
 -- functions that consume Lists
-def length (a : Type) (xs : List a) : Nat :=
+def length (\alpha : Type) (xs : List \alpha) : Nat :=
 match xs with
 | List.nil => Nat.zero -- [] for List.nil
-| List.cons y ys => Nat.succ (length a ys) -- y :: ys for List.cons
+| List.cons y ys => Nat.succ (length \alpha ys) -- y :: ys for List.cons
 #eval length String ["hello", "lean"]
 \end{verbatim}
 \end{definition}
@@ -280,7 +279,7 @@ match xs with
 \subsubsection{Implicit Arguments}
 \begin{definition}[implicit type]~
     \begin{verbatim}
-def length {a : Type} (xs : List a) : Nat :=
+def length {\alpha : Type} (xs : List \alpha) : Nat :=
 match xs with
 | [] => Nat.zero
 | y :: ys => Nat.succ (length ys)
@@ -291,6 +290,75 @@ match xs with
 \end{definition}
 
 \subsubsection{More Built-In Structures and Inductive Datatypes}
+\begin{definition}[option]
+    List is empty or has a first entry.
+    \begin{verbatim}
+inductive Option (\alpha : Type) : Type where
+| none : Option \alpha
+| some (val : \alpha) : Option \alpha
+
+def List.head? {\alpha : Type} (xs : List \alpha) : Option \alpha :=
+match xs with
+| [] => none
+| y :: _ => some y
+#eval [1,2,3].head?
+#eval ([] : List Int).head?
+\end{verbatim}
+\end{definition}
+
+\begin{remark}
+    Type was unavailable because the empty list does not have any entries from which the type can be found.
+\end{remark}
+
+name convention of suffixes for operations:
+\begin{itemize}
+    \item ? for operations that might fail
+    \item ! for crash due to invalid input
+    \item D for default value when the operation would otherwise fail
+\end{itemize}
+
+\begin{definition}[Prod]
+    Constructs a pair.
+    \begin{verbatim}
+structure Prod (\alpha : Type) (\beta : Type) : Type where
+fst : \alpha
+snd : \beta
+-- def fives : Prod String Int := {fst:="five",snd:=5}
+-- def fives : String \times Int := {fst:="five",snd:=5}
+def fives : String \times Int := ("five",5)
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[Sum]
+    Allow a choice between values of two different types.
+    \begin{verbatim}
+inductive Sum (\alpha : Type) (\beta : Type) : Type where
+| inl : \alpha -> Sum \alpha \beta
+| inr : \beta -> Sum \alpha \beta
+
+-- def PetName : Type := Sum String String
+def PetName : Type := String \oplus String
+
+def animals : List PetName :=
+[Sum.inl "Spot", Sum.inr "Tiger",Sum.inl "Fifi",Sum.inl "Rex",Sum.inr "Floor"]
+
+def howManyDogs (pets : List PetName) : Nat :=
+match pets with
+| [] => 0
+| Sum.inl _ :: morePets => howManyDogs morePets + 1
+| Sum.inr _ :: morePets => howManyDogs morePets
+
+#eval howManyDogs animals
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[Unit]
+
+\end{definition}
+
+\begin{definition}[Empty]
+
+\end{definition}
 
 \printbibliography
 \end{document}
