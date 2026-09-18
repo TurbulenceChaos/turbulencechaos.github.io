@@ -12,7 +12,9 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-Lean is a \textbf{expression-oriented} functional language with dependent types \cite{CHRISTIANSEN_2023_FUNCTIONAL_PROGRAMMING_IN_LEAN}.
+\url{https://lean-lang.org/functional_programming_in_lean/}
+
+Lean is an \textbf{expression-oriented} functional language with dependent types.
 
 \subsection{Ealuating Expressions}
 \begin{itemize}
@@ -29,6 +31,8 @@ Lean is a \textbf{expression-oriented} functional language with dependent types 
         \item \verb|Float|
         \item \verb|String|
         \item \verb|Bool|
+        \item \verb|List|: \verb|List type|
+        \item \verb|Type|: describes other types, so \verb|Nat|, \verb|String|, \verb|List|, etc. all have type \verb|Type|
     \end{itemize}
 \end{definition}
 
@@ -118,15 +122,175 @@ y : Float
 \begin{definition}[accessor]~
     \begin{verbatim}
 #eval Point.x {x:=1.0,y:=2.0}
-\end{verbatim}
-
-    \begin{verbatim}
+#check {x:=1.0,y:=2.0 : Point}.x
 -- TARGET.func ARG1 ... ARGn
 #eval "hello".append " Lean"
 def Point.modifyBoth (f : Float -> Float) (p : Point) : Point := {x:=f p.x,y:=f p.y}
 #eval {x:=3,y:=4 : Point}.modifyBoth Float.floor
 \end{verbatim}
 \end{definition}
+
+\subsection{Datatypes and Patterns}
+\begin{definition}[datatype]~
+    \begin{itemize}
+        \item \verb|sum|
+        \item \verb|recursive|
+        \item \verb|inductive| : recursive sum type
+    \end{itemize}
+\end{definition}
+
+\begin{example}[inductive]~
+    \begin{verbatim}
+inductive Nat where
+| zero : Nat
+| succ (n : Nat) : Nat
+#eval Nat.succ (Nat.succ Nat.zero)
+\end{verbatim}
+\end{example}
+
+\subsubsection{Pattern Matching}
+\begin{definition}[pattern matching]~
+    \begin{verbatim}
+def isZero (n:Nat) : Bool :=
+match n with
+| Nat.zero => true
+| Nat.succ k => false
+#eval isZero Nat.zero
+
+def pred (n : Nat) : Nat :=
+match n with
+| Nat.zero => Nat.zero
+| Nat.succ k => k
+#eval pred 5
+
+def depth (p:Point3D) :Float :=
+match p with
+| {x:=h,y:=w,z:=d} => d
+#eval depth {x:=1,y:=2,z:=3}
+\end{verbatim}
+\end{definition}
+
+\subsubsection{Recursive Functions}
+\begin{definition}[recursive definition]
+    Definitions that refer to the name being defined are called recursive definition.
+\end{definition}
+
+\begin{definition}[structural recursion]~
+    \begin{verbatim}
+def even (n:Nat) : Bool :=
+match n with
+| Nat.zero => true
+| Nat.succ k => not (even k)
+#eval even 2
+
+-- addition = interated Nat.succ
+def plus (n:Nat) (k:Nat) : Nat :=
+match k with
+| Nat.zero => n
+| Nat.succ k' => Nat.succ (plus n k')
+#eval plus 1 2
+
+-- multiplication = interated addition
+def times (n:Nat) (k:Nat) : Nat :=
+match k with
+| Nat.zero => 0
+| Nat.succ k' => plus n (times n k')
+#eval times 1 2
+
+-- subtraction = interated predecessor
+def minus (n:Nat) (k:Nat) : Nat :=
+match k with
+| Nat.zero => n
+| Nat.succ k' => Nat.pred (minus n k')
+#eval minus 2 1
+\end{verbatim}
+\end{definition}
+
+\begin{remark}
+    Lean ensures by default that every recursive function will eventually reach a base case to avoid accidental infinite loops
+\end{remark}
+
+\begin{example}~
+    \begin{verbatim}
+def div (n:Nat) (k:Nat) : Nat :=
+if n < k then
+0
+else Nat.succ (div (n-k) k)
+\end{verbatim}
+\end{example}
+
+\subsection{Polymorphism}
+\begin{definition}[polymorphism]
+    polymorphism refers to datatypes and definitions that take types as arguments, where \textbf{types} are ordinary \textbf{expressions} in Lean.
+\end{definition}
+
+\begin{example}~
+    \begin{verbatim}
+-- structure take types as arguments
+-- a for \alpha
+structure PPoint (a : Type) where
+x : a
+y : a
+def natOrigin : PPoint Nat := {x:=Nat.zero,y:=Nat.zero}
+#check natOrigin
+
+-- definition take types as arguments
+def replaceX (a : Type) (point : PPoint a) (newX : a) : PPoint a :=
+{point with x:=newX}
+#check replaceX
+#eval replaceX Nat natOrigin 2
+
+-- argument is a sign
+inductive Sign where
+| pos
+| neg
+def posOrNegThree (s : Sign) :
+match s with | Sign.pos => Nat | Sign.neg => Int :=
+match s with
+| Sign.pos => (3:Nat)
+| Sign.neg => (-3:Int)
+#check posOrNegThree Sign.pos
+\end{verbatim}
+\end{example}
+
+\begin{remark}
+    It is customary to use Greek letters to name type arguments.
+\end{remark}
+
+\subsubsection{Linked List Datatype}
+\begin{definition}[List]
+    A \verb|List a| can be built with either \verb|nil| or \verb|cons|.
+    A list that contains $n$ entries contains $n$ \verb|cons| constructors, the last of which has \verb|nil| as its tail.
+    \begin{verbatim}
+inductive List (a : Type) where
+| nil : List a
+| cons : a -> List a -> List a
+def primeUnder10 : List Nat := [2,3,5,7]
+#eval List.cons 2 (List.cons 3 (List.cons 5 (List.cons 7 List.nil)))
+
+-- functions that consume Lists
+def length (a : Type) (xs : List a) : Nat :=
+match xs with
+| List.nil => Nat.zero -- [] for List.nil
+| List.cons y ys => Nat.succ (length a ys) -- y :: ys for List.cons
+#eval length String ["hello", "lean"]
+\end{verbatim}
+\end{definition}
+
+\subsubsection{Implicit Arguments}
+\begin{definition}[implicit type]~
+    \begin{verbatim}
+def length {a : Type} (xs : List a) : Nat :=
+match xs with
+| [] => Nat.zero
+| y :: ys => Nat.succ (length ys)
+#eval length ["hello", "lean"]
+-- List.length
+#eval ["hello", "lean"].length
+\end{verbatim}
+\end{definition}
+
+\subsubsection{More Built-In Structures and Inductive Datatypes}
 
 \printbibliography
 \end{document}
