@@ -29,29 +29,13 @@ Mathematics treats its objects abstractly, caring only about what \textbf{proper
     If $n$ is a natural number, then $n\pp$ is also a natural number.
 \end{axiom}
 
-\begin{axiom}
-    \label{axiom:peano-axioms-3}
-    $n\pp \neq 0$
-\end{axiom}
-
-\begin{axiom}~
-    \label{axiom:peano-axioms-4}
-    \begin{itemize}
-        \item $n \neq m \Rightarrow n\pp \neq m\pp$
-        \item $n\pp = m\pp \Rightarrow n = m$
-    \end{itemize}
-\end{axiom}
-
-\begin{axiom}[principle of mathematical induction]
-    \label{axiom:peano-axioms-5}
-    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
-\end{axiom}
-
 \begin{definition}
+    \label{def:nat}
     $1 := 0\pp$, $2 := 1\pp$, $3 := 2\pp$, $\dots$
 \end{definition}
 
 \begin{proposition}
+    \label{prop:3-is-nat}
     3 is a natural number.
 \end{proposition}
 
@@ -64,6 +48,33 @@ Mathematics treats its objects abstractly, caring only about what \textbf{proper
 
     By Axiom \ref{axiom:peano-axioms-2}, $2\pp = 3$ is a natural number.
 \end{proof}
+
+\begin{axiom}
+    \label{axiom:peano-axioms-3}
+    $n\pp \neq 0$
+\end{axiom}
+
+\begin{proposition}
+    $4 \neq 0$
+\end{proposition}
+
+\begin{proof}
+    By definition \ref{def:nat}, $3\pp = 4$.
+
+    By Proposition \ref{prop:3-is-nat}, 3 is a natural number.
+
+    By Axiom \ref{axiom:peano-axioms-3}, $3\pp = 4 \neq 0$.
+\end{proof}
+
+\begin{axiom}
+    \label{axiom:peano-axioms-4}
+    $n \neq m \Rightarrow n\pp \neq m\pp$ or $n\pp = m\pp \Rightarrow n = m$
+\end{axiom}
+
+\begin{axiom}[principle of mathematical induction]
+    \label{axiom:peano-axioms-5}
+    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n\pp)$ is also true. Then $P(n)$ is true for every natural number $n$.
+\end{axiom}
 
 \subsection{Addition}
 \begin{definition}[Addition]

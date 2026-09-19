@@ -12,17 +12,57 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-\url{https://lean-lang.org/functional_programming_in_lean/}
-
-Lean is an \textbf{expression-oriented} functional language with dependent types.
-
-\subsection{Ealuating Expressions}
+References:
 \begin{itemize}
-    \item every expression must have a type before it can be evaluated
-    \item once given a value, variables cannot be reassigned
-    \item parentheses are necessary when a function's argument is to be computed via another function call, i.e. $5*(1+2)$
+    \item \url{https://lean-lang.org/doc/reference/latest/}
+    \item \url{https://leanprover-community.github.io/mathematics_in_lean/}
+    \item \url{https://lean-lang.org/functional_programming_in_lean/}
 \end{itemize}
 
+Lean is an expression tactic functional language based on \textbf{dependent type theory}.
+
+\subsection{Overview}
+Every expression has a type (printed by \verb|#check|).
+
+\begin{definition}[mathematical object]~
+    \begin{verbatim}
+#check 2 + 2 -- Nat
+
+def f (x : Nat) :=
+  x+3
+
+#check f -- Nat -> Nat
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[mathematical statement: Prop]~
+    \begin{verbatim}
+#check 2 + 2 = 4 -- Prop
+
+def FermatLastTheorem :=
+  \all x y z n : Nat, n > 2 \and x * y *z \neq 0 \to x^n + y^n \neq z^n
+
+#check FermatLastTheorem -- Prop
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[proof of the proposition]~
+    \begin{verbatim}
+theorem easy : 2 + 2 = 4 :=
+  rfl
+
+#check easy -- 2 + 2 = 4
+
+theorem hard : FermatLastTheorem :=
+  sorry
+
+#check hard -- FermatLastTheorem
+\end{verbatim}
+\end{definition}
+
+Construct an expression of type \verb|FermatLastTheorem| and make Lean accepts it as a term of that type.
+
+\section{Basics}
 \subsection{Types}
 \begin{definition}[type]~
     \begin{itemize}
@@ -105,7 +145,7 @@ def origin : Point := {x:=0.0,y:=0.0}
 
 \begin{definition}[updating structures]
     \begin{verbatim}
-def zeroX (p : Point) := {p with x:=0}   
+def zeroX (p : Point) := {p with x:=0}
 \end{verbatim}
 \end{definition}
 
@@ -359,6 +399,30 @@ match pets with
 \begin{definition}[Empty]
 
 \end{definition}
+
+\section{Interlude: Propositions, Proofs, and Indexing}
+\begin{definition}[arrays and lists]~
+    \begin{verbatim}
+def lists : List type := [ele1, ..., elen]
+#eval lists[0] -- or lists[k]
+\end{verbatim}
+\end{definition}
+
+\subsection{Propositions and Proofs}
+\begin{definition}[proposition]
+    A proposition is a statement that can be true or wrong.
+\end{definition}
+
+\begin{definition}[proof]
+    A proof is a convincing argument that a proposition is true.
+\end{definition}
+
+\begin{definition}[theorem]
+
+\end{definition}
+
+\subsection{Tactics}
+
 
 \printbibliography
 \end{document}
