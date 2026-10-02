@@ -27,7 +27,7 @@ for DIR in math programming literature software; do
                 cd "$TEX"
                 if [ -f "$TIKZ.tex" ]; then
                     echo "compiling $TIKZ.tex"
-                    latexmk -pdf "$TIKZ.tex" &> "$TIKZ.log"
+                    latexmk -pdf "$TIKZ.tex" &>"$TIKZ.log"
                     echo "compile done"
 
                     mapfile -t PNG < <(grep -Po "^% @fig{\K.+(?=})" "$TIKZ.tex")
@@ -36,9 +36,12 @@ for DIR in math programming literature software; do
                     done
                 fi
                 echo "compiling $TEX.tex"
-                latexmk -pdf "$TEX.tex" &> "$TEX.log"
+                latexmk -pdf "$TEX.tex" &>"$TEX.log"
                 echo "compile done"
             )
         done
     )
 done
+
+today=$(date +"%Y%m%d")
+sed -i -E "s/(date=)[0-9]*/\1${today}/g" index.html

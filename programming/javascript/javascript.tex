@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{import}
+\import{../../template/}{article-template}
+\graphicspath{{../../images/}}
+\addbibresource{../../template/library.bib}
+
+\title{Javascript}
+\author{PENG}
+\date{\today}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\section{Introduction}
+\url{https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/}
+
+\begin{definition}[javascript]
+	Javascript is an object-oriented and dynamically typed scripting language used to make webpages interactive.
+\end{definition}
+
+\begin{remark}~
+	\begin{itemize}
+		\item Always write a semicolon after a statement.
+		\item Variables should always be declared before they are used.
+	\end{itemize}
+\end{remark}
+
+\begin{definition}[declaration]~
+	\begin{itemize}
+		\item \verb|var|
+		\item \verb|let| : block-scoped
+		\item \verb|const| : block-scoped, must be initialized
+	\end{itemize}
+\end{definition}
+
+\begin{example}[var scope]~
+	\begin{verbatim}
+console.log(x === undefined); // true
+var x = 3;
+(function () {
+    console.log(x); // undefined
+    var x = "local value";
+})();	
+\end{verbatim}
+\end{example}
+
+\begin{definition}[types]~
+	\begin{itemize}
+		\item \verb|Boolean| : true or false
+		\item \verb|null|
+		\item \verb|Number| : integer or floating point number
+		\item \verb|String|
+	\end{itemize}
+\end{definition}
+
+\begin{definition}[type conversion]~
+	\begin{itemize}
+		\item num $\to$ string : \verb|"a is " + 10 // "a is 10"|
+		\item string $\to$ num : \verb|parseInt("10.1")|
+	\end{itemize}
+\end{definition}
+
+\printbibliography
+\end{document}

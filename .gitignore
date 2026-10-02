@@ -30,4 +30,5 @@ tmp/
 *.ps
 /literature/music/lilypond.pdf
 *.midi
-/programming/lilypond/music.pdf
+programming/javascript/js.js
+programming/shell/sh.sh

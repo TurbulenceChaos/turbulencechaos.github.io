@@ -14,6 +14,82 @@
 \section{Introduction}
 \url{https://www.gnu.org/software/bash/manual/bash.html}
 
+\section{Shell Syntax}
+\subsection{Quoting}
+\begin{definition}[quoting]
+    Quoting is used to remove the special meaning of certain characters or words to the shell.
+    \begin{verbatim}
+echo "${var}"
+echo "$(date)"
+echo "`date`"
+echo -e "\t"
+# \n : newline
+# \t : horizontal tab
+# \r : carriage return        
+\end{verbatim}
+\end{definition}
+
+\subsection{Pipelines}
+\begin{definition}[pipeline]
+    cmd1 output $\to$ cmd2 input
+    \begin{verbatim}
+cmd1 | cmd2      # stdout 
+cmd1 |& cmd2     # stderr to stdout
+cmd1 2>&1 | cmd2 # stderr to stdout        
+\end{verbatim}
+\end{definition}
+
+\subsection{Lists of Commands}
+\begin{definition}[list]~
+    \begin{verbatim}
+cmd1 && cmd2 # And, cmd1 true then cmd2
+cmd1 || cmd2 # Or, cmd1 false then cmd2
+cmd1; cmd2  
+cmd1 & cmd2  # cmd1 async
+\end{verbatim}
+\end{definition}
+
+\subsection{Construct}
+\subsubsection{Looping}
+\begin{definition}[looping]~
+    \begin{verbatim}
+for item in item1 item2 ...; do 
+    cmd
+done
+\end{verbatim}
+\end{definition}
+
+\subsubsection{Conditional}
+\begin{definition}[conditional]~
+    \begin{verbatim}
+if [[ cond1 ]]; then
+    cmd1
+elif [[ cond2 ]]; then
+    cmd2
+else
+    cmd3
+fi
+
+# cond
+# ==
+# != 
+# =~ : unquoted regex  
+\end{verbatim}
+\end{definition}
+
+\subsubsection{Grouping}
+\begin{definition}[grouping]
+    \begin{verbatim}
+( expr ) # subshell env, var vanish when exit 
+\end{verbatim}
+\end{definition}
+
+\section{AWK}
+\url{https://www.gnu.org/software/gawk/manual/gawk.html}
+
+\begin{definition}[awk]
+    The basic function of awk is to search files for lines that contain certain patterns.
+\end{definition}
 
 \printbibliography
 \end{document}
