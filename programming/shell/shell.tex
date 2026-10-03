@@ -44,7 +44,7 @@ cmd1 2>&1 | cmd2 # stderr to stdout
     \begin{verbatim}
 cmd1 && cmd2 # And, cmd1 true then cmd2
 cmd1 || cmd2 # Or, cmd1 false then cmd2
-cmd1; cmd2  
+cmd1; cmd2   # or terminated by newline
 cmd1 & cmd2  # cmd1 async
 \end{verbatim}
 \end{definition}
@@ -59,6 +59,14 @@ done
 \end{verbatim}
 \end{definition}
 
+\begin{example}~
+    \begin{verbatim}
+for i in ${!array[@]}; do
+    echo $array[$i] 
+done
+\end{verbatim}
+\end{example}
+
 \subsubsection{Conditional}
 \begin{definition}[conditional]~
     \begin{verbatim}
@@ -70,7 +78,7 @@ else
     cmd3
 fi
 
-# cond
+# cond:
 # ==
 # != 
 # =~ : unquoted regex  
@@ -78,18 +86,117 @@ fi
 \end{definition}
 
 \subsubsection{Grouping}
-\begin{definition}[grouping]
+\begin{definition}[grouping]~
     \begin{verbatim}
-( expr ) # subshell env, var vanish when exit 
+( expr )  # subshell env, def var vanish when exit 
+{ expr; } # ; or newline is required
 \end{verbatim}
 \end{definition}
 
-\section{AWK}
+\subsection{Functions}
+\begin{definition}[function]~
+    \begin{verbatim}
+func () {
+    local var = $1
+}
+\end{verbatim}
+\end{definition}
+
+\subsection{Parameters}
+\begin{definition}[parameters]~
+    \begin{itemize}
+        \item \verb|${N}| : position param
+        \item \verb|$@| : expands to all pos params, \verb|$1 $2 ...|
+        \item \verb|$0| : file or shell name
+    \end{itemize}
+\end{definition}
+
+\subsection{Expansion}
+\begin{definition}[brace expansion]
+    Generate strings sharing a common prefix and suffix.
+    \begin{verbatim}
+echo file{1,2} # file1 file2
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[tidle expansion]~
+    \begin{verbatim}
+~ # $HOME      
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[parameter expansion]~
+    \begin{verbatim}
+${param}
+array=(0 1 2 3)
+echo ${array[@]} # 0 1 2 3
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[command substitution]~
+    \begin{verbatim}
+$(cmd)
+`cmd`
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[arithmetic expansion]~
+    \begin{verbatim}
+$((expr)) # integer-only        
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[filename expansion]~
+    \begin{verbatim}
+*  # any string
+?  # single char
+[] # char enclosed between []
+*()
+?()
++()
+!(pattern list) # match except given patterns 
+\end{verbatim}
+\end{definition}
+
+\subsection{Redirection}
+\begin{definition}[redirection]~
+    \begin{verbatim}
+ls > file 2>&1   # stdout and stderr to file
+ls &> file       # or
+pwd >> file 2>&1 # append stdout and stderr to file
+pwd &>> file     # or
+\end{verbatim}
+\end{definition}
+
+\section{Array}
+\begin{definition}[array]
+    \begin{verbatim}
+array=(v1 v2 ...) 
+\end{verbatim}
+\end{definition}
+
+\section{sed}
+
+\section{awk}
 \url{https://www.gnu.org/software/gawk/manual/gawk.html}
 
 \begin{definition}[awk]
     The basic function of awk is to search files for lines that contain certain patterns.
 \end{definition}
+
+\begin{example}~
+    \begin{verbatim}
+# % @fig{png}
+mapfile -t array < <(awk -F'[{}]' '/^% @fig\{/ { print $2 }' file)
+\end{verbatim}
+\end{example}
+
+\section{grep}
+\begin{definition}[grep]
+    Search input file for matches to the patterns.
+\end{definition}
+
+\section{find}
 
 \printbibliography
 \end{document}
