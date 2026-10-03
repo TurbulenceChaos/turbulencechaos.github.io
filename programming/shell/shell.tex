@@ -19,13 +19,10 @@
 \begin{definition}[quoting]
     Quoting is used to remove the special meaning of certain characters or words to the shell.
     \begin{verbatim}
-echo "${var}"
-echo "$(date)"
-echo "`date`"
 echo -e "\t"
 # \n : newline
 # \t : horizontal tab
-# \r : carriage return        
+# \r : carriage return
 \end{verbatim}
 \end{definition}
 
@@ -33,9 +30,9 @@ echo -e "\t"
 \begin{definition}[pipeline]
     cmd1 output $\to$ cmd2 input
     \begin{verbatim}
-cmd1 | cmd2      # stdout 
+cmd1 | cmd2      # stdout
 cmd1 |& cmd2     # stderr to stdout
-cmd1 2>&1 | cmd2 # stderr to stdout        
+cmd1 2>&1 | cmd2 # stderr to stdout
 \end{verbatim}
 \end{definition}
 
@@ -53,19 +50,11 @@ cmd1 & cmd2  # cmd1 async
 \subsubsection{Looping}
 \begin{definition}[looping]~
     \begin{verbatim}
-for item in item1 item2 ...; do 
+for item in item1 item2 ...; do
     cmd
 done
 \end{verbatim}
 \end{definition}
-
-\begin{example}~
-    \begin{verbatim}
-for i in ${!array[@]}; do
-    echo $array[$i] 
-done
-\end{verbatim}
-\end{example}
 
 \subsubsection{Conditional}
 \begin{definition}[conditional]~
@@ -80,15 +69,15 @@ fi
 
 # cond:
 # ==
-# != 
-# =~ : unquoted regex  
+# !=
+# =~ : unquoted regex
 \end{verbatim}
 \end{definition}
 
 \subsubsection{Grouping}
 \begin{definition}[grouping]~
     \begin{verbatim}
-( expr )  # subshell env, def var vanish when exit 
+( expr )  # subshell env, def var vanish when exit
 { expr; } # ; or newline is required
 \end{verbatim}
 \end{definition}
@@ -121,15 +110,19 @@ echo file{1,2} # file1 file2
 
 \begin{definition}[tidle expansion]~
     \begin{verbatim}
-~ # $HOME      
+~ # $HOME
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[parameter expansion]~
     \begin{verbatim}
 ${param}
-array=(0 1 2 3)
-echo ${array[@]} # 0 1 2 3
+
+${param:-default}
+
+${array[@]} # member of array
+
+${!name[@]} # list of array indices
 \end{verbatim}
 \end{definition}
 
@@ -142,7 +135,7 @@ $(cmd)
 
 \begin{definition}[arithmetic expansion]~
     \begin{verbatim}
-$((expr)) # integer-only        
+$((expr)) # integer-only
 \end{verbatim}
 \end{definition}
 
@@ -154,7 +147,7 @@ $((expr)) # integer-only
 *()
 ?()
 +()
-!(pattern list) # match except given patterns 
+!(pattern list) # match except given patterns
 \end{verbatim}
 \end{definition}
 
@@ -169,9 +162,13 @@ pwd &>> file     # or
 \end{definition}
 
 \section{Array}
-\begin{definition}[array]
+\begin{definition}[array]~
     \begin{verbatim}
-array=(v1 v2 ...) 
+array=(v1 v2 ...)
+
+for i in ${!array[@]}; do
+    echo $array[$i]
+done
 \end{verbatim}
 \end{definition}
 
@@ -188,6 +185,13 @@ array=(v1 v2 ...)
     \begin{verbatim}
 # % @fig{png}
 mapfile -t array < <(awk -F'[{}]' '/^% @fig\{/ { print $2 }' file)
+
+# @book{BATCHELOR_2000_AN_INTRODUCTION_TO_FLUID_DYNAMICS,
+awk -F'[{,]' '/@book\{/ {
+    print "$1: " $1
+    print "$2: " $2
+    print "$3: " $3
+    }' file
 \end{verbatim}
 \end{example}
 

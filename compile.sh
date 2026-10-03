@@ -13,7 +13,7 @@ pdf2png() {
 
 mkdir -p "images"
 
-for DIR in math programming literature software; do
+for DIR in mathematics programming literature software; do
     (
         cd $DIR
         for SUBDIR in */; do
