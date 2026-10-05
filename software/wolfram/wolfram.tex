@@ -12,16 +12,49 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-\url{https://www.wolfram.com/language/elementary-introduction/3rd-ed/}
+\url{https://www.wolfram.com/language/elementary-introduction/}
 
 \begin{definition}[Wolfram Langauge]
     Wolfram Language is a computation language.
 \end{definition}
 
-\appendix
-\section{Script}
-\begin{example}[directory]~
+\subsection{Functions}
+\begin{definition}[function]~
     \begin{verbatim}
+(* Func[params] *)
+(* [] for function, () for grouping *)
+
+Plus[x, y, ...]
+Times[x, y, ...]
+Subtract[x, y] === x + (-1 * y)
+Divide[x, y] === x * y^(-1)
+
+Power[x, y, z] === Power[x, Power[y, z]]
+x^y^z === x^(y^z)
+(x^y)^z === x^(y*z)
+
+Max[1, 2, ...]
+Min[1, 2, ...]
+
+RandomInteger[10]
+\end{verbatim}
+\end{definition}
+
+\subsection{Lists}
+\begin{definition}[list]
+    Collect things together.
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
+\appendix
+\section{Tools}
+\begin{itemize}
+    \item Palettes $\to$ Code Formatting
+    \item \verb|Information[expr, "Properties"]|
+    \item directory
+          \begin{verbatim}
 If[SameQ[$InputFileName, ""],
     If[$Notebooks,
         NotebookDirectory[]
@@ -32,7 +65,8 @@ If[SameQ[$InputFileName, ""],
     DirectoryName[$InputFileName]
 ]
 \end{verbatim}
-\end{example}
+    \item plot
+\end{itemize}
 
 \printbibliography
 \end{document}

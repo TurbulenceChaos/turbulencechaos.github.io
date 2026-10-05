@@ -11,10 +11,56 @@
 \begin{document}
 \maketitle
 \tableofcontents
+\section{Introduction}
+c++ is a high-level, statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
+
+\subsection{IO}
+\begin{definition}[IO objects]~
+    \begin{itemize}
+        \item \verb|iostream| : std lib
+        \item \verb|std::cin| : \verb|istream| type
+        \item \verb|std::cout| : \verb|ostream| type
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[namespace]~
+    \begin{itemize}
+        \item \verb|std| : namespace
+        \item \verb|::| : scope operator
+    \end{itemize}
+\end{definition}
+
+\begin{verbatim}
+std::cout << "str";         // return object: std::cout
+std::cout << "str" << "\n"; // (std::cout << "str") << "\n";
+
+
+int v1=0, v2=0;
+std::cin >> v1;            // return object: std::cin
+std::cin >> v1 >> v2;      // (std::cin >> v1) >> v2;
+\end{verbatim}
+
+\subsection{Comments}
+\begin{definition}[comment]~
+    \begin{verbatim}
+// single line, best way
+/* paired, can not nest */
+
+std::cout << /* "*/" /* "/*" */;
+// remove everything between */ and closest /* before
+// std::cout << " /* ";
+\end{verbatim}
+\end{definition}
+
+\subsection{Flow of Control}
+\begin{definition}[while]
+
+\end{definition}
+
 \section{Variables and Basic Types}
 \subsection{Primitive Built-in Types}
 \subsubsection{Arithmetic Types}
-\begin{definition}[Primitive builtin types \cite{LIPPMAN_2012_CPP_PRIMER}]~
+\begin{definition}[Primitive builtin types]~
     \begin{itemize}
         \item arithmetic types:
               \begin{itemize}
