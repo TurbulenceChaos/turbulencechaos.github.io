@@ -12,4 +12,27 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
+\url{https://www.wolfram.com/language/elementary-introduction/3rd-ed/}
+
+\begin{definition}[Wolfram Langauge]
+    Wolfram Language is a computation language.
+\end{definition}
+
+\appendix
+\section{Script}
+\begin{example}[directory]~
+    \begin{verbatim}
+If[SameQ[$InputFileName, ""],
+    If[$Notebooks,
+        NotebookDirectory[]
+        ,
+        Directory[]
+    ]
+    ,
+    DirectoryName[$InputFileName]
+]
+\end{verbatim}
+\end{example}
+
+\printbibliography
 \end{document}

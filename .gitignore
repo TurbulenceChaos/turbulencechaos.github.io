@@ -33,3 +33,6 @@ tmp/
 *.midi
 programming/javascript/js.js
 programming/shell/sh.sh
+.vscode/
+programming/python/py.py
+software/wolfram/wl.wl
