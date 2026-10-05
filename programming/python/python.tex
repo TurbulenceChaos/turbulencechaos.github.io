@@ -12,8 +12,45 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-\url{}
+\url{https://docs.python.org/3/}
 
+\begin{definition}[python]
+    Python is a dynamic typing and object-oriented programming language.
+\end{definition}
+
+\begin{definition}[types]~
+    \begin{itemize}
+        \item numbers : int, float, complex : \verb|1+2j|
+              \begin{verbatim}
+17 / 5  # 3.4
+17 // 5 # 3, floor division
+5 ** 2  # 25, powers
+\end{verbatim}
+        \item str
+              \begin{verbatim}
+print("\t")
+print(r"\t") # raw
+
+# multiple lines
+"""\
+line 1
+line 2"""
+
+# concat and repeat
+3 * "a" + "b" # 'aaab'
+
+# index and slice
+str="Python"
+#  | P | y | t | h | o | n |
+#  0   1   2   3   4   5   6
+# -6  -5  -4  -3  -2  -1
+str[2]   # 't', str[2] = "a", error, immutable
+str[1:2] # 'y'
+len(str) # 6
+\end{verbatim}
+        \item list
+    \end{itemize}
+\end{definition}
 
 \printbibliography
 \end{document}
