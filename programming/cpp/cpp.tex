@@ -12,7 +12,7 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-c++ is a high-level, statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
+C++ is a high-level, statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
 
 \subsection{IO}
 \begin{definition}[IO objects]~
@@ -121,317 +121,86 @@ data.func()
 \end{verbatim}
 \end{definition}
 
-\section{Variables and Basic Types}
-\subsection{Primitive Built-in Types}
-\subsubsection{Arithmetic Types}
-\begin{definition}[Primitive builtin types]~
-    \begin{itemize}
-        \item arithmetic types:
-              \begin{itemize}
-                  \item integral types
-                        \begin{itemize}
-                            \item characters: \verb|char|, \verb|std::string|
-                            \item integers: \verb|int|: \verb|signed| or \verb|unsigned| ($\geq 0$)
-                            \item boolean values: \verb|bool|
-                        \end{itemize}
-                  \item floating-point types: \verb|double|
-              \end{itemize}
-        \item void
-    \end{itemize}
-\end{definition}
-
-\begin{remark}
-    Use \verb|double| for floating-point computations.
-\end{remark}
-
-\subsubsection{Type Conversions}
-\begin{example}[Type conversions]~
+\section{Types}
+\begin{definition}[arithmetic types]~
     \begin{verbatim}
-bool b = 20; // 0 for false and nonzero values for true
-int i = b;   // true for 1 and false for 0
+char        // '\0': null, '\t': horizontal tab, '\n': newline
+std::string // "A": ['A', '\0']
+int
+bool        // true for 1 and false for 0
+double
 \end{verbatim}
-\end{example}
+\end{definition}
 
-\begin{example}[Signed and unsigned]~
+\begin{definition}[object]
+    An object is a region of memory that contain data and has a type.
+\end{definition}
+
+\begin{definition}[declaration and definition]~
     \begin{verbatim}
-unsigned u = -1; // if 32-bit ints, 4294967295
-int a = -1;
-unsigned b = 1;
-a * b // int value is converted to unsigned before addition
+// declare: specify a base type and a list of var names
+// can be declared many times
+// main file:
+#inlcude "header.h"
+extern int i;
+
+// define: allocate storage and may provide initial val
+// defined exactly only once
+// header file:
+int i; // 0
 \end{verbatim}
-\end{example}
-
-\subsubsection{Literals}
-\begin{definition}[Literals]~
-
-    Integer literals:
-    \begin{itemize}
-        \item decimal
-        \item octal: \verb|0-|
-        \item hexadecimal: \verb|0x-|
-        \item suffix:
-              \begin{itemize}
-                  \item \verb|u|: unsigned
-                  \item \verb|L|: long
-              \end{itemize}
-    \end{itemize}
-
-    Floating-point literals (\verb|double| by default):
-    \begin{itemize}
-        \item decimal point
-        \item \verb|E: 1E-2|
-        \item suffix: \verb|f/F|: float
-    \end{itemize}
-
-    character and string literals:
-    \verb|"Hello"| = \verb|"Hello\0"|
 \end{definition}
 
-\begin{definition}[Escape sequences]~
-    \begin{itemize}
-        \item newline: \verb|\n|
-        \item horizontal tab: \verb|\t|
-        \item null: \verb|\0|
-    \end{itemize}
+\begin{definition}[scope]
+    Delimited by \verb|{}|.
+    \begin{verbatim}
+// vars defined outside any function body are initialized to 0
+int val; // 0
+int main ()
+{
+    int val = 1; // block scope
+    // ::val == 0 global scope
+    ...
+}
+
+// var: lowercase
+// class: first letter uppercase
+\end{verbatim}
 \end{definition}
-
-\subsection{Variables}
-\subsubsection{Variable Definitions}
-\begin{remark}~
-    \begin{itemize}
-        \item Variables defined outside any function body are initialized to 0.
-        \item  Initialize every object of built-in type.
-        \item \verb|std::cin >> int i;| error, should be \verb|int i; std::cin >> i;|.
-    \end{itemize}
-\end{remark}
-
-\subsubsection{Variable Declarations}
-\begin{itemize}
-    \item File A define the variable \verb|int ix;|. Other files: \verb|extern int ix;|.
-    \item All variables must be declared before being used.
-\end{itemize}
-
-\subsubsection{Identifiers}
-Naming conventions:
-\begin{itemize}
-    \item Variable name: lowercase
-    \item Class name: uppercase
-\end{itemize}
-
-\subsubsection{Scope of a Name}
-\begin{itemize}
-    \item Global scope: \verb|::global_var|
-    \item Block scope
-\end{itemize}
-
-\begin{remark}
-    It is almost always a bad idea to define a local variable with the same name as a global variable that the function uses.
-\end{remark}
 
 \subsection{Compound Types}
-\subsubsection{References}
-\begin{definition}[Reference]
-    A reference defines an alternative name for an object.
+\begin{definition}[reference]
+    A reference defines an alias for an object.
     \begin{verbatim}
-int ival = 0;
-int &refVal = ival;
+int i = 0;
+int &ref = i;
+// ref must be bound only to an int object, not a literal
+// error: int &ref = 1;
 \end{verbatim}
 \end{definition}
 
-\begin{itemize}
-    \item A reference is an alias, not an object.
-    \item The type of a reference and the object must match exactly.
-    \item A reference can only refer to the object to which it was initially bound.
-\end{itemize}
-
-\subsubsection{Pointers}
-\begin{definition}[Pointer]
-    A pointer holds the address of another object.
+\begin{definition}[pointer]
+    A pointer is an object that holds the address of another object.
     \begin{verbatim}
-int ival = 0;
-int *pi = &ival;
-*pi = 10;
-int* p1, p2; // legal, but might be misleading. p2 is int.
-\end{verbatim}
-\end{definition}
-
-\begin{itemize}
-    \item A pointer is an object.
-          The type of the pointer and the object to which it points must match.
-    \item Dereferencing a pointer yields the object to which the pointer points.
-    \item States of address value stored in a pointer:
-          \begin{itemize}
-              \item point to an object
-              \item null pointer, not bound to any object: \verb|nullptr|
-          \end{itemize}
-\end{itemize}
-
-\begin{remark}[Initialize all pointers]
-    Define a pointer only after the object to which it should point, or initialize the pointer to \verb|nullptr|.
-\end{remark}
-
-\begin{example}[Pointers to pointers]~
-    \begin{verbatim}
-int ival = 1;
-int *pi = &ival;
-int **ppi = &pi;
-\end{verbatim}
-\end{example}
-
-\begin{example}[References to pointers]~
-    \begin{verbatim}
-int i = 1;
+int i = 0;
 int *p;
-int *&r = p;
-\end{verbatim}
-\end{example}
+p = &i;      // p holds the address of i
+*p = 0;      // return the object i to which p points
+p = nullptr; // or p = 0, null pointer, not bound to any object
 
-\subsection{Qualifier}
-\begin{definition}
-    \verb|const|:
-    \begin{itemize}
-        \item Make a variable unchangeable.
-        \item Must be initialized.
-    \end{itemize}
-\end{definition}
+// pointer to pointer to ...
+int **pp;    // * indicate pointer level
+pp = &p;
 
-\begin{example}
-    Share a \verb|const| object among multiple files:
-    \begin{verbatim}
-extern const i = 10; // file A
-extern const i; // other files
-\end{verbatim}
-\end{example}
-
-\subsubsection{Reference to const}
-\begin{definition}[reference to const]
-    Reference to const only restricts what we can do through that reference.
-
-    Reference to const can refer to a nonconst object.
-    \begin{verbatim}
-const int ci = 10;
-const int &r1 = ci;
-int i = 1;
-const int &r2 = i;
-const int &r3 = 2;
-double d = 3.14;
-const int &r4 = d;
+// ref to pointer
+int *&ref = p; // & => ref is reference, * => ref refers to pointer type
 \end{verbatim}
 \end{definition}
 
-\subsubsection{Pointer to const}
-\begin{definition}[Pointer to const: low-level]
-    Pointer to const only affects what we can do with the pointer.
+\section{Structures}
+\begin{definition}[structure]
 
-    Pointer to const can point to a nonconst object.
-    \begin{verbatim}
-double pi = 3.14;
-const double *ptr = &pi;
-\end{verbatim}
 \end{definition}
-
-\subsubsection{Top-Level const}
-\begin{definition}[const pointer: top-level]
-    const pointer must be initialized.
-    \begin{verbatim}
-int i = 10;
-int *const pi = &i;
-\end{verbatim}
-\end{definition}
-
-\begin{remark}
-    Low-level \verb|const| is never ignored when copying an object.
-    Both objects must have the same low-level qualification or binding const to nonconst.
-
-    \begin{verbatim}
-const int i = 1;
-const int *p1 = &i;
-const int *const p2 = p1;
-int *p3 = 0;
-p1 = p3;
-\end{verbatim}
-\end{remark}
-
-\subsubsection{Constant Expressions}
-\begin{definition}[constexpr]~
-    \begin{verbatim}
-const int sz = get_size(); // not const expression
-constexpr int sz = size(); // ok only if size is a constexpr function
-const int *p = 0;     // pointer to const int
-constexpr int *q = 0; // const pointer to int: top-level const
-\end{verbatim}
-\end{definition}
-
-\begin{remark}~
-    \begin{itemize}
-        \item Variables defined inside a function are not stored at a fixed address.
-        \item The address of an object defined outside of any function is a constant expression.
-    \end{itemize}
-\end{remark}
-
-\subsection{Dealing with Types}
-\subsubsection{Type Aliases}
-\begin{definition}[type alias]
-    \begin{verbatim}
-typedef double wages;
-typedef wages base, *p; // p for double*
-base d = 3.14;
-p p1 = &d, p2 = &d;
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[pointer, const, type alias]~
-    \begin{verbatim}
-typedef char *pstring;  // char*
-const pstring cstr = 0; // char *const
-const pstring *ps;      // char **const
-\end{verbatim}
-\end{definition}
-
-\subsubsection{The Auto Type Specifier}
-\begin{definition}[auto]
-    A variable that uses \verb|auto| must have an initializer.
-
-    The initializers for all the variables in the declaration must have consistent types.
-    \begin{verbatim}
-auto i = 0, *p = &i;
-auto sz = 0, pi = 3.14;
-\end{verbatim}
-\end{definition}
-
-\begin{example}[compound types, const, and auto]~
-    \begin{verbatim}
-int i = 1;
-const int ci = i;
-auto a = ci;       // int, top level const is dropped
-const auto b = ci; // const int
-auto c = &i;       // int*
-auto d = &ci;      // const int* (& of a const object is low-level const)
-\end{verbatim}
-\end{example}
-
-\section{Defining Out Own Data Structures}
-\begin{verbatim}
-struct Node
-{
-    int val;
-    Node *next;
-    Node(int x) : val(x), next(nullptr) {}
-};
-
-int main()
-{
-    Node *n1 = new Node(1);
-    Node *n2 = new Node(2);
-    n1->next = n2;
-    while (n1 != nullptr)
-    {
-        std::cout << n1->val << std::endl;
-        n1 = n1->next;
-    }
-    return 0;
-}
-\end{verbatim}
 
 \printbibliography
 \end{document}
