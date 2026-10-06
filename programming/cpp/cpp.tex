@@ -34,8 +34,7 @@ c++ is a high-level, statically typed programming language \cite{LIPPMAN_2012_CP
 std::cout << "str";         // return object: std::cout
 std::cout << "str" << "\n"; // (std::cout << "str") << "\n";
 
-
-int v1=0, v2=0;
+int v1 = 0, v2 = 0;
 std::cin >> v1;            // return object: std::cin
 std::cin >> v1 >> v2;      // (std::cin >> v1) >> v2;
 \end{verbatim}
@@ -53,8 +52,73 @@ std::cout << /* "*/" /* "/*" */;
 \end{definition}
 
 \subsection{Flow of Control}
-\begin{definition}[while]
+\begin{definition}[while]~
+    \begin{verbatim}
+while(cond)
+{
+    statements;
+}
 
+while(std::cin >> val)
+// std::cin >> val return left operand: std::cin
+// istream become invalid:
+// 1. reading a non-integer val: 1 2 3.1
+// 2. end-of-file: Ctrl-c
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[for]~
+    \begin{verbatim}
+for (init-statement; cond; expr)
+{
+    statements;
+}
+
+// init-statement:
+// local var used only inside for, executed only once
+// expr: executed after for body
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[if]~
+    \begin{verbatim}
+if (cond)
+{
+    statements;
+}
+else if (cond)
+{
+    statements;
+}
+else
+{
+    statements;
+}
+
+if (std::cin >> val)
+    std::cout << val << "\n";
+// 1 2 3 RET => 1
+\end{verbatim}
+\end{definition}
+
+\subsection{Class}
+\begin{definition}[class]
+    Define data structures:
+    \begin{itemize}
+        \item name
+        \item defined
+        \item operation
+    \end{itemize}
+    \begin{verbatim}
+// #include <std lib>
+// #include "header.h"
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[member function]~
+    \begin{verbatim}
+data.func()
+\end{verbatim}
 \end{definition}
 
 \section{Variables and Basic Types}
