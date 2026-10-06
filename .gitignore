@@ -1,7 +1,7 @@
 *.*
 !*.tex
 !*.pdf
-*-tikz*
+*-tikz.pdf
 !.gitignore
 !compile.sh
 !index.html

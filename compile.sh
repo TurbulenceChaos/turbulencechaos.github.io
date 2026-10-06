@@ -7,30 +7,30 @@ pdf2png() {
     local PAGE=$2
     local PNG=$3
     local DPI=${4:-300}
-    echo Convert $PDF page $PAGE to $PNG
-    convert -density $DPI -units pixelsperinch -quality 100 -alpha remove $PDF[$PAGE] -trim $PNG
+    echo "Convert $PDF page $PAGE to $PNG"
+    convert -density "$DPI" -units pixelsperinch -quality 100 -alpha remove "$PDF[$PAGE]" -trim "$PNG"
 }
 
 mkdir -p "images"
 
 for DIR in mathematics programming literature software; do
     (
-        cd $DIR
+        cd "$DIR" || exit
         for SUBDIR in */; do
-            TEX=$(basename $SUBDIR)
-            TIKZ=$TEX-tikz
+            TEX=$(basename "$SUBDIR")
+            TIKZ="$TEX-tikz"
             (
-                cd $TEX
-                if [[ -f $TIKZ.tex ]]; then
-                    echo compile $TIKZ.tex
-                    latexmk -pdf $TIKZ.tex &>$TIKZ.log
-                    mapfile -t PNG < <(awk -F'[{}]' '/^% @fig\{/ { print $2 }' $TIKZ.tex)
-                    for PAGE in ${!PNG[@]}; do
-                        pdf2png $TIKZ.pdf $PAGE ../../images/${PNG[$i]}
+                cd "$TEX" || exit
+                if [[ -f "$TIKZ.tex" ]] && ! git diff --exit-code --quiet "$TIKZ.tex"; then
+                    echo compile "$TIKZ.tex"
+                    latexmk -pdf "$TIKZ.tex" &>"$TIKZ.log"
+                    mapfile -t PNG < <(awk -F'[{}]' '/^% @fig\{/ { print $2 }' "$TIKZ.tex")
+                    for PAGE in "${!PNG[@]}"; do
+                        pdf2png "$TIKZ.pdf" "$PAGE" "../../images/${PNG[$i]}"
                     done
                 fi
-                echo compile $TEX.tex
-                latexmk -pdf $TEX.tex &>$TEX.log
+                echo compile "$TEX.tex"
+                latexmk -pdf "$TEX.tex" &>"$TEX.log"
             )
         done
     )
