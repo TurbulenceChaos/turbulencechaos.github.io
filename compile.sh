@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Convert Tikz PDF to PNG
+# Convert TikZ PDF to PNG
 # pdf2png PDF PAGE PNG [DPI]
 pdf2png() {
     local PDF=$1

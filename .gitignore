@@ -25,7 +25,6 @@ template/library.bib
 /programming/cpp/cpp.org
 *.bbl-SAVE-ERROR
 tmp/
-/programming/lean/*.lean
 *.mid
 *.ly
 *.ps
@@ -36,3 +35,5 @@ programming/shell/sh.sh
 .vscode/
 programming/python/py.py
 software/wolfram/wl.wl
+software/lean/lean.lean
+software/lean/lean.xdv

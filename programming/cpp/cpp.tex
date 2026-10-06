@@ -125,8 +125,9 @@ data.func()
 \begin{definition}[arithmetic types]~
     \begin{verbatim}
 char        // '\0': null, '\t': horizontal tab, '\n': newline
+#include <string>
 std::string // "A": ['A', '\0']
-int
+int         // unsigned: >= 0
 bool        // true for 1 and false for 0
 double
 \end{verbatim}
@@ -197,10 +198,36 @@ int *&ref = p; // & => ref is reference, * => ref refers to pointer type
 \end{verbatim}
 \end{definition}
 
-\section{Structures}
+\subsection{Data structure}
 \begin{definition}[structure]
+    A data structure is a way to group together replated data elements and for using those data.
+    \begin{verbatim}
+// class is ordinarily defined outside functions, usually in className.h
+struct className
+{
+    statements;
+}; // must end with ;
 
+className x, *y;
+\end{verbatim}
 \end{definition}
+
+\begin{definition}[preprocessor]
+    Headers should have guards.
+    \begin{verbatim}
+// a header may be included multiple times:
+// className.h: #include <string>
+// main: #include <string>
+// to be safe to include a header multiple times:
+// className.h
+#ifndef CLASSNAME // true if CLASSNAME not defined
+#define CLASSNAME // preprocessor var are all uppercase
+struct className {};
+#endif
+\end{verbatim}
+\end{definition}
+
+\section{Vectors}
 
 \printbibliography
 \end{document}
