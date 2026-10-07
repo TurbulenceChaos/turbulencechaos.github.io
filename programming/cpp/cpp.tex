@@ -127,7 +127,7 @@ data.func()
     \begin{verbatim}
 char        // '\0': null, '\t': horizontal tab, '\n': newline
 #include <string>
-std::string // "A": ['A', '\0']
+std::string
 int         // unsigned: >= 0
 bool        // true for 1 and false for 0
 double
@@ -140,16 +140,21 @@ double
 
 \begin{definition}[declaration and definition]~
     \begin{verbatim}
-// declare: specify a base type and a list of var names
-// can be declared many times
-// main file:
-#inlcude "header.h"
-extern int i;
+// define: allocate storage and defined only once
+// source.cpp
+int i = 10;
 
-// define: allocate storage and may provide initial val
-// defined exactly only once
-// header file:
-int i; // 0
+// declare: specify type and var names
+// headers should have guards to be safe to be included multiple times
+// header.h
+#ifndef HEADER  // true if CLASSNAME not defined
+#define HEADER  // preprocessor vars are all uppercase
+extern int i;
+#endif
+
+// main.cpp
+#include "header.h"
+i ...
 \end{verbatim}
 \end{definition}
 
@@ -167,6 +172,29 @@ int main ()
 
 // var: lowercase
 // class: first letter uppercase
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[bit]~
+    \begin{verbatim}
+bit      combination         total         number
+1 bit:   0, 1;               2     = 2^1;  0, 1
+2 bits:  00, 01, 10, 11;     2*2   = 2^2;  0, 1, 2, 3
+3 bits:  000, 001, ..., 111; 2*2*2 = 2^3;  0, 1, 2, 3, ..., 7
+32 bits:                           = 2^32; 0, 1, 2, ..., 2^32 - 1
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[type conversion]~
+    \begin{verbatim}
+unsigned i = -1; // 2^32 - 1 for 32-bit int
+
+// when mix int and unsigned, int is automatically converted to unsigned
+unsigned a = 1;
+int b = -1;
+a + b // 1 + (2^32 - 1) = 2^32 = 0
+a * b // 1 * (2^32 - 1)
+a < b // 1 < (2^32 - 1), always true
 \end{verbatim}
 \end{definition}
 
@@ -199,6 +227,82 @@ int *&ref = p; // & => ref is reference, * => ref refers to pointer type
 \end{verbatim}
 \end{definition}
 
+\subsection{Qualifier}
+\begin{definition}[const]
+    The compiler will replace the const var with its value.
+    \begin{verbatim}
+const int i = 1; // must be initialized, local to a file by default
+
+// must specify extern to be used in other files
+// source.cpp
+extern const i = 10;
+// header.h
+extern const i;
+// main.cpp
+#include "header.h"
+i ...
+
+// ref to const
+// cannot change the object to which it bounds
+const int i = 1;
+const int &r = i;
+const int &r2 = 2; // compiler: const int temp = 2; const int &r2 = temp;
+
+// pointer to const
+// cannot change the object to which it points
+const int i = 1;
+const int *p = &i;
+
+// const pointer
+// the address it holds cannot be changed
+int i = 1;
+int *const p = &i; // p always points to i
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[constant expr]
+    A constant expression is an expr whose value cannot change at compile time.
+    \begin{verbatim}
+constexpr int i = size();   // ok only if size is a constexpr function
+constexpr int *p = nullptr; // const pointer, constexpr applies to p
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[type alias]
+    A synonym for a type.
+    \begin{verbatim}
+typedef int base; // or: using base = int;
+typedef base *p;  // type: int*, pointer to int
+p p1 = &i;
+
+// const p: const modify the given type,
+// constant pointer to int: int *const
+const p p2 = 0; // int *const p2 = 0
+const p *p3;    // int *const *p3
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[const level]~
+    \begin{verbatim}
+// top-level const
+// low-level const
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[auto]
+    Deduce the type from the initializer at compile time.
+    \begin{verbatim}
+auto i = 1, *p = &i;   // must have initializer
+auto i = 0, pi = 3.14; // error, types must be consistent
+
+// auto may different from initializer's type
+// auto ignores top-level const
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[decltype]
+\end{definition}
+
 \subsection{Data structure}
 \begin{definition}[structure]
     A data structure is a way to group together replated data elements and for using those data.
@@ -213,22 +317,6 @@ className x, *y;
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[preprocessor]
-    Headers should have guards.
-    \begin{verbatim}
-// a header may be included multiple times:
-// className.h: #include <string>
-// main: #include <string>
-// to be safe to include a header multiple times:
-
-// className.h
-#ifndef CLASSNAME // true if CLASSNAME not defined
-#define CLASSNAME // preprocessor var are all uppercase
-struct className {};
-#endif
-\end{verbatim}
-\end{definition}
-
 \section{Vectors}
 \subsection{String}
 \begin{definition}[string]
@@ -236,6 +324,12 @@ struct className {};
     \begin{verbatim}
 #include <string>
 using std::string;
+
+string str = "A";
+// copy of the string literal "A": ['A', '\0'],
+// not include null char '\0' at the end
+
+str.size(); // unsigned string::size_type
 \end{verbatim}
 \end{definition}
 
