@@ -204,5 +204,41 @@ awk -F'[{,]' '/@book\{/ {
 
 \section{Windows Batch}
 
+\appendix
+\section{Tools}
+\small
+\begin{verbatim}
+#!/bin/bash
+
+# Convert TikZ PDF to PNG
+# pdf2png PDF PAGE PNG [DPI]
+pdf2png() {
+    local PDF=$1
+    local PAGE=$2
+    local PNG=$3
+    local DPI=${4:-300}
+    echo "Convert $PDF page $PAGE to $PNG"
+    magick -density "$DPI" -units pixelsperinch \
+        "$PDF[$PAGE]" \
+        -alpha remove -background white -flatten \
+        -trim +repage \
+        -quality 100 \
+        "$PNG"
+}
+\end{verbatim}
+
+\begin{verbatim}
+#!/bin/bash
+
+# Compress PDF
+# pdfcompress INPUT OUTPUT
+pdfcompress() {
+    local INPUT=$1
+    local OUTPUT=$2
+    ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
+        -sOUTPUTFile="$OUTPUT" "$INPUT"
+}
+\end{verbatim}
+
 \printbibliography
 \end{document}

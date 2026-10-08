@@ -8,7 +8,12 @@ pdf2png() {
     local PNG=$3
     local DPI=${4:-300}
     echo "Convert $PDF page $PAGE to $PNG"
-    convert -density "$DPI" -units pixelsperinch -quality 100 -alpha remove "$PDF[$PAGE]" -trim "$PNG"
+    magick -density "$DPI" -units pixelsperinch \
+        "$PDF[$PAGE]" \
+        -alpha remove -background white -flatten \
+        -trim +repage \
+        -quality 100 \
+        "$PNG"
 }
 
 mkdir -p "images"

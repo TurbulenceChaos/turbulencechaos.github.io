@@ -186,6 +186,7 @@ bit      combination         total         number
 \end{definition}
 
 \begin{definition}[type conversion]~
+    \label{def:type-conversion}
     \begin{verbatim}
 unsigned i = -1; // 2^32 - 1 for 32-bit int
 
@@ -303,7 +304,7 @@ auto i = 0, pi = 3.14; // error, types must be consistent
 \begin{definition}[decltype]
 \end{definition}
 
-\subsection{Data structure}
+\subsection{Data Structure}
 \begin{definition}[structure]
     A data structure is a way to group together replated data elements and for using those data.
     \begin{verbatim}
@@ -317,19 +318,53 @@ className x, *y;
 \end{verbatim}
 \end{definition}
 
-\section{Vectors}
-\subsection{String}
+\section{string}
 \begin{definition}[string]
     A \verb|string| is a variable-length sequence of characters.
     \begin{verbatim}
 #include <string>
-using std::string;
 
-string str = "A";
+std::string str = "A";
 // copy of the string literal "A": ['A', '\0'],
 // not include null char '\0' at the end
 
-str.size(); // unsigned string::size_type
+// read string
+std::cin >> str1 >> str2;
+
+// read line
+std::getline(std::cin, str)
+
+// empty
+str.empty() // true for empty
+
+// size
+str.size() // unsigned type: string::size_type
+// str.size() < -1: true =>
+// str.size() < 2^32 - 1 for 32-bit int
+// do not use int in size() expr
+
+// compare
+std::string str = "Hello";
+str < "Hiya" // true, compare ASCII of first diff letter: i > e
+str < "Hello World"
+
+// cannot compare string literals directly,
+// i.e. "a" < "b", which will compare their mem addresses
+// at least one should be std::string type
+
+// add
+str + " World\n" // "Hello World\n"
+\end{verbatim}
+    type conversion: Definition \ref{def:type-conversion}
+\end{definition}
+
+\subsection{Chars in string}
+\begin{definition}[for range]~
+    \begin{verbatim}
+for (char c : str)
+{
+    statements;
+}
 \end{verbatim}
 \end{definition}
 
