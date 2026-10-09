@@ -232,8 +232,10 @@ int *&ref = p; // & => ref is reference, * => ref refers to pointer type
 \begin{definition}[const]
     The compiler will replace the const var with its value.
     \begin{verbatim}
-const int i = 1; // must be initialized, local to a file by default
+// const must be initialized
+const int i = 1;
 
+// const var local to a file by default
 // must specify extern to be used in other files
 // source.cpp
 extern const i = 10;
@@ -285,8 +287,18 @@ const p *p3;    // int *const *p3
 
 \begin{definition}[const level]~
     \begin{verbatim}
-// top-level const
-// low-level const
+// top-level const: an object itself is const, i.e. const pointer
+const int i = 1;
+int *const p1 = &i;
+
+// low-level const: point or refer to const object
+const int *p2 = &i;
+const int &r = i;
+
+// when copying, top-level const is ignored,
+// low-level const is never ignored
+const int *const p3 = &i;
+p2 = p3;
 \end{verbatim}
 \end{definition}
 
@@ -302,6 +314,10 @@ auto i = 0, pi = 3.14; // error, types must be consistent
 \end{definition}
 
 \begin{definition}[decltype]
+    Return the operand type without evaluating the expr.
+    \begin{verbatim}
+decltype(expr) var
+\end{verbatim}
 \end{definition}
 
 \subsection{Data Structure}
@@ -365,8 +381,28 @@ for (char c : str)
 {
     statements;
 }
+
+// ispunct(char), true if char is punctuation
+
+// define loop var as ref type to change char in string
+for (char &c : str)
+    c = toupper(c); // uppercase
+
+// index: str[i]
+// 0 <= i <= str.size() - 1
+// i is unsigned string::size_type
+// decltype(str.size()) i = 0;
+// string::size_type i = 0;
+// str must not be empty:
+// !str.empty()
+for(decltype(str.size()) i = 0; i != str.size(); i = i + 1)
+    ...
+
+// isspace(char), true if char is space
 \end{verbatim}
 \end{definition}
+
+\section{vector}
 
 \printbibliography
 \end{document}
