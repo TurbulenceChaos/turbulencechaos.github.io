@@ -64,7 +64,7 @@ while(std::cin >> val)
 // std::cin >> val return left operand: std::cin
 // istream become invalid:
 // 1. reading a non-integer val: 1 2 3.1
-// 2. end-of-file: Ctrl-c
+// 2. end-of-file: Ctrl-Z then RET (windows), or Ctrl-D then RET (linux)
 \end{verbatim}
 \end{definition}
 
@@ -403,6 +403,90 @@ for(decltype(str.size()) i = 0; i != str.size(); i = i + 1)
 \end{definition}
 
 \section{vector}
+\begin{definition}[vector]
+    Collection or container of objects with same type.
+    \begin{verbatim}
+#include <vector>
+std::vector<type> v;
+
+// vector is a class template
+// template: class or function templates
+// template is instantiation that the compiler use to create classes or functions
+
+// initialization: list initialize or ele count
+std::vector<int> v(n);               // n eles = 0
+std::vector<int> v(n, val);          // n eles = val
+std::vector<int> v{val1, ..., valn};
+// list initialize, ele1 = val1, ... , elen = valn if possible
+
+// if list initialization is not possible,
+// the compiler looks other ways to initialize the object from the given value.
+std::vector<string> v{n};
+// n is not string, list initialize false, use ele count instead: n eles = empty
+std::vector<string> v{n, "str"}
+// list initialize false, use ele count instead: n eles = "str"
+
+// add ele to vec
+// v.push_back(ele)
+
+// ele in vec
+for(type &r : v)
+    ... // assign new value
+for(type i : v)
+    ...
+
+v.empty(), true if vec is empty
+v.size(), return type: vector<type>::size_type
+
+// compare
+
+// index
+// !v.empty()
+// 0, ..., v.size() - 1
+\end{verbatim}
+\end{definition}
+
+\section{Iterators}
+\begin{definition}[iterator]
+    Access the ele in string or vector.
+    \begin{verbatim}
+auto b = v.begin(); // denotes first ele
+auto e = v.end();   // denotes one after the last ele
+
+// for empty vec
+// b == c
+
+// access ele
+// *b = toupper(*b);
+
+// move iterator
+++b // advance the iterator by one position
+--e // previous ele
+
+// compare iterators with == or !=
+for(auto it = v.begin(); it != v.end(); ++it)
+    ...
+
+// iterator type
+// std::vector<int>::iterator
+// std::string::iterator
+// std::vector<int>::const_iterator
+// cannot write ele in vec
+// std::string::const_iterator
+// cannot write char in string
+auto b = v.cbegin(); // const_iterator
+auto e = v.cend();
+
+// deref and member access
+// (*it).mem_func() <=> it->mem_func()
+
+// iterator arithmetic for vector and string
+// it +/- n
+// it1 <= or >= it2: ele1 appear before or after ele2
+auto mid = v.begin() + v.size() / 2;
+\end{verbatim}
+\end{definition}
 
 \printbibliography
 \end{document}
+
