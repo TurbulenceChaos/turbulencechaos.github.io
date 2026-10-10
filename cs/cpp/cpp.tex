@@ -213,11 +213,13 @@ int &ref = i;
 \begin{definition}[pointer]
     A pointer is an object that holds the address of another object.
     \begin{verbatim}
-int i = 0;
-int *p;
+int i = 0, j = 1;
+int *p, *p2;
 p = &i;      // p holds the address of i
-*p = 0;      // return the object i to which p points
+*p = 2;      // return the object i to which p points
 p = nullptr; // or p = 0, null pointer, not bound to any object
+p = p2;      // copy address
+p2 = &j;     // p value not change
 
 // pointer to pointer to ...
 int **pp;    // * indicate pointer level
@@ -413,7 +415,7 @@ std::vector<type> v;
 // template: class or function templates
 // template is instantiation that the compiler use to create classes or functions
 
-// initialization: list initialize or ele count
+// initialization: list initialize or elemcount
 std::vector<int> v(n);               // n eles = 0
 std::vector<int> v(n, val);          // n eles = val
 std::vector<int> v{val1, ..., valn};
@@ -422,14 +424,14 @@ std::vector<int> v{val1, ..., valn};
 // if list initialization is not possible,
 // the compiler looks other ways to initialize the object from the given value.
 std::vector<string> v{n};
-// n is not string, list initialize false, use ele count instead: n eles = empty
+// n is not string, list initialize false, use elemcount instead: n eles = empty
 std::vector<string> v{n, "str"}
-// list initialize false, use ele count instead: n eles = "str"
+// list initialize false, use elemcount instead: n eles = "str"
 
-// add ele to vec
+// add elemto vec
 // v.push_back(ele)
 
-// ele in vec
+// elemin vec
 for(type &r : v)
     ... // assign new value
 for(type i : v)
@@ -448,7 +450,7 @@ v.size(), return type: vector<type>::size_type
 
 \section{Iterators}
 \begin{definition}[iterator]
-    Access the ele in string or vector.
+    Access the elemin string or vector.
     \begin{verbatim}
 auto b = v.begin(); // denotes first ele
 auto e = v.end();   // denotes one after the last ele
@@ -471,7 +473,7 @@ for(auto it = v.begin(); it != v.end(); ++it)
 // std::vector<int>::iterator
 // std::string::iterator
 // std::vector<int>::const_iterator
-// cannot write ele in vec
+// cannot write elemin vec
 // std::string::const_iterator
 // cannot write char in string
 auto b = v.cbegin(); // const_iterator
@@ -483,10 +485,54 @@ auto e = v.cend();
 // iterator arithmetic for vector and string
 // it +/- n
 // it1 <= or >= it2: ele1 appear before or after ele2
-auto mid = v.begin() + v.size() / 2;
+auto mid = b + (e - b) / 2;
 \end{verbatim}
 \end{definition}
 
+\section{Array}
+\begin{definition}[array]
+    Array is a compound type and fixed-size container of unnamed objects of a single type that we access by position.
+    \begin{verbatim}
+type array_name[dim]; // dim = const expr > 0
+
+// default-initialized array defined inside a function has undefined values
+
+// list initialize
+int a[3] = {};    // zero-initialization, all elems 0
+int a2[3] = {1, 2}; // same as a[] = {1, 2, 0}, rest default to 0
+std::string a3[3] = {"hi", "wolrd"}; // std::string a3[] = {"hi", "world", ""};
+
+// char array
+char a[] = "c++"; // string literal end with null char
+// char a[] = {'c', '+', '+', '\0'};
+
+// no copy assignment
+// error: a = a2;
+
+// array of pointers
+int a[2] = {};
+int *p[2]; // array of 2 pointers to int:
+// right array size -> left elem type
+
+// no array of ref
+// error: int &r[2] = ...
+
+// ref and pointer to array
+int (*p2)[2] = &a; // p2 is a pointer to array of 2 int:
+// () pointer -> right array size -> left elem type
+int (&r)[2] = a;  // r refers to array of 2 int
+// () ref -> right array size -> left elem type
+int *(&r2)[2] = p;
+// () ref -> right array size -> left elem type: pointer to int
+
+// access elem in array
+// array subscript type: size_t, unsigned
+constexpr size_t array_size = 10;
+int a[array_size] = {};
+\end{verbatim}
+\end{definition}
+
+\subsection{Pointers and Arrays}
 \printbibliography
 \end{document}
 
