@@ -533,6 +533,58 @@ int a[array_size] = {};
 \end{definition}
 
 \subsection{Pointers and Arrays}
+\begin{verbatim}
+int a[] = {0, 1, 2};
+int *p = a;  // int *p = &a[0];
+auto p2 = a; // int *p2 = &a[0];
+decltype(a) a2 = {0, 1, 2}; // int a[3] = {0, 1, 2};
+
+// iterator
+++p // &a[1]
+int *e = &a[3]; // off-the-end pointer
+(for int *b = a; b != e; ++b)
+    ...
+
+int *b = std::begin(a); // pointer to 1st elem
+int *e = std::end(a);   // pointer to one past last elem
+
+// arithmetic
+int *e = a + 3;                       // points to one past last elem
+auto n = std::end(a) - std::begin(a); // type: ptrdiff_t
+int last = *(b + 2)                   // a[2]
+
+// subscript
+int *p = &a[2];
+// p[1]:  *(p + 1): one past last elem
+// p[-2]: *(p - 2): a[0]
+
+// vectors and arrays
+\end{verbatim}
+
+\subsection{Arrays of Arrays}
+\begin{definition}[multidimensional array]
+    Arrays of arrays.
+    \begin{verbatim}
+constexpr size_t r=..., c=...;
+int a[r][c] = {0};
+
+// for range
+for (auto &row : a)
+    for(auto col : a)
+        ...
+// all control vars except innermost array must be ref
+
+// pointers
+int *(p)[c] = a;
+auto *p = a;     // int (*p)[c] = &a[0];
+auto q = *p;     // int *q = &a[0][0];
+
+// type alias
+using int_array = int[r];
+typedef int int_array[r];
+\end{verbatim}
+\end{definition}
+
 \printbibliography
 \end{document}
 
