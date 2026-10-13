@@ -366,8 +366,8 @@ s + " World\n" // "Hello World\n"
 // for range statement: iterate through elems in a given sequence
 for (char c : s)
     ...
-for (char &c : s) // change char in string
-    c = toupper(c); // uppercase
+for (char &r : s) // change char in string
+    r = toupper(r); // uppercase
 
 // ispunct(c): check if char is punctuation, i.e. ',', '!', ...
 // isspace(c): check if char is space
@@ -433,100 +433,85 @@ b <= e
 \end{definition}
 
 \section{Array}
-\begin{definition}[array]
-    Array is a compound type and fixed-size container of unnamed objects of a single type that we access by position.
+\begin{definition}[array]~
     \begin{verbatim}
-type array_name[dim]; // dim = const expr > 0
+constexpr size_t size = ...;
+int a[size] = {};
+// array type cannot be: auto
+// any object size type: unsigned size_t
+// dimension must be known at compile time: constexpr
 
-// default-initialized array defined inside a function has undefined values
+// cannot copy
+// error: a2 = a1;
 
-// list initialize
-int a[3] = {};    // zero-initialization, all elems 0
-int a2[3] = {1, 2}; // same as a[] = {1, 2, 0}, rest default to 0
-std::string a3[3] = {"hi", "wolrd"}; // std::string a3[] = {"hi", "world", ""};
+// pointers and ref
+int *p[size]; // array of n pointers to int
+int (*p)[size] = &a; // pointer to array of n int
+int (&r)[size] = a;  // refer to array of n int
+int *(&r)[size] = p; // refer to array of n pointers to int
+// () for def -> right for array size -> left for elem type
 
-// char array
-char a[] = "c++"; // string literal end with null char
-// char a[] = {'c', '+', '+', '\0'};
+// for range statement
+for (auto &r : a)
+    ...
 
-// no copy assignment
-// error: a = a2;
-
-// array of pointers
-int a[2] = {};
-int *p[2]; // array of 2 pointers to int:
-// right array size -> left elem type
-
-// no array of ref
-// error: int &r[2] = ...
-
-// ref and pointer to array
-int (*p2)[2] = &a; // p2 is a pointer to array of 2 int:
-// () pointer -> right array size -> left elem type
-int (&r)[2] = a;  // r refers to array of 2 int
-// () ref -> right array size -> left elem type
-int *(&r2)[2] = p;
-// () ref -> right array size -> left elem type: pointer to int
-
-// access elem in array
-// array subscript type: size_t, unsigned
-constexpr size_t array_size = 10;
-int a[array_size] = {};
+// subscript operator
 \end{verbatim}
 \end{definition}
 
 \subsection{Pointers and Arrays}
 \begin{verbatim}
-int a[] = {0, 1, 2};
-int *p = a;  // int *p = &a[0];
-auto p2 = a; // int *p2 = &a[0];
-decltype(a) a2 = {0, 1, 2}; // int a[3] = {0, 1, 2};
+int *p = a;  // a automatically convert to &a[0]
+auto p = a;  // p = &a[0]
+decltype(a) a2 = {0, 1, 2};
 
 // iterator
-++p // &a[1]
-int *e = &a[3]; // off-the-end pointer
-(for int *b = a; b != e; ++b)
-    ...
-
-int *b = std::begin(a); // pointer to 1st elem
-int *e = std::end(a);   // pointer to one past last elem
-
-// arithmetic
-int *e = a + 3;                       // points to one past last elem
-auto n = std::end(a) - std::begin(a); // type: ptrdiff_t
-int last = *(b + 2)                   // a[2]
+int *b = std::begin(a); // pointer to first elem
+int *e = std::end(a);   // pointer to one after last elem
 
 // subscript
-int *p = &a[2];
-// p[1]:  *(p + 1): one past last elem
-// p[-2]: *(p - 2): a[0]
+int *p = &a[m]; // p = a + m
+p[n] // *(p + n) => a[m + n]
 
-// vectors and arrays
+// C-style char string
+char c[] = "str"; // c[] = {'s', 't', 'r', '\0'}
+strcmp(c1, c2)    // 0 for c1 == c2; 1 for c1 > c2; -1 for c1 < c2
+
+// initialize vector with array {a[i], ..., a[j]}
+std::vector<int> v(a + i, a + j);
 \end{verbatim}
 
 \subsection{Arrays of Arrays}
-\begin{definition}[multidimensional array]
-    Arrays of arrays.
+\begin{definition}[multidimensional array]~
     \begin{verbatim}
-constexpr size_t r=..., c=...;
-int a[r][c] = {0};
+constexpr size_t rows=..., cols=...;
+int a[rows][cols] = {0};
 
-// for range
-for (auto &row : a)
-    for(auto col : a)
+// subscript operator
+a[n] // nth inner-array elem
+
+// for range statement
+// control vars except innermost array must be ref
+for (auto &row : a)     // for every elem in outer array
+    for(auto col : row) // for every elem in inner array
         ...
-// all control vars except innermost array must be ref
 
 // pointers
-int *(p)[c] = a;
-auto *p = a;     // int (*p)[c] = &a[0];
-auto q = *p;     // int *q = &a[0][0];
+int (*p)[cols] = a; // p = &a[0]
+
+for (auto p = a; p != a + rows; ++p)       // int (*p)[cols] = &a[0]
+    for (auto q = *p; q != *p + cols; ++q) // int *q = &a[0][0]
+        ...
 
 // type alias
-using int_array = int[r];
-typedef int int_array[r];
+using int_array = int[rows];
+// typedef int int_array[rows];
+for (int_array *p = a; p != a + rows; ++p)
+    ...
 \end{verbatim}
 \end{definition}
+
+\section{Exprs}
 
 \printbibliography
 \end{document}
