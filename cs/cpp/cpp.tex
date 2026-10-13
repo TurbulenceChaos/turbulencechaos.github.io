@@ -276,12 +276,12 @@ constexpr int *p = nullptr; // const pointer, constexpr applies to p
 \begin{definition}[type alias]
     A synonym for a type.
     \begin{verbatim}
-typedef int base; // or: using base = int;
-typedef base *p;  // type: int*, pointer to int
+typedef int base;
+using base = int;
+typedef base *p;  // int*: pointer to int
 p p1 = &i;
 
-// const p: const modify the given type,
-// constant pointer to int: int *const
+// const p: const modify the given type: int *const: constant pointer to int
 const p p2 = 0; // int *const p2 = 0
 const p *p3;    // int *const *p3
 \end{verbatim}
@@ -338,154 +338,97 @@ className x, *y;
 
 \section{string}
 \begin{definition}[string]
-    A \verb|string| is a variable-length sequence of characters.
+    Variable-length sequence of characters.
     \begin{verbatim}
 #include <string>
+// using std::string;
 
-std::string str = "A";
-// copy of the string literal "A": ['A', '\0'],
-// not include null char '\0' at the end
+// class defines how objects can be initialized
+std::string s = "A";   // copy ['A', '\0'], drop null char
+std::string s(n, 'c'); // "c...c"
 
 // read string
-std::cin >> str1 >> str2;
+std::cin >> s1 >> s2;
 
 // read line
-std::getline(std::cin, str)
-
-// empty
-str.empty() // true for empty
-
-// size
-str.size() // unsigned type: string::size_type
-// str.size() < -1: true =>
-// str.size() < 2^32 - 1 for 32-bit int
-// do not use int in size() expr
+std::getline(std::cin, s)
 
 // compare
-std::string str = "Hello";
-str < "Hiya" // true, compare ASCII of first diff letter: i > e
-str < "Hello World"
+// at least one should be std::string
+std::string s = "Hello";
+s < "Hiya" // compare first diff char ASCII: i > e
+s < "Hello World"
 
-// cannot compare string literals directly,
-// i.e. "a" < "b", which will compare their mem addresses
-// at least one should be std::string type
+// concat
+// cant add two string literals, i.e. "A" + "B"
+s + " World\n" // "Hello World\n"
 
-// add
-str + " World\n" // "Hello World\n"
-\end{verbatim}
-    type conversion: Definition \ref{def:type-conversion}
-\end{definition}
-
-\subsection{Chars in string}
-\begin{definition}[for range]~
-    \begin{verbatim}
-for (char c : str)
-{
-    statements;
-}
-
-// ispunct(char), true if char is punctuation
-
-// define loop var as ref type to change char in string
-for (char &c : str)
+// for range statement: iterate through elems in a given sequence
+for (char c : s)
+    ...
+for (char &c : s) // change char in string
     c = toupper(c); // uppercase
 
-// index: str[i]
-// 0 <= i <= str.size() - 1
-// i is unsigned string::size_type
-// decltype(str.size()) i = 0;
-// string::size_type i = 0;
-// str must not be empty:
-// !str.empty()
-for(decltype(str.size()) i = 0; i != str.size(); i = i + 1)
+// ispunct(c): check if char is punctuation, i.e. ',', '!', ...
+// isspace(c): check if char is space
+
+// subscript operator: s[n]
+// !s.empty()
+// s.size(): unsigned std::string::size_type
+// s.size() < -1 => 2^32 - 1 for 32-bit int
+// n: unsigned std::string::size_type
+// 0 <= n < s.size()
+for(decltype(s.size()) i = 0; i != s.size(); i = i + 1)
     ...
 
-// isspace(char), true if char is space
+// iterator
 \end{verbatim}
 \end{definition}
 
 \section{vector}
 \begin{definition}[vector]
-    Collection or container of objects with same type.
+    Variable-length sequence of objects of a given type.
     \begin{verbatim}
-#include <vector>
-std::vector<type> v;
+#include <vector> // class template
+// using std::vector;
 
-// vector is a class template
-// template: class or function templates
-// template is instantiation that the compiler use to create classes or functions
+std::vector<int> v; // empty vector
+std::vector<int> v = {val_1, ..., val_n};
+std::vector<int> v(size, val); // {val, ..., val}
+v.push_back(elem) // append elem
 
-// initialization: list initialize or elemcount
-std::vector<int> v(n);               // n eles = 0
-std::vector<int> v(n, val);          // n eles = val
-std::vector<int> v{val1, ..., valn};
-// list initialize, ele1 = val1, ... , elen = valn if possible
-
-// if list initialization is not possible,
-// the compiler looks other ways to initialize the object from the given value.
-std::vector<string> v{n};
-// n is not string, list initialize false, use elemcount instead: n eles = empty
-std::vector<string> v{n, "str"}
-// list initialize false, use elemcount instead: n eles = "str"
-
-// add elemto vec
-// v.push_back(ele)
-
-// elemin vec
-for(type &r : v)
-    ... // assign new value
-for(type i : v)
+// for range statement
+for(auto &r : v)
     ...
-
-v.empty(), true if vec is empty
-v.size(), return type: vector<type>::size_type
 
 // compare
 
-// index
+// subscript operator
 // !v.empty()
+// v.size(): unsigned std::vector<int>::size_type
 // 0, ..., v.size() - 1
 \end{verbatim}
 \end{definition}
 
 \section{Iterators}
 \begin{definition}[iterator]
-    Access the elemin string or vector.
+    Access the elem in container. General mechanism, all lib containers have iterator.
     \begin{verbatim}
-auto b = v.begin(); // denotes first ele
-auto e = v.end();   // denotes one after the last ele
+auto b = v.begin(); // return iterator: denotes first elem
+auto e = v.end();   // return iterator: denotes one after the last elem
 
-// for empty vec
-// b == c
+// deref
+*b // return ref to elem obj
+b->mem // arrow operator: (*b).mem, i.e. b->empty()
 
-// access ele
-// *b = toupper(*b);
+// operation
+++b // next elem
+--e // previous elem
+b != e
 
-// move iterator
-++b // advance the iterator by one position
---e // previous ele
-
-// compare iterators with == or !=
-for(auto it = v.begin(); it != v.end(); ++it)
-    ...
-
-// iterator type
-// std::vector<int>::iterator
-// std::string::iterator
-// std::vector<int>::const_iterator
-// cannot write elemin vec
-// std::string::const_iterator
-// cannot write char in string
-auto b = v.cbegin(); // const_iterator
-auto e = v.cend();
-
-// deref and member access
-// (*it).mem_func() <=> it->mem_func()
-
-// iterator arithmetic for vector and string
-// it +/- n
-// it1 <= or >= it2: ele1 appear before or after ele2
+// for vector and string iterators
 auto mid = b + (e - b) / 2;
+b <= e
 \end{verbatim}
 \end{definition}
 
