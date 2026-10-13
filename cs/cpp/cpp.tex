@@ -12,43 +12,28 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-C++ is a high-level, statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
+C++ is a statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
 
-\subsection{IO}
 \begin{definition}[IO objects]~
-    \begin{itemize}
-        \item \verb|iostream| : std lib
-        \item \verb|std::cin| : \verb|istream| type
-        \item \verb|std::cout| : \verb|ostream| type
-    \end{itemize}
     \begin{verbatim}
-std::cout << "str";         // return object: std::cout
+#include <iostream>
+// using std::cout, std::cin;
+std::cout << "str"; // return left operand: std::cout
+std::cin  >> v1;    // return left operand: std::cin
+// IO operators: left associative
 std::cout << "str" << "\n"; // (std::cout << "str") << "\n";
-
-int v1 = 0, v2 = 0;
-std::cin >> v1;            // return object: std::cin
-std::cin >> v1 >> v2;      // (std::cin >> v1) >> v2;
+std::cin  >> v1 >> v2;      // (std::cin >> v1) >> v2;
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[namespace]~
-    \begin{verbatim}
-namespace::name // :: scope operator
-
-// headers file should not include using declarations
-using namespace::name;
-\end{verbatim}
-\end{definition}
-
-\subsection{Comments}
 \begin{definition}[comment]~
     \begin{verbatim}
-// single line, best way
-/* paired, can not nest */
+// single line
+/* paired can not nest */
 
 std::cout << /* "*/" /* "/*" */;
-// remove everything between */ and closest /* before
 // std::cout << " /* ";
+// remove everything between */ and /*
 \end{verbatim}
 \end{definition}
 
@@ -60,24 +45,20 @@ while(cond)
     statements;
 }
 
-while(std::cin >> val)
-// std::cin >> val return left operand: std::cin
+while(std::cin >> v)
+    ...
 // istream become invalid:
-// 1. reading a non-integer val: 1 2 3.1
-// 2. end-of-file: Ctrl-Z then RET (windows), or Ctrl-D then RET (linux)
+// reading a non-integer val: 1 2 3.1
+// end-of-file: Ctrl-Z then RET (windows), or Ctrl-D then RET (linux)
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[for]~
     \begin{verbatim}
-for (init-statement; cond; expr)
+for (init-statement; cond; expr) // loop var used locally inside for body
 {
     statements;
 }
-
-// init-statement:
-// local var used only inside for, executed only once
-// expr: executed after for body
 \end{verbatim}
 \end{definition}
 
@@ -95,138 +76,98 @@ else
 {
     statements;
 }
-
-if (std::cin >> val)
-    std::cout << val << "\n";
-// 1 2 3 RET => 1
 \end{verbatim}
 \end{definition}
 
 \subsection{Class}
 \begin{definition}[class]
-    Define data structures:
-    \begin{itemize}
-        \item name
-        \item defined
-        \item operation
-    \end{itemize}
-    \begin{verbatim}
-// #include <std lib>
-// #include "header.h"
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[member function]~
-    \begin{verbatim}
-data.func()
-\end{verbatim}
+    Define data structures.
 \end{definition}
 
 \section{Types}
 \begin{definition}[arithmetic types]~
     \begin{verbatim}
-char        // '\0': null, '\t': horizontal tab, '\n': newline
+char // '\0': null, '\t': horizontal tab, '\n': newline
 #include <string>
 std::string
-int         // unsigned: >= 0
-bool        // true for 1 and false for 0
+int  // unsigned int >= 0
+bool // true 1 and false 0
 double
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[object]
-    An object is a region of memory that contain data and has a type.
+    Memory region that contains data with type.
 \end{definition}
 
-\begin{definition}[declaration and definition]~
+\begin{definition}[decl and def]~
     \begin{verbatim}
-// define: allocate storage and defined only once
+// def: allocate storage and define only once
+// decl: specify type and var names
+// headers should have guards to be safe to be included multiple times
 // source.cpp
 int i = 10;
-
-// declare: specify type and var names
-// headers should have guards to be safe to be included multiple times
-// header.h
-#ifndef HEADER  // true if CLASSNAME not defined
-#define HEADER  // preprocessor vars are all uppercase
+// source.h
+#ifndef SOURCE_H
+#define SOURCE_H
 extern int i;
 #endif
-
 // main.cpp
 #include "header.h"
 i ...
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[scope]
-    Delimited by \verb|{}|.
-    \begin{verbatim}
-// vars defined outside any function body are initialized to 0
-int val; // 0
-int main ()
-{
-    int val = 1; // block scope
-    // ::val == 0 global scope
-    ...
-}
-
-// var: lowercase
-// class: first letter uppercase
-\end{verbatim}
-\end{definition}
-
 \begin{definition}[bit]~
-    \begin{verbatim}
-bit      combination         total         number
-1 bit:   0, 1;               2     = 2^1;  0, 1
-2 bits:  00, 01, 10, 11;     2*2   = 2^2;  0, 1, 2, 3
-3 bits:  000, 001, ..., 111; 2*2*2 = 2^3;  0, 1, 2, 3, ..., 7
-32 bits:                           = 2^32; 0, 1, 2, ..., 2^32 - 1
-\end{verbatim}
+    \begin{center}
+        \begin{tabular}{l l l l l}
+            \hline
+            bit & combination      & total    & \verb|unsigned|       & \verb|int|                           \\
+            \hline
+            1   & $0, 1$           & $2^{1}$  & $0, 1$                & $0, 1$                               \\
+            2   & $00, 01, 10, 11$ & $2^{2}$  & $0, 1, 2, 3$          & $0, 1, -2, -1$                       \\
+            ... &                  &          &                       &                                      \\
+            32  &                  & $2^{32}$ & $0, 1, ..., 2^{32}-1$ & $0, ..., 2^{16}-1, -2^{16}, ..., -1$ \\
+            \hline
+        \end{tabular}
+    \end{center}
 \end{definition}
 
 \begin{definition}[type conversion]~
-    \label{def:type-conversion}
     \begin{verbatim}
-unsigned i = -1; // 2^32 - 1 for 32-bit int
-
-// when mix int and unsigned, int is automatically converted to unsigned
-unsigned a = 1;
-int b = -1;
+// int => unsigned
+unsigned i = -1;              // -1 = 2^32 - 1 for 32-bit unsigned int
+#include <cmath>
+unsigned i = std::pow(2, 32); // 2^32 = 0 for 32-bit unsigned int
+unsigned a = 1; int b = -1;
 a + b // 1 + (2^32 - 1) = 2^32 = 0
-a * b // 1 * (2^32 - 1)
-a < b // 1 < (2^32 - 1), always true
+a < b // 1 < (2^32 - 1) true
 \end{verbatim}
 \end{definition}
 
 \subsection{Compound Types}
 \begin{definition}[reference]
-    A reference defines an alias for an object.
+    A ref defines an alias for an object.
     \begin{verbatim}
 int i = 0;
 int &ref = i;
-// ref must be bound only to an int object, not a literal
-// error: int &ref = 1;
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[pointer]
     A pointer is an object that holds the address of another object.
     \begin{verbatim}
-int i = 0, j = 1;
-int *p, *p2;
-p = &i;      // p holds the address of i
-*p = 2;      // return the object i to which p points
-p = nullptr; // or p = 0, null pointer, not bound to any object
-p = p2;      // copy address
-p2 = &j;     // p value not change
+int i = 0;
+int *p = &i; // p holds the address of i
+*p           // return the object i
+p = nullptr; // null pointer: not bound to any object
+p = 0;
 
-// pointer to pointer to ...
-int **pp;    // * indicate pointer level
-pp = &p;
+// pointer to pointer
+int **pp = &p; // * indicate pointer level
 
 // ref to pointer
-int *&ref = p; // & => ref is reference, * => ref refers to pointer type
+int *&ref = p; // refer to int*
 \end{verbatim}
 \end{definition}
 
@@ -237,7 +178,7 @@ int *&ref = p; // & => ref is reference, * => ref refers to pointer type
 // const must be initialized
 const int i = 1;
 
-// const var local to a file by default
+// const var is local to file by default
 // must specify extern to be used in other files
 // source.cpp
 extern const i = 10;
@@ -512,6 +453,50 @@ for (int_array *p = a; p != a + rows; ++p)
 \end{definition}
 
 \section{Exprs}
+\begin{definition}[expression]
+    Composed of operators and operands.
+    \begin{verbatim}
+// unary operator: act one one operand
+// & address-of
+// * dereference
+
+// binary operator: act on two operands1
+// == equality
+// * multiplication
+
+// overloaded operator
+// define operator in class
+
+// lvalue and rvalue
+// lvalue: can be assignment
+// rvalue: cannot be assignment
+// lvalue = ...                   return left-hand operand as lvalue
+// address-of &lvalue             return a pointer to lvalue as rvalue
+// deref * and subscript operator return lvalue
+// ++iterator or --iterator       return lvalue
+// decltype(lvalue)               return ref
+// decltype(rvalue)               return the exact type of rvalue
+decltype(*p) // int&
+decltype(&i) // int*
+decltype(&p) // int**
+
+// compound expr with two or more operators
+// precedence and associativity define how operands grouped
+// () force grouping
+
+
+\end{verbatim}
+\end{definition}
+
+\section{Statement}
+
+\section{Function}
+\begin{definition}[func]
+    Block of code with name.
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
 
 \printbibliography
 \end{document}
