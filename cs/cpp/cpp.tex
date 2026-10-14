@@ -131,6 +131,7 @@ i ...
             \hline
         \end{tabular}
     \end{center}
+    1 byte = 8 bits
 \end{definition}
 
 \begin{definition}[type conversion]~
@@ -499,6 +500,7 @@ m % (-n) // -(m % n)
 // return bool val
 // 0 return false
 // non-zero return true
+// guarantee eval order
 expr1 && expr2 // eval expr2 if and only if expr1 is true
 expr1 || expr2 // eval expr2 if and only if expr1 is false
 // precedence:
@@ -544,10 +546,72 @@ cond ? expr1 : expr2;
 cond ? expr1 : cond ? expr2 : expr3
 // right associative
 // low precedence, need ()
+
+// bitwise operator
+// hardware
+
+// shift operator (IO operator)
+// left associative
+// precedence:
+1. arithmetic operator
+2. IO operator
+3. relational, assignment, conditional operator
+
+// sizeof operator
+// right associative
+// return constexpr size_t in byte
+// 1 byte = 8 bits
+sizeof(type)
+sizeof(expr)
+// array
+sizeof(a) // sizeof(*a) * size
+
+// comma operator
+// guarantee eval order from left to right
+// lowest precedence
+// expr1, expr2
+// return expr2 lvalue or rvalue
+for (int v1=..., v2=...; cond; expr1, expr2)
+    ...
+\end{verbatim}
+\end{definition}
+
+\subsection{Type conversion}
+\begin{definition}[type conversion]~
+    \begin{verbatim}
+// implicit conversion
+// arithmetic conversion
+// integer promotion
+// unsigned type
+// array to pointer conversion
+// conversion to bool
+// conversion to const
+
+// explicit conversion
+// static_cast<type>(expr)
+int i = 1, j = 2;
+// double k = i / j; // 0
+double k = static_cast<double>(i) / j; // 0.5
+// const_cast: remove low-level const
+// reinterpret_cast: bit-pattern of operands
+// old-style cast
+// type (expr);
+// (type) expr;
 \end{verbatim}
 \end{definition}
 
 \section{Statement}
+\begin{definition}[statement]~
+    \begin{verbatim}
+// simple statement
+// expr statement
+; // null statement
+// compound statement (block, scope)
+//
+
+// flow-of-control statement
+\end{verbatim}
+\end{definition}
 
 \section{Function}
 \begin{definition}[func]
