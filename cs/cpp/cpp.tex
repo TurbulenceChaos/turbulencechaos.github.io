@@ -159,7 +159,7 @@ int &ref = i;
     \begin{verbatim}
 int i = 0;
 int *p = &i; // p holds the address of i
-*p           // return the object i
+*p           // return object i lvalue
 p = nullptr; // null pointer: not bound to any object
 p = 0;
 
@@ -265,15 +265,13 @@ decltype(expr) var
 
 \subsection{Data Structure}
 \begin{definition}[structure]
-    A data structure is a way to group together replated data elements and for using those data.
+    A data structure is a way to group data elements.
     \begin{verbatim}
-// class is ordinarily defined outside functions, usually in className.h
-struct className
+// Ordinarily defined outside functions in ClassName.h
+struct ClassName
 {
     statements;
 }; // must end with ;
-
-className x, *y;
 \end{verbatim}
 \end{definition}
 
@@ -351,7 +349,7 @@ for(auto &r : v)
 \end{verbatim}
 \end{definition}
 
-\section{Iterators}
+\subsection{Iterators}
 \begin{definition}[iterator]
     Access the elem in container. General mechanism, all lib containers have iterator.
     \begin{verbatim}
@@ -481,10 +479,71 @@ decltype(&i) // int*
 decltype(&p) // int**
 
 // compound expr with two or more operators
-// precedence and associativity define how operands grouped
+// precedence:
+// operands of operators with higher precedence group tightly than
+// operands of operators at lower precedence
+// associativity: group operands with same precedence
+// left associative: operators with same precedence group from left-most to right
+// right associative: operators with same precedence group from right-most to left
 // () force grouping
 
+// arithmetic operator
+// left associative
+// return rvalue
+// reminder: int % int
+// return same sign as m
+(-m) % n // -(m % n)
+m % (-n) // -(m % n)
 
+// logical and relational operator
+// return bool val
+// 0 return false
+// non-zero return true
+expr1 && expr2 // eval expr2 if and only if expr1 is true
+expr1 || expr2 // eval expr2 if and only if expr1 is false
+// precedence:
+// right associative
+// 1. !
+// left associative
+// 2. <=, >=
+// 3. ==, !=
+// 4. &&
+// 5. ||
+i != j < k // i != (j < k)
+
+// assignment operator
+// low precedence
+// right associative
+// left-hand operand: a modifiable lvalue
+// return left-hand operand lvalue
+// compound assignment operator
+// *=, /=, %=
+a *= b;    // compound assignment: a eval only once
+a = a * b; // ordinary assignment: a eval twice
+
+// increment and decrement operator
+// require lvalue operand
+// prefix:  increment operand and return the changed object as lvalue
+// postfix: increment operand and return object's original value as rvalue
+// use postfix only when necessary
+// precedence: ++-- > dereference
+*b++ // *(b++)
+
+// evaluation order
+
+// member access operator
+p->mem => (*p).mem
+// precedence: . > dereference
+pointer-> return lvalue
+.mem return lvalue or rvalue same as mem
+
+// conditional operator
+cond ? expr1 : expr2;
+// return lvalue if both expr1 and expr2 are lvalue
+// otherwise return rvalue
+cond ? expr1 : cond ? expr2 : expr3
+// right associative
+// low precedence, need ()
 \end{verbatim}
 \end{definition}
 
