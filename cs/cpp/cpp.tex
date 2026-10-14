@@ -12,17 +12,25 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-C++ is a statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
+\begin{definition}[C++]
+    C++ is a statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
+\end{definition}
 
 \begin{definition}[IO objects]~
     \begin{verbatim}
 #include <iostream>
 // using std::cout, std::cin;
 std::cout << "str"; // return left operand: std::cout
-std::cin  >> v1;    // return left operand: std::cin
+std::cin  >> v;     // return left operand: std::cin
 // IO operators: left associative
 std::cout << "str" << "\n"; // (std::cout << "str") << "\n";
 std::cin  >> v1 >> v2;      // (std::cin >> v1) >> v2;
+
+while(std::cin >> v)
+    ...
+// istream become invalid when
+// 1. reading a non-integer val: 1 2 3.1
+// 2. end-of-file: Ctrl-z RET (Windows), Ctrl-d RET (Linux)
 \end{verbatim}
 \end{definition}
 
@@ -35,53 +43,6 @@ std::cout << /* "*/" /* "/*" */;
 // std::cout << " /* ";
 // remove everything between */ and /*
 \end{verbatim}
-\end{definition}
-
-\subsection{Flow of Control}
-\begin{definition}[while]~
-    \begin{verbatim}
-while(cond)
-{
-    statements;
-}
-
-while(std::cin >> v)
-    ...
-// istream become invalid:
-// reading a non-integer val: 1 2 3.1
-// end-of-file: Ctrl-Z then RET (windows), or Ctrl-D then RET (linux)
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[for]~
-    \begin{verbatim}
-for (init-statement; cond; expr) // loop var used locally inside for body
-{
-    statements;
-}
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[if]~
-    \begin{verbatim}
-if (cond)
-{
-    statements;
-}
-else if (cond)
-{
-    statements;
-}
-else
-{
-    statements;
-}
-\end{verbatim}
-\end{definition}
-
-\subsection{Class}
-\begin{definition}[class]
-    Define data structures.
 \end{definition}
 
 \section{Types}
@@ -607,9 +568,97 @@ double k = static_cast<double>(i) / j; // 0.5
 // expr statement
 ; // null statement
 // compound statement (block, scope)
-//
+// {} empty block is equivalent to ; null statement
 
 // flow-of-control statement
+// conditional statements
+// if statement
+if (cond)
+    statement;
+else if (cond)
+    statement;
+else
+    statement;
+
+// switch statement
+switch (v)
+{
+    case expr1: // constexpr
+        statement;
+        break;
+    case expr2:
+        statement;
+        break;
+    ...
+    default:   // no case match
+        statement;
+        break;
+}
+
+switch (v)
+{
+    // any of expr1-n do statement
+    case expr1:
+    case expr2:
+    ...
+    case exprn:
+        statement;
+        break;
+    default:
+        statement;
+        break;
+}
+
+// iterative statement
+while(cond)
+    statement;
+
+// traditional for statement
+for (init-statement; cond; expr) // loop var used locally inside for body
+    statement;
+
+// range for statement
+// iterate through elems of a container or sequence
+for (declaration : sequence) // ref to write elem
+    statement;
+
+// do while statement
+do
+    statement
+while (cond);
+
+// jump statements:
+// break statement
+break; // terminate nearest loop or switch
+
+// continue statement
+// terminate current iteration of nearest loop and begin next iteration
+continue;
+
+// goto statement
+label:
+    ...
+goto label;
+
+// statement scope
+// vars defined in control structure are only visible within scope
+\end{verbatim}
+\end{definition}
+
+\subsection{Try and Exception}
+\begin{definition}
+    \begin{verbatim}[exception]~
+// try block
+try
+{
+    throw std::runtime_error("ERROR MESSAGE");
+}
+catch (std::runtime_error e)
+{
+    std::cout << e.what() << std::endl; // ERROR MESSAGE
+}
+
+// exceptions
 \end{verbatim}
 \end{definition}
 
@@ -617,10 +666,29 @@ double k = static_cast<double>(i) / j; // 0.5
 \begin{definition}[func]
     Block of code with name.
     \begin{verbatim}
+type func(params) // each param with single declarator: int v1, int v2, ...
+{
+    statement;
+    return r;
+}
 
+// automatic objects
+// params destroyed after function call
+
+// static object
+// lifetime continues after function call
+static type v = ...;
+
+// func decl
+// a function must be declared before use
+// semicolon replace the func body in declaration
 \end{verbatim}
+\end{definition}
+
+\section{class}
+\begin{definition}[class]
+    Define data structures.
 \end{definition}
 
 \printbibliography
 \end{document}
-
