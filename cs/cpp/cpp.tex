@@ -595,20 +595,6 @@ switch (v)
         break;
 }
 
-switch (v)
-{
-    // any of expr1-n do statement
-    case expr1:
-    case expr2:
-    ...
-    case exprn:
-        statement;
-        break;
-    default:
-        statement;
-        break;
-}
-
 // iterative statement
 while(cond)
     statement;
@@ -682,12 +668,64 @@ static type v = ...;
 // func decl
 // a function must be declared before use
 // semicolon replace the func body in declaration
+// func.h
+func_decl
+// func.cpp
+// header file that decls func should be included in source file that defines func
+#include "func.h"
+func_def
+// main.cpp
+#include "func.h"
+
+// separate compilation
+// g++ -c compile and assemble but do not link, generate object file
+g++ -c main.cpp   // main.o
+g++ -c func.cpp   // func.o
+g++ main.o func.o // link object files, generate a.out
+
+// param and argument
+// param are initialized in the same way that vars are initialized
+param is ref     => called by ref, param is an alias for argument to which it is bound
+param is not ref => called by value, argument value is copied
+// pointer param
+// copy pointer value
+void reset(int* p)
+{
+    *p = 2; // change value of object to which p point
+    p = 0;  // only change the local copy of p, argument is unchanged
+}
+
+int i = 1;
+reset(&i); // i = 2
+
+// C use pointer param
+// C++ often use reference param instead
+// ref param
+void reset(int& r)
+{
+    r = 2;
+}
+
+int i = 1;
+reset(i); // i = 2
+
+// ref param for large containers
+void func(const std::string &r) {...}
+// ref param for multiple results return
+
+// const param
+// argument -> param: top-level const of argument is ignored
+// argument -> pointer or ref param: low-level const of argument cannot be ignored
+// use ref to const param
+
+// array param
+
 \end{verbatim}
 \end{definition}
 
 \section{class}
 \begin{definition}[class]
-    Define data structures.
+    Define abstract data type.
 \end{definition}
 
 \printbibliography
