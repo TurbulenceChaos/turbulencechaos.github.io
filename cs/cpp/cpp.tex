@@ -669,13 +669,14 @@ static type v = ...;
 // a function must be declared before use
 // semicolon replace the func body in declaration
 // func.h
-func_decl
+type func(params);
 // func.cpp
 // header file that decls func should be included in source file that defines func
 #include "func.h"
-func_def
+type func(params) {...}
 // main.cpp
 #include "func.h"
+func(arguments);
 
 // separate compilation
 // g++ -c compile and assemble but do not link, generate object file
@@ -710,16 +711,52 @@ int i = 1;
 reset(i); // i = 2
 
 // ref param for large containers
-void func(const std::string &r) {...}
+void func(const std::string &r);
 // ref param for multiple results return
 
 // const param
 // argument -> param: top-level const of argument is ignored
 // argument -> pointer or ref param: low-level const of argument cannot be ignored
-// use ref to const param
+// when a func do not need write access to argument object,
+// use ref or pointer to const param for std::string, std::vector, and array
 
 // array param
+// cannot copy array
+// array converted to a pointer to the first elem in array
+void func(const int*);
+// size of array
+// C-style char string: stop when seeing null char
+void func(const char*);
+// std lib
+void func(const int *b, const int *e);
+// define a param that indicates the size of array
+void func(const int *, size_t size);
 
+// array ref param
+void func(int (&a)[dim]); // param is ref to array of n ints
+
+// multidimensional array argument
+// subsequent dim must be specified
+void print(int (*matrix)[dim], int rows, ...)
+// matrix points to first elem in array whose elems are array of 10 ints
+
+// varying number of params
+// initializer_list params
+
+\end{verbatim}
+\end{definition}
+
+\subsection{main}
+\begin{definition}[command-line options to main]~
+    \begin{verbatim}
+int main(int argc, char *argv[]) {...}
+int main(int argc, char **argv) {...}
+
+// argc: size of argv
+// argv[0]: program name
+// argv[1]: option1
+// argv[2]: option2
+// ...
 \end{verbatim}
 \end{definition}
 
