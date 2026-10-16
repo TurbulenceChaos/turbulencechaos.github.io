@@ -229,7 +229,7 @@ decltype(expr) var
 \begin{definition}[structure]
     A data structure is a way to group data elements.
     \begin{verbatim}
-// Ordinarily defined outside functions in ClassName.h
+// ordinarily defined outside functions in ClassName.h
 struct ClassName
 {
     statements;
@@ -628,8 +628,8 @@ goto label;
 \end{definition}
 
 \subsection{Try and Exception}
-\begin{definition}
-    \begin{verbatim}[exception]~
+\begin{definition}[exception]~
+    \begin{verbatim}
 // try block
 try
 {
@@ -667,7 +667,7 @@ static type v = ...;
 // func.h
 type func(params);
 // func.cpp
-// header file that decls func should be included in source file that defines func
+// header that decls func should be included in source file that defines func
 #include "func.h"
 type func(params) {...}
 // main.cpp
@@ -755,6 +755,68 @@ void func(params, ...)
 \end{verbatim}
 \end{definition}
 
+\subsection{Default Arguments}
+\begin{definition}[default argument]
+    Func with default argument can be called with without that argument.
+    \begin{verbatim}
+// func.h
+// default arguments ordinarily should be specified with func declaration in header
+type func(params, def_defaults_for_params);
+\end{verbatim}
+\end{definition}
+
+\subsection{inline and constexpr Func}
+\begin{definition}[inline func]
+    Calling a small func is slower than equivalent expr.
+    A inline function is expanded in line at each call to avoid func call overhead.
+    \begin{verbatim}
+inline type func(params);
+// inline is only a request to compiler.
+// The compiler may choose to this request.
+
+// inline and constexpr func defined in header
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[constexpr func]
+    Can be used in constant expression.
+    \begin{verbatim}
+constexpr type func(params);
+// implicitly inline
+// replace a call with return value
+// return type must be literal type
+// func body contains exactly one return statement
+\end{verbatim}
+\end{definition}
+
+\subsection{Debugging}
+\begin{definition}[assert and NDEBUG]
+    Debugging code is executed only during developing.
+    \begin{verbatim}
+// #define NDEBUG // turn off assert, defined before #include <cassert>
+#include <cassert>
+assert(expr); // eval expr. if expr is false, write a message and terminate program.
+
+// preprocessor macro
+// preprocessor names are managed by preprocessor not compiler
+// use preprocessor name directly and do not provide using decl
+
+// conditional debugging using NDEBUG
+void func(int i)
+{
+#ifndef NDEBUG
+    std::cerr << __func__ << ": i is " << i << std::endl;
+#endif
+}
+// local static defined by compiler
+// __func__: func name
+// __FILE__: file name
+// __LINE__: current line number
+// __TIME__: compiled time
+// __DATE__: compiled date
+\end{verbatim}
+\end{definition}
+
 \subsection{main}
 \begin{definition}[command-line options to main]~
     \begin{verbatim}
@@ -823,11 +885,64 @@ func().mem
 \subsection{Overloaded Funcs}
 \begin{definition}[overload]
     Same name funcs with different params list in one scope.
+    \begin{verbatim}
+// error for two funcs to differ only in terms of return types
+
+// top-level const is indistinguishable from one without a top-level const
+// except low-level const
+// const_cast
+
+// func matching
+// 1. candidate funcs: all funcs
+// 2. viable funcs: arguments match params
+// 3. best match: exact match is better than argument type conversion
+// argument type conversion:
+\end{verbatim}
+\end{definition}
+
+\subsection{Pointers to Funcs}
+\begin{definition}[func pointer]
+    Function pointer denotes func rather than object.
+    It points to a function type determined by return type and params types.
+    \begin{verbatim}
+type func(params);
+type (*p)(params);
+
+p = func;        // func is automatically converted to pointer
+// p = &func;    // equivalent assignment
+p(params);       //call func
+// (*p)(params); // equivalent call
+p = nullptr;     // point to no func
+// p = 0;
+
+// func pointer as param
+type func(params, type p(params));
+// type func(params, type (*p)(params)); // equivalent decl
+
+// typedef
+typedef type F(params);      // func type
+using F = type(params);      // equivalent func type
+typedef decltype(func) F;    // equivalent func type
+
+typedef type (*PF)(params);  // pointer to func type
+using PF = type(*) (params); // equivalent pointer to func type
+typedef decltype(func) *PF;  // equivalent pointer to func type
+
+PF p;
+F *p;
+
+// def func return pointer to func
+PF func(params);
+F *func(parmas);
+type (*func(params)) (params); // directly decl
+auto func(params) -> type (*) (params);
+decltype(func2) *func(params);
+\end{verbatim}
 \end{definition}
 
 \section{class}
 \begin{definition}[class]
-    Define abstract data type.
+    Define abstract data type relying on the sepration of interface and implementation.
 \end{definition}
 
 \printbibliography
