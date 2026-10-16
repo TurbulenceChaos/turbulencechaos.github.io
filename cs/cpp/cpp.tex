@@ -345,7 +345,7 @@ int a[size] = {};
 // cannot copy
 // error: a2 = a1;
 
-// pointers and ref
+// pointers and ref to array
 int *p[size]; // array of n pointers to int
 int (*p)[size] = &a; // pointer to array of n int
 int (&r)[size] = a;  // refer to array of n int
@@ -356,12 +356,7 @@ int *(&r)[size] = p; // refer to array of n pointers to int
 for (auto &r : a)
     ...
 
-// subscript operator
-\end{verbatim}
-\end{definition}
-
-\subsection{Pointers and Arrays}
-\begin{verbatim}
+// pointer to array elem
 int *p = a;  // a automatically convert to &a[0]
 auto p = a;  // p = &a[0]
 decltype(a) a2 = {0, 1, 2};
@@ -381,6 +376,7 @@ strcmp(c1, c2)    // 0 for c1 == c2; 1 for c1 > c2; -1 for c1 < c2
 // initialize vector with array {a[i], ..., a[j]}
 std::vector<int> v(a + i, a + j);
 \end{verbatim}
+\end{definition}
 
 \subsection{Arrays of Arrays}
 \begin{definition}[multidimensional array]~
@@ -685,7 +681,8 @@ g++ -c func.cpp   // func.o
 g++ main.o func.o // link object files, generate a.out
 
 // param and argument
-// param are initialized in the same way that vars are initialized
+// param are initialized in the same way that vars are initialized:
+// type param = argument;
 param is ref     => called by ref, param is an alias for argument to which it is bound
 param is not ref => called by value, argument value is copied
 // pointer param
@@ -741,8 +738,20 @@ void print(int (*matrix)[dim], int rows, ...)
 // matrix points to first elem in array whose elems are array of 10 ints
 
 // varying number of params
-// initializer_list params
+// std::initializer_list: template type
+void func(params, std::initializer_list<T> il);
+// number of arguments of a single type in il
+// elems in il are always const
+void error_msg(std::initializer_list<std::string> il)
+{
+    for (auto b = il.begin(); b != il.end(); ++b)
+        std::cout << *b << " ";
+}
 
+error_msg({"FUNC", s1, s2});
+
+// ellipsis params
+void func(params, ...)
 \end{verbatim}
 \end{definition}
 
@@ -758,6 +767,62 @@ int main(int argc, char **argv) {...}
 // argv[2]: option2
 // ...
 \end{verbatim}
+\end{definition}
+
+\subsection{return}
+\begin{definition}[return]
+    Terminate func and return control to the point from which func was called.
+    Analogous to the use of break statement to exit loop.
+    \begin{verbatim}
+return; // for void func()
+return expr; // type tmp = expr;
+// values are returned in the same way as vars and parameters are initialized
+
+// return ref: call is lvalue
+// other return type: rvalue
+int& func(int& r)
+{
+    return r; // int &tmp = r
+}
+int i = 0;
+func(i) = 1; // call is lvalue
+
+// never return ref or pointer to func local var
+
+// return list
+std::vector<int> func()
+{
+    return {1, 2, 3};
+}
+
+// return pointer to array
+type (*func(params)) [dim]; // return pointer to array of n type elems
+// like int (*p)[3] = &a;
+// use typedef
+typedef int arrayT[dim];    // synonym to array of n ints
+using arrayT = int[dim];
+arrayT* func(params);
+// use decltype
+int a[] = {1,2,3};
+decltype(a) *func(params);
+// use trailing return type
+auto func(params) -> int(*)[dim];
+
+// call operator
+// precedence: same as dot and arrow operator
+// left associative
+func().mem
+\end{verbatim}
+\end{definition}
+
+\subsection{Recursion}
+\begin{definition}[recursion]
+    A function that calls itself is a recursive function.
+\end{definition}
+
+\subsection{Overloaded Funcs}
+\begin{definition}[overload]
+    Same name funcs with different params list in one scope.
 \end{definition}
 
 \section{class}
