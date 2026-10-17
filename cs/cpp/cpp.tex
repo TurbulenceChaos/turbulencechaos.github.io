@@ -944,8 +944,53 @@ decltype(func2) *func(params);
 \begin{definition}[class]
     Define abstract data type relying on the sepration of interface and implementation.
     \begin{verbatim}
+#include <iostream>
+#include <string>
+
 // every member must be decaled inside class
+struct Sales_data
+{
+    // members of operations on Sales_data objects
+    std::string isbn() const // make this pointer to const
+    {
+        return bookNo; // mem func may use other mems regardlass where they appear
+        // return (*this).bookNo;
+        // return this->bookNo;
+    }
+    Sales_data &combine(const Sales_data &);
+    double avg_price() const;
+
+    // data members
+    std::string bookNo;
+    unsigned units_sold = 0;
+    double revenue = 0.0;
+};
+
+// mem func defined outside class must inlcude class name
+double Sales_data::avg_price() const
+{
+    if (units_sold)
+        return revenue / units_sold;
+    else
+        return 0;
+}
+
+// nonmember Salces_data interface funcs
+Sales_data add(const Sales_data &, const Sales_data &);
+std::ostream &print(std::ostream &, const Sales_data &);
+std::istream &read(std::istream &, Sales_data &);
+
+// this pointer
+// this is by default const pointer to nonconst
+// implicitly available inside all member funcs
+// hold address of object invoking that func
+Sales_data total;
+total.isbn() // implicitly return total.bookNo
+// return (*this).bookNo = total.bookNo
+
 // const mem func
+// make this pointer to const
+type mem(params) const;
 \end{verbatim}
 \end{definition}
 
