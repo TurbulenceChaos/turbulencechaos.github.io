@@ -946,119 +946,49 @@ decltype(func2) *func(params);
     \small
     \begin{verbatim}
 // ClassName.h
-// class decl
-// class-related funcs decl
-
-#include <iostream>
-#include <string>
-
-// every member must be decaled inside class
-struct Sales_data
+// decl class and class-related funcs
+// decl each mem inside class
+class ClassName // default access-level: class private, struct public
 {
-    // constructors
-    Sales_data() = default; // define default constructor
+    // allow other class or func to access nonpublic mems
+    friend type func(params);
+
+// encapsulation of access specifier
+public: // interface
+    // def type mem
+    typedef type T; // using T = type;
+    // user usage: ClassName::T
+
+    // def mem funcs as constructors to initialize data mem
+    // no return type
+    ClassName() = default; // default constructor
     // constructor initializer list
-    Sales_data(const std::string &s) : bookNo(s) {}
-    // Sales_data(const std::string &s) : bookNo(s), units_sold(0), revenue(0) {}
-    Sales_data(const std::string &s, unsigned n, double p) : bookNo(s), units_sold(n), revenue(p * n) {}
-    Sales_data(std::istream &);
+    ClassName(params) : mem_var1(expr), mem_var2(expr), ... {}
+    // other mem_var intialized by in-class initializer
+    // user usage: ClassName v(arguments);
 
-    // members of operations on Sales_data objects
-    std::string isbn() const // make this pointer to const
+    // operations on ClassName objects
+    // this pointer is const pointer implicitly available inside all mem funcs,
+    // holding address of nonconst object invoking that mem
+    type func(params) const // make this pointer to const object
     {
-        return bookNo; // mem func may use other mems regardlass where they appear
-        // return (*this).bookNo;
-        // return this->bookNo;
+        return mem_var; // can use other mems regardlass where they appear
+        // return (*this).mem_var;
+        // return this->mem_var;
     }
-    Sales_data &combine(const Sales_data &);
-    double avg_price() const;
 
-    // data members
-    std::string bookNo;
-    unsigned units_sold = 0;
-    double revenue = 0.0;
+private: // implementation
+    // data mem
+    type mem_var;
 };
 
-// nonmember Salces_data interface funcs
-Sales_data add(const Sales_data &, const Sales_data &);
-std::ostream &print(std::ostream &, const Sales_data &);
-std::istream &read(std::istream &, Sales_data &);
+// decl nonmem class-related interface funcs
 
-// this pointer
-// this is by default const pointer to nonconst
-// implicitly available inside all member funcs
-// hold address of object invoking that func
-Sales_data total;
-total.isbn() // implicitly return total.bookNo
-// return (*this).bookNo = total.bookNo
-total.combine(trans)
-// total is bound to this
-// trans is bound to rhs
-
-// const mem func
-// make this pointer to const
-type mem(params) const;
-
-// nonmem class-related funcs
-// decled in class header
-\end{verbatim}
-
-    \begin{verbatim}
 // CalssName.cpp
 // class implementation
-
 // mem func defined outside class must inlcude class name
-double Sales_data::avg_price() const
-{
-    if (units_sold)
-        return revenue / units_sold;
-    else
-        return 0;
-}
-
-Sales_data &Sales_data::combine(const Sales_data &rhs)
-{
-    units_sold += rhs.units_sold; // total.units_sold += trans.units_sold
-    revenue += rhs.revenue;
-    return *this; // return ref to total as lvalue
-}
-
-// nonmember Salces_data interface funcs
-Sales_data add(const Sales_data &lhs, const Sales_data &rhs)
-{
-    Sales_data sum = lhs;
-    sum.combine(rhs);
-    return sum;
-}
-
-std::istream &read(std::istream &is, Sales_data &item)
-{
-    double price = 0.0;
-    is >> item.bookNo >> item.units_sold >> price;
-    item.revenue = price * item.units_sold;
-    return is;
-}
-
-std::ostream &print(std::ostream &os, const Sales_data &item)
-{
-    os << item.isbn() << " " << item.units_sold << " "
-       << item.revenue << " " << item.avg_price();
-    return os;
-}
-\end{verbatim}
-\end{definition}
-
-\subsection{Constructor}
-\begin{definition}[constructor]
-    Def mem funcs as constructors to initialize data mem.
-    \begin{verbatim}
-// same name as class
-// no return type
-
-// default constructor
-// default initialization
-// no arguments
-
+type ClassName::func(params) {...};
+// def nonmember class interface funcs
 \end{verbatim}
 \end{definition}
 
