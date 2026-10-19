@@ -208,7 +208,7 @@ p2 = p3;
 \end{definition}
 
 \begin{definition}[auto]
-    Deduce the type from the initializer at compile time.
+    Deduce type from initializer at compile time.
     \begin{verbatim}
 auto i = 1, *p = &i;   // must have initializer
 auto i = 0, pi = 3.14; // error, types must be consistent
@@ -952,10 +952,13 @@ class ClassName // default access-level: class private, struct public
 {
     // allow other class or func to access nonpublic mems
     friend type func(params);
+    friend class OtherClass;
+    // friend type OtherClass::mem(params); // make OtherClass mem friend
 
 // encapsulation of access specifier
 public: // interface
     // def type mem
+    // should appear at class beginning
     typedef type T; // using T = type;
     // user usage: ClassName::T
 
@@ -963,23 +966,38 @@ public: // interface
     // no return type
     ClassName() = default; // default constructor
     // constructor initializer list
-    ClassName(params) : mem_var1(expr), mem_var2(expr), ... {}
+    // better to initialize in same order as mem decl
+    // avoid using mem to initialize other mem
+    ClassName(params) : mem_var1(expr), mem_var2(expr), ... {mem_func(arguments);}
+    // delegating constructor
+    ClassName(params2) : ClassName(params) {} // use previous constructor to perform initialization
     // other mem_var intialized by in-class initializer
     // user usage: ClassName v(arguments);
 
     // operations on ClassName objects
     // this pointer is const pointer implicitly available inside all mem funcs,
     // holding address of nonconst object invoking that mem
-    type func(params) const // make this pointer to const object
+    type &func(params) const // make this pointer to const object
     {
-        return mem_var; // can use other mems regardlass where they appear
-        // return (*this).mem_var;
-        // return this->mem_var;
+    	return *this; // funcs return ref are lvalue
+    }
+
+    type func(params)
+    {
+    	// mem func bodies are not processed until entire class is seen
+    	// thus can use any names defined in class regardlass where they appear
+    	return mem_var;
+    	// return (*this).mem_var;
+    	// return this->mem_var;
     }
 
 private: // implementation
     // data mem
     type mem_var;
+
+    // mutable data mem
+
+    // class type data mem
 };
 
 // decl nonmem class-related interface funcs
@@ -988,7 +1006,31 @@ private: // implementation
 // class implementation
 // mem func defined outside class must inlcude class name
 type ClassName::func(params) {...};
+ClassName::type ClassName::func(params) {...}; // return type appears before class is seen
+
 // def nonmember class interface funcs
+\end{verbatim}
+\end{definition}
+
+\subsection{Class-Type Conversion}
+\begin{definition}[converting constructor]
+\begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
+\subsection{static Class Members}
+\begin{definition}[static]
+	Associated with class.
+\begin{verbatim}
+class ClassName
+{
+    static type var;
+    static type func(params); // static keywords used only on delc inside class
+}
+
+ClassName::var = 1;
+ClassName::func(params) {...};
 \end{verbatim}
 \end{definition}
 
