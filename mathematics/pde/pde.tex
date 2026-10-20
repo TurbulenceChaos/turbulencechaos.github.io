@@ -1,12 +1,6 @@
-\documentclass{article}
-\usepackage{import}
-\import{../../template/}{article-template}
-\graphicspath{{../../images}}
-\addbibresource{../../template/library.bib}
+\documentclass{../../template/blog}
 
 \title{Partial Differential Equations}
-\author{PENG}
-\date{\today}
 
 \begin{document}
 \maketitle
@@ -531,98 +525,9 @@ For $n \geq 3$:
     \end{equation}
 \end{theorem}
 
+\section{Numerical}
 \section{Asymptotic}
-\subsection{Singular Perturbations}
-
-\section{C++}
-\subsection{Class}
-\begin{definition}[class]~
-    \begin{itemize}
-        \item C is based on functions.
-        \item C++ is object-oriented:
-        separation of abstract mathematical concepts and black-box implementation \cite{YAIR_2012_SOLVING_PDES_IN_CPP}.
-    \end{itemize}
-    \begin{verbatim}
-class ClassName
-{
-    // data mem
-    type var;
-
-public:
-    // constructor
-    // constructor is a public interface func that
-    // tells the compiler how to construct new obj and
-    // allocate memory for its data mem
-    ClassName() {}
-    // default constructor invoked when compiler encounters ClassName v;
-    ClassName(params) {var = expr; ...}
-    // reassign var = expr after default constructor, inefficient
-    ClassName(param1 = default_value, ...) : var(expr), ... {}
-    // initialization list: initialize data mem immediately with values
-    // this constructor with default value also serve as default constructor
-    // ClassName v; ClassName v(arguments);
-    // explicit conversion cast: type(expr), ((type)expr)
-    // ClassName v = argument; // implicit conversion
-    // ClassName v2(v); ClassName v2 = v; // implicit default copy constructor
-
-    // destructor
-    ~ClassName() {} // default destructor
-
-    // copy constructor
-    // initialize new obj with existing obj
-    ClassName(const ClassName &v) : var(v.var), ... {}
-
-    // assignment operator
-    const ClassName &operator=(const ClassName &v)
-    {
-        if (this != &v)
-        {
-            var = v.var;
-            ...
-        }
-        return *this;
-    }
-
-    // ClassName v1, v2;
-    // v1 = v2 = var;
-    // v1.operator=(v2.operator=(var));
-    const ClassName &operator=(type var)
-    {
-        var = v.var;
-        ...
-        return *this;
-    }
-
-    // interface mem func decl
-    // called with current obj with address stored in constant this pointer
-    type func(params) const;
-
-    // interface friend func
-    // have no current obj
-    friend type func(params);
-}
-
-type ClassName::func(params) const {...};
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[operator]~
-\begin{verbatim}
-type operatorSym(params)
-{
-    return expr;
-}
-\end{verbatim}
-\end{definition}
-
-\subsection{Template}
-\begin{definition}[template]
-    An obj with a param that has not yet been specified.
-\begin{verbatim}
-// template class
-ClassName<N> // N stands for dimension
-\end{verbatim}
-\end{definition}
+\section{Analytical}
 
 \printbibliography
 \end{document}

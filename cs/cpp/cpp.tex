@@ -1,19 +1,17 @@
-\documentclass{article}
-\usepackage{import}
-\import{../../template/}{article-template}
-\graphicspath{{../../images/}}
-\addbibresource{../../template/library.bib}
+\documentclass{../../template/blog}
 
 \title{C++}
-\author{PENG}
-\date{\today}
 
 \begin{document}
 \maketitle
 \tableofcontents
 \section{Introduction}
-\begin{definition}[C++]
-    C++ is a statically typed programming language \cite{LIPPMAN_2012_CPP_PRIMER}.
+\begin{definition}[C++]~
+    \begin{itemize}
+        \item C is based on functions.
+        \item C++ is object-oriented:
+              separation of abstract mathematical concepts and black-box implementation \cite{LIPPMAN_2012_CPP_PRIMER, YAIR_2012_SOLVING_PDES_IN_CPP}.
+    \end{itemize}.
 \end{definition}
 
 \begin{definition}[IO objects]~
@@ -942,97 +940,16 @@ decltype(func2) *func(params);
 
 \section{class}
 \begin{definition}[class]
-    Define abstract data type relying on the separation of interface and implementation.
-    \small
-    \begin{verbatim}
-// ClassName.h
-// decl class and class-related funcs
-// decl each mem inside class
-class ClassName // default access-level: class private, struct public
-{
-    // allow other class or func to access nonpublic mems
-    friend type func(params);
-    friend class OtherClass;
-    // friend type OtherClass::mem(params); // make OtherClass mem friend
-
-// encapsulation of access specifier
-public: // interface
-    // def type mem
-    // should appear at class beginning
-    typedef type T; // using T = type;
-    // user usage: ClassName::T
-
-    // def mem funcs as constructors to initialize data mem
-    // no return type
-    ClassName() = default; // default constructor
-    // constructor initializer list
-    // better to initialize in same order as mem decl
-    // avoid using mem to initialize other mem
-    ClassName(params) : mem_var1(expr), mem_var2(expr), ... {mem_func(arguments);}
-    // delegating constructor
-    ClassName(params2) : ClassName(params) {} // use previous constructor to perform initialization
-    // other mem_var intialized by in-class initializer
-    // user usage: ClassName v(arguments);
-
-    // operations on ClassName objects
-    // this pointer is const pointer implicitly available inside all mem funcs,
-    // holding address of nonconst object invoking that mem
-    type &func(params) const // make this pointer to const object
-    {
-    	return *this; // funcs return ref are lvalue
-    }
-
-    type func(params)
-    {
-    	// mem func bodies are not processed until entire class is seen
-    	// thus can use any names defined in class regardlass where they appear
-    	return mem_var;
-    	// return (*this).mem_var;
-    	// return this->mem_var;
-    }
-
-private: // implementation
-    // data mem
-    type mem_var;
-
-    // mutable data mem
-
-    // class type data mem
-};
-
-// decl nonmem class-related interface funcs
-
-// CalssName.cpp
-// class implementation
-// mem func defined outside class must inlcude class name
-type ClassName::func(params) {...};
-ClassName::type ClassName::func(params) {...}; // return type appears before class is seen
-
-// def nonmember class interface funcs
-\end{verbatim}
+    Define data type relying on separation of interface and implementation.
 \end{definition}
 
-\subsection{Class-Type Conversion}
-\begin{definition}[converting constructor]
-    \begin{verbatim}
+\subsection{Constructor}
 
-\end{verbatim}
-\end{definition}
+\subsection{Operator}
 
-\subsection{static Class Members}
-\begin{definition}[static]
-    Associated with class.
-    \begin{verbatim}
-class ClassName
-{
-    static type var;
-    static type func(params); // static keywords used only on delc inside class
-}
+\subsection{Inheritance}
 
-ClassName::var = 1;
-ClassName::func(params) {...};
-\end{verbatim}
-\end{definition}
+\subsection{Template}
 
 \printbibliography
 \end{document}
