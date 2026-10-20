@@ -1,4 +1,4 @@
-\documentclass{../../template/blog}
+\documentclass{blog}
 
 \title{C++}
 
@@ -227,8 +227,8 @@ decltype(expr) var
 \begin{definition}[structure]
     A data structure is a way to group data elements.
     \begin{verbatim}
-// ordinarily defined outside functions in ClassName.h
-struct ClassName
+// ordinarily defined outside functions in MyClass.h
+struct MyClass
 {
     statements;
 }; // must end with ;
@@ -939,11 +939,27 @@ decltype(func2) *func(params);
 \end{definition}
 
 \section{class}
+So difficult.
+
 \begin{definition}[class]
     Define data type relying on separation of interface and implementation.
 \end{definition}
 
 \subsection{Constructor}
+\begin{definition}[constructor]
+    Class copy, move, assign, destory.
+    \begin{verbatim}
+// default constructor
+
+// copy constructor
+// first param is ref to class
+// copy initialization
+// copy each nonstatic mem from given object into one being created
+MyClass(const MyClass &);
+
+//
+\end{verbatim}
+\end{definition}
 
 \subsection{Operator}
 

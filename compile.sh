@@ -26,6 +26,10 @@ for DIR in mathematics cs literature software; do
             TIKZ="$TEX-tikz"
             (
                 cd "$TEX" || exit
+                if [[ ! -f "blog.cls" ]]; then
+                    ln -s ../../template/blog.cls blog.cls
+                    ln -s ../../template/tikz.cls tikz.cls
+                fi
                 if [[ -f "$TIKZ.tex" ]] && ! git diff --exit-code --quiet "$TIKZ.tex"; then
                     echo compile "$TIKZ.tex"
                     latexmk -pdf "$TIKZ.tex" &>"$TIKZ.log"
