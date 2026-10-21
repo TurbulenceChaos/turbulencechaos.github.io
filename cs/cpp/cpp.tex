@@ -939,33 +939,83 @@ decltype(func2) *func(params);
 \end{definition}
 
 \section{class}
-So difficult.
+\url{https://www.learncpp.com/}
 
-\begin{definition}[class]
-    Define data type relying on separation of interface and implementation.
+\begin{definition}[OOP]
+\end{definition}
+
+\begin{definition}[class]~
+    Data abstraction and encapsulation: separation of interface and implementation
+    \begin{itemize}
+        \item interface: operations that users can execute
+        \item implementation: class data members
+    \end{itemize}
+
+    \begin{verbatim}
+class MyClass
+{
+public:
+    // this is const pointer to nonconst obj by default
+    // using member to which this points
+    type func(params) const; // const MyClass *const this = &myObj
+
+}
+
+type MyClass::func(params) const {...}
+
+// nonmember funcs that are part of class interface should be declared in class header
+
+MyClass myObj;
+\end{verbatim}
 \end{definition}
 
 \subsection{Constructor}
 \begin{definition}[constructor]
-    Class copy, move, assign, destory.
+    Class initialization, copy, move, assignment, destruction.
     \begin{verbatim}
-// default constructor
+class MyClass
+{
+public:
+    // constructor funcs
+    // initialize data members
+    // same name as class
+    // no return type
 
-// copy constructor
-// first param is ref to class
-// copy initialization
-// copy each nonstatic mem from given object into one being created
-MyClass(const MyClass &);
+    // default constructor
+    // direct initialization
+    // automatically called when an obj is created
+    MyClass() {}
+    MyClass(params) member(expr), ... {...}
 
-//
+    // copy constructor
+    // copy initialization
+    // copy each nonstatic mem from given object into one being created
+    // first param is ref to class
+    MyClass(const MyClass &);
+}
 \end{verbatim}
 \end{definition}
 
 \subsection{Operator}
+\begin{definition}[operator]
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
 
 \subsection{Inheritance}
+\begin{definition}[inheritance]
+
+    \begin{verbatim}
+\end{verbatim}
+\end{definition}
 
 \subsection{Template}
+\begin{definition}[template]
+
+    \begin{verbatim}
+\end{verbatim}
+\end{definition}
 
 \printbibliography
 \end{document}
