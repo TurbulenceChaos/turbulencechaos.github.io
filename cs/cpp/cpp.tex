@@ -14,18 +14,6 @@
     \end{itemize}
 \end{definition}
 
-\begin{definition}[comment]~
-    \begin{verbatim}
-// single line
-/* pair cannot nest */
-
-std::cout << /* "*/" /* "/*" */; // std::cout << " /* ";
-// 1. from right to left
-// 2. find */, remove everything between */ and left /*
-// 3. repeat step 1-2
-\end{verbatim}
-\end{definition}
-
 \section{Types}
 \begin{definition}[arithmetic type]~
     \begin{verbatim}
@@ -803,130 +791,9 @@ auto func(params) -> int(*)[N];
 \end{verbatim}
 \end{definition}
 
-\subsection{Recursion}
-\begin{definition}[recursion]
-    A function that calls itself is a recursive function.
-\end{definition}
-
-\subsection{Func Declaration}
-\begin{definition}[func prototype]~
-    \begin{verbatim}
-// func must be declared before we can use
-
-// header
-type func(params); // semicolon replaces func body in decl
-
-// source
-// should include header so that compiler will verify func def and decl are consistent
-#include "func.h"
-type func(params) {...}
-
-// separate compilation
-g++ -c main.cpp   // generate object file main.o
-g++ -c func.cpp   // func.o
-g++ main.o func.o // link object files
-\end{verbatim}
-\end{definition}
-
-\subsection{Command-Line Options to main}
-\begin{definition}[argument to main]
-    Use argument to main to guid operation of program.
-    \begin{verbatim}
-int main(int argc, char *argv[]) {...}
-int main(int argc, char **argv) {...}
-
-// argc: size of argv
-// argv[0]: program name
-// argv[1]: option1
-// argv[2]: option2
-// ...
-\end{verbatim}
-\end{definition}
-
-\subsection{Default Arguments}
-\begin{definition}[default argument]
-    Func with default argument can be called with without that argument.
-    \begin{verbatim}
-// func.h
-// default arguments ordinarily should be specified with func declaration in header
-type func(params, def_defaults_for_params);
-\end{verbatim}
-\end{definition}
-
-\subsection{inline and constexpr Func}
-\begin{definition}[inline func]
-    Calling a small func is slower than equivalent expr.
-    A inline function is expanded in line at each call to avoid func call overhead.
-    \begin{verbatim}
-inline type func(params);
-// inline is only a request to compiler.
-// The compiler may choose to this request.
-
-// inline and constexpr func defined in header
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[constexpr func]
-    Can be used in constant expression.
-    \begin{verbatim}
-constexpr type func(params);
-// implicitly inline
-// replace a call with return value
-// return type must be literal type
-// func body contains exactly one return statement
-\end{verbatim}
-\end{definition}
-
-\subsection{Debugging}
-\begin{definition}[assert and NDEBUG]
-    Debugging code is executed only during developing.
-    \begin{verbatim}
-// #define NDEBUG // turn off assert, defined before #include <cassert>
-#include <cassert>
-assert(expr); // eval expr. if expr is false, write a message and terminate program.
-
-// preprocessor macro
-// preprocessor names are managed by preprocessor not compiler
-// use preprocessor name directly and do not provide using decl
-
-// conditional debugging using NDEBUG
-void func(int i)
-{
-#ifndef NDEBUG
-    std::cerr << __func__ << ": i is " << i << std::endl;
-#endif
-}
-// local static defined by compiler
-// __func__: func name
-// __FILE__: file name
-// __LINE__: current line number
-// __TIME__: compiled time
-// __DATE__: compiled date
-\end{verbatim}
-\end{definition}
-
-\subsection{Overloaded Funcs}
-\begin{definition}[overload]
-    Same name funcs with different params list in one scope.
-    \begin{verbatim}
-// error for two funcs to differ only in terms of return types
-
-// top-level const is indistinguishable from one without a top-level const
-// except low-level const
-// const_cast
-
-// func matching
-// 1. candidate funcs: all funcs
-// 2. viable funcs: arguments match params
-// 3. best match: exact match is better than argument type conversion
-// argument type conversion:
-\end{verbatim}
-\end{definition}
-
 \subsection{Pointers to Funcs}
-\begin{definition}[func pointer]
-    Function pointer denotes func rather than object.
-    It points to a function type determined by return type and params types.
+\begin{definition}[function pointer]
+    Function pointer points to func type determined by return and params types.
     \begin{verbatim}
 type func(params);
 type (*p)(params);
@@ -960,6 +827,126 @@ F *func(parmas);
 type (*func(params)) (params); // directly decl
 auto func(params) -> type (*) (params);
 decltype(func2) *func(params);
+\end{verbatim}
+\end{definition}
+
+\subsection{Overloaded Funcs}
+\begin{definition}[overload]
+    Same name funcs with different params list in one scope.
+    \begin{verbatim}
+// error for two funcs to differ only in terms of return types
+
+// top-level const is indistinguishable from one without a top-level const
+// except low-level const
+// const_cast
+
+// func matching
+// 1. candidate funcs: all funcs
+// 2. viable funcs: arguments match params
+// 3. best match: exact match is better than argument type conversion
+// argument type conversion:
+\end{verbatim}
+\end{definition}
+
+\subsection{Default Arguments}
+\begin{definition}[default argument]
+    Func with default argument can be called with without that argument.
+    \begin{verbatim}
+// func.h
+// default arguments ordinarily should be specified with func declaration in header
+type func(params, def_defaults_for_params);
+\end{verbatim}
+\end{definition}
+
+\subsection{Recursion}
+\begin{definition}[recursion]
+    A function that calls itself is a recursive function.
+\end{definition}
+
+\subsection{Func Declaration}
+\begin{definition}[func prototype]~
+    \begin{verbatim}
+// func must be declared before we can use
+
+// header
+type func(params); // semicolon replaces func body in decl
+
+// source
+// should include header so that compiler will verify func def and decl are consistent
+#include "func.h"
+type func(params) {...}
+
+// separate compilation
+g++ -c main.cpp   // generate object file main.o
+g++ -c func.cpp   // func.o
+g++ main.o func.o // link object files
+\end{verbatim}
+\end{definition}
+
+\subsection{inline and constexpr Func}
+\begin{definition}[inline func]
+    Calling a small func is slower than equivalent expr.
+    A inline function is expanded in line at each call to avoid func call overhead.
+    \begin{verbatim}
+inline type func(params);
+// inline is only a request to compiler.
+// The compiler may choose to this request.
+
+// inline and constexpr func defined in header
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[constexpr func]
+    Can be used in constant expression.
+    \begin{verbatim}
+constexpr type func(params);
+// implicitly inline
+// replace a call with return value
+// return type must be literal type
+// func body contains exactly one return statement
+\end{verbatim}
+\end{definition}
+
+\subsection{Command-Line Options to main}
+\begin{definition}[argument to main]
+    Use argument to main to guid operation of program.
+    \begin{verbatim}
+int main(int argc, char *argv[]) {...}
+int main(int argc, char **argv) {...}
+
+// argc: size of argv
+// argv[0]: program name
+// argv[1]: option1
+// argv[2]: option2
+// ...
+\end{verbatim}
+\end{definition}
+
+\subsection{Debugging}
+\begin{definition}[assert and NDEBUG]
+    Debugging code is executed only during developing.
+    \begin{verbatim}
+// #define NDEBUG // turn off assert, defined before #include <cassert>
+#include <cassert>
+assert(expr); // eval expr. if expr is false, write a message and terminate program.
+
+// preprocessor macro
+// preprocessor names are managed by preprocessor not compiler
+// use preprocessor name directly and do not provide using decl
+
+// conditional debugging using NDEBUG
+void func(int i)
+{
+#ifndef NDEBUG
+    std::cerr << __func__ << ": i is " << i << std::endl;
+#endif
+}
+// local static defined by compiler
+// __func__: func name
+// __FILE__: file name
+// __LINE__: current line number
+// __TIME__: compiled time
+// __DATE__: compiled date
 \end{verbatim}
 \end{definition}
 
@@ -1092,6 +1079,19 @@ private:
 \end{definition}
 
 \section{Dynamic Memory}
+
+\section{Others}
+\begin{definition}[comment]~
+    \begin{verbatim}
+// single line
+/* pair cannot nest */
+
+std::cout << /* "*/" /* "/*" */; // std::cout << " /* ";
+// 1. from right to left
+// 2. find */, remove everything between */ and left /*
+// 3. repeat step 1-2
+\end{verbatim}
+\end{definition}
 
 \printbibliography
 \end{document}
