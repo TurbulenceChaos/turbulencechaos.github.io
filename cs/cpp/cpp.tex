@@ -89,6 +89,10 @@ a < b // 1 < (2^32 - 1) true
 \end{definition}
 
 \subsection{Compound Types}
+\begin{definition}[compound type]
+    Compound type is defined in terms of another type.
+\end{definition}
+
 \begin{definition}[reference]
     A ref defines an alias for an object.
     \begin{verbatim}
@@ -315,44 +319,57 @@ b <= e
 \end{definition}
 
 \section{Array}
-\begin{definition}[array]~
+\begin{definition}[array]
+    Array is a fixed-size container of unnamed objects of a single type.
     \begin{verbatim}
-constexpr size_t size = ...;
-int a[size] = {};
-// array type cannot be: auto
-// any object size type: unsigned size_t
-// dimension must be known at compile time: constexpr
+// arrays are compound type
+type a[N];
+// cannot use auto to deduce type
+// N is constexpr unsigned size_t
+\end{verbatim}
+\end{definition}
 
-// cannot copy
-// error: a2 = a1;
+\subsection{Array Declarations}
+\begin{definition}[pointer, ref, and array]~
+    \begin{verbatim}
+// cannot initialize or assign array with another array
 
-// pointers and ref to array
-int *p[size]; // array of n pointers to int
-int (*p)[size] = &a; // pointer to array of n int
-int (&r)[size] = a;  // refer to array of n int
-int *(&r)[size] = p; // refer to array of n pointers to int
-// () for def -> right for array size -> left for elem type
+// 1. array of pointers
+type *a[N]; // array of N pointers to type
 
-// for range statement
+// 2. pointers or reference to array
+type (*p)[N] = &a; // pointer to array of N type elements
+type (&r)[N] = a;  // reference to array of N type elements
+
+// 3. pointers or reference to array element
+type *p = &a[0];
+type *p = a; // a is type* pointer to first element
+
+// auto return type is type* pointer to first element
+auto p = a; // p = &a[0]
+// decltype return type is array of N type elements
+decltype(a) a2;
+\end{verbatim}
+\end{definition}
+
+\subsection{Access Elements of Array}
+\begin{definition}[array element]~
+    \begin{verbatim}
+// range for statement
 for (auto &r : a)
     ...
-
-// pointer to array elem
-int *p = a;  // a automatically convert to &a[0]
-auto p = a;  // p = &a[0]
-decltype(a) a2 = {0, 1, 2};
 
 // iterator
 int *b = std::begin(a); // pointer to first elem
 int *e = std::end(a);   // pointer to one after last elem
 
 // subscript
+// should define var to have unsigned size_t type
 int *p = &a[m]; // p = a + m
 p[n] // *(p + n) => a[m + n]
 
 // C-style char string
 char c[] = "str"; // c[] = {'s', 't', 'r', '\0'}
-strcmp(c1, c2)    // 0 for c1 == c2; 1 for c1 > c2; -1 for c1 < c2
 
 // initialize vector with array {a[i], ..., a[j]}
 std::vector<int> v(a + i, a + j);
