@@ -11,46 +11,29 @@
         \item C is based on functions.
         \item C++ is object-oriented:
               separation of abstract mathematical concepts and black-box implementation \cite{LIPPMAN_2012_CPP_PRIMER, YAIR_2012_SOLVING_PDES_IN_CPP}.
-    \end{itemize}.
-\end{definition}
-
-\begin{definition}[IO objects]~
-    \begin{verbatim}
-#include <iostream>
-// using std::cout, std::cin;
-std::cout << "str"; // return left operand: std::cout
-std::cin  >> v;     // return left operand: std::cin
-// IO operators: left associative
-std::cout << "str" << "\n"; // (std::cout << "str") << "\n";
-std::cin  >> v1 >> v2;      // (std::cin >> v1) >> v2;
-
-while(std::cin >> v)
-    ...
-// istream become invalid when
-// 1. reading a non-integer val: 1 2 3.1
-// 2. end-of-file: Ctrl-z RET (Windows), Ctrl-d RET (Linux)
-\end{verbatim}
+    \end{itemize}
 \end{definition}
 
 \begin{definition}[comment]~
     \begin{verbatim}
 // single line
-/* paired can not nest */
+/* pair cannot nest */
 
-std::cout << /* "*/" /* "/*" */;
-// std::cout << " /* ";
-// remove everything between */ and /*
+std::cout << /* "*/" /* "/*" */; // std::cout << " /* ";
+// 1. from right to left
+// 2. find */, remove everything between */ and left /*
+// 3. repeat step 1-2
 \end{verbatim}
 \end{definition}
 
 \section{Types}
-\begin{definition}[arithmetic types]~
+\begin{definition}[arithmetic type]~
     \begin{verbatim}
-char // '\0': null, '\t': horizontal tab, '\n': newline
-#include <string>
+char              // '\0': null, '\t': horizontal tab, '\n': newline
+#include <string> // using std::string;
 std::string
-int  // unsigned int >= 0
-bool // true 1 and false 0
+int               // unsigned int >= 0
+bool              // true 1 and false 0
 double
 \end{verbatim}
 \end{definition}
@@ -531,6 +514,24 @@ for (int v1=..., v2=...; cond; expr1, expr2)
 \end{verbatim}
 \end{definition}
 
+\begin{definition}[IO objects]~
+    \begin{verbatim}
+#include <iostream>
+// using std::cout, std::cin;
+std::cout << "str"; // return left operand: std::cout
+std::cin  >> v;     // return left operand: std::cin
+// IO operators: left associative
+std::cout << "str" << "\n"; // (std::cout << "str") << "\n";
+std::cin  >> v1 >> v2;      // (std::cin >> v1) >> v2;
+
+while(std::cin >> v)
+    ...
+// istream become invalid when
+// 1. reading a non-integer val: 1 2 3.1
+// 2. end-of-file: Ctrl-z RET (Windows), Ctrl-d RET (Linux)
+\end{verbatim}
+\end{definition}
+
 \subsection{Type conversion}
 \begin{definition}[type conversion]~
     \begin{verbatim}
@@ -644,96 +645,105 @@ catch (std::runtime_error e)
 
 \section{Function}
 \begin{definition}[func]
-    Block of code with name.
+    Function is a block of code with name.
     \begin{verbatim}
-type func(params) // each param with single declarator: int v1, int v2, ...
+type func(params) // single declarator: type v1, type v2, ...
 {
-    statement;
-    return r;
+    return value;
 }
 
-// automatic objects
-// params destroyed after function call
-
-// static object
-// lifetime continues after function call
-static type v = ...;
-
-// func decl
-// a function must be declared before use
-// semicolon replace the func body in declaration
-// func.h
-type func(params);
-// func.cpp
-// header that decls func should be included in source file that defines func
-#include "func.h"
-type func(params) {...}
-// main.cpp
-#include "func.h"
+// call operator
+// 1. initialized func params from arguments
+// 2. execute calling function -> execute called function ->
+// ends when encountering return statement ->
+// return value -> back to calling function ->
+// initialize call expression with returned value
 func(arguments);
 
+// return type
+// may not be array type or func type
+// may return pointer to array or func
+
+// lifetime for local variables
+// automatic object
+// params destroyed after function call
+
+// local static object
+// not destroyed until program terminates
+static type var = ...;
+\end{verbatim}
+\end{definition}
+
+\subsection{Func Declaration}
+\begin{definition}[func prototype]~
+    \begin{verbatim}
+// func must be declared before we can use
+
+// header
+type func(params); // semicolon replaces func body in decl
+
+// source
+// should include header so that compiler will verify func def and decl are consistent
+#include "func.h"
+type func(params) {...}
+
 // separate compilation
-// g++ -c compile and assemble but do not link, generate object file
-g++ -c main.cpp   // main.o
+g++ -c main.cpp   // generate object file main.o
 g++ -c func.cpp   // func.o
-g++ main.o func.o // link object files, generate a.out
+g++ main.o func.o // link object files
+\end{verbatim}
+\end{definition}
 
-// param and argument
-// param are initialized in the same way that vars are initialized:
-// type param = argument;
-param is ref     => called by ref, param is an alias for argument to which it is bound
-param is not ref => called by value, argument value is copied
-// pointer param
-// copy pointer value
-void reset(int* p)
-{
-    *p = 2; // change value of object to which p point
-    p = 0;  // only change the local copy of p, argument is unchanged
-}
+\subsection{Parameter Initialization}
+\begin{definition}[param initialization]~
+    \begin{verbatim}
+// C++ use reference param to avoid copies
+type& param = argument // param bound to argument
 
-int i = 1;
-reset(&i); // i = 2
-
-// C use pointer param
-// C++ often use reference param instead
-// ref param
-void reset(int& r)
-{
-    r = 2;
-}
-
-int i = 1;
-reset(i); // i = 2
-
-// ref param for large containers
-void func(const std::string &r);
-// ref param for multiple results return
+// nonreference
+type param = argument  // argument value is copied
+// C use pointer param to access object
+type* param = &argument
 
 // const param
-// argument -> param: top-level const of argument is ignored
-// argument -> pointer or ref param: low-level const of argument cannot be ignored
-// when a func do not need write access to argument object,
-// use ref or pointer to const param for std::string, std::vector, and array
+// top-level const are ignored
+type param = const argument
+// low-level const cannot be ignored
+const type& param = const argument
+const type* param = &const argument
+\end{verbatim}
+\end{definition}
 
+\subsection{Array Parameter}
+\begin{definition}[array param]~
+    \begin{verbatim}
 // array param
 // cannot copy array
-// array converted to a pointer to the first elem in array
-void func(const int*);
-// size of array
-// C-style char string: stop when seeing null char
-void func(const char*);
-// std lib
-void func(const int *b, const int *e);
-// define a param that indicates the size of array
-void func(const int *, size_t size);
+type array[N] = {};
+type func(const type* param);   // array converted to &array[0]
+type func(const type param[]);  // equivalent to const type* param
+type func(const type param[M]); // compiler ignores first dimension
+// cannot use type var[] = array in expr!
+
+// when func doesn't need write access to array elements,
+// array param should be pointer to const
+
+// array size rely on additional inform:
+// C-style string stops at null char
+type func(const char* cp) {if(cp) ...}
+// beg and end pointer to first and last element in array
+const int* beg = std::begin(array)
+const int* end = std::end(array)
+// define a second param indicates array size
+type func(const int[], size_t);
 
 // array ref param
-void func(int (&a)[dim]); // param is ref to array of n ints
+int (&param)[N] = array // type size limits usefulness of func
 
-// multidimensional array argument
-// subsequent dim must be specified
-void print(int (*matrix)[dim], int rows, ...)
-// matrix points to first elem in array whose elems are array of 10 ints
+// multidimensional array param
+// the second and subsequent dimensions must be specified
+type func(int (*matrix)[Y][Z][...], int X);
+type func(int matrix[][Y][Z][...], int X); // compiler ignores first dimension
 
 // varying number of params
 // std::initializer_list: template type
@@ -742,14 +752,29 @@ void func(params, std::initializer_list<T> il);
 // elems in il are always const
 void error_msg(std::initializer_list<std::string> il)
 {
-    for (auto b = il.begin(); b != il.end(); ++b)
+        for (auto b = il.begin(); b != il.end(); ++b)
         std::cout << *b << " ";
-}
+    }
 
 error_msg({"FUNC", s1, s2});
 
 // ellipsis params
 void func(params, ...)
+\end{verbatim}
+\end{definition}
+
+\subsection{Command-Line Options to main}
+\begin{definition}[argument to main]
+    Use argument to main to guid operation of program.
+    \begin{verbatim}
+int main(int argc, char *argv[]) {...}
+int main(int argc, char **argv) {...}
+
+// argc: size of argv
+// argv[0]: program name
+// argv[1]: option1
+// argv[2]: option2
+// ...
 \end{verbatim}
 \end{definition}
 
@@ -815,20 +840,6 @@ void func(int i)
 \end{verbatim}
 \end{definition}
 
-\subsection{main}
-\begin{definition}[command-line options to main]~
-    \begin{verbatim}
-int main(int argc, char *argv[]) {...}
-int main(int argc, char **argv) {...}
-
-// argc: size of argv
-// argv[0]: program name
-// argv[1]: option1
-// argv[2]: option2
-// ...
-\end{verbatim}
-\end{definition}
-
 \subsection{return}
 \begin{definition}[return]
     Terminate func and return control to the point from which func was called.
@@ -856,17 +867,17 @@ std::vector<int> func()
 }
 
 // return pointer to array
-type (*func(params)) [dim]; // return pointer to array of n type elems
+type (*func(params)) [N]; // return pointer to array of n type elems
 // like int (*p)[3] = &a;
 // use typedef
-typedef int arrayT[dim];    // synonym to array of n ints
-using arrayT = int[dim];
+typedef int arrayT[N];    // synonym to array of n ints
+using arrayT = int[N];
 arrayT* func(params);
 // use decltype
 int a[] = {1,2,3};
 decltype(a) *func(params);
 // use trailing return type
-auto func(params) -> int(*)[dim];
+auto func(params) -> int(*)[N];
 
 // call operator
 // precedence: same as dot and arrow operator
@@ -948,12 +959,17 @@ decltype(func2) *func(params);
     Data abstraction and encapsulation: separation of interface and implementation
     \begin{itemize}
         \item interface: operations that users can execute
-        \item implementation: class data members
+        \item implementation: class data members and funcs
     \end{itemize}
 
     \begin{verbatim}
+// header
 class MyClass
 {
+    friend type nonmember_func(params); // allow nonmember func to access class nonpublic members
+    // friends are not affected by access control
+    // group friend decls at beginning or end of class
+
 public:
     // this is const pointer to nonconst obj by default
     // using member to which this points
@@ -961,11 +977,28 @@ public:
 
 }
 
+// declare friend in class header
+type nonmember_func(params);
+
+// source
 type MyClass::func(params) const {...}
+type nonmember_func(params) {...}
 
-// nonmember funcs that are part of class interface should be declared in class header
-
+// main
 MyClass myObj;
+\end{verbatim}
+\end{definition}
+
+\subsection{Additional Class Features}
+\begin{definition}[type member]
+    \begin{verbatim}
+class MyClass
+{
+    typedef type T; // type member must appear before they are used
+    // appear at beginning of class
+
+    T var;
+}
 \end{verbatim}
 \end{definition}
 
@@ -1016,6 +1049,8 @@ public:
     \begin{verbatim}
 \end{verbatim}
 \end{definition}
+
+\section{Dynamic Memory}
 
 \printbibliography
 \end{document}
