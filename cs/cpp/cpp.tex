@@ -659,11 +659,11 @@ type func(params) // single declarator: type v1, type v2, ...
 // return value -> back to calling function ->
 // initialize call expression with returned value
 func(arguments);
+\end{verbatim}
+\end{definition}
 
-// return type
-// may not be array type or func type
-// may return pointer to array or func
-
+\begin{definition}[lifetime]~
+    \begin{verbatim}
 // lifetime for local variables
 // automatic object
 // params destroyed after function call
@@ -671,26 +671,6 @@ func(arguments);
 // local static object
 // not destroyed until program terminates
 static type var = ...;
-\end{verbatim}
-\end{definition}
-
-\subsection{Func Declaration}
-\begin{definition}[func prototype]~
-    \begin{verbatim}
-// func must be declared before we can use
-
-// header
-type func(params); // semicolon replaces func body in decl
-
-// source
-// should include header so that compiler will verify func def and decl are consistent
-#include "func.h"
-type func(params) {...}
-
-// separate compilation
-g++ -c main.cpp   // generate object file main.o
-g++ -c func.cpp   // func.o
-g++ main.o func.o // link object files
 \end{verbatim}
 \end{definition}
 
@@ -714,7 +694,6 @@ const type* param = &const argument
 \end{verbatim}
 \end{definition}
 
-\subsection{Array Parameter}
 \begin{definition}[array param]~
     \begin{verbatim}
 // array param
@@ -760,6 +739,75 @@ error_msg({"FUNC", s1, s2});
 
 // ellipsis params
 void func(params, ...)
+\end{verbatim}
+\end{definition}
+
+\subsection{Return Statement}
+\begin{definition}[return]
+    Terminate func and return control to func call.
+    \begin{verbatim}
+// return statement
+// analogous to break statement
+return;       // return with no value used in void func(params);
+return value; // type tmp = value
+// return value is used to initialize a temporary as result of func call
+
+// return reference
+// funcs that return reference are lvalues
+// other return types are rvalues
+
+// call operator
+// same precedence as dot and arrow operator
+// call operator is left associative
+func(argument).member_func() // return class type object
+
+// return list
+std::vector<type> tmp = {...}
+
+// cannot return array or func
+// return pointer or reference to array or func
+type (*func(params)) [N]; // return pointer to array of N type elements
+
+// use typedef
+typedef int arrayT[N];    // synonym to array of n ints
+using arrayT = int[N];
+arrayT* func(params);
+// use decltype
+int a[] = {1,2,3};
+decltype(a) *func(params);
+// use trailing return type
+auto func(params) -> int(*)[N];
+
+// main return
+// 0 indicates success
+// nonzero has machine-dependent meaning
+// machine-independent preprocessor variable
+// EXIT_SUCCESS
+\end{verbatim}
+\end{definition}
+
+\subsection{Recursion}
+\begin{definition}[recursion]
+    A function that calls itself is a recursive function.
+\end{definition}
+
+\subsection{Func Declaration}
+\begin{definition}[func prototype]~
+    \begin{verbatim}
+// func must be declared before we can use
+
+// header
+type func(params); // semicolon replaces func body in decl
+
+// source
+// should include header so that compiler will verify func def and decl are consistent
+#include "func.h"
+type func(params) {...}
+
+// separate compilation
+g++ -c main.cpp   // generate object file main.o
+g++ -c func.cpp   // func.o
+g++ main.o func.o // link object files
 \end{verbatim}
 \end{definition}
 
@@ -840,57 +888,6 @@ void func(int i)
 \end{verbatim}
 \end{definition}
 
-\subsection{return}
-\begin{definition}[return]
-    Terminate func and return control to the point from which func was called.
-    Analogous to the use of break statement to exit loop.
-    \begin{verbatim}
-return; // for void func()
-return expr; // type tmp = expr;
-// values are returned in the same way as vars and parameters are initialized
-
-// return ref: call is lvalue
-// other return type: rvalue
-int& func(int& r)
-{
-    return r; // int &tmp = r
-}
-int i = 0;
-func(i) = 1; // call is lvalue
-
-// never return ref or pointer to func local var
-
-// return list
-std::vector<int> func()
-{
-    return {1, 2, 3};
-}
-
-// return pointer to array
-type (*func(params)) [N]; // return pointer to array of n type elems
-// like int (*p)[3] = &a;
-// use typedef
-typedef int arrayT[N];    // synonym to array of n ints
-using arrayT = int[N];
-arrayT* func(params);
-// use decltype
-int a[] = {1,2,3};
-decltype(a) *func(params);
-// use trailing return type
-auto func(params) -> int(*)[N];
-
-// call operator
-// precedence: same as dot and arrow operator
-// left associative
-func().mem
-\end{verbatim}
-\end{definition}
-
-\subsection{Recursion}
-\begin{definition}[recursion]
-    A function that calls itself is a recursive function.
-\end{definition}
-
 \subsection{Overloaded Funcs}
 \begin{definition}[overload]
     Same name funcs with different params list in one scope.
@@ -966,15 +963,16 @@ decltype(func2) *func(params);
 // header
 class MyClass
 {
-    friend type nonmember_func(params); // allow nonmember func to access class nonpublic members
+    friend type nonmember_func(params);
+    // allow nonmember func to access class nonpublic members
     // friends are not affected by access control
     // group friend decls at beginning or end of class
 
 public:
-    // this is const pointer to nonconst obj by default
-    // using member to which this points
-    type func(params) const; // const MyClass *const this = &myObj
-
+    // member funcs access object through implicit parameter this
+    // any use of member of class inside member func is an implicit reference through this
+    // const member func
+    type func(params) const; // const indicates that this is a pointer to const
 }
 
 // declare friend in class header
@@ -990,7 +988,7 @@ MyClass myObj;
 \end{definition}
 
 \subsection{Additional Class Features}
-\begin{definition}[type member]
+\begin{definition}[type member]~
     \begin{verbatim}
 class MyClass
 {
@@ -999,6 +997,27 @@ class MyClass
 
     T var;
 }
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[inline member func]~
+    \begin{verbatim}
+// member funcs defined inside class are automatically inline
+// member funcs defined outside class need to be specified inline
+class MyClass
+{
+    type func(params);
+}
+
+inline type func(params) {...}
+// inline member func should be defined in class header
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[mutable data member]
+    Never const even when it is member of const object.
+    \begin{verbatim}
+mutable type var;
 \end{verbatim}
 \end{definition}
 
@@ -1025,6 +1044,11 @@ public:
     // copy each nonstatic mem from given object into one being created
     // first param is ref to class
     MyClass(const MyClass &);
+
+private:
+    // in-class initializer
+    // = for copy initialization
+    // braces for direct initialization
 }
 \end{verbatim}
 \end{definition}
