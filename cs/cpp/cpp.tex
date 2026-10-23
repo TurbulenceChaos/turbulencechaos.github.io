@@ -26,7 +26,8 @@ double
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[bit]~
+\begin{definition}[bit]
+    1 byte = 8 bits
     \begin{center}
         \begin{tabular}{l l l l l}
             \hline
@@ -39,18 +40,17 @@ double
             \hline
         \end{tabular}
     \end{center}
-    1 byte = 8 bits
 \end{definition}
 
 \begin{definition}[type conversion]~
     \begin{verbatim}
 // int => unsigned
-unsigned i = -1;              // -1 = 2^32 - 1 for 32-bit unsigned int
+unsigned i = -1;              // -1 = 2^{32} - 1 for 32-bit unsigned int
 #include <cmath>
-unsigned i = std::pow(2, 32); // 2^32 = 0 for 32-bit unsigned int
+unsigned i = std::pow(2, 32); // 2^{32} = 0 for 32-bit unsigned int
 unsigned a = 1; int b = -1;
-a + b // 1 + (2^32 - 1) = 2^32 = 0
-a < b // 1 < (2^32 - 1) true
+a + b // 1 + (2^{32} - 1) = 2^{32} = 0
+a < b // 1 < (2^{32} - 1) true
 \end{verbatim}
 \end{definition}
 
@@ -68,17 +68,21 @@ a < b // 1 < (2^32 - 1) true
 
 \begin{definition}[list initialization]~
     \begin{verbatim}
+// initialization form
+// = for copy initialize
+// omit = for direct initialize
+
 type var = value;
-type var = {value};
-type var{value}; // narrowing conversion, i.e. error convert double to int
-type var(value); // initialize or assign new value to and object
+type var = {value}; // list initialization
+type var{value};    // narrowing conversion, i.e. error convert double to int
+type var(value);    // parenthesis initialization
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[definition and declaration]~
     \begin{verbatim}
 // definition: allocate storage and define only once
-// declaration: specify type and variable name
+// declaration: based type followed by a list of declarators specifying type and variable name
 
 // headers should have guards to be safe to be included multiple times
 #ifndef HEADER_H
@@ -99,10 +103,12 @@ type var = ...;
 \end{definition}
 
 \begin{definition}[reference]
-    A ref defines an alias for an object.
+    A reference defines an alternative name for an object.
     \begin{verbatim}
-int i = 0;
-int &ref = i;
+// reference must be initialized with object
+type var = ...;
+type &ref = var; // bind reference to its initializer
+// reference cannot be rebind
 \end{verbatim}
 \end{definition}
 
@@ -215,34 +221,22 @@ decltype(expr) var
 \end{verbatim}
 \end{definition}
 
-\subsection{Data Structure}
-\begin{definition}[structure]
-    A data structure is a way to group data elements.
-    \begin{verbatim}
-// ordinarily defined outside functions in MyClass.h
-struct MyClass
-{
-    statements;
-}; // must end with ;
-\end{verbatim}
-\end{definition}
-
 \section{string}
 \begin{definition}[string]
-    Variable-length sequence of characters.
+    A string is a variable-length sequence of characters.
     \begin{verbatim}
 #include <string>
 // using std::string;
 
 // class defines how objects can be initialized
-std::string s = "A";   // copy ['A', '\0'], drop null char
-std::string s(n, 'c'); // "c...c"
+std::string s = "A";   // not include null char at the end of string literal
+std::string s(N, 'c'); // N copies of char
 
 // read string
 std::cin >> s1 >> s2;
 
 // read line
-std::getline(std::cin, s)
+std::getline(std::cin, s);
 
 // compare
 // at least one should be std::string
@@ -696,6 +690,26 @@ static type var = ...;
 \end{verbatim}
 \end{definition}
 
+\subsection{Func Declaration}
+\begin{definition}[func prototype]~
+    \begin{verbatim}
+// func must be declared before we can use
+
+// header
+type func(params); // semicolon replaces func body in decl
+
+// source
+// should include header so that compiler will verify func def and decl are consistent
+#include "func.h"
+type func(params) {...}
+
+// separate compilation
+g++ -c main.cpp   // generate object file main.o
+g++ -c func.cpp   // func.o
+g++ main.o func.o // link object files
+\end{verbatim}
+\end{definition}
+
 \subsection{Parameter Initialization}
 \begin{definition}[param initialization]~
     \begin{verbatim}
@@ -808,6 +822,11 @@ auto func(params) -> int(*)[N];
 \end{verbatim}
 \end{definition}
 
+\subsection{Recursion}
+\begin{definition}[recursion]
+    A function that calls itself is a recursive function.
+\end{definition}
+
 \subsection{Pointers to Funcs}
 \begin{definition}[function pointer]
     Function pointer points to func type determined by return and params types.
@@ -862,6 +881,8 @@ decltype(func2) *func(params);
 // 2. viable funcs: arguments match params
 // 3. best match: exact match is better than argument type conversion
 // argument type conversion:
+
+// use small func inside overloaded funcs to avoid writing same code in more than one place
 \end{verbatim}
 \end{definition}
 
@@ -872,31 +893,6 @@ decltype(func2) *func(params);
 // func.h
 // default arguments ordinarily should be specified with func declaration in header
 type func(params, def_defaults_for_params);
-\end{verbatim}
-\end{definition}
-
-\subsection{Recursion}
-\begin{definition}[recursion]
-    A function that calls itself is a recursive function.
-\end{definition}
-
-\subsection{Func Declaration}
-\begin{definition}[func prototype]~
-    \begin{verbatim}
-// func must be declared before we can use
-
-// header
-type func(params); // semicolon replaces func body in decl
-
-// source
-// should include header so that compiler will verify func def and decl are consistent
-#include "func.h"
-type func(params) {...}
-
-// separate compilation
-g++ -c main.cpp   // generate object file main.o
-g++ -c func.cpp   // func.o
-g++ main.o func.o // link object files
 \end{verbatim}
 \end{definition}
 
@@ -995,12 +991,13 @@ public:
     // member funcs access object through implicit parameter this
     // any use of member of class inside member func is an implicit reference through this
     type func(params) const; // const member func indicates that this is a pointer to const
+    // const member func cannot change data members of object on which it is called
 
 private:
     // class cannot have data members of its own type
     // class can have data members that are pointers or references to its own type
     type var;
-}
+}; // must end with ;
 
 // declare friend in class header
 // friend declaration inside class only affects access
@@ -1018,9 +1015,15 @@ MyClass myObj;
 \end{definition}
 
 \subsection{Additional Class Features}
-\begin{definition}[this]
+\begin{definition}[this]~
     \begin{verbatim}
+// funcs return reference are lvalue objects
+type func(params) { return *this; }
 
+const type func(params) const { return *this; }
+// const member func return *this as reference should return a reference to const
+
+// member func can be overloaded based on whether it is const
 \end{verbatim}
 \end{definition}
 
@@ -1051,8 +1054,9 @@ inline type func(params) {...}
 \end{definition}
 
 \begin{definition}[mutable data member]
-    Never const even when it is member of const object.
+    A mutable data member is never const.
     \begin{verbatim}
+// const member func can change a mutable member
 mutable type var;
 \end{verbatim}
 \end{definition}
