@@ -14,7 +14,7 @@
     \end{itemize}
 \end{definition}
 
-\section{Types}
+\section{Types and Variables}
 \begin{definition}[arithmetic type]~
     \begin{verbatim}
 char              // '\0': null, '\t': horizontal tab, '\n': newline
@@ -23,28 +23,6 @@ std::string
 int               // unsigned int >= 0
 bool              // true 1 and false 0
 double
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[object]
-    Memory region that contains data with type.
-\end{definition}
-
-\begin{definition}[decl and def]~
-    \begin{verbatim}
-// def: allocate storage and define only once
-// decl: specify type and var names
-// headers should have guards to be safe to be included multiple times
-// source.cpp
-int i = 10;
-// source.h
-#ifndef SOURCE_H
-#define SOURCE_H
-extern int i;
-#endif
-// main.cpp
-#include "header.h"
-i ...
 \end{verbatim}
 \end{definition}
 
@@ -73,6 +51,45 @@ unsigned i = std::pow(2, 32); // 2^32 = 0 for 32-bit unsigned int
 unsigned a = 1; int b = -1;
 a + b // 1 + (2^32 - 1) = 2^32 = 0
 a < b // 1 < (2^32 - 1) true
+\end{verbatim}
+\end{definition}
+
+\subsection{Variable Initialization}
+\begin{definition}[object]
+    An object is a memory region that contains data with type.
+\end{definition}
+
+\begin{definition}[initialization and assignment]~
+    \begin{itemize}
+        \item initialization happens when a variable is given a value when it is created
+        \item assignment replace an object's current value with a new one
+    \end{itemize}
+\end{definition}
+
+\begin{definition}[list initialization]~
+    \begin{verbatim}
+type var = value;
+type var = {value};
+type var{value}; // narrowing conversion, i.e. error convert double to int
+type var(value); // initialize or assign new value to and object
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[definition and declaration]~
+    \begin{verbatim}
+// definition: allocate storage and define only once
+// declaration: specify type and variable name
+
+// headers should have guards to be safe to be included multiple times
+#ifndef HEADER_H
+#define HEADER_H
+extern type var;
+#endif
+// source
+#include "header.h"
+type var = ...;
+// main
+#include "header.h"
 \end{verbatim}
 \end{definition}
 
@@ -967,19 +984,28 @@ void func(int i)
 // header
 class MyClass
 {
+public:
     friend type nonmember_func(params);
     // allow nonmember func to access class nonpublic members
     // friends are not affected by access control
     // group friend decls at beginning or end of class
+    // friend class MyClass2; // access all member funcs in MyClass2
+    // friend type MyClass2::member_func(params);
 
-public:
     // member funcs access object through implicit parameter this
     // any use of member of class inside member func is an implicit reference through this
-    // const member func
-    type func(params) const; // const indicates that this is a pointer to const
+    type func(params) const; // const member func indicates that this is a pointer to const
+
+private:
+    // class cannot have data members of its own type
+    // class can have data members that are pointers or references to its own type
+    type var;
 }
 
 // declare friend in class header
+// friend declaration inside class only affects access
+// even if friend func can be defined inside class,
+// func declaration must still be provided outside class
 type nonmember_func(params);
 
 // source
@@ -992,6 +1018,12 @@ MyClass myObj;
 \end{definition}
 
 \subsection{Additional Class Features}
+\begin{definition}[this]
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
 \begin{definition}[type member]~
     \begin{verbatim}
 class MyClass
