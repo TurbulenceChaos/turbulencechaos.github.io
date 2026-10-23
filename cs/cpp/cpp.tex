@@ -964,8 +964,6 @@ void func(int i)
 \end{definition}
 
 \section{class}
-\url{https://www.learncpp.com/}
-
 \begin{definition}[OOP]
 \end{definition}
 
@@ -978,6 +976,14 @@ void func(int i)
 
     \begin{verbatim}
 // header
+
+// class MyClass; // forward declaration if class appears in friend func params or return
+
+// declare friend func in class header
+// friend func can be defined inside class
+// friend func decl must still be provided outside class before other member func use it
+type nonmember_func(params);
+
 class MyClass
 {
 public:
@@ -994,16 +1000,11 @@ public:
     // const member func cannot change data members of object on which it is called
 
 private:
+    // class is not defined until its class body is complete
     // class cannot have data members of its own type
     // class can have data members that are pointers or references to its own type
     type var;
 }; // must end with ;
-
-// declare friend in class header
-// friend declaration inside class only affects access
-// even if friend func can be defined inside class,
-// func declaration must still be provided outside class
-type nonmember_func(params);
 
 // source
 type MyClass::func(params) const {...}
@@ -1024,6 +1025,24 @@ const type func(params) const { return *this; }
 // const member func return *this as reference should return a reference to const
 
 // member func can be overloaded based on whether it is const
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[class scope]~
+    \begin{verbatim}
+// access type member outside class
+MyClass::T var = ...;
+
+// return type must specify class when member func defined outside class
+MyClass::T MyClass::func(params);
+
+// name lookup inside class
+// an inner scope can redefine a name from an outer scope except redefining type name
+type var = ...;
+class MyClass { type var = ...; // can access outer object using scope operator ::var }
+
+// name lookup for member function defined outside class
+// func scope -> class scope -> enclosing scope
 \end{verbatim}
 \end{definition}
 
@@ -1061,6 +1080,12 @@ mutable type var;
 \end{verbatim}
 \end{definition}
 
+\begin{definition}[static class members]
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
 \subsection{Constructor}
 \begin{definition}[constructor]
     Class initialization, copy, move, assignment, destruction.
@@ -1069,27 +1094,80 @@ class MyClass
 {
 public:
     // constructor funcs
-    // initialize data members
     // same name as class
     // no return type
 
     // default constructor
-    // direct initialization
-    // automatically called when an obj is created
-    MyClass() {}
-    MyClass(params) member(expr), ... {...}
-
+    // constructor initializer
     // copy constructor
-    // copy initialization
-    // copy each nonstatic mem from given object into one being created
-    // first param is ref to class
-    MyClass(const MyClass &);
 
 private:
     // in-class initializer
     // = for copy initialization
     // braces for direct initialization
 }
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[constructor initializer]~
+    \begin{verbatim}
+// initialize data members
+// automatically called when an obj is created
+MyClass() {}                            // default constructor
+// provide a default constructor if other constructors are defined
+MyClass(params) member(expr), ... {...} // constructor initializer list
+
+// use default constructor to define obj
+MyClass myClass; // error MyClass myClass(); to define func
+
+// constructor initializer list specifies only the value used to initialize members
+// members are initialized in the order in which they appear in class definition
+// write constructor initializer in same order as members are declared
+// avoid using members to initialize other members
+
+// delegating constructor
+// use other constructor to perform its initialization
+MyClass(param1, ...) : var1(param1), ... {} // nondelegating constructor
+// delegated-to constructor initializer list and func body are both executed
+MyClass() : MyClass(argument1, ...) {}      // default constructor
+MyClass(params) : MyClass() {...}           // delegate to default constructor
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[converting constructor]
+    A constructor that can be called with a single argument defines implicit converison from
+    constructor's parameter type to class type.
+    \begin{verbatim}
+// implicit class-type conversion
+MyClass(param) {}
+type func(MyClass);
+// implicit conversion from parameter type to class type
+Myclass myClass = argument; // copy initialization
+func(argument)              // during func call
+
+// prevent implicit conversion by declaring constructor as explicit inside class
+// be meaningful only on constructors that can be called with a single argument
+// only direct initalization is allowed
+explicit MyClass(param) {}
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[copy constructor]~
+    \begin{verbatim}
+// copy initialization
+// copy each nonstatic mem from given object into one being created
+// first param is ref to class
+MyClass(const MyClass &);
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[assign constructor]~
+    \begin{verbatim}
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[destruct constructor]~
+    \begin{verbatim}
 \end{verbatim}
 \end{definition}
 
@@ -1116,6 +1194,7 @@ private:
 
 \section{Dynamic Memory}
 
+\appendix
 \section{Others}
 \begin{definition}[comment]~
     \begin{verbatim}
@@ -1128,6 +1207,12 @@ std::cout << /* "*/" /* "/*" */; // std::cout << " /* ";
 // 3. repeat step 1-2
 \end{verbatim}
 \end{definition}
+
+\begin{example}[resources]~
+    \begin{itemize}
+        \item \url{https://www.learncpp.com/}
+    \end{itemize}
+\end{example}
 
 \printbibliography
 \end{document}
