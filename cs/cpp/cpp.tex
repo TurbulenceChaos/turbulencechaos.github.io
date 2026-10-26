@@ -281,20 +281,42 @@ const T *p;    // pointer to const pointer to type
 \end{definition}
 
 \begin{definition}[auto]
-    Deduce type from initializer at compile time.
+    Use auto type specifier to let compiler to deduce type from initializer.
     \begin{verbatim}
-auto i = 1, *p = &i;   // must have initializer
-auto i = 0, pi = 3.14; // error, types must be consistent
+// variable that uses auto specifier must have an initializer
+auto a = ...;
 
-// auto may different from initializer's type
-// auto ignores top-level const
+// when using reference as initializer,
+// the initializer is the corresponding object,
+// and the compiler uses that object's type for auto's type deduction
+// auto drops top-level consts and low-level consts are kept
+const type var = ...;
+const type &ref = var;
+auto a = ref; // initializer object is const type var
+
+// make deduced type have top-level const
+const auto a = var; // a is const type
+
+// reference to auto-deduced type,
+// where top-level consts in initializer are not ignored
+auto &a = var; // a is const type bound to var
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[decltype]
-    Return the operand type without evaluating the expr.
+    decltype type specifier returns type of its operand without evaluating the expression.
     \begin{verbatim}
-decltype(expr) var
+decltype(expr) d = ...;
+// decltype returns the type of variable, including top-level const and references
+const type var = ..., &ref = var, *p = &var;
+decltype(var) d = ...; // d is const type
+decltype(ref) d = ...; // d is const type& and must be initialized
+// decltype return a reference type for expressions that yield lvalue objects
+// type deduced by dereference a pointer is reference and must be initialized
+decltype(*p) d = ...; // d is const type& reference
+
+// decltype of a parenthesized variable is always a reference
+decltype((var)) d = ...; // d is const type& and must be initialized
 \end{verbatim}
 \end{definition}
 
