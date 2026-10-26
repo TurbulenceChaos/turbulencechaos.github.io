@@ -800,7 +800,7 @@ type func(params); // semicolon replaces func body in decl
 // source
 // should include header so that compiler will verify func def and decl are consistent
 #include "func.h"
-type func(params) {...}
+type func(params) { ... }
 
 // separate compilation
 g++ -c main.cpp   // generate object file main.o
@@ -897,7 +897,7 @@ return value; // type temp = value
 func(argument).member_func() // return class type object
 
 // return list
-std::vector<type> temp = {...}
+std::vector<type> temp = { ... }
 
 // cannot return array or func
 // return pointer or reference to array or func
@@ -1023,8 +1023,8 @@ constexpr type func(params);
 \begin{definition}[argument to main]
     Use argument to main to guid operation of program.
     \begin{verbatim}
-int main(int argc, char *argv[]) {...}
-int main(int argc, char **argv) {...}
+int main(int argc, char *argv[]) { ... }
+int main(int argc, char **argv) { ... }
 
 // argc: size of argv
 // argv[0]: program name
@@ -1106,8 +1106,8 @@ private:
 }; // must end with ;
 
 // source
-type MyClass::func(params) const {...}
-type nonmember_func(params) {...}
+type MyClass::func(params) const { ... }
+type nonmember_func(params) { ... }
 
 // main
 MyClass myObj;
@@ -1129,6 +1129,8 @@ const type func(params) const { return *this; }
 
 \begin{definition}[class scope]~
     \begin{verbatim}
+// incomplete type
+
 // access type member outside class
 MyClass::T var = ...;
 
@@ -1161,12 +1163,9 @@ class MyClass
     \begin{verbatim}
 // member funcs defined inside class are automatically inline
 // member funcs defined outside class need to be specified inline
-class MyClass
-{
-    type func(params);
-}
+class MyClass { type func(params); }
 
-inline type func(params) {...}
+inline type func(params) { ... }
 // inline member func should be defined in class header
 \end{verbatim}
 \end{definition}
@@ -1180,8 +1179,37 @@ mutable type var;
 \end{definition}
 
 \begin{definition}[static class members]
+    A member is associated with the class rather than with individual obejct of class type
+    by adding the keyword \verb|static| to its declaration.
     \begin{verbatim}
+// static data members are not part of individual objects of the class type,
+// they are not initialized by class constructors when creating objects of the class
+// static member functions are not bound to any object and do not have this pointer
+static type var;
+static type func(params) { ... }
 
+// we must define and initialize each static data member outside the Class
+// static member are defined outside any function like global objects
+type MyClass::var = ...;
+
+// static keyword is used only on the declaration inside class body
+// static member defined outside the class do not need to repeat the static keyword
+
+// in-class initialization of static data members
+// can provide in-class initializer for static members that have integral type
+// must do so for static members that are constexpr of literal type
+// initializer must be constant expression
+static constexpr type var = ...;
+// should be defined outside class definition even if
+// const static data member is initialized inside class body
+constexpr type MyClass::var; // initializer provided in class definition
+
+// can access a static member directly through scope operator
+MyClass::func()
+
+// static data member can have incomplete type,
+// i.e. same type as the class type
+static MyClass var;
 \end{verbatim}
 \end{definition}
 
@@ -1214,7 +1242,7 @@ private:
 // automatically called when an obj is created
 MyClass() {} // default constructor
 // provide a default constructor if other constructors are defined
-MyClass(params) member(expr), ... {...} // constructor initializer list
+MyClass(params) member(expr), ... { ... } // constructor initializer list
 
 // use default constructor to define obj
 MyClass myClass; // error MyClass myClass(); to define func
@@ -1229,7 +1257,7 @@ MyClass myClass; // error MyClass myClass(); to define func
 MyClass(params) : var1(expr), ... {} // nondelegating constructor
 // delegated-to constructor initializer list and func body are both executed
 MyClass() : MyClass(arguments) {} // default constructor
-MyClass(params) : MyClass() {...} // delegate to default constructor
+MyClass(params) : MyClass() { ... } // delegate to default constructor
 \end{verbatim}
 \end{definition}
 
@@ -1260,12 +1288,11 @@ std::string("str");
 \begin{definition}[constexpr constructor]~
     \begin{verbatim}
 // literal class
-// all data members have literal type
+// all data members are literal type
 // constexpr constructor funcs
-// constexpr initializer
-// default destructor
-// may have constexpr member funcs that are implicitly const
-constexpr ClassName(params) : var()
+// must initialize every data member with constant expression or constexpr constructor
+// body is empty
+constexpr MyClass(params) : var(expr), ... {}
 \end{verbatim}
 \end{definition}
 
