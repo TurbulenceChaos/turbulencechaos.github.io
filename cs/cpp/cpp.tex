@@ -320,7 +320,7 @@ decltype((var)) d = ...; // d is const type& and must be initialized
 \end{verbatim}
 \end{definition}
 
-\section{string}
+\section{String}
 \begin{definition}[string]
     A string is a variable-length sequence of characters.
     \begin{verbatim}
@@ -1212,7 +1212,7 @@ private:
     \begin{verbatim}
 // initialize data members
 // automatically called when an obj is created
-MyClass() {}                            // default constructor
+MyClass() {} // default constructor
 // provide a default constructor if other constructors are defined
 MyClass(params) member(expr), ... {...} // constructor initializer list
 
@@ -1226,10 +1226,10 @@ MyClass myClass; // error MyClass myClass(); to define func
 
 // delegating constructor
 // use other constructor to perform its initialization
-MyClass(param1, ...) : var1(param1), ... {} // nondelegating constructor
+MyClass(params) : var1(expr), ... {} // nondelegating constructor
 // delegated-to constructor initializer list and func body are both executed
-MyClass() : MyClass(argument1, ...) {}      // default constructor
-MyClass(params) : MyClass() {...}           // delegate to default constructor
+MyClass() : MyClass(arguments) {} // default constructor
+MyClass(params) : MyClass() {...} // delegate to default constructor
 \end{verbatim}
 \end{definition}
 
@@ -1243,7 +1243,7 @@ type func(MyClass);
 // implicit conversion from parameter type to class type
 Myclass myClass = argument; // copy initialization
 std::string s = "str"; // literal to string
-func(argument);             // during func call
+func(argument); // during func call
 
 // explicit constructor
 // prevent implicit conversion by declaring constructor as explicit inside class
@@ -1265,6 +1265,7 @@ std::string("str");
 // constexpr initializer
 // default destructor
 // may have constexpr member funcs that are implicitly const
+constexpr ClassName(params) : var()
 \end{verbatim}
 \end{definition}
 
@@ -1321,6 +1322,13 @@ std::cout << /* "*/" /* "/*" */; // std::cout << " /* ";
 // 1. from right to left
 // 2. find */, remove everything between */ and left /*
 // 3. repeat step 1-2
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[namespace]
+    A using declaration let us use a name from namespace without qualifying the name with \verb|namespace::| prefix.
+    \begin{verbatim}
+using namespace::name;
 \end{verbatim}
 \end{definition}
 
