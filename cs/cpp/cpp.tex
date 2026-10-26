@@ -167,34 +167,6 @@ const type var = ...;
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[const reference]~
-    \begin{verbatim}
-// cannot be used to change the object to which reference bounds
-const type var = ...;
-const int &ref = var;
-// can bind const reference to nonconst object, literal, or expression.
-const int &r2 = 2; // compiler: const int temp = 2; const int &r2 = temp;
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[pointer to const]~
-    \begin{verbatim}
-// pointer to const
-// cannot change the object to which it points
-const int i = 1;
-const int *p = &i;
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[const pointer]~
-    \begin{verbatim}
-// const pointer
-// the address it holds cannot be changed
-int i = 1;
-int *const p = &i; // p always points to i
-\end{verbatim}
-\end{definition}
-
 \begin{definition}[const objects are local to file]~
     \begin{verbatim}
 // const variables are local to file by default
@@ -212,42 +184,99 @@ var
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[constant expr]
-    A constant expression is an expr whose value cannot change at compile time.
+\begin{definition}[const reference]~
     \begin{verbatim}
-constexpr int i = size();   // ok only if size is a constexpr function
-constexpr int *p = nullptr; // const pointer, constexpr applies to p
+// bind reference to const to const object
+// cannot be used to change the object to which reference bounds
+const type var = ...;
+const type &ref = var;
+// can initialize from any expression that can be converted to the type of reference,
+// i.e. can bind const reference to nonconst object, literal, or expression
+double d = 3.14;
+const int &ref = d; // const int temp = d; const int &ref = temp;
+// bound to an unnamed temporary object created by compiler when it needs place
+// to store result from expression
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[type alias]
-    A synonym for a type.
+\begin{definition}[pointer to const]~
     \begin{verbatim}
-typedef int base;
-using base = int;
-typedef base *p;  // int*: pointer to int
-p p1 = &i;
+// cannot change the object to which the pointer points
+const type var = ...;
+const type *p = &var;
+// can point to nonconst object
+// pointer to const only affects what we can do with pointer
+\end{verbatim}
+\end{definition}
 
-// const p: const modify the given type: int *const: constant pointer to int
-const p p2 = 0; // int *const p2 = 0
-const p *p3;    // int *const *p3
+\begin{definition}[const pointer]~
+    \begin{verbatim}
+// const pointer must be initialized
+// the address pointer holds cannot be changed
+type var = ...;
+type *const p = &var; // p always points to var
+// const pointer says nothing about whether we can use pointer to change object,
+// which depends on type to which pointer points
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[const level]~
     \begin{verbatim}
-// top-level const: an object itself is const, i.e. const pointer
-const int i = 1;
-int *const p1 = &i;
+// top-level const: an object itself is const and cannot be changed
+const type var = ...;
+int *const p = &var;
 
-// low-level const: point or refer to const object
-const int *p2 = &i;
-const int &r = i;
+// low-level const: point or refer to a const object
+// const reference is always low-level
+const type *p = &var;
+const type &ref = var;
 
-// when copying, top-level const is ignored,
+// top-level const is ignored when copying an object
 // low-level const is never ignored
-const int *const p3 = &i;
-p2 = p3;
+const type *const p1 = &var;
+const type *p2 = p1;
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[constexpr]
+    The value of constant expression cannot change and can be evaluated at compile time (not until run time).
+    \begin{verbatim}
+// whether an object is constant expression depends on types and initializers
+// literal and const object that is initialized
+// from constant expression is constant expression
+const type var = ...;
+// declare variable in constexpr declaration to ask compiler
+// to verify that variable is a constant expression
+// variable declared as constexpr are implicitly const and
+// must be initialized by constant expression
+constexpr type var = func(arguments); // can use constexpr function in the initializer
+
+// can only use constexpr on literal types
+// arithmetic, reference, pointer types are literal types
+// constexpr pointer can be initialized from nullptr or 0 literal, or
+// point/bind to fixed address object
+// address of object defined outside any function is constant expression
+
+// constexpr applies to pointer, not the type to which pointer points
+// constexpr imposes top-level const on the object it defines
+const type *p = nullptr;       // pointer to const type
+constexpr type *p = nullptr;   // const pointer to type
+constexpr const type *p = ...; // const pointer to const type
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[typedef]
+    A type alias is a name that is synonym for another type.
+    \begin{verbatim}
+typedef type T;
+// alias declaration
+using T = type;
+
+typedef type *T; // type* pointer to type
+// const appears in the base type modify the given type
+// const T is const pointer to type
+const T p = 0; // const pointer to type
+const T *p;    // pointer to const pointer to type
 \end{verbatim}
 \end{definition}
 
@@ -833,7 +862,7 @@ void func(params, ...)
 // return statement
 // analogous to break statement
 return;       // return with no value used in void func(params);
-return value; // type tmp = value
+return value; // type temp = value
 // return value is used to initialize a temporary as result of func call
 
 // return reference
@@ -846,7 +875,7 @@ return value; // type tmp = value
 func(argument).member_func() // return class type object
 
 // return list
-std::vector<type> tmp = {...}
+std::vector<type> temp = {...}
 
 // cannot return array or func
 // return pointer or reference to array or func
