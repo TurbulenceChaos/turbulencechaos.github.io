@@ -231,7 +231,7 @@ pdfcompress() {
     local INPUT=$1
     local OUTPUT=$2
     ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
-        -sOUTPUTFile="$OUTPUT" "$INPUT"
+        -sOutputFile="$OUTPUT" "$INPUT"
 }
 \end{verbatim}
 
