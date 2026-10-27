@@ -7,6 +7,138 @@
 \tableofcontents
 
 \section{Introduction}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=5cm]{ns-equation.png}
+    \caption{FINITE TIME BLOWUP FOR NAVIER-STOKES \cite{OPENAI_2026_FINITE_TIME_BLOWUP_FOR_NAVIER_STOKES}.}
+    \label{fig:ns-equation}
+\end{figure}
+
+\section{ODE}
+\begin{definition}[smooth]
+    Smooth means that a function is continuously differentiable.
+\end{definition}
+
+\begin{definition}[ODE \cite{CHICONE_2024_ORDINARY_DIFFERENTIAL_EQUATIONS_WITH_APPLICATIONS}]
+    An ordinary differential equation is an equation of the form
+    \begin{equation}
+        \dot{x} = f(t, x, \lambda)
+    \end{equation}
+\end{definition}
+
+\begin{example}[initial-value problem]
+    An known function $u(t)$ of the single independent variable $t$ ($0 < t < \infty$)
+    using data about its derivative $u'(t)$,
+    where the value of $u$ at the initial time $t=0$ is available \cite{YAIR_2012_SOLVING_PDES_IN_CPP}.
+    \begin{equation}
+        u'(t) = C u(t)
+    \end{equation}
+    with initial condition
+    \begin{equation}
+        u(0) = u_{0}
+    \end{equation}
+
+    The solution of the initial-value problem is
+    \begin{equation}
+        u(t) = e^{Ct} u_{0}
+    \end{equation}
+\end{example}
+
+\subsection{Stability}
+\begin{definition}[stable ODE]
+    Stability is an important mathematical property of the ODE, which requires no explicit solution.
+    \begin{itemize}
+        \item a stable solution to the ODE is a solution that remains bounded as $t$ increases
+        \item an unstable solution grows indefinitely as $t$ increases
+    \end{itemize}
+\end{definition}
+
+\begin{example}
+    Assume $S$ is a complex number of the form
+    \begin{equation}
+        C = \mathfrak{R}(C) + i \mathfrak{I}(C)
+    \end{equation}
+    where $i = \sqrt{-1}$ is the imaginary number, and
+    $\mathfrak{R}(C)$ and $\mathfrak{I}(C)$ are the real and imaginary parts of $C$, respectively.
+    \begin{equation}
+        u(t) = u_{0} e^{t \mathfrak{R}(C)} e^{i t \mathfrak{I}(C)}
+    \end{equation}
+    The solution $u(t)$ is stable if and only if $\mathfrak{R}(C) \leq 0$.
+\end{example}
+
+\begin{definition}[vector ODE]
+    $u(t)$ is a $n$-dimensional vector, with individual components that are scalar functions of $t$.
+    \begin{equation}
+        u(t) = \begin{bmatrix}u_{1}(t) \\ \vdots \\ u_{n}(t) \end{bmatrix}
+    \end{equation}
+
+    \begin{equation}
+        u'(t) = \begin{bmatrix}u_{1}'(t) \\ \vdots \\ u_{n}'(t) \end{bmatrix}
+    \end{equation}
+
+    \begin{equation}
+        u_{0} = \begin{bmatrix}u_{01} \\ \vdots \\ u_{0n} \end{bmatrix}
+    \end{equation}
+\end{definition}
+
+The solution of $n$-dimensional vector ODE takes the form
+\begin{equation}
+    u(t) = e^{Ct} u_{0}
+    = \begin{bmatrix}u_{01}e^{C_{1}t} \\ \vdots \\ u_{0n}e^{C_{n}t} \end{bmatrix}
+\end{equation}
+where $e^{Ct}$ is $n \times n$ matrix
+\begin{equation}
+    e^{Ct} =
+    \begin{bmatrix}
+        e^{C_{1}t} & 0          & \dots  & 0          \\
+        0          & e^{C_{2}t} & \dots  & 0          \\
+        \vdots     & \vdots     & \ddots & \vdots     \\
+        0          & 0          & \dots  & e^{C_{n}t}
+    \end{bmatrix}
+\end{equation}
+
+\begin{definition}[mesh of discrete time]
+    \begin{equation}
+        t = h, 2h, \dots, jh, \dots
+    \end{equation}
+    where $h$ is a fixed and small parameter of meshsize.
+
+    \begin{equation}
+        u(jh) = e^{jCh} u_{0} = e^{Ch} e^{(j-1)Ch} u_{0} = e^{Ch} u((j-1)h)
+    \end{equation}
+\end{definition}
+
+\subsection{Stability in vector ODE}
+\begin{definition}[stable vector ODE]
+    A system of ODEs is called stable if it has not unstable (unbounded) solution.
+
+    Let $C$ be the Jordan form
+    \begin{equation}
+        C = J^{-1} \Lambda J
+    \end{equation}
+\end{definition}
+
+\subsection{Stable Invariant Subspace}
+\begin{definition}[stable invariant subspace]
+\end{definition}
+
+\subsection{Inhomogeneous Case}
+\begin{definition}[inhomogeneous]
+    \begin{equation}
+        u'(t) = Cu(t) + f(t)
+    \end{equation}
+    where $f$ is a given function that is integrable in $[0, \infty)$
+    \begin{equation}
+        \int_{0}^{\infty} |f(\tau)| d\tau < \infty
+    \end{equation}
+\end{definition}
+
+The solution to the initial-value problem is
+\begin{equation}
+    u(t) =
+\end{equation}
+
+\section{PDE}
 \subsection{Notation}
 \begin{definition}[$n$-dimensional real Euclidean space]
     $\mathbb{R}^{n}$
@@ -190,13 +322,6 @@
     \end{equation}
     where $x \in U$, $u : U \to \mathbb{R}$, and $F : \mathbb{R}^{n^{k}} \times \mathbb{R}^{n^{k-1}} \times \dots \times \mathbb{R}^{n} \times \mathbb{R} \times U \to \mathbb{R}$
 \end{definition}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=6cm]{ns-equation.png}
-    \caption{FINITE TIME BLOWUP FOR NAVIER-STOKES \cite{OPENAI_2026_FINITE_TIME_BLOWUP_FOR_NAVIER_STOKES}.}
-    \label{fig:ns-equation}
-\end{figure}
 
 \begin{definition}[linear PDE]
     \begin{equation}
@@ -526,122 +651,11 @@ For $n \geq 3$:
 \end{theorem}
 
 \section{Numerical Methods}
-\subsection{ODEs}
-\begin{definition}[ODE]
-    An known function $u(t)$ of the single independent variable $t$ ($0 < t < \infty$)
-    using data about its derivative $u'(t)$, where the value of $u$ at the initial time $t=0$ is available.
-\end{definition}
-
-\begin{example}[initial-value problem]
-    \begin{equation}
-        u'(t) = C u(t)
-    \end{equation}
-    with initial condition
-    \begin{equation}
-        u(0) = u_{0}
-    \end{equation}
-    The solution of the initial-value problem is
-    \begin{equation}
-        u(t) = e^{Ct} u_{0}
-    \end{equation}
-\end{example}
-
-\subsubsection{Stability}
-\begin{definition}[stable ODE]
-    Stability is an important mathematical property of the ODE, which requires no explicit solution.
-    \begin{itemize}
-        \item a stable solution to the ODE is a solution that remains bounded as $t$ increases
-        \item an unstable solution grows indefinitely as $t$ increases
-    \end{itemize}
-\end{definition}
-
-\begin{example}
-    Assume $S$ is a complex number of the form
-    \begin{equation}
-        C = \mathfrak{R}(C) + i \mathfrak{I}(C)
-    \end{equation}
-    where $i = \sqrt{-1}$ is the imaginary number, and
-    $\mathfrak{R}(C)$ and $\mathfrak{I}(C)$ are the real and imaginary parts of $C$, respectively.
-    \begin{equation}
-        u(t) = u_{0} e^{t \mathfrak{R}(C)} e^{i t \mathfrak{I}(C)}
-    \end{equation}
-    The solution $u(t)$ is stable if and only if $\mathfrak{R}(C) \leq 0$.
-\end{example}
-
-\begin{definition}[vector ODE]
-    $u(t)$ is a $n$-dimensional vector, with individual components that are scalar functions of $t$.
-    \begin{equation}
-        u(t) = \begin{bmatrix}u_{1}(t) \\ \vdots \\ u_{n}(t) \end{bmatrix}
-    \end{equation}
-
-    \begin{equation}
-        u'(t) = \begin{bmatrix}u_{1}'(t) \\ \vdots \\ u_{n}'(t) \end{bmatrix}
-    \end{equation}
-
-    \begin{equation}
-        u_{0} = \begin{bmatrix}u_{01} \\ \vdots \\ u_{0n} \end{bmatrix}
-    \end{equation}
-\end{definition}
-
-The solution of $n$-dimensional vector ODE takes the form
-\begin{equation}
-    u(t) = e^{Ct} u_{0}
-    = \begin{bmatrix}u_{01}e^{C_{1}t} \\ \vdots \\ u_{0n}e^{C_{n}t} \end{bmatrix}
-\end{equation}
-where $e^{Ct}$ is $n \times n$ matrix
-\begin{equation}
-    e^{Ct} =
-    \begin{bmatrix}
-        e^{C_{1}t} & 0          & \dots  & 0          \\
-        0          & e^{C_{2}t} & \dots  & 0          \\
-        \vdots     & \vdots     & \ddots & \vdots     \\
-        0          & 0          & \dots  & e^{C_{n}t}
-    \end{bmatrix}
-\end{equation}
-
-\begin{definition}[mesh of discrete time]
-    \begin{equation}
-        t = h, 2h, \dots, jh, \dots
-    \end{equation}
-    where $h$ is a fixed and small parameter of meshsize.
-
-    \begin{equation}
-        u(jh) = e^{jCh} u_{0} = e^{Ch} e^{(j-1)Ch} u_{0} = e^{Ch} u((j-1)h)
-    \end{equation}
-\end{definition}
-
-\subsubsection{Stability in vector ODE}
-\begin{definition}[stable vector ODE]
-    A system of ODEs is called stable if it has not unstable (unbounded) solution.
-
-    Let $C$ be the Jordan form
-    \begin{equation}
-        C = J^{-1} \Lambda J
-    \end{equation}
-\end{definition}
-
-\subsubsection{Stable Invariant Subspace}
-\begin{definition}[stable invariant subspace]
-\end{definition}
-
-\subsubsection{Inhomogeneous Case}
-\begin{definition}[inhomogeneous]
-    \begin{equation}
-        u'(t) = Cu(t) + f(t)
-    \end{equation}
-    where $f$ is a given function that is integrable in $[0, \infty)$
-    \begin{equation}
-        \int_{0}^{\infty} |f(\tau)| d\tau < \infty
-    \end{equation}
-\end{definition}
-
-The solution to the initial-value problem os
-\begin{equation}
-    u(t) =
-\end{equation}
-
-\subsection{Numerical Scheme}
-\begin{definition}[stability of numerical scheme]
+\subsection{ODE}
+\subsubsection{Numerical Solution}
+\begin{definition}[numerical scheme]
+    Numerical solution of an ODE is a numerical approximation to the solution $u(t)$
+    of the original ODE on a grid of discrete time $t_{1}, t_{2}, \dots$.
 \end{definition}
 
 \section{Asymptotic Methods}
