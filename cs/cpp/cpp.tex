@@ -1238,7 +1238,7 @@ private:
 
 \begin{definition}[constructor initializer]~
     \begin{verbatim}
-// initialize data members
+// initialize nonstatic data members
 // automatically called when an obj is created
 MyClass() {} // default constructor
 // provide a default constructor if other constructors are defined
@@ -1296,29 +1296,64 @@ constexpr MyClass(params) : var(expr), ... {}
 \end{verbatim}
 \end{definition}
 
+\begin{definition}[copy control]
+    Copy control members inlcude copy constructor, copy-assignment operator,
+    move constructor, move-assignment operator, and destructor.
+\end{definition}
+
 \begin{definition}[copy constructor]~
     \begin{verbatim}
-// copy initialization
-// copy each nonstatic mem from given object into one being created
-// first param is ref to class
-MyClass(const MyClass &);
+// first param is a reference to class type and any additional parameters have default values
+// memberwise copy the members of argument into the object being created
+// copy each nonstatic member from given object into the one being created
+MyClass(const MyClass& orig) : var(orig.var), ... {}
+
+// synthesized copy constructor
+
+// direct initialization uses constructor initializer
+// copy initialization uses copy constructor
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[assign constructor]~
+\begin{definition}[copy-assignment operator]~
+    \begin{verbatim}
+// overloaded assignment operator function
+// usually retrun a reference to left-hand operand object
+// when an operator is a member function,
+// the left-hand operand is bound to implicit this parameter
+MyClass& operator=(const MyClass &rhs) { var = rhs.var; ... return *this; }
+
+// synthesized copy-assignment operator
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[destructor]
+    Destructor free the resources used by an object and destory the nonstatic data members.
+    \begin{verbatim}
+// no parameters and return value
+// there is only one destructor that cannot be overloaded
+
+// default synthesized destructor
+~MyClass() {}
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[move constructor]~
     \begin{verbatim}
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[destruct constructor]~
+\begin{definition}[move-assignment operator]~
     \begin{verbatim}
 \end{verbatim}
 \end{definition}
 
 \subsection{Operator}
-\begin{definition}[operator]
+\begin{definition}[overloaded operator]
+    Overloaded operators are functions that have the name operator
+    followed by the symbol for the operator being defined.
     \begin{verbatim}
-
+// an operator function has a return type and a parameter list
 \end{verbatim}
 \end{definition}
 
