@@ -1066,9 +1066,6 @@ void func(int i)
 \end{definition}
 
 \section{class}
-\begin{definition}[OOP]
-\end{definition}
-
 \begin{definition}[class]~
     Data abstraction and encapsulation: separation of interface and implementation
     \begin{itemize}
@@ -1360,9 +1357,17 @@ MyClass& operator=(const MyClass &rhs) { var = rhs.var; ... return *this; }
 \end{verbatim}
 \end{definition}
 
-\subsection{Inheritance}
-\begin{definition}[inheritance]
+\subsection{OOP}
+\begin{definition}[OOP]
+    Object-oriented programming is based on three basic concepts:
+    \begin{itemize}
+        \item data abstraction separates interface from implementation
+        \item inheritance model the relationships among similar class types
+        \item dynamic binding use objects of these class types
+    \end{itemize}
+\end{definition}
 
+\begin{definition}[inheritance]
     \begin{verbatim}
 \end{verbatim}
 \end{definition}
@@ -1386,11 +1391,72 @@ MyClass& operator=(const MyClass &rhs) { var = rhs.var; ... return *this; }
         \item stack memory is used for nonstatic objects defined inside functions.
 
               stack objects exist only when the block is executing.
+
+        \item free store or heap dynamically allocate at run time.
+
+              heap objects must be explicitly destroyed when they are no longer needed.
+              \begin{verbatim}
+// dynamic memory operators
+// new: allocates and optionally initialize an object in dynamic memory
+and returns a pointer to that object
+
+// delete: destroys that object and frees memory
+
+// problems:
+// forget to free memory -> memory leak
+// free memory when there are still pointers referring to that memory ->
+// pointer refers to invalid memory
+\end{verbatim}
     \end{itemize}
 \end{definition}
 
+\begin{definition}[smart pointers]~
+    \begin{verbatim}
+// std::shared_ptr
+// alllows multiple pointers to refer to same object
+
+// std::unique_ptr
+// owns the object to which it points
+
+// std::weak_ptr
+// a weak reference to an object managed by a std::shared_ptr
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+    \verb|shared_ptr|
+    \begin{verbatim}
+// smart pointers are class templates
+// must supply the type to which the pointer can point
+
+std::shared_ptr<type> p; // default initialized smart pointer holds a null pointer
+
+// std::make_shared
+// allocates and initalizes an object in dynamic memory
+// and returns a std::shared_ptr that points to that object
+std::std::shared_ptr<type> p = std::make_shared<type>(argument);
+// std::make_shared uses its arguments to construct an object of given type
+auto p = std::make_shared<type>(argument);
+
+// reference count
+// the counter is incremented when we use it to initialize other std::shared_ptr,
+// use it as assigment, or pass it to or return it from function by value
+// the counter is decremented when we assign a new value to std::shared_ptr
+// and when std::shared_ptr itself is destroyed when going out of scope
+// when the counter goes to zero,
+// std::shared_ptr destructor automatically destroyed the object
+\end{verbatim}
+\end{definition}
+
 \appendix
-\section{Others}
+\section{Tools}
+\begin{definition}[namespace]
+    \verb|using| declaration let us use a name from namespace without qualifying the name with \verb|namespace::| prefix.
+    \begin{verbatim}
+using namespace::name;
+\end{verbatim}
+\end{definition}
+
 \begin{definition}[comment]~
     \begin{verbatim}
 // single line
@@ -1400,13 +1466,6 @@ std::cout << /* "*/" /* "/*" */; // std::cout << " /* ";
 // 1. from right to left
 // 2. find */, remove everything between */ and left /*
 // 3. repeat step 1-2
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[namespace]
-    A using declaration let us use a name from namespace without qualifying the name with \verb|namespace::| prefix.
-    \begin{verbatim}
-using namespace::name;
 \end{verbatim}
 \end{definition}
 
