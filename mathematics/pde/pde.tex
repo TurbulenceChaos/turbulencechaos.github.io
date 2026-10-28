@@ -19,8 +19,9 @@
     Smooth means that a function is continuously differentiable.
 \end{definition}
 
-\begin{definition}[ODE \cite{CHICONE_2024_ORDINARY_DIFFERENTIAL_EQUATIONS_WITH_APPLICATIONS}]
+\begin{definition}[ODE]
     An ordinary differential equation is an equation of the form
+    \cite{CHICONE_2024_ORDINARY_DIFFERENTIAL_EQUATIONS_WITH_APPLICATIONS}
     \begin{equation}
         \dot{x} = f(t, x, \lambda)
     \end{equation}
@@ -122,8 +123,8 @@ where $e^{Ct}$ is $n \times n$ matrix
 \begin{definition}[stable invariant subspace]
 \end{definition}
 
-\subsection{Inhomogeneous Case}
-\begin{definition}[inhomogeneous]
+\subsection{Nonhomogeneous Case}
+\begin{definition}[nonhomogeneous ODE]
     \begin{equation}
         u'(t) = Cu(t) + f(t)
     \end{equation}
@@ -134,8 +135,9 @@ where $e^{Ct}$ is $n \times n$ matrix
 \end{definition}
 
 The solution to the initial-value problem is
+\cite[Chapter 4]{CHICONE_2024_ORDINARY_DIFFERENTIAL_EQUATIONS_WITH_APPLICATIONS}
 \begin{equation}
-    u(t) =
+    u(t) = e^{Ct} u_{0} + \int_{0}^{t} f(\tau) d\tau
 \end{equation}
 
 \section{PDE}

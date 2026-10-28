@@ -6,17 +6,33 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-\begin{definition}[OpenFOAM]
-    OpenFOAM is software for computational fluid dynamics (CFD) \cite{GREENSHIELDS_2026_OPENFOAM_V14_USER_GUIDE}.
 
-    Two categories:
+\begin{definition}[openfoam]
+    \url{https://openfoam.org/resources/}
+
+    OpenFOAM is a software for computational fluid dynamics (CFD).
     \begin{itemize}
         \item solvers: perform calculation in fluid
         \item utilities: config simulation, geometry, mesh, and process results
     \end{itemize}
 \end{definition}
 
-Install: \url{https://openfoam.org/download/source/}
+\appendix
+\section{Tools}
+\begin{definition}[installation]
+    \url{https://openfoam.org/download/source/}
+    \begin{verbatim}
+cd ~/OpenFOAM/
+git clone git@github.com:OpenFOAM/OpenFOAM-dev.git --depth=1
+git clone git@github.com:OpenFOAM/ThirdParty-dev.git --depth=1
+# git fetch --depth=1 && git reset --hard origin
+
+cd OpenFOAM-dev
+source "$HOME/OpenFOAM/OpenFOAM-dev/etc/bashrc"
+
+./Allwmake
+\end{verbatim}
+\end{definition}
 
 \printbibliography
 \end{document}

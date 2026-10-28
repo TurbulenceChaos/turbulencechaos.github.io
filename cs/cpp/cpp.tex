@@ -779,12 +779,15 @@ func(arguments);
 
 \begin{definition}[lifetime]~
     \begin{verbatim}
-// lifetime for local variables
+// global objects
+// allocated at program start-up and destroyed when the program ends
+
+// local variable
 // automatic object
 // params destroyed after function call
 
 // local static object
-// not destroyed until program terminates
+// destroyed when program terminates
 static type var = ...;
 \end{verbatim}
 \end{definition}
@@ -1371,7 +1374,20 @@ MyClass& operator=(const MyClass &rhs) { var = rhs.var; ... return *this; }
 \end{verbatim}
 \end{definition}
 
+\section{Sequential Containers}
+
 \section{Dynamic Memory}
+\begin{definition}[memory]~
+    \begin{itemize}
+        \item static memory is used for local static objects, for class static data members,
+              and for vraiables defined outside any function.
+
+              static objects are allocated before they are used and destroyed when the program ends.
+        \item stack memory is used for nonstatic objects defined inside functions.
+
+              stack objects exist only when the block is executing.
+    \end{itemize}
+\end{definition}
 
 \appendix
 \section{Others}
