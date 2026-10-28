@@ -1368,18 +1368,51 @@ MyClass& operator=(const MyClass &rhs) { var = rhs.var; ... return *this; }
 \end{definition}
 
 \begin{definition}[inheritance]
+    Classes related by inheritance form a hierarchy.
     \begin{verbatim}
+// base class at the root of the hierarchy
+class BaseClass
+{
+public:
+    virtual type func(parmas);
+}
+
+// derived class
+class MyClass : public BaseClass // class derivation list
+{
+public:
+    type func(parmas);
+}
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[dynamic binding]
+    Dynamic binding happens when a virtual function is called through
+    a refernece or pointer to a base class.
+    \begin{verbatim}
+// run-time binding
 \end{verbatim}
 \end{definition}
 
 \subsection{Template}
 \begin{definition}[template]
+    A template is a blueprint or formula for creating classes or functions.
+\end{definition}
 
+\begin{definition}[function template]
+    A function template is a formula from which we can generate type-specific versions of that function.
+\end{definition}
+
+\begin{definition}[class template]
+    A class template is a blueprint for generating classes.
     \begin{verbatim}
+template <typename T> class MyClass {}
 \end{verbatim}
 \end{definition}
 
 \section{Sequential Containers}
+
+\section{Generic Algorithms}
 
 \section{Dynamic Memory}
 \begin{definition}[memory]~
