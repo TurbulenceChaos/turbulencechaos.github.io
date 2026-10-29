@@ -29,4 +29,5 @@
 \newtheorem{definition}{Definition}[section]
 \newtheorem{lemma}{Lemma}[section]
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}{Proposition}[section] % less important than theorem
 \newtheorem{example}{Example}[section]
