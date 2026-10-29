@@ -207,7 +207,7 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
 
 \section{Set Theory}
 \begin{definition}[set]
-    A set $A$ is any unordered collection of objects.
+    Define a set $A$ to be any unordered collection of objects.
     If $x$ is an element of A, then $x \in A$, otherwise $x \notin A$.
 \end{definition}
 
@@ -278,7 +278,105 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
     such that the Peano axioms hold.
 \end{axiom}
 
+\subsection{Cartesian Product}
+\begin{definition}[ordered pair]
+    If $x$ and $y$ are any objects,
+    define the ordered pair $(x,y)$ to be a new object.
+    Two ordered pairs $(x,y)$ and $(x',y')$ are equal if and only if both their components match
+    \begin{equation}
+        (x,y) = (x',y') \Longleftrightarrow \text{$x = x'$ and $y = y'$.}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[Cartesian product]
+
+\end{definition}
+
 \section{Function}
+\begin{definition}[function]
+    Let $X$, $Y$ be sets, and let $P(x,y)$ be a property pertaining to
+    an object $x \in X$ and an object $y \in Y$, such that
+    for every $x \in X$, there is exactly only one $y \in Y$ for which
+    $P(x,y)$ is true.
+    Then the function $f: X \to Y$ is defined by $P$ on the domain $X$ and codomain (range)
+    to be the unique object $f(x) \in Y$ for which $P(x,f(x))$ is true.
+\end{definition}
+
+\begin{definition}[equality of functions]
+    Two functions $f: X \to Y$ and $g: X' \to Y'$ are equal if their domains and codomains agree,
+    and $f(x) = g(x)$ for all $x \in X$.
+\end{definition}
+
+\begin{definition}[composition]
+    Let $f: X \to Y$ and $g: Y \to Z$ be two functions,
+    such that the codomain of $f$ is the same set as the domain of $g$.
+    Then define composition $g \circ f: X \to Z$ to the function
+    \begin{equation}
+        (g \circ f)(x) := g(f(x))
+    \end{equation}
+\end{definition}
+
+\begin{definition}[injective]
+    A function is one-to-one if different elements map to different elements
+    \begin{equation}
+        x \neq x' \Longrightarrow f(x) \neq f(x')
+    \end{equation}
+    Equivalently,
+    \begin{equation}
+        f(x) = f(x') \Longrightarrow x = x'
+    \end{equation}
+\end{definition}
+
+\begin{definition}[surjective]
+    A function is onto if every element in $Y$ comes from applying $f$ to some element in $X$.
+    \begin{equation}
+        \text{For every $y \in Y$, there exists $x \in X$ such that $f(x) = y$.}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[bijective]
+    A function is bijective or invertible if it is both one-to-one and onto.
+\end{definition}
+
+\subsection{Images}
+\begin{definition}[images of sets]
+    If $f: X \to Y$ is a function from $X$ to $Y$, and $S$ is a subset of $X$,
+    define $f(S)$ to be the set
+    \begin{equation}
+        f(S) := \{f(x) : x \in S\}
+    \end{equation}
+\end{definition}
+
+\begin{definition}[inverse images]
+    If $U$ is a subset of $Y$, define the set $f^{-1}(U)$ to be the set
+    \begin{equation}
+        f^{-1}(U) := \{x \in X : f(x) \in U\}
+    \end{equation}
+\end{definition}
+
+\begin{axiom}[power set axiom]
+    Let $X$ and $Y$ be sets. Then there exists a set $Y^{X}$
+    which consists of all the functions from $X$ to $Y$
+    \begin{equation}
+        f \in Y^{X} \Longleftrightarrow \text{$f$ is a function with domain $X$ and codomain $Y$.}
+    \end{equation}
+\end{axiom}
+
+\begin{axiom}[union]
+    Let $A$ be a set whose elements are sets.
+    Then there exists a set $\bigcup A$
+    \begin{equation}
+        x \in \bigcup A \Longleftrightarrow \text{$x \in S$ for some $S \in A$.}
+    \end{equation}
+\end{axiom}
+
+\section{Integers}
+
+\section{Rationals}
+
+\section{Real Numbers}
+
+\section{Limits of Sequences}
 
 \section{Power Series}
 
