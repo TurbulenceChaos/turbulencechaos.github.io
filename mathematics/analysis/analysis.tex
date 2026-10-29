@@ -25,7 +25,7 @@
     0 is a natural number.
 \end{axiom}
 
-\begin{axiom}[$n{++}$]
+\begin{axiom}[successor]
     \label{axiom:peano-axiom-2}
     If $n$ is a natural number, then $n{++}$ is also a natural number.
 \end{axiom}
@@ -35,179 +35,115 @@
     $1 := 0{++}$, $2 := 1{++}$, $3 := 2{++}$, $\dots$
 \end{definition}
 
-\begin{axiom}[successor]
+\begin{axiom}[$n{++} \neq 0$]
     \label{axiom:peano-axiom-3}
-    0 is not the successor of any natural number,
-    i.e. $n{++} \neq 0$ for every natural number $n$.
+    0 is not the successor of any natural number $n$.
 \end{axiom}
 
-\begin{lemma}
-    $4 \neq 0$
-\end{lemma}
-
-\begin{proof}
-    By definition \ref{def:nat}, $3{++} = 4$.
-
-    By Proposition \ref{prop:3-is-nat}, 3 is a natural number.
-
-    By Axiom \ref{axiom:peano-axiom-3}, $3{++} = 4 \neq 0$.
-\end{proof}
-
-\begin{axiom}
+\begin{axiom}[$n{++} \neq m{++}$]
     \label{axiom:peano-axiom-4}
-    $n \neq m \Rightarrow n{++} \neq m{++}$ or $n{++} = m{++} \Rightarrow n = m$
+    Dif and only iferent natural numbers must have dif and only iferent successors.
+
+    If $n \neq m$, then $n{++} \neq m{++}$.
+    Equivalently \ref{def:implication}, if $n{++} = m{++}$, then $n = m$.
 \end{axiom}
 
 \begin{axiom}[principle of mathematical induction]
     \label{axiom:peano-axiom-5}
-    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true, $P(n{++})$ is also true. Then $P(n)$ is true for every natural number $n$.
+    Let $P(n)$ be any property pertaining to a natural number $n$.
+    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true,
+    $P(n{++})$ is also true. Then $P(n)$ is true for every natural number $n$.
 \end{axiom}
 
-\subsection{Addition}
-\begin{definition}[Addition]
-    Let $n$ and $m$ be natural numbers.
-    \begin{enumerate}
-        \item $0+m:=m$
-        \item $(n{++})+m:=(n+m){++}$
-    \end{enumerate}
+\begin{lemma}[recursive definition of sequence]
+    $a_{0} = c$ and $a_{n{++} = f_{n}(a_{n})}$ for each natural number $n$.
+\end{lemma}
+
+\begin{definition}[addition]
+    Define $0+m:=m$. Suppose inductively that we have defined $n+m$.
+    Then $(n{++})+m:=(n+m){++}$.
 \end{definition}
 
+$a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
+
 \begin{lemma}
-    Let $n$ and $m$ be natural numbers. Then $n+m$ is also a natural number.
+    $n+0=n$
 \end{lemma}
 
 \begin{lemma}
-    Let $n$ and $m$ be natural numbers.
-    \begin{enumerate}
-        \item $n+0=n$
-        \item $n+(m{++})=(n+m){++}$
-    \end{enumerate}
+    $n+(m{++})=(n+m){++}$
 \end{lemma}
 
-\begin{lemma}
-    Let $a$, $b$, $c$ be natural numbers.
-    \begin{enumerate}
-        \item $a+b=b+a$
-        \item $(a+b)+c=a+(b+c)$
-        \item $a+b=a+c \Rightarrow b=c$
-    \end{enumerate}
-\end{lemma}
+\begin{theorem}[addition is commutative]
+    \begin{equation}
+        n+m = m+n
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[addition is associative]
+    \begin{equation}
+        (a+b)+c = a+(b+c)
+    \end{equation}
+\end{theorem}
+
+\begin{theorem}[cancellation law]
+    If $a+b = a+c$, then $b=c$.
+\end{theorem}
 
 \begin{definition}
-    A natural number $n$ is positive iff (if and only if) $n \neq 0$.
+    A natural number $n$ is positive if and only if $n \neq 0$.
 \end{definition}
 
 \begin{lemma}
-    \label{prop:positive-natural-numbers}
-    Let $a$ and $b$ be natural numbers.
-    \begin{enumerate}
-        \item \label{item:positive-natural-numbers-1} If $a$ is positive, then $a+b$ is positive.
-        \item \label{item:positive-natural-numbers-2} $a+b=0 \Rightarrow a=b=0$.
-        \item \label{item:positive-natural-numbers-3} If $a$ is positive, then there exists only one natural number $b$ such that $b{++}=a$.
-    \end{enumerate}
+    If $a$ is a positive natural number and $b$ is a natural number,
+    then $a+b$ is positive.
 \end{lemma}
 
-\begin{proof}
-    Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-1}).
+\begin{lemma}
+    If $a+b = 0$, then $a=0$ and $b=0$.
+\end{lemma}
 
-    $a+0=a$ is positive.
-    Suppose that $a+b$ is positive.
-    Then $a+b{++}=(a+b){++} \neq 0$ is positive.
-\end{proof}
+\begin{lemma}
+    If $a$ is a positive number, then there exists exactly one natural number $b$
+    such that $b{++} = a$.
+\end{lemma}
 
-\begin{proof}
-    Prop. \ref{prop:positive-natural-numbers} (\ref{item:positive-natural-numbers-3}).
-
-    Suppose that $a=b{++}$.
-    Then $a{++}=(a){++}$.
-\end{proof}
-
-\begin{definition}
-    Let $n$ and $m$ be natural numbers.
-    \begin{enumerate}
-        \item $n \geq m$ or $m \leq n$ iff $n=m+a$
-        \item $n>m$ or $m<n$ iff $n \geq m$ and $n \neq m$
-    \end{enumerate}
+\begin{definition}[order]~
+    \begin{itemize}
+        \item $n \geq m$ or $m \leq n$ if and only if $n=m+a$ for some natural number $a$
+        \item $n>m$ or $m<n$ if and only if $n \geq m$ and $n \neq m$
+    \end{itemize}
 \end{definition}
 
-\begin{lemma}
-    \label{prop:natural-numbers-order}
-    Let $a$, $b$, $c$ be natural numbers.
-    \begin{enumerate}
-        \item \label{item:natural-numbers-order-1} $a \geq a$
-        \item \label{item:natural-numbers-order-2} If $a \geq b$ and $b \geq c$, then $a \geq c$
-        \item \label{item:natural-numbers-order-3} If $a \geq b$ and $b \geq a$, then $a=b$
-        \item \label{item:natural-numbers-order-4} $a \geq b$ iff $a+c \geq b+c$
-        \item \label{item:natural-numbers-order-5} $a<b$ iff $a{++} \leq b$
-        \item \label{item:natural-numbers-order-6} $a<b$ iff $b=a+d$ for some positive number $d$
-    \end{enumerate}
+\begin{lemma}[properties of order]~
+    \begin{itemize}
+        \item reflexive: $a \geq a$
+        \item transitive: If $a \geq b$ and $b \geq c$, then $a \geq c$
+        \item antisymmetric: If $a \geq b$ and $b \geq a$, then $a=b$
+        \item addition preserve order: $a \geq b$ if and only if $a+c \geq b+c$
+        \item $a<b$ if and only if $a{++} \leq b$
+        \item $a<b$ if and only if $b=a+d$ for some positive number $d$
+    \end{itemize}
 \end{lemma}
 
-\begin{proof}
-    Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-5}).
-
-    $b=a+d$ and $b \neq a \Rightarrow d \neq 0 \Rightarrow d = n{++}$
-
-    $b=a+(n{++})=(a{++})+n \Rightarrow a{++} \leq b$
-\end{proof}
-
-\begin{lemma}
-    Let $a$ and $b$ be natural numbers. Then exactly one of following statement is true:
+\begin{theorem}[trichotomy of order]
+    Exactly one of following statement is true:
     $a<b$, $a=b$, or $a>b$.
-\end{lemma}
+\end{theorem}
 
-\begin{proof}
-    If $a<b$ and $a>b \overset{\text{Prop. \ref{prop:natural-numbers-order} (\ref{item:natural-numbers-order-3})}}{\Rightarrow} a=b$ contradiction
-\end{proof}
+\begin{theorem}[strong principle of induction]
+    Let $m_{0}$ be a natural number.
+    Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$,
+    then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
+\end{theorem}
 
-\begin{lemma}[Strong principle of induction]
-    Let $m_{0}$ be a natural number. Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$, then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
-\end{lemma}
-
-\begin{proof}
-    Let $Q(n)$ be the property that $P(m)$ is true for all $m_{0} \leq m < n$.
-
-    Suppose that if $Q(n)$ is true, then $P(m)$ is also true.
-
-    Then $P(m)$ is true for all $m_{0} \leq m < n{++}$.
-\end{proof}
-
-\begin{example}
-    Fibonacci numbers.
+\begin{example}[Fibonacci sequence]
     \begin{gather}
-        \label{eq:fibonacci-numbers}
-        F_{n} = \frac{\phi^{n} - \psi^{n}}{\phi-\psi} \\
-        F_{n+2} = F_{n+1} + F_{n}
+        F_{0} = 0 \\
+        F_{1} = 1 \\
+        F_{n} = F_{n-1} + F_{n-2}
     \end{gather}
-    where $\phi=\frac{1+\sqrt{5}}{2}$ and $\psi=\frac{1-\sqrt{5}}{2}$
 \end{example}
-
-\begin{example}
-    Principle of backwards induction.
-
-    Let $n$ be a natural number. Whenever $P(m{++})$ is true, $P(m)$ is true.
-    If $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
-\end{example}
-
-\begin{proof}
-    Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \leq n$.
-    If $P(n{++})$ is true, then $P(m)$ is true for all $m \leq n{++}$.
-\end{proof}
-
-\begin{example}
-    Principle of induction starting from the base case $n$.
-
-    Let $n$ be a natural number. Whenever $P(m)$ is true, $P(m{++})$ is true.
-    If $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
-\end{example}
-
-\begin{proof}
-    If $P(0)$ is true, suppose that $P(m)$ is true.
-    Then $P(m{++})$ is also true.
-    Then $P(m)$ is true for all $m \geq 0$.
-    Suppose that if $P(n)$ is true, then $P(m)$ is true for all $m \geq n$.
-    If $P(n{++})$ is true, then $P(m)$ is true for all $m \geq n{++}$.
-\end{proof}
 
 \subsection{Multiplication}
 \begin{definition}
@@ -235,7 +171,7 @@
     Let $n$ and $m$ be natural numbers.
     \begin{enumerate}
         \item $n \times m = m \times n$
-        \item $n \times m = 0$ iff at least one of $n$ and $m$ is equal to 0.
+        \item $n \times m = 0$ if and only if at least one of $n$ and $m$ is equal to 0.
               If $n$ and $m$ are both positive, then $nm$ is also positive.
     \end{enumerate}
 \end{lemma}
@@ -279,11 +215,11 @@
     \label{axiom:sets}
     \begin{enumerate}
         \item \label{item:sets-1} If $A$ is a set, then $A$ is also an object.
-        \item \label{item:sets-2} $A=B$ iff every element of $A$ belongs also to $B$ and vice versa.
+        \item \label{item:sets-2} $A=B$ if and only if every element of $A$ belongs also to $B$ and vice versa.
         \item \label{item:sets-3} There exists an empty set $\emptyset$, such that every object $x \notin \emptyset$.
         \item \label{item:sets-4} Let $A$ be a non-empty set. Then there exist an object $x \in A$.
-        \item \label{item:sets-5} Singleton set $\{a\}$: $y \in \{a\}$ iff $y=a$.
-              Pair set $\{a,b\}$: $y \in \{a,b\}$ iff $y=a$ or $y=b$.
+        \item \label{item:sets-5} Singleton set $\{a\}$: $y \in \{a\}$ if and only if $y=a$.
+              Pair set $\{a,b\}$: $y \in \{a,b\}$ if and only if $y=a$ or $y=b$.
         \item \label{item:sets-6} $x \in A \cup B \Leftrightarrow x \in A$ or $x \in B$.
         \item \label{item:sets-7} $y \in \{x \in A : P(x) \text{ is true}\} \Leftrightarrow y \in A \text{ and } P(x) \text{ is true}$.
         \item \label{item:sets-8} $z \in \{y : P(x,y) \text{ is true for some } x \in A\} \Leftrightarrow P(x,z) \text{ is true for some } x \in A$.
@@ -413,6 +349,13 @@
 \subsection{Functions}
 
 \section{Power Series}
+
+\appendix
+\section{Tools}
+\begin{definition}[implication]
+    \label{def:implication}
+    ``If P, then Q'', then it is also true that ``If not Q, then not P''.
+\end{definition}
 
 \printbibliography
 \end{document}
