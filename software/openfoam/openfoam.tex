@@ -20,6 +20,103 @@ Components of OpenFOAM:
     \item utilities: config simulation, geometry, mesh, and process results
 \end{itemize}
 
+\section{Tutorials}
+\begin{definition}[environment]~
+    \begin{verbatim}
+# tutorial directory
+$FOAM_TUTORIALS
+
+# user run directory
+$FOAM_RUN
+mkdir -p $FOAM_RUN
+\end{verbatim}
+\end{definition}
+
+\section{Applications and Libraries}
+
+\section{cases}
+
+\section{Mesh Generation and Conversion}
+\begin{definition}[mesh]
+    OpenFOAM always operates in a three dimensional Cartesian coordinate system
+    and all geometries are generated in three dimensions.
+
+    OpenFOAM solves cases in two dimensions by specifying \verb|empty| boundary condition
+    on boundaries normal to the third dimension for which no solution is required.
+\end{definition}
+
+\begin{definition}[blockMesh]
+    blockMesh generates meshes from a \verb|blockMeshDict| file
+    located in \verb|system| directory for a given case.
+    \small
+    \begin{verbatim}
+// -*- C++ -*-
+// Website: https://openfoam.org
+// Version: openfoam-dev
+
+FoamFile // sub-dictionary
+{
+    format   ascii
+    class    dictionary
+    location "system"
+    object   blockMeshDict
+}
+
+units [mm]; // optional
+// the generated mesh is written in the base units for the underlying unit system, i.e. meter
+
+vertices
+(
+    (x1 y1 z1) // vertex 1
+    ...
+);
+
+blocks
+(
+    hex (v1 ... v8)
+    (cells_x cells_y cells_z)
+    simpleGrading (g_x g_y g_z)
+    ...
+);
+
+boundary
+(
+    name
+    {
+        type T;
+        faces
+        (
+            (v1 ... v4)
+            ...
+        );
+    }
+);
+\end{verbatim}
+\end{definition}
+
+\section{Boundary and Initial Conditions}
+\begin{definition}[initial field]~
+    \begin{verbatim}
+// case starts at t = 0
+// initial field data is stored in a 0 sub-directory
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[p]
+
+\end{definition}
+
+\section{Models and Physical Properties}
+
+\section{Post-processing}
+\begin{definition}[paraview]~
+    \begin{verbatim}
+touch foam.foam
+
+// Camera Parallel Projection
+\end{verbatim}
+\end{definition}
+
 \appendix
 \section{Tools}
 \begin{definition}[installation]

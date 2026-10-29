@@ -672,6 +672,42 @@ For $n \geq 3$:
     \end{equation}
 \end{definition}
 
+\subsection{Taylor Expansion}
+\begin{definition}[Taylor expansion]
+\end{definition}
+
+\subsection{Exponent}
+\begin{definition}[exponent]
+    The exponent function $e^{x}$ is defined as an infinite series
+    \begin{equation}
+        e^{x} = 1 + x + \frac{x^{2}}{2!} + \frac{x^{3}}{3!} + \dots = \sum_{n=0}^{\infty} \frac{x^{n}}{n!}
+    \end{equation}
+\end{definition}
+
+Approximate the exponent function by the truncated Taylor polynomial
+\begin{equation}
+    T_{K}(x) = \sum_{n=0}^{K} \frac{x^{n}}{n!}
+\end{equation}
+which is a good approximation to $e^{x}$ when $x$ is rather small (i.e. $|x| < 0.5$).
+
+When $x$ is large, pick a sufficiently large integer $m$ such that $x/2^{m}$ is sufficiently small
+\cite{YAIR_2012_SOLVING_PDES_IN_CPP}
+\begin{equation}
+    e^{x} = ( e^{x/2^{m}} )^{2^{m}}
+\end{equation}
+Approximate by
+\begin{equation}
+    e^{x} \doteq T_{K}(x/2^{m})^{2^{m}}
+\end{equation}
+
+\begin{definition}[Horner's algorithm]
+\end{definition}
+
+\begin{definition}[Pade approximation]
+\end{definition}
+
+\begin{definition}[exponent of matrix]
+\end{definition}
 
 \printbibliography
 \end{document}
