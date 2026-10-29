@@ -348,9 +348,7 @@ The solution to the initial-value problem is
     \end{equation}
 \end{definition}
 
-\begin{remark}[nonlinear]
-    Full non-linearity depends on the highest order derivatives.
-\end{remark}
+Full non-linearity depends on the highest order derivatives.
 
 \begin{definition}[k\textsuperscript{th}-order system of PDE]
     \begin{equation}
@@ -372,9 +370,7 @@ The solution to the initial-value problem is
     \end{itemize}
 \end{definition}
 
-\begin{remark}
-    Existence is the prime attribute of what we study.
-\end{remark}
+Existence is the prime attribute of what we study.
 
 \section{Four Fundamental Linear PDE}
 \begin{definition}[Fundamental linear PDE]~
@@ -436,7 +432,7 @@ The solution to the initial-value problem is
     \end{gather*}
 \end{proof}
 
-\begin{proposition}[initial-value problem]
+\begin{lemma}[initial-value problem]
     \begin{equation*}
         \begin{cases}
             \frac{\partial u}{\partial t} + b\frac{\partial u}{\partial x} = 0 \\
@@ -447,9 +443,9 @@ The solution to the initial-value problem is
     \begin{equation*}
         u(x,t) \overset{\text{Theo. \ref{theo:transport-equation-solution}}}{=} u(x-tb,0) = g(x-tb)
     \end{equation*}
-\end{proposition}
+\end{lemma}
 
-\begin{proposition}[nonhomogenous problem]
+\begin{lemma}[nonhomogenous problem]
     \begin{equation*}
         \begin{cases}
             \frac{\partial u}{\partial t} + b \cdot \frac{\partial u}{\partial x} = f(x,t) \\
@@ -465,7 +461,7 @@ The solution to the initial-value problem is
         z(0) - z(-t) = u(x,t) - u(x-tb,0) = u(x,t) - g(x-tb) = \int_{-t}^{0} f(x+sb,t+s) ds \\
         u(x,t) = g(x-tb) + \int_{-t}^{0} f(x+sb,t+s) ds
     \end{gather*}
-\end{proposition}
+\end{lemma}
 
 \subsection{Laplace's Equation}
 \begin{definition}[Laplace's equation]

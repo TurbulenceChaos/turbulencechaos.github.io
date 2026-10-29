@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{blog}[2026/10/20 Blog class]
+\ProvidesClass{blog}[2026/10/20 blog class]
 
 \LoadClass{article}
 
@@ -25,13 +25,8 @@
 \numberwithin{figure}{section}
 \numberwithin{table}{section}
 
+\newtheorem{axiom}{Axiom}[section]
+\newtheorem{definition}{Definition}[section]
+\newtheorem{lemma}{Lemma}[section]
 \newtheorem{theorem}{Theorem}[section]
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{assumption}[theorem]{Assumption}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{axiom}[theorem]{Axiom}
-\newtheorem{proposition}[theorem]{Proposition}
-\newtheorem{corollary}[theorem]{Corollary}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{example}{Example}[section]

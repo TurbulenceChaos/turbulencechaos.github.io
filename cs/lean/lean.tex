@@ -240,9 +240,8 @@ match k with
 \end{verbatim}
 \end{definition}
 
-\begin{remark}
-    Lean ensures by default that every recursive function will eventually reach a base case to avoid accidental infinite loops
-\end{remark}
+Lean ensures by default that every recursive function will eventually reach a base case
+to avoid accidental infinite loops
 
 \begin{example}~
     \begin{verbatim}
@@ -255,7 +254,8 @@ else Nat.succ (div (n-k) k)
 
 \subsection{Polymorphism}
 \begin{definition}[polymorphism]
-    polymorphism refers to datatypes and definitions that take types as arguments, where \textbf{types} are ordinary \textbf{expressions} in Lean.
+    polymorphism refers to datatypes and definitions that take types as arguments,
+    where \textbf{types} are ordinary \textbf{expressions} in Lean.
 \end{definition}
 
 \begin{example}~
@@ -286,9 +286,7 @@ match s with
 \end{verbatim}
 \end{example}
 
-\begin{remark}
-    It is customary to use Greek letters to name type arguments.
-\end{remark}
+It is customary to use Greek letters to name type arguments.
 
 \subsubsection{Linked List Datatype}
 \begin{definition}[List]
@@ -340,9 +338,7 @@ match xs with
 \end{verbatim}
 \end{definition}
 
-\begin{remark}
-    Type was unavailable because the empty list does not have any entries from which the type can be found.
-\end{remark}
+Type was unavailable because the empty list does not have any entries from which the type can be found.
 
 name convention of suffixes for operations:
 \begin{itemize}
