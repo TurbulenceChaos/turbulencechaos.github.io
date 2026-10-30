@@ -235,7 +235,18 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
 \begin{axiom}[pairwise union]
     If $A$ and $B$ are two sets, then there exists a union of $A$ and $B$ set $A \cup B$,
     which consists of all the elements which belong to $A$ or $B$ or both.
+    \begin{equation}
+        x \in A \cup B \Longleftrightarrow x \in A \text{ or } x \in B
+    \end{equation}
 \end{axiom}
+
+\begin{proposition}[properties of union]~
+    \begin{itemize}
+        \item $\{a,b\} = \{a\} \cup \{b\}$
+        \item commutative: $A \cup B = B \cup A$
+        \item associative: $(A \cup B) \cup C = A \cup (B \cup C)$
+    \end{itemize}
+\end{proposition}
 
 \begin{definition}[subsets]
     $A$ is a subset of $B$, denoted $A \subseteq B$,
@@ -289,8 +300,25 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
 \end{definition}
 
 \begin{definition}[Cartesian product]
-
+    If $X$ and $Y$ are sets, then define Cartesian product $X \times Y$ to be the collection of ordered pair
+    \begin{equation}
+        X \times Y = \{(x,y): x \in X, y \in Y\}
+    \end{equation}
 \end{definition}
+
+\begin{definition}[ordered sequence of $n$ elements]
+    If $(x_{1},\dots,x_{n})$ is an ordered n-tuple,
+    define Cartesian product $X_{1} \times \dots \times X_{n}$ by
+    \begin{equation}
+        \prod_{1 \leq i \leq n}X_{i} :=
+        \{(x_{i})_{1 \leq i \leq n}: x_{i} \in X_{i} \text{ for all } 1 \leq i \leq n\}
+    \end{equation}
+\end{definition}
+
+\begin{lemma}[finite choice]
+    Let $X_{i}$ be a non-empty set, then there exists an n-tuple $(x_{i})_{1 \leq i \leq n}$
+    such that $x_{i} \in X_{i}$ for all $1 \leq i \leq n$.
+\end{lemma}
 
 \section{Function}
 \begin{definition}[function]
@@ -317,7 +345,7 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
 \end{definition}
 
 \begin{definition}[injective]
-    A function is one-to-one if different elements map to different elements
+    A function is one-to-one if every element in $X$ maps to different element in $Y$
     \begin{equation}
         x \neq x' \Longrightarrow f(x) \neq f(x')
     \end{equation}
@@ -370,6 +398,53 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
     \end{equation}
 \end{axiom}
 
+\section{Cardinality of Sets}
+\begin{definition}[ordinal and cardinal]
+    The cardinals are One, Two, ..., and are used to count how many things there are in a set.
+
+    THe ordinals are First, Second, ..., and are used to order a sequence of objects.
+\end{definition}
+
+Natural numbers can be used to count the cardinality of sets, as long as the set is finite.
+
+\begin{definition}[equal cardinality]
+    $X$ and $Y$ have equal cardinality if and only if there exists a bijection $f: X \to Y$ from $X$ to $Y$.
+\end{definition}
+
+\begin{proposition}[properties of equal cardinality]~
+    \begin{itemize}
+        \item $X$ has equal cardinality with $X$.
+        \item If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$.
+        \item If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$,
+              then $X$ has equal cardinality with $Z$.
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}[cardinality $n$]
+    A set X has cardinality $n$ or $n$ elements if and only if it has equality cardinality with
+    $\{i \in \mathbb{N}: 1 \leq i \leq n\}$.
+\end{definition}
+
+\begin{proposition}[uniqueness of cardinality]
+
+\end{proposition}
+
+\begin{definition}[finite sets]
+
+\end{definition}
+
+\begin{theorem}[$\mathbb{N}$ is infinite]
+    The set of natural number $\mathbb{N}$ is an infinite set.
+\end{theorem}
+
+\begin{proof}
+
+\end{proof}
+
+\begin{proposition}[cardinal arithmetic]
+
+\end{proposition}
+
 \section{Integers}
 
 \section{Rationals}
@@ -379,6 +454,14 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
 \section{Limits of Sequences}
 
 \section{Power Series}
+
+\section{Infinite Sets}
+
+\section{Continuous Functions}
+
+\section{Differentiation of Functions}
+
+\section{Riemann Integral}
 
 \appendix
 \section{Tools}
@@ -393,6 +476,18 @@ $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
         \item not ``A or B'' = ``not A and not B''
     \end{itemize}
 \end{lemma}
+
+\begin{axiom}[subsititution axiom]
+    Given any two objects $x$ and $y$, if $x = y$, then $f(x) = f(y)$ for all functions or operations.
+    For any property $P(x)$ pertaining to $x$, if $x=y$ , then $P(x)$ and $P(y)$ are equivalent statements.
+\end{axiom}
+
+\begin{definition}[conjunction and disjunction]~
+    \begin{itemize}
+        \item The statement ``X and Y'' is true if $X$ and $Y$ are both true.
+        \item The statement ``X or Y'' is true if either $X$ or $Y$ is true, or both.
+    \end{itemize}
+\end{definition}
 
 \printbibliography
 \end{document}
