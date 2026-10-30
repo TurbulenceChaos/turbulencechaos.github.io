@@ -2,32 +2,26 @@
 
 \usepackage{tikz}
 \usepackage{showexpl}
-\lstset{
-    basicstyle=\ttfamily\small,
-    explpreset={pos=b,rframe={},columns=flexible}
-}
 
 \title{LaTeX}
 
 \begin{document}
 \maketitle
 \tableofcontents
-\section{Introduction}
-\url{https://latex-project.org/}
 
 \section{TikZ}
-\subsection{Introduction}
-\url{https://tikz.dev/}
 \begin{definition}[TikZ]
-    TikZ is a frontend of PGF.
+    \href{https://tikz.dev/}{TikZ} is a frontend of PGF.
 \end{definition}
 
-\subsection{Curved Path Construction}
-\begin{definition}[control points]
-    \verb|<ps> .. controls <pc1> and <pc2> .. <pe>|
+\section{Curved Path Construction}
+\begin{definition}[control points]~
+    \begin{verbatim}
+(start_point) .. controls (control_point_1) and (control_point_2) .. (end_point)
+\end{verbatim}
 \end{definition}
 
-\begin{LTXexample}
+\begin{LTXexample}[pos=b]
     \begin{tikzpicture}[scale=2]
         \filldraw [gray]
         (0,0) circle (2pt)
@@ -40,5 +34,15 @@
     \end{tikzpicture}
 \end{LTXexample}
 
-\printbibliography
+\appendix
+\section{Tools}
+\begin{definition}[magick comment]~
+    \begin{verbatim}
+% !TeX program = xelatex
+\usepackage{fontspec}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+\end{verbatim}
+\end{definition}
+
+% \printbibliography
 \end{document}

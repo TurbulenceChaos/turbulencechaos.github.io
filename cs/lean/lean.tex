@@ -1,4 +1,9 @@
+% !TeX program = xelatex
 \documentclass{blog}
+\usepackage{fontspec}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
+
+\newtheorem{tactic}{Tactic}[section]
 
 \title{Lean}
 
@@ -6,413 +11,93 @@
 \maketitle
 \tableofcontents
 \section{Introduction}
-References:
-\begin{itemize}
-    \item \url{https://lean-lang.org/doc/reference/latest/}
-    \item \url{https://leanprover-community.github.io/mathematics_in_lean/}
-    \item \url{https://lean-lang.org/functional_programming_in_lean/}
-\end{itemize}
+\begin{definition}[lean]
+    Lean is an expression-oriented functional language based on dependent type theory.
+\end{definition}
 
-Lean is an expression tactic functional language based on \textbf{dependent type theory}.
+\section{Dependent Type Theory}
+\url{https://lean-lang.org/theorem_proving_in_lean4/}
 
-\subsection{Overview}
-Every expression has a type (printed by \verb|#check|).
+Every expression has an associated type.
 
-\begin{definition}[mathematical object]~
+\begin{definition}[object]
+\end{definition}
+
+\begin{definition}[types]~
     \begin{verbatim}
-#check 2 + 2 -- Nat
-
-def f (x : Nat) :=
-  x+3
-
-#check f -- Nat -> Nat
+Nat
+Int
+Float
+String
+Bool -- True or False
+List
+Type
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[mathematical statement: Prop]~
+\begin{definition}[declare object]~
     \begin{verbatim}
-#check 2 + 2 = 4 -- Prop
-
-def FermatLastTheorem :=
-  \all x y z n : Nat, n > 2 \and x * y *z \neq 0 \to x^n + y^n \neq z^n
-
-#check FermatLastTheorem -- Prop
+def obj : type := value -- define constant
+#check obj -- check type
+#eval expr -- evaluate
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[proof of the proposition]~
-    \begin{verbatim}
-theorem easy : 2 + 2 = 4 :=
-  rfl
-
-#check easy -- 2 + 2 = 4
-
-theorem hard : FermatLastTheorem :=
-  sorry
-
-#check hard -- FermatLastTheorem
-\end{verbatim}
-\end{definition}
-
-Construct an expression of type \verb|FermatLastTheorem| and make Lean accepts it as a term of that type.
-
-\section{Basics}
-\subsection{Types}
-\begin{definition}[type]~
-    \begin{itemize}
-        \item \verb|Nat|: default type for non-negative integer literals
-        \item \verb|Int|
-        \item \verb|Float|
-        \item \verb|String|
-        \item \verb|Bool|
-        \item \verb|List|: \verb|List type|
-        \item \verb|Type|: describes other types, so \verb|Nat|, \verb|String|, \verb|List|, etc. all have type \verb|Type|
-    \end{itemize}
-\end{definition}
-
-\begin{example}~
-    \begin{verbatim}
-#eval (1 - 2 : Nat) -- 0
-#check (1 - 2 : Int) -- check the type of an expression
-\end{verbatim}
-\end{example}
-
-\subsection{Functions and Definitions}
-\begin{definition}[definition]~
-    \begin{verbatim}
-def var : type := val
-\end{verbatim}
-\end{definition}
-
-\begin{example}~
-    \begin{verbatim}
-def lean : String := "Lean"
-#eval String.append "hello " lean
-\end{verbatim}
-\end{example}
-
-\subsubsection{Defining Functions}
-\begin{definition}[function]~
-    \begin{verbatim}
-def func (arg1 : type) ... (argn : type) : type := body
-\end{verbatim}
-\end{definition}
-
-\begin{example}~
-    \begin{verbatim}
-def maximum (n : Nat) (m : Nat) : Nat := if n < m then m else n
-#eval maximum 1 5
-\end{verbatim}
-\end{example}
-
-\begin{definition}[currying]
-    \verb|Nat -> (Nat -> Nat)|
-\end{definition}
-
-\subsubsection{Defining Types}
-\begin{definition}[Type]~
-    \begin{verbatim}
-def Str : Type := String -- overloaded
-abbrev N : Type := Nat -- unfolded
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[overloaded]
-
-\end{definition}
-
-\begin{definition}[reducible]
-    Definitions that are to be unfolded are called reducible.
-\end{definition}
-
-\subsection{Structures}
-\begin{definition}[structure]~
-    \begin{verbatim}
-structure Point where
-x : Float
-y : Float
-def origin : Point := {x:=0.0,y:=0.0}
-#eval origin.x
-#check {x:=0.0,y:=0.0:Point}
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[updating structures]
-    \begin{verbatim}
-def zeroX (p : Point) := {p with x:=0}
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[constructor]~
-    \begin{verbatim}
-structure Point where
-point::
-x : Float
-y : Float
-#check Point.point 1.0 2.0
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[accessor]~
-    \begin{verbatim}
-#eval Point.x {x:=1.0,y:=2.0}
-#check {x:=1.0,y:=2.0 : Point}.x
--- TARGET.func ARG1 ... ARGn
-#eval "hello".append " Lean"
-def Point.modifyBoth (f : Float -> Float) (p : Point) : Point := {x:=f p.x,y:=f p.y}
-#eval {x:=3,y:=4 : Point}.modifyBoth Float.floor
-\end{verbatim}
-\end{definition}
-
-\subsection{Datatypes and Patterns}
-\begin{definition}[datatype]~
-    \begin{itemize}
-        \item \verb|sum|
-        \item \verb|recursive|
-        \item \verb|inductive| : recursive sum type
-    \end{itemize}
-\end{definition}
-
-\begin{example}[inductive]~
-    \begin{verbatim}
-inductive Nat where
-| zero : Nat
-| succ (n : Nat) : Nat
-#eval Nat.succ (Nat.succ Nat.zero)
-\end{verbatim}
-\end{example}
-
-\subsubsection{Pattern Matching}
-\begin{definition}[pattern matching]~
-    \begin{verbatim}
-def isZero (n:Nat) : Bool :=
-match n with
-| Nat.zero => true
-| Nat.succ k => false
-#eval isZero Nat.zero
-
-def pred (n : Nat) : Nat :=
-match n with
-| Nat.zero => Nat.zero
-| Nat.succ k => k
-#eval pred 5
-
-def depth (p:Point3D) :Float :=
-match p with
-| {x:=h,y:=w,z:=d} => d
-#eval depth {x:=1,y:=2,z:=3}
-\end{verbatim}
-\end{definition}
-
-\subsubsection{Recursive Functions}
-\begin{definition}[recursive definition]
-    Definitions that refer to the name being defined are called recursive definition.
-\end{definition}
-
-\begin{definition}[structural recursion]~
-    \begin{verbatim}
-def even (n:Nat) : Bool :=
-match n with
-| Nat.zero => true
-| Nat.succ k => not (even k)
-#eval even 2
-
--- addition = interated Nat.succ
-def plus (n:Nat) (k:Nat) : Nat :=
-match k with
-| Nat.zero => n
-| Nat.succ k' => Nat.succ (plus n k')
-#eval plus 1 2
-
--- multiplication = interated addition
-def times (n:Nat) (k:Nat) : Nat :=
-match k with
-| Nat.zero => 0
-| Nat.succ k' => plus n (times n k')
-#eval times 1 2
-
--- subtraction = interated predecessor
-def minus (n:Nat) (k:Nat) : Nat :=
-match k with
-| Nat.zero => n
-| Nat.succ k' => Nat.pred (minus n k')
-#eval minus 2 1
-\end{verbatim}
-\end{definition}
-
-Lean ensures by default that every recursive function will eventually reach a base case
-to avoid accidental infinite loops
-
-\begin{example}~
-    \begin{verbatim}
-def div (n:Nat) (k:Nat) : Nat :=
-if n < k then
-0
-else Nat.succ (div (n-k) k)
-\end{verbatim}
-\end{example}
-
-\subsection{Polymorphism}
-\begin{definition}[polymorphism]
-    polymorphism refers to datatypes and definitions that take types as arguments,
-    where \textbf{types} are ordinary \textbf{expressions} in Lean.
-\end{definition}
-
-\begin{example}~
-    \begin{verbatim}
--- structure take types as arguments
-structure PPoint (\alpha : Type) where
-x : \alpha
-y : \alpha
-def natOrigin : PPoint Nat := {x:=Nat.zero,y:=Nat.zero}
-#check natOrigin
-
--- definition take types as arguments
-def replaceX (\alpha : Type) (point : PPoint \alpha) (newX : \alpha) : PPoint \alpha :=
-{point with x:=newX}
-#check replaceX
-#eval replaceX Nat natOrigin 2
-
--- argument is a sign
-inductive Sign where
-| pos
-| neg
-def posOrNegThree (s : Sign) :
-match s with | Sign.pos => Nat | Sign.neg => Int :=
-match s with
-| Sign.pos => (3:Nat)
-| Sign.neg => (-3:Int)
-#check posOrNegThree Sign.pos
-\end{verbatim}
-\end{example}
-
-It is customary to use Greek letters to name type arguments.
-
-\subsubsection{Linked List Datatype}
-\begin{definition}[List]
-    A \verb|List a| can be built with either \verb|nil| or \verb|cons|.
-    A list that contains $n$ entries contains $n$ \verb|cons| constructors, the last of which has \verb|nil| as its tail.
-    \begin{verbatim}
-inductive List (\alpha : Type) where
-| nil : List \alpha
-| cons : \alpha -> List \alpha -> List \alpha
-def primesUnder10 : List Nat := [2,3,5,7]
-#eval List.cons 2 (List.cons 3 (List.cons 5 (List.cons 7 List.nil)))
-
--- functions that consume Lists
-def length (\alpha : Type) (xs : List \alpha) : Nat :=
-match xs with
-| List.nil => Nat.zero -- [] for List.nil
-| List.cons y ys => Nat.succ (length \alpha ys) -- y :: ys for List.cons
-#eval length String ["hello", "lean"]
-\end{verbatim}
-\end{definition}
-
-\subsubsection{Implicit Arguments}
-\begin{definition}[implicit type]~
-    \begin{verbatim}
-def length {\alpha : Type} (xs : List \alpha) : Nat :=
-match xs with
-| [] => Nat.zero
-| y :: ys => Nat.succ (length ys)
-#eval length ["hello", "lean"]
--- List.length
-#eval ["hello", "lean"].length
-\end{verbatim}
-\end{definition}
-
-\subsubsection{More Built-In Structures and Inductive Datatypes}
-\begin{definition}[option]
-    List is empty or has a first entry.
-    \begin{verbatim}
-inductive Option (\alpha : Type) : Type where
-| none : Option \alpha
-| some (val : \alpha) : Option \alpha
-
-def List.head? {\alpha : Type} (xs : List \alpha) : Option \alpha :=
-match xs with
-| [] => none
-| y :: _ => some y
-#eval [1,2,3].head?
-#eval ([] : List Int).head?
-\end{verbatim}
-\end{definition}
-
-Type was unavailable because the empty list does not have any entries from which the type can be found.
-
-name convention of suffixes for operations:
-\begin{itemize}
-    \item ? for operations that might fail
-    \item ! for crash due to invalid input
-    \item D for default value when the operation would otherwise fail
-\end{itemize}
-
-\begin{definition}[Prod]
-    Constructs a pair.
-    \begin{verbatim}
-structure Prod (\alpha : Type) (\beta : Type) : Type where
-fst : \alpha
-snd : \beta
--- def fives : Prod String Int := {fst:="five",snd:=5}
--- def fives : String \times Int := {fst:="five",snd:=5}
-def fives : String \times Int := ("five",5)
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[Sum]
-    Allow a choice between values of two different types.
-    \begin{verbatim}
-inductive Sum (\alpha : Type) (\beta : Type) : Type where
-| inl : \alpha -> Sum \alpha \beta
-| inr : \beta -> Sum \alpha \beta
-
--- def PetName : Type := Sum String String
-def PetName : Type := String \oplus String
-
-def animals : List PetName :=
-[Sum.inl "Spot", Sum.inr "Tiger",Sum.inl "Fifi",Sum.inl "Rex",Sum.inr "Floor"]
-
-def howManyDogs (pets : List PetName) : Nat :=
-match pets with
-| [] => 0
-| Sum.inl _ :: morePets => howManyDogs morePets + 1
-| Sum.inr _ :: morePets => howManyDogs morePets
-
-#eval howManyDogs animals
-\end{verbatim}
-\end{definition}
-
-\begin{definition}[Unit]
-
-\end{definition}
-
-\begin{definition}[Empty]
-
-\end{definition}
-
-\section{Interlude: Propositions, Proofs, and Indexing}
-\begin{definition}[arrays and lists]~
-    \begin{verbatim}
-def lists : List type := [ele1, ..., elen]
-#eval lists[0] -- or lists[k]
-\end{verbatim}
-\end{definition}
-
-\subsection{Propositions and Proofs}
 \begin{definition}[proposition]
-    A proposition is a statement that can be true or wrong.
-\end{definition}
-
-\begin{definition}[proof]
-    A proof is a convincing argument that a proposition is true.
 \end{definition}
 
 \begin{definition}[theorem]
-
 \end{definition}
 
-\subsection{Tactics}
+\begin{definition}[function]~
+    \begin{verbatim}
+def func (arg1 : type) ... (argn : type) : type :=
+    body
+\end{verbatim}
+\end{definition}
 
+\section{Tactics}
+\begin{tactic}[reflexivity of equality]
+    \verb|ref| proves goals of the form \verb|X = X|.
+\end{tactic}
 
-\printbibliography
+\begin{tactic}[rewrite]
+    If \verb|h| is a proof of an equality \verb|X = Y|,
+    then \verb|rw [h]| replace all \verb|X| with \verb|Y|.
+    \begin{verbatim}
+repeat rw [h] -- rewrite at once
+rw [← h] -- turn Y into X
+\end{verbatim}
+\end{tactic}
+
+\begin{definition}[$\mathbb{N}$]
+    $\mathbb{N}$ is the natural numbers defined by \verb|0 : ℕ| and \verb|succ (0 : ℕ) : ℕ|.
+\end{definition}
+
+\begin{theorem}[successor]
+    The successor of \verb|n| means the number after \verb|n|.
+    \begin{verbatim}
+two_eq_succ_one -- proof of 2 = succ 1
+add_succ x d : x + succ d = succ (x + d)
+\end{verbatim}
+\end{theorem}
+
+\begin{theorem}[adding 0]
+    Define \verb|a + 0| to be \verb|a| for any number \verb|a|.
+    \begin{verbatim}
+add_zero   -- proof of ? + 0 = ?
+add_zero x -- proof of x + 0 = x
+\end{verbatim}
+\end{theorem}
+
+\appendix
+\section{Tools}
+\begin{definition}[comment]~
+    \begin{verbatim}
+/- comment blocks can be nested -/
+-- line comment
+\end{verbatim}
+\end{definition}
+
+% \printbibliography
 \end{document}
