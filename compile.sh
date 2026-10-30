@@ -38,8 +38,15 @@ for DIR in mathematics cs literature software; do
                         pdf2png "$TIKZ.pdf" "$PAGE" "../../images/${PNG[$i]}"
                     done
                 fi
-                echo compile "$TEX.tex"
-                latexmk -pdf "$TEX.tex" &>"$TEX.log"
+                if ! git diff --exit-code --quiet "$TEX.tex"; then
+                    echo compile "$TEX.tex"
+                    if [[ $(sed -n '1p;1q' "$TEX.tex") == '% !TEX program = xelatex' ]]; then
+                        TOOL='-xelatex'
+                    else
+                        TOOL='-pdf'
+                    fi
+                    latexmk "$TOOL" "$TEX.tex" &>"$TEX.log"
+                fi
             )
         done
     )
