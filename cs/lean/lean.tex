@@ -3,8 +3,6 @@
 \usepackage{fontspec}
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 
-\newtheorem{tactic}{Tactic}[section]
-
 \title{Lean}
 
 \begin{document}
@@ -12,108 +10,220 @@
 \tableofcontents
 \section{Introduction}
 \begin{definition}[lean]
-    Lean is an expression-oriented functional language based on dependent type theory.
+    Lean is an expression-oriented functional language based on
+    \href{https://lean-lang.org/definition_proving_in_lean4/}{dependent type theory}.
 \end{definition}
 
-\section{Simple Type Theory}
-\url{https://lean-lang.org/theorem_proving_in_lean4/}
-
-\begin{definition}[declare object]
-    Using \verb|def| to declare a new constant symbol.
+\section{Dependent Type Theory}
+\begin{definition}[definition]
+    Declare a new named constant object.
     \begin{verbatim}
-def obj : type := value
-#check obj -- check type
-#eval expr -- evaluate
+def c : type := expr
+-- auxiliary commands begin with # symbol
+#check c   -- check type
+#eval expr -- evaluate expression
+#print c   -- view definition
+
+-- a name defined using def is semireducible
+def T := type
+def c : T := ... -- error
+
+-- local definition
+-- strong means of abbreviation
+#check let c := ...; expr -- replace c in expr
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[types]
+\begin{definition}[type]
     Every expression has an associated type.
     \begin{verbatim}
 Nat
+#check Nat.succ
+#check Nat.add
 Int
 Float
 String
-Bool -- True or False
-List
-Type
-\end{verbatim}
-\end{definition}
+Bool -- true or false
 
-\begin{definition}[function]~
-    \begin{verbatim}
-def func (param_1 : type) ... (param_n : type) : type :=
-    body
+List -- List type
+#check List.nil
+#check []
+#check [1, 2, 3]
 
--- call function
-func arg_1 ... arg_n
+#check List.cons
+#check List.cons 1 []
+#check 1 :: 2 :: 3 :: []
+
+#check List.map
+#check List.map func [1, 2, 3]
+#check [1, 2, 3].map func
+
+Type -- abbreviation for Type 0
+-- infinite hierarchy of types
+-- larger universe of types contains lower universe of types as elements
+-- Type : Type 1
+-- Type n : Type n + 1
+universe u -- polymorphic constant
+Type u
 \end{verbatim}
 \end{definition}
 
 \begin{definition}[simple type theory]
     Build new types out of others.
     \begin{verbatim}
-type → type -- denotes the type of function from type to type
-type → type → type -- equivalent to type → (type → type) that
--- takes type and return another function that takes type and return type
+type → type        -- denotes the type of function
+type → type → type -- equivalent to type → (type → type)
+-- arrows associate to the right in type expressions
 
-type × type -- denotes the type of pairs consisting of type paired with type
-(m, n) denotes the ordered pair of m and n which is of type × type
-(m, n).1 : type
-(m, n).2 : type
+type × type    -- denotes the type of Cartesian product
+Prod type type -- alternative notation
+(m, n)         -- denotes the ordered pair of m and n which is of type type × type
+(m, n).1       -- first component
+(m, n).2       -- second component
 \end{verbatim}
 \end{definition}
 
-\section{Dependent Type Theory}
 \begin{definition}[dependent type theory]
-    Types are objects.
+    Dependent type theory extends simple type theory that
+    types themselves are objects which also have a type.
 \end{definition}
 
-\begin{definition}[declare type]~
+\begin{example}[polymorphic]
+    A function is polymorphic that takes the type to be the (first) argument.
     \begin{verbatim}
-def T : Type := type
+def cons (α : Type) (a : α) (as : List α) : List α :=
+  List.cons a as
+
+#check cons Nat
+#check cons
+
+-- dependent function type or dependent arrow type
+-- the type of the value returned by function depends on its input
+-- dependent Cartesian product
+def f (α : Type u) (β : α → Type v) (a : α) (b : β a) : (a : α) × β a := ⟨a, b⟩
+def g (α : Type u) (β : α → Type v) (a : α) (b : β a) : Σ a : α, β a := Sigma.mk a b
+\end{verbatim}
+\end{example}
+
+\section{Function Abstraction}
+\begin{definition}[lambda function]
+    Creating a function from another expression is a process called lambda abstraction.
+    \begin{verbatim}
+#check fun (param_1 : type) ... => expr
+-- lambda function is an object of type type → ...
+-- λ and fun are the same
+
+#eval (λ (param_1 : type) ... ) arg_1
+
+-- declare a new named object
+def f : type → ... := λ (param_1 : type) ... => expr
+-- move lambda-abstracted variables to the left of the colon
+-- with input parameters and returning type
+def f (param_1 : type) ... : type := expr
+
+#eval f arg_1 ... arg_n -- call function
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[proposition]
+\begin{example}
+    \begin{verbatim}
+def compose (α β γ : Type) (g : β → γ) (f : α → β) (x : α) : γ := g (f x)
+\end{verbatim}
+\end{example}
+
+\begin{definition}[implicit argument]
+    When a function takes an argument that can generally be inferred from context,
+    Lean allows you to specify that argument by default be left implicit.
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
+\section{Variable and Sections}
+\begin{definition}[variable]
+    Instruct Lean to insert the declared variables as
+    bounded variables in definitions that refer to them by name.
+    \begin{verbatim}
+variable (T : type) ...
+
+variable (α β γ : Type)
+variable (g : β → γ) (f : α → β)
+variable (x : α)
+def compose : γ := g (f x)
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[section]
+    Limit the scope of a variable.
+    \begin{verbatim}
+section MySection
+    ...
+end MySection
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[namespace]
+    Group definitions.
+    \begin{verbatim}
+namespace MyNamespace
+    def c : type := ...
+end MyNamespace
+
+#check MyNamespace.c
+open MyNamespace -- use shorter names
+#check c
+\end{verbatim}
+\end{definition}
+
+\section{Theorem}
+\begin{definition}[proposition]~
+    \begin{verbatim}
+Prop
+\end{verbatim}
 \end{definition}
 
 \begin{definition}[theorem]
+    \begin{verbatim}
+
+\end{verbatim}
 \end{definition}
 
-\section{Tactics}
-\begin{tactic}[reflexivity of equality]
-    \verb|ref| proves goals of the form \verb|X = X|.
-\end{tactic}
-
-\begin{tactic}[rewrite]
-    If \verb|h| is a proof of an equality \verb|X = Y|,
-    then \verb|rw [h]| replace all \verb|X| with \verb|Y|.
+\begin{definition}[axiom]
     \begin{verbatim}
-repeat rw [h] -- rewrite at once
-rw [← h] -- turn Y into X
-\end{verbatim}
-\end{tactic}
 
-\begin{definition}[$\mathbb{N}$]
-    $\mathbb{N}$ is the natural numbers defined by \verb|0 : ℕ| and \verb|succ (0 : ℕ) : ℕ|.
+\end{verbatim}
 \end{definition}
 
-\begin{theorem}[successor]
-    The successor of \verb|n| means the number after \verb|n|.
+\begin{definition}[logical connectives]~
     \begin{verbatim}
-two_eq_succ_one -- proof of 2 = succ 1
-add_succ x d : x + succ d = succ (x + d)
+True
+False
+¬ -- Not
+∧ -- And
+∨ -- Or
+→ -- introduce
+↔ -- Iff
 \end{verbatim}
-\end{theorem}
+\end{definition}
 
-\begin{theorem}[adding 0]
-    Define \verb|a + 0| to be \verb|a| for any number \verb|a|.
+\begin{definition}[example]
+    States a theorem without naming it or storing it in permanent context.
+\end{definition}
+
+\subsection{Conjunction}
+\begin{definition}[conjunction]~
     \begin{verbatim}
-add_zero   -- proof of ? + 0 = ?
-add_zero x -- proof of x + 0 = x
+And.intro hp hq
+⟨hp, hq⟩
 \end{verbatim}
-\end{theorem}
+\end{definition}
+
+\subsection{Disjunction}
+\begin{definition}[disjunction]~
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
 
 \appendix
 \section{Tools}
