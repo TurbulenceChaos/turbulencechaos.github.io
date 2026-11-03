@@ -65,6 +65,8 @@ Type -- abbreviation for Type 0
 -- Type n : Type n + 1
 universe u -- polymorphic constant
 Type u
+
+(expr : type) -- specify the type of an expression
 \end{verbatim}
 \end{definition}
 
@@ -135,7 +137,11 @@ def compose (α β γ : Type) (g : β → γ) (f : α → β) (x : α) : γ := g
     When a function takes an argument that can generally be inferred from context,
     Lean allows you to specify that argument by default be left implicit.
     \begin{verbatim}
+universe u
+def ident {α : Type u} (x : α) := x
 
+#check (ident)
+#check @ident -- denotes the same function with all the arguments made explicit
 \end{verbatim}
 \end{definition}
 
@@ -156,9 +162,16 @@ def compose : γ := g (f x)
 \begin{definition}[section]
     Limit the scope of a variable.
     \begin{verbatim}
-section MySection
+section MySec
     ...
-end MySection
+end MySec
+
+universe u
+section
+  variable {α : Type u}
+  variable (x : α)
+  def ident := x
+end
 \end{verbatim}
 \end{definition}
 
@@ -176,21 +189,19 @@ open MyNamespace -- use shorter names
 \end{definition}
 
 \section{Theorem}
-\begin{definition}[proposition]~
-    \begin{verbatim}
-Prop
-\end{verbatim}
-\end{definition}
-
 \begin{definition}[theorem]
+    A theorem is a named proof term whose type is a proposition.
     \begin{verbatim}
+-- named theorem
+theorem t : proposition := proof
 
-\end{verbatim}
-\end{definition}
+theorem t {p q : Prop} : p → q → p :=
+    fun hp : p =>  -- hp is a proof of proposition p
+    fun hq : q =>  -- hq is a proof of proposition q
+    show p from hp -- specify the type of final term hp
 
-\begin{definition}[axiom]
-    \begin{verbatim}
-
+-- anonymous theorem
+example
 \end{verbatim}
 \end{definition}
 
