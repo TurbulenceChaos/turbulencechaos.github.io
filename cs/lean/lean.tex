@@ -1,9 +1,9 @@
 % !TEX program = lualatex
 \documentclass{blog}
 
-\usepackage{fontsetup}
+\usepackage{fontspec}
+\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 
-\usepackage{unicode-math}
 \title{Lean}
 
 \begin{document}
@@ -207,13 +207,17 @@ we need to exhibit a term \verb|p : Prop|. To prove that assertion, we need to e
     \begin{verbatim}
 -- named theorem
 -- proposition is the type of its proof
+-- proving the theorem is the same as defining an element of the associated type
 theorem t : proposition := ...
 
 theorem t {p q : Prop} : p → q → p :=
+    -- proof of p → (q → p) assumes p and q are true to establish that the conclusion p is true
+    -- if p, then if r, then p
     fun hp : p =>  -- hp is a proof of proposition p
     fun hq : q =>  -- hq is a proof of proposition q
-    show p from hp -- specify the type of final term hp
+    show p from hp -- specify the type of final term hp to improve the clarity of a proof
 
+#print t
 theorem t : ∀ {p q : Prop}, p → q → p :=
   fun {p q : Prop} (hp : p) (hq : q) => hp
 
@@ -230,7 +234,7 @@ example
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[logical connectives]~
+\begin{definition}[proposition logical connectives]~
     \begin{verbatim}
 True
 False
@@ -242,15 +246,25 @@ False
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[example]
-    States a theorem without naming it or storing it in permanent context.
-\end{definition}
-
 \subsection{Conjunction}
 \begin{definition}[conjunction]~
     \begin{verbatim}
-And.intro hp hq
-⟨hp, hq⟩
+And.intro : p ∧ q
+example (hp : p) (hq : q) : p ∧ q := And.intro hp hq
+example (hp : p) (hq : q) : p ∧ q := ⟨hp, hq⟩
+
+And.left  : p
+example (h : p ∧ q) : q := And.right h -- h.right
+
+And.right : q
+example (h : p ∧ q) : p := And.left h  -- h.left
+
+-- p ∧ q → q ∧ p
+example (h : p ∧ q) : q ∧ p :=
+    And.intro (And.right h) (And.left h) -- ⟨h.right, h.left⟩
+
+example (h : p ∧ q) : q ∧ p ∧ q :=
+  ⟨h.right, h.left, h.right⟩
 \end{verbatim}
 \end{definition}
 
