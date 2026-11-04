@@ -234,6 +234,7 @@ example
 \end{verbatim}
 \end{definition}
 
+\section{Propositional Logic}
 \begin{definition}[proposition logical connectives]~
     \begin{verbatim}
 True
@@ -246,30 +247,87 @@ False
 \end{verbatim}
 \end{definition}
 
-\subsection{Conjunction}
 \begin{definition}[conjunction]~
     \begin{verbatim}
-And.intro : p ∧ q
-example (hp : p) (hq : q) : p ∧ q := And.intro hp hq
-example (hp : p) (hq : q) : p ∧ q := ⟨hp, hq⟩
+variable (p q : Prop)
 
-And.left  : p
-example (h : p ∧ q) : q := And.right h -- h.right
+-- And.intro : p ∧ q
+example (hp : p) (hq : q) : p ∧ q := And.intro hp hq -- ⟨hp, hq⟩
 
-And.right : q
-example (h : p ∧ q) : p := And.left h  -- h.left
+-- And.left : p
+example (h : p ∧ q) : q := And.right h
+
+-- And.right : q
+example (h : p ∧ q) : p := And.left h
 
 -- p ∧ q → q ∧ p
 example (h : p ∧ q) : q ∧ p :=
-    And.intro (And.right h) (And.left h) -- ⟨h.right, h.left⟩
+    And.intro (And.right h) (And.left h)
 
+-- anonymous constructor notation
 example (h : p ∧ q) : q ∧ p ∧ q :=
   ⟨h.right, h.left, h.right⟩
 \end{verbatim}
 \end{definition}
 
-\subsection{Disjunction}
 \begin{definition}[disjunction]~
+    \begin{verbatim}
+variable (p q r : Prop)
+
+-- Or.intro_left : p ∨ q
+example (hp : p) : p ∨ q := Or.intro_left q hp
+
+-- Or.intro_right : p ∨ q
+example (hq : q) : p ∨ q := Or.intro_right p hq
+
+-- Or.elim -- if p ∨ q, then if p → r, then if q → r, then r
+
+-- p ∨ q → q ∨ p
+example (h : p ∨ q) : q ∨ p :=
+  Or.elim h
+    (fun hp : p =>
+    show q ∨ p from Or.intro_right q hp)
+    (fun hq : q =>
+    show q ∨ p from Or.intro_left p hq)
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[negation]
+    \begin{equation}
+        p \to q \Longrightarrow \neg q \to \neg p
+    \end{equation}
+    \begin{verbatim}
+variable (p q : Prop)
+
+example (hpq : p → q) (hnq : ¬q) : ¬p :=
+    -- ¬p and ¬q are notations for p → False and q → False, respectively
+    fun hp : p =>
+    Show False from hnq (hpq hp)
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[logical equivalence]~
+    \begin{verbatim}
+variable (p q : Prop)
+
+-- Iff.intro : p ↔ q
+-- Iff.mp    : p → q
+-- Iff.mpr   : q → p
+
+theorem and_swap : p ∧ q ↔ q ∧ p :=
+  Iff.intro
+    (fun h : p ∧ q =>
+     show q ∧ p from And.intro (And.right h) (And.left h))
+    (fun h : q ∧ p =>
+     show p ∧ q from And.intro (And.right h) (And.left h))
+
+variable (h : p ∧ q)
+example : q ∧ p := Iff.mp (and_swap p q) h -- (and.swap p q).mp : p ∧ q → q ∧ p
+\end{verbatim}
+\end{definition}
+
+\section{Auxiliary Subgoals}
+\begin{definition}[have constructor]
     \begin{verbatim}
 
 \end{verbatim}
