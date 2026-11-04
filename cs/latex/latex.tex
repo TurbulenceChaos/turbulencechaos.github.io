@@ -36,13 +36,50 @@
 
 \appendix
 \section{Tools}
-\begin{definition}[magic comment]~
+\begin{example}[magic comment]~
     \begin{verbatim}
 % !TEX program = lualatex
 \usepackage{fontspec}
 \setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 \end{verbatim}
-\end{definition}
+\end{example}
+
+\begin{example}[tikz to png]~
+    \begin{verbatim}
+#!/bin/bash
+
+# convert TikZ PDF to PNG
+# pdf2png PDF PAGE PNG [DPI]
+pdf2png() {
+    local PDF=$1
+    local PAGE=$2
+    local PNG=$3
+    local DPI=${4:-300}
+    echo "Convert $PDF page $PAGE to $PNG"
+    magick -density "$DPI" -units pixelsperinch \
+        "$PDF[$PAGE]" \
+        -alpha remove -background white -flatten \
+        -trim +repage \
+        -quality 100 \
+        "$PNG"
+}
+\end{verbatim}
+\end{example}
+
+\begin{example}[compress pdf]~
+    \begin{verbatim}
+#!/bin/bash
+
+# compress PDF
+# pdfcompress INPUT OUTPUT
+pdfcompress() {
+    local INPUT=$1
+    local OUTPUT=$2
+    ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
+        -sOutputFile="$OUTPUT" "$INPUT"
+}
+\end{verbatim}
+\end{example}
 
 % \printbibliography
 \end{document}

@@ -169,23 +169,15 @@ done
 \section{sed}
 
 \section{awk}
-\url{https://www.gnu.org/software/gawk/manual/gawk.html}
-
 \begin{definition}[awk]
-    The basic function of awk is to search files for lines that contain certain patterns.
+    The basic function of \href{https://www.gnu.org/software/gawk/manual/gawk.html}{awk}
+    is to search files for lines that contain certain patterns.
 \end{definition}
 
 \begin{example}~
     \begin{verbatim}
 # % @fig{png}
 mapfile -t array < <(awk -F'[{}]' '/^% @fig\{/ { print $2 }' file)
-
-# @book{BATCHELOR_2000_AN_INTRODUCTION_TO_FLUID_DYNAMICS,
-awk -F'[{,]' '/@book\{/ {
-    print "$1: " $1
-    print "$2: " $2
-    print "$3: " $3
-    }' file
 \end{verbatim}
 \end{example}
 
@@ -196,44 +188,8 @@ awk -F'[{,]' '/@book\{/ {
 
 \section{find}
 
-\section{Windows Batch}
-
 \appendix
-\section{Script}
-\subsection{TikZ}
-\begin{verbatim}
-#!/bin/bash
-
-# Convert TikZ PDF to PNG
-# pdf2png PDF PAGE PNG [DPI]
-pdf2png() {
-    local PDF=$1
-    local PAGE=$2
-    local PNG=$3
-    local DPI=${4:-300}
-    echo "Convert $PDF page $PAGE to $PNG"
-    magick -density "$DPI" -units pixelsperinch \
-        "$PDF[$PAGE]" \
-        -alpha remove -background white -flatten \
-        -trim +repage \
-        -quality 100 \
-        "$PNG"
-}
-\end{verbatim}
-
-\subsection{PDF}
-\begin{verbatim}
-#!/bin/bash
-
-# Compress PDF
-# pdfcompress INPUT OUTPUT
-pdfcompress() {
-    local INPUT=$1
-    local OUTPUT=$2
-    ghostscript -sDEVICE=pdfwrite -dPDFSETTINGS=/prepress -dNOPAUSE -dQUIET -dBATCH \
-        -sOutputFile="$OUTPUT" "$INPUT"
-}
-\end{verbatim}
+\section{Tools}
 
 \printbibliography
 \end{document}
