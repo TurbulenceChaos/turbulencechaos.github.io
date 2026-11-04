@@ -40,8 +40,8 @@ for DIR in mathematics cs literature software; do
                 fi
                 if ! git diff --exit-code --quiet "$TEX.tex"; then
                     echo compile "$TEX.tex"
-                    if [[ $(sed -n '1p;1q' "$TEX.tex") == '% !TEX program = xelatex' ]]; then
-                        TOOL='-xelatex'
+                    if [[ $(sed -n '1p;1q' "$TEX.tex") == '% !TEX program = lualatex' ]]; then
+                        TOOL='-lualatex'
                     else
                         TOOL='-pdf'
                     fi

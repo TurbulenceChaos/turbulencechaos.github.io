@@ -1,8 +1,9 @@
-% !TEX program = xelatex
+% !TEX program = lualatex
 \documentclass{blog}
-\usepackage{fontspec}
-\setmonofont{DejaVu Sans Mono}[Scale=MatchLowercase]
 
+\usepackage{fontsetup}
+
+\usepackage{unicode-math}
 \title{Lean}
 
 \begin{document}
@@ -11,7 +12,7 @@
 \section{Introduction}
 \begin{definition}[lean]
     Lean is an expression-oriented functional language based on
-    \href{https://lean-lang.org/definition_proving_in_lean4/}{dependent type theory}.
+    \href{https://lean-lang.org/theorem_proving_in_lean4/}{dependent type theory}.
 \end{definition}
 
 \section{Dependent Type Theory}
@@ -189,16 +190,40 @@ open MyNamespace -- use shorter names
 \end{definition}
 
 \section{Theorem}
+\begin{definition}[proposition-as-types paradigm]
+    Implication between proposition $p$ and $q$ corresponds to having
+    a function that takes an element of $p$ to an element of $q$.
+    A proof of $p \to q$ uses ``the fact that $p$ is true'' to obtain ``the fact that $q$ is true.''
+    \begin{equation}
+        p \to q
+    \end{equation}
+\end{definition}
+
+To formally express a mathematical assertion in the language of dependent type theory,
+we need to exhibit a term \verb|p : Prop|. To prove that assertion, we need to exhibit a term \verb|t : p|.
+
 \begin{definition}[theorem]
     A theorem is a named proof term whose type is a proposition.
     \begin{verbatim}
 -- named theorem
-theorem t : proposition := proof
+-- proposition is the type of its proof
+theorem t : proposition := ...
 
 theorem t {p q : Prop} : p → q → p :=
     fun hp : p =>  -- hp is a proof of proposition p
     fun hq : q =>  -- hq is a proof of proposition q
     show p from hp -- specify the type of final term hp
+
+theorem t : ∀ {p q : Prop}, p → q → p :=
+  fun {p q : Prop} (hp : p) (hq : q) => hp
+
+-- move the lambda-abstracted variables to the left of the colon
+variable {p q : Prop}
+theorem t (hp : p) (hq : q) : p := hp
+
+-- use theorem as function application
+axiom hp : p -- postulate the existence of an element of the given type
+theorem t2 : q → p := t hp
 
 -- anonymous theorem
 example
