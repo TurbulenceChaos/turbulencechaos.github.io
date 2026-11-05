@@ -300,7 +300,8 @@ example (h : p ∨ q) : q ∨ p :=
 variable (p q : Prop)
 
 example (hpq : p → q) (hnq : ¬q) : ¬p :=
-    -- ¬p and ¬q are notations for p → False and q → False, respectively
+    -- ¬p := p → false
+    -- ¬q := q → False
     fun hp : p =>
     Show False from hnq (hpq hp)
 \end{verbatim}
@@ -328,8 +329,48 @@ example : q ∧ p := Iff.mp (and_swap p q) h -- (and.swap p q).mp : p ∧ q → 
 
 \section{Auxiliary Subgoals}
 \begin{definition}[have constructor]
+    Use intermediate have's as stepping stones leading to the final goal.
     \begin{verbatim}
+variable (p q : Prop)
 
+example (h : p ∧ q) : q ∧ p :=
+  have hp : p := h.left
+  -- have h : p := proof
+  -- establish an intermediate fact p
+  have hq : q := h.right
+  show q ∧ p from And.intro hq hp
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[suffices constructor]
+    Change the current goal to an intermediate proposition.
+    \begin{verbatim}
+variable (p q : Prop)
+
+example (h : p ∧ q) : q ∧ p :=
+  have hp : p := h.left
+  suffices hq : q from And.intro hq hp
+  -- suffices h : p from proof
+  -- assume p to finish the original goal, then prove p
+  show q from And.right h
+\end{verbatim}
+\end{definition}
+
+\section{Classical Logic}
+\begin{definition}[law of excluded middle]
+    For any proposition $p$, either $p$ or its negation is true.
+    \begin{equation}
+        p \lor \neg p
+    \end{equation}
+    \begin{verbatim}
+variable (p : Prop)
+
+#check Classical.em p
+
+theorem dne (h : ¬¬p) : p :=
+  Or.elim (Classical.em p)
+  (fun hp : p => hp)
+  (fun hnp : ¬p => absurd hnp h)
 \end{verbatim}
 \end{definition}
 
