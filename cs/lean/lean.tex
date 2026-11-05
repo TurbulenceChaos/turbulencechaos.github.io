@@ -374,6 +374,46 @@ theorem dne (h : ¬¬p) : p :=
 \end{verbatim}
 \end{definition}
 
+\section{Quantifiers}
+\begin{definition}[universal quantifier]
+    \begin{equation}
+        \forall x, P(x)
+    \end{equation}
+    \begin{verbatim}
+example (α : Type) (p q : α → Prop) :
+(∀ x : α, p x ∧ q x) → ∀ y : α, p y :=
+  fun h : ∀ x : α, p x ∧ q x => -- assume p and prove q to prove an implication p → q
+  fun y : α =>
+    show p y from (h y).left
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[intro and elim rules]
+    introduction rule:
+    elimination rule:
+\end{definition}
+
+\begin{definition}[equality]~
+    \begin{verbatim}
+-- Eq.refl
+-- Eq.symm
+-- Eq.trans
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[calculational proof]~
+    \begin{verbatim}
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[existential quantifier]
+    \begin{equation}
+        \exists x, P(x)
+    \end{equation}
+\end{definition}
+
+\section{Tactics}
+
 \appendix
 \section{Tools}
 \begin{definition}[comment]~
