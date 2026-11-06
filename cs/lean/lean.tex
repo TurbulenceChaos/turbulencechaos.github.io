@@ -375,34 +375,124 @@ theorem dne (h : ¬¬p) : p :=
 \end{definition}
 
 \section{Quantifiers}
+In natural deduction, every logical construction has two basic operations:
+\begin{itemize}
+    \item introduction rule:
+          How do we construct a proof of this logical statement?
+    \item elimination rule:
+          If we already have a proof of this statement, how do we use it?
+\end{itemize}
+
 \begin{definition}[universal quantifier]
     \begin{equation}
         \forall x, P(x)
     \end{equation}
+
     \begin{verbatim}
-example (α : Type) (p q : α → Prop) :
-(∀ x : α, p x ∧ q x) → ∀ y : α, p y :=
-  fun h : ∀ x : α, p x ∧ q x => -- assume p and prove q to prove an implication p → q
-  fun y : α =>
-    show p y from (h y).left
+∀ x : α, p x -- for every x : α, p x holds
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[intro and elim rules]
-    introduction rule:
-    elimination rule:
-\end{definition}
+\begin{example}~
+    \begin{verbatim}
+example (α : Type) (p q : α → Prop) :
+(∀ x : α, p x ∧ q x) → ∀ y : α, p y :=
+  fun h : ∀ x : α, p x ∧ q x =>
+  -- to prove implication p → q, assume p is true and then prove q
+  fun y : α =>
+    show p y from (h y).left
+\end{verbatim}
+\end{example}
+
+\begin{example}~
+    \begin{verbatim}
+variable (α : Type) (r : α → α → Prop)
+
+variable (refl_r : ∀ x, r x x)
+variable (symm_r : ∀ {x y}, r x y → r y x)
+variable (trans_r : ∀ {x y z}, r x y → r y z → r x z)
+
+example (a b c d : α) (hab : r a b) (hcb : r c b) (hcd : r c d) : r a d :=
+  trans_r (trans_r hab (symm_r hcb)) hcd
+\end{verbatim}
+\end{example}
 
 \begin{definition}[equality]~
     \begin{verbatim}
 -- Eq.refl
 -- Eq.symm
 -- Eq.trans
+
+variable (α : Type) (a b c d : α)
+variable (hab : a = b) (hcb : c = b) (hcd : c = d)
+
+example : a = d :=
+  Eq.trans (Eq.trans hab (Eq.symm hcb)) hcd -- (hab.trans hcb.symm).trans hcd
+
+example : 2 + 3 = 5 := Eq.refl _ -- Eq.refl 5
+-- rfl is a notation for Eq.refl _
+
+-- Eq.subst
+example (α : Type) (a b : α) (p : α → Prop)
+  (h1 : a = b) (h2 : p a) : p b :=
+  Eq.subst h1 h2 -- h1 ▸ h2
+
+-- applicative term
+variable (α : Type)
+variable (a b : α)
+variable (f g : α → Nat)
+variable (h₁ : a = b)
+variable (h₂ : f = g)
+
+example : f a = f b := congrArg f h₁
+example : f a = g a := congrFun h₂ a
+example : f a = g b := congr h₂ h₁
 \end{verbatim}
 \end{definition}
 
-\begin{definition}[calculational proof]~
+\begin{example}[common identities]~
     \begin{verbatim}
+example (x y : Nat) :
+  (x + y) * (x + y) =
+  x * x + y * x + x * y + y * y :=
+  have h1 : (x + y) * (x + y) = (x + y) * x + (x + y) * y :=
+    Nat.mul_add (x + y) x y
+  have h2 : (x + y) * (x + y) = x * x + y * x + (x * y + y * y) :=
+    (Nat.add_mul x y x) ▸ (Nat.add_mul x y y) ▸ h1
+  h2.trans (Nat.add_assoc (x * x + y * x) (x * y) (y * y)).symm
+\end{verbatim}
+\end{example}
+
+\begin{definition}[calculational proof]
+    \verb|calc| is a syntax for writing a proof as a chain of intermediate equalities or other relations.
+    \begin{verbatim}
+variable (a b c d e : Nat)
+
+example
+  (h1 : a = b)
+  (h2 : b = c + 1)
+  (h3 : c = d)
+  (h4 : e = 1 + d) :
+  a = e :=
+  calc
+    a = b     := h1
+    _ = c + 1 := h2
+    _ = d + 1 := congrArg Nat.succ h3
+    _ = 1 + d := Nat.add_comm d 1
+    _ = e     := Eq.symm h4
+
+example
+  (h1 : a = b)
+  (h2 : b = c + 1)
+  (h3 : c = d)
+  (h4 : e = 1 + d) :
+  a = e :=
+  calc
+    a = b     := by rw [h1]
+    _ = c + 1 := by rw [h2]
+    _ = d + 1 := by rw [h3]
+    _ = 1 + d := by rw [Nat.add_comm]
+    _ = e     := by rw [h4]
 \end{verbatim}
 \end{definition}
 
@@ -410,7 +500,52 @@ example (α : Type) (p q : α → Prop) :
     \begin{equation}
         \exists x, P(x)
     \end{equation}
+    \begin{verbatim}
+example : ∃ x : Nat, x > 0 :=
+  have h : 1 > 0 := Nat.zero_lt_succ 0
+  Exists.intro 1 h
+
+example (x : Nat) (h : x > 0) : ∃ y, y < x :=
+  Exists.intro 0 h
+
+-- ⟨t, h⟩ is an anonymous constructor notation for Exists.intro t h
+example (x y z : Nat) (hxy : x < y) (hyz : y < z) : ∃ w, x < w ∧ w < z :=
+  Exists.intro y (And.intro hxy hyz) -- <y, hxy, hyz>
+
+-- existential elimination rule
+variable (α : Type) (p q : α → Prop)
+
+example (h : ∃ x, p x ∧ q x) : ∃ x, q x ∧ p x :=
+  Exists.elim h
+  (fun w =>
+  fun hw : p w ∧ q w =>
+  show ∃ x, q x ∧ p x from ⟨w, hw.right, hw.left⟩)
+
+example (h : ∃ x, p x ∧ q x) : ∃ x, q x ∧ p x :=
+  match h with
+  | ⟨w, hw⟩ => ⟨w, hw.right, hw.left⟩
+\end{verbatim}
 \end{definition}
+
+\begin{example}[isEven]~
+    \begin{verbatim}
+def IsEven (a : Nat) := ∃ b, a = 2 * b
+theorem even_plus_even (h1 : IsEven a) (h2 : IsEven b) :
+  IsEven (a + b) :=
+  Exists.elim h1 (fun w1 (hw1 : a = 2 * w1) =>
+  Exists.elim h2 (fun w2 (hw2 : b = 2 * w2) =>
+    Exists.intro (w1 + w2)
+      (calc
+      a + b = 2 * w1 + 2 * w2 := by rw [hw1, hw2]
+      _ = 2 * (w1 + w2)       := by rw [Nat.mul_add])))
+
+example (h1 : IsEven a) (h2 : IsEven b) :
+  IsEven (a + b) :=
+  match h1, h2 with
+  | ⟨w1, hw1⟩, ⟨w2, hw2⟩ =>
+    ⟨w1 + w2, by rw [hw1, hw2, Nat.mul_add]⟩
+\end{verbatim}
+\end{example}
 
 \section{Tactics}
 
