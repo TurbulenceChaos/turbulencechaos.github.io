@@ -207,7 +207,7 @@ we need to exhibit a term \verb|p : Prop|. To prove that assertion, we need to e
     \begin{verbatim}
 -- named theorem
 -- proposition is the type of its proof
--- proving the theorem is the same as defining an element of the associated type
+-- proving the theorem is the same as defining an element of the associated typea
 theorem t : proposition := ...
 
 theorem t {p q : Prop} : p → q → p :=
@@ -548,6 +548,66 @@ example (h1 : IsEven a) (h2 : IsEven b) :
 \end{example}
 
 \section{Tactics}
+\begin{definition}[tactic]
+    Tactics are instructions that tell Lean how to construct a proof term.
+    \begin{verbatim}
+by <tactics>
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[apply and exact]~
+    \begin{verbatim}
+example (p q : Prop) (hp : p) (hq : q) : p ∧ q ∧ p := by
+  apply And.intro -- apply uses a theorem to break current goal into smaller subgoals
+  exact hp -- exact provides a term proof that directly proves current goal
+  apply And.intro
+  exact hq
+  exact hp
+
+example (p q : Prop) (hp : p) (hq : q) : p ∧ q ∧ p := by
+  apply And.intro hp
+  exact And.intro hq hp
+
+  example (p q : Prop) (hp : p) (hq : q) : p ∧ q ∧ p := by
+  apply And.intro hp
+  exact And.intro hq hp
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[intro]~
+    \begin{verbatim}
+example (α : Type) : α → α := by
+  intro a
+  exact a
+
+example (α : Type) : ∀ x : α, x = x := by
+  intro x
+  exact Eq.refl x
+
+example : ∀ a b c : Nat, a = b → a = c → c = b := by
+  intro a b c h₁ h₂
+  exact Eq.trans (Eq.symm h₂) h₁
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[assumption]~
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
+\section{Inductive Types}
+\begin{definition}[inductive]~
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
+
+\begin{definition}[enumerated type]~
+    \begin{verbatim}
+
+\end{verbatim}
+\end{definition}
 
 \appendix
 \section{Tools}
