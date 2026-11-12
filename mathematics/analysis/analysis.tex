@@ -959,6 +959,7 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \end{proof}
 
 \section{Real Numbers}
+\subsection{Cauchy Sequences}
 \begin{definition}[sequence]
     A sequence $(a_{n})_{n = m}^{\infty}$ of rational numbers
     is a collection of rationals $a_{m}, a_{m + 1}, a_{m + 2}, \dots$.
@@ -967,15 +968,176 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \begin{definition}[$\varepsilon$-steadiness]
     Let $\varepsilon > 0$.
     The sequence $a_{0}, a_{1}, a_{2}, \dots$ is $\varepsilon$-steady
-    if and only if $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k$.
+    if and only if $d(a_{j}, a_{k}) \leq \varepsilon$ for all $j, k$.
 \end{definition}
 
 \begin{definition}[eventual $\varepsilon$-steadiness]
     Let $\varepsilon > 0$.
     The sequence $a_{0}, a_{1}, a_{2}, \dots$ is eventual $\varepsilon$-steady
-    if and only if there exists an $N \geq 0$ such that
-    $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k \geq N$.
+    if and only if there exists a natural number $N \geq 0$ such that
+    $d(a_{j}, a_{k}) \leq \varepsilon$ for all $j, k \geq N$.
 \end{definition}
+
+\begin{definition}[Cauchy sequence]
+    A sequence $(a_{n})_{n = 0}^{\infty}$ is a Cauchy sequence if and only if for every rational $\varepsilon > 0$,
+    the sequence $(a_{n})_{n = 0}^{\infty}$ is eventually $\varepsilon$-steady.
+\end{definition}
+
+\begin{definition}
+    The sequence $(1 / n)_{n = 1}^{\infty}$ is a Cauchy sequence.
+\end{definition}
+
+\begin{proof}
+    For all $j, k \geq N$,
+    \begin{gather*}
+        0 < 1 / j, 1 / k \leq 1 / N \\
+        |1 / j  - 1 / k| \leq 1 / N
+    \end{gather*}
+    Choose an $N$ such that $1 / N \leq \varepsilon$ or $N \geq 1 / \varepsilon$.
+\end{proof}
+
+\begin{definition}[bounded sequence]
+    Let $M \geq 0$ be rational.
+    A finite sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded by $M$ if and only if
+    $|a_{i}| \leq M$ for all $1 \leq i \leq n$.
+    A infinite sequence $(a_{n})_{n = 1}^{\infty}$ is bounded by $M$ if and only if
+    $|a_{i}| \leq M$ for all $i \geq 1$.
+    A sequence is bounded if and only if it is bounded by $M$ for some rational $M \geq 0$.
+\end{definition}
+
+\begin{lemma}[finite sequences are bounded]
+    Every finite sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded.
+\end{lemma}
+
+\begin{proof}
+    When $n = 1$,
+    \begin{equation*}
+        |a_{1}| \leq |a_{1}|
+    \end{equation*}
+
+    Suppose $a_{1}, a_{2}, \dots, a_{n}$ is bounded by $M$, then
+    \begin{equation*}
+        |a_{i}| \leq M \text{ for all } 1 \leq i \leq n
+    \end{equation*}
+
+    Then
+    \begin{equation*}
+        |a_{i}| \leq M + |a_{n + 1}| \text{ for all } 1 \leq i \leq n + 1
+    \end{equation*}
+    This closes induction.
+\end{proof}
+
+\begin{lemma}[Cauchy sequences are bounded]
+    Every Cauchy sequence $(a_{n})_{n = 1}^{\infty}$ is bounded.
+\end{lemma}
+
+\begin{proof}
+    For every $\varepsilon > 0$, there exists a natural number $N \geq 1$ such that
+    $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k \geq N$.
+
+    Then
+    \begin{equation*}
+        d(a_{j}, 0) \leq d(a_{j}, a_{k}) + d(a_{k}, 0) = |a_{j} - a_{k}| + |a_{k}| \leq \varepsilon + |a_{k}|
+        \text{ for all } j \geq N
+    \end{equation*}
+
+    For $n < N$, sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded.
+\end{proof}
+
+\subsection{Equivalent Sequences}
+\begin{definition}[$\varepsilon$-close sequences]
+    Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be two sequences,
+    and let $\varepsilon > 0$.
+    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is
+    $\varepsilon$-close to the sequence $b_{0}, b_{1}, b_{2}, \dots$
+    if and only if $d(a_{n}, b_{n}) \leq \varepsilon$ for all $n = 0, 1, 2, \dots$.
+\end{definition}
+
+\begin{definition}[eventually $\varepsilon$-close sequences]
+    Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be two sequences,
+    and let $\varepsilon > 0$.
+    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is
+    eventually $\varepsilon$-close to the sequence $b_{0}, b_{1}, b_{2}, \dots$
+    if and only if there exists an $N \geq 0$ such that
+    $d(a_{n}, b_{n}) \leq \varepsilon$ for all $n \geq N$.
+\end{definition}
+
+\begin{definition}[equivalent sequences]
+    Two sequences $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ are equivalent
+    if and only if for every rational $\varepsilon > 0$,
+    the sequences $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ are eventually $\varepsilon$-close.
+\end{definition}
+
+\begin{lemma}
+    \begin{equation*}
+        10^{-m} < 10^{-n} \text{ whenever } m > n
+    \end{equation*}
+\end{lemma}
+
+\begin{proof}
+    Since $m > n$, then
+    \begin{equation*}
+        m = n + k
+    \end{equation*}
+
+    When $k = 1$,
+    \begin{equation*}
+        10^{-(n + 1)} < 10^{-n}
+    \end{equation*}
+
+    Suppose
+    \begin{equation}
+        10^{-(n + k)} < 10^{-n}
+    \end{equation}
+
+    Then
+    \begin{equation*}
+        10^{-(n + k + 1)} < 10^{-n}
+    \end{equation*}
+    This closes induction.
+\end{proof}
+
+\begin{lemma}
+    \begin{equation*}
+        10^{-n} \leq 1 / n \text{ for } n > 0
+    \end{equation*}
+\end{lemma}
+
+\begin{proof}
+    When $n = 1$,
+    \begin{equation*}
+        10^{-1} \leq 1
+    \end{equation*}
+
+    Suppose
+    \begin{equation*}
+        10^{-n} \leq 1 / n
+    \end{equation*}
+
+    Then
+    \begin{equation*}
+        10^{-(n + 1)} \leq 1 / n < 1 / (n + 1)
+    \end{equation*}
+    This closes induction.
+\end{proof}
+
+\begin{proposition}
+    Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be the sequences
+    $a_{n} = 1 + 10^{-n}$ and $b_{n} = 1 - 10^{-n}$. Then the sequences $a_{n}, b_{n}$ are equivalent.
+\end{proposition}
+
+\begin{proof}
+    For all $n \geq N$,
+    \begin{gather*}
+        d(a_{n}, b_{n}) = |a_{n} - b_{n}| = 2 \times 10^{-n} \leq 2 \times 10^{-N}
+    \end{gather*}
+    Choose $N$ such that
+    \begin{equation*}
+        2 \times 10^{-N} \leq 2 / N \leq \varepsilon
+    \end{equation*}
+\end{proof}
+
+\subsection{Real Numbers}
 
 \begin{definition}[irrational number]
 
