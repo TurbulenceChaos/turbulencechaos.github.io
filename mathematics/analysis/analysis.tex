@@ -820,25 +820,170 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \subsection{Gaps in Rational Numbers}
 \begin{proposition}[integer part]
     Let $x$ be a rational number.
-    Then there exists a unique integer $n$ such that $n \leq x \leq n + 1$.
+    Then there exists a unique integer $n$ such that $n \leq x < n + 1$.
     In particular there exists a natural number $N$ such that $N > x$.
 \end{proposition}
+
+\begin{proof}
+    Existence:
+    \begin{itemize}
+        \item If $x = 0$, then $0 \leq x < 1$.
+        \item If $x > 0$, then suppose $x = a / b = (m b + r) / b = m + r / b$,
+              where $0 \leq r < b$.
+              Then $m \leq x < m + 1$.
+        \item If $x < 0$, then suppose $x = -m - r / b$.
+              Then $-m - 1 \leq x < -m$.
+    \end{itemize}
+    Uniqueness:
+
+    Suppose
+    \begin{equation*}
+        n_{1} \leq x < n_{1} + 1
+    \end{equation*}
+    and
+    \begin{equation*}
+        n_{2} \leq x < n_{2} + 1
+    \end{equation*}
+    Suppose $n_{1} < n_{2}$, then
+    \begin{equation*}
+        n_{1} + 1 \leq n_{2} \leq x < n_{1} + 1
+    \end{equation*}
+    Contradict.
+\end{proof}
 
 \begin{proposition}[intersperse]
     If $x$ and $y$ are two rational numbers such that $x < y$.
     Then there exists a third rational $z$ such that $x < z < y$.
 \end{proposition}
 
+\begin{proof}
+    $z = (x + y) / 2$.
+\end{proof}
+
+\begin{definition}[infinite descent]
+    A sequence $a_{0}, a_{1}, a_{2}, \dots$ of numbers is said to be infinite descent if
+    $a_{n} > a_{n + 1}$ for all natural numbers $n$.
+\end{definition}
+
+\begin{lemma}[principle of infinite descent]
+    It is not possible to have a sequence of natural numbers which is infinite descent.
+\end{lemma}
+
+\begin{proof}
+    Suppose for sake of contradiction that
+    $a_{0} > a_{1} > a_{2} > \dots$ is a sequence of natural numbers which is infinite descent,
+    then $a_{n} \geq k$ for all $k \in \mathbb{N}$ and all $n \in \mathbb{N}$.
+
+    When $k = 0$, $a_{n} \geq 0$ for all $n \in \mathbb{N}$.
+
+    Suppose $a_{n} \geq k$ for all $n \in \mathbb{N}$.
+
+    Then
+    \begin{gather*}
+        a_{n} > a_{n + 1} \geq k \\
+        a_{n} \geq k + 1
+    \end{gather*}
+
+    This closes the induction.
+
+    When $k = a_{n} + 1$,
+    \begin{equation*}
+        a_{n} \geq a_{n} + 1
+    \end{equation*}
+    Contradiction.
+\end{proof}
+
 \begin{proposition}[$\sqrt{2}$]
     There does not exist any rational number $x$ for which $x^{2} = 2$.
 \end{proposition}
+
+\begin{proof}
+    Suppose $x = p / q$, where $p, q$ are natural numbers.
+
+    Then
+    \begin{gather*}
+        x^{2} = p^{2} / q^{2} = 2 \\
+        p^{2} = 2 q^{2}
+    \end{gather*}
+    $p > q$ and $p$ is even.
+
+    Let $p = 2 k$, then
+    \begin{gather*}
+        4 k^{2} = 2 q^{2} \\
+        q^{2} = 2 k^{2}
+    \end{gather*}
+    $q > k$ and $q$ is even.
+
+    Repeat this process
+    \begin{equation*}
+        p > q > k > ...
+    \end{equation*}
+    Contradict with principle of infinite descent.
+\end{proof}
 
 \begin{proposition}
     For every rational number $\varepsilon > 0$,
     there exists a non-negative rational number $x$ such that $x^{2} < 2 < (x + \varepsilon)^{2}$.
 \end{proposition}
 
+\begin{proof}
+    When $\varepsilon \geq 1$,
+    \begin{equation*}
+        1^{2} < 2 < (1 + \varepsilon)^2.
+    \end{equation*}
+
+    When $0 < \varepsilon < 1$, suppose for sake of contradiction that there is no $x$ for which
+    $x^{2} < 2 < (x + \varepsilon)^{2}$.
+
+    Then for every $x^{2} < 2$,
+    \begin{equation*}
+        (x + \varepsilon)^{2} < 2
+    \end{equation*}
+
+    Let $x = 0$, then
+    \begin{equation*}
+        (0 + \varepsilon)^{2} = \varepsilon^{2} < 2
+    \end{equation*}
+
+    Suppose $(n \varepsilon)^{2} < 2$, then
+    \begin{equation*}
+        (n \varepsilon + \varepsilon)^{2} = ((n + 1) \varepsilon) < 2
+    \end{equation*}
+    This closes induction.
+
+    Let $n > 2 / \varepsilon$, then
+    \begin{equation*}
+        (n \varepsilon)^{2} > 4
+    \end{equation*}
+    Contradiction.
+\end{proof}
+
 \section{Real Numbers}
+\begin{definition}[sequence]
+    A sequence $(a_{n})_{n = m}^{\infty}$ of rational numbers
+    is a collection of rationals $a_{m}, a_{m + 1}, a_{m + 2}, \dots$.
+\end{definition}
+
+\begin{definition}[$\varepsilon$-steadiness]
+    Let $\varepsilon > 0$.
+    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is $\varepsilon$-steady
+    if and only if $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k$.
+\end{definition}
+
+\begin{definition}[eventual $\varepsilon$-steadiness]
+    Let $\varepsilon > 0$.
+    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is eventual $\varepsilon$-steady
+    if and only if there exists an $N \geq 0$ such that
+    $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k \geq N$.
+\end{definition}
+
+\begin{definition}[irrational number]
+
+\end{definition}
+
+\begin{definition}[transcendental number]
+    $\pi, e$
+\end{definition}
 
 \section{Limits of Sequences}
 
