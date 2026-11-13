@@ -2,6 +2,8 @@
 
 \title{Analysis}
 
+\DeclareMathOperator{\LIM}{LIM}
+
 \begin{document}
 \maketitle
 \tableofcontents
@@ -1138,13 +1140,342 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \end{proof}
 
 \subsection{Real Numbers}
-
-\begin{definition}[irrational number]
-
+\begin{definition}[$\mathbb{R}$]
+    A real number (irrational) is defined to be an object of the form
+    $\LIM_{n \to \infty} a_{n}$,
+    where $(a_{n})_{n = 1}^{\infty}$ is a Cauchy sequence of rational numbers.
+    Two real numbers $\LIM_{n \to \infty} a_{n}$ and $\LIM_{n \to \infty} b_{n}$ are equal
+    if and only if $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$ are equivalent Cauchy sequences.
 \end{definition}
 
-\begin{definition}[transcendental number]
+\begin{definition}[transcendental numbers]
     $\pi, e$
+\end{definition}
+
+\begin{proposition}[$\LIM$ is well-defined]
+    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, z = \LIM_{n \to \infty} c_{n}$ be real numbers.
+    \begin{itemize}
+        \item (reflexivity) $x = x$.
+              \begin{proof}
+                  For all $n \geq 1$,
+                  \begin{equation*}
+                      d(a_{n}, a_{n}) = 0 < \varepsilon
+                  \end{equation*}
+              \end{proof}
+        \item (symmetry) if $x = y$, then $y = x$.
+              \begin{proof}
+                  For all $n \geq N$,
+                  \begin{equation*}
+                      d(a_{n}, b_{n}) \leq \varepsilon
+                  \end{equation*}
+                  Then
+                  \begin{equation*}
+                      d(b_{n}, a_{n}) \leq \varepsilon
+                  \end{equation*}
+              \end{proof}
+        \item (transitive) if $x = y$ and $y = z$, then $x = z$.
+              \begin{proof}
+                  For all $n \geq N_{a}$,
+                  \begin{equation*}
+                      d(a_{n}, b_{n}) \leq \varepsilon / 2
+                  \end{equation*}
+                  For all $n \geq N_{b}$,
+                  \begin{equation*}
+                      d(b_{n}, c_{n}) \leq \varepsilon / 2
+                  \end{equation*}
+                  Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
+                  \begin{equation*}
+                      d(a_{n}, c_{n}) \leq \varepsilon
+                  \end{equation*}
+              \end{proof}
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}[addition]
+    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
+    Define the sum
+    \begin{equation}
+        x + y := \LIM_{n \to \infty} (a_{n} + b_{n})
+    \end{equation}
+\end{definition}
+
+\begin{lemma}[sum of Cauchy sequences is Cauchy]
+    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
+    Then $x + y$ is also a real number.
+\end{lemma}
+
+\begin{proof}
+    For all $j, k \geq N_{a}$
+    \begin{equation*}
+        d(a_{j}, a_{k}) \leq \varepsilon / 2
+    \end{equation*}
+    For all $j, k \geq N_{b}$
+    \begin{equation*}
+        d(b_{j}, b_{k}) \leq \varepsilon / 2
+    \end{equation*}
+    Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
+    \begin{equation*}
+        d(a_{j} + b_{j}, a_{k} + b_{k}) \leq \varepsilon
+    \end{equation*}
+\end{proof}
+
+\begin{lemma}[axiom of subsititution verified]
+    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, x' = \LIM_{n \to \infty} a'_{n}$
+    be real numbers.
+    Suppose that $x = x'$, then
+    \begin{equation}
+        x + y = x' + y
+    \end{equation}
+\end{lemma}
+
+\begin{proof}
+    For all $n \geq N$
+    \begin{equation*}
+        d(a_{n}, a'_{n}) \leq \varepsilon
+    \end{equation*}
+    Then
+    \begin{equation*}
+        d(a_{n} + b_{n}, a'_{n} + b_{n}) \leq \varepsilon
+    \end{equation*}
+\end{proof}
+
+\begin{definition}[multiplication]
+    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
+    Define the product
+    \begin{equation*}
+        x y := \LIM_{n \to \infty} a_{n} b_{n}
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}[multiplication is well-defined]
+    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, x' = \LIM_{n \to \infty} a'_{n}$
+    be real numbers.
+    \begin{itemize}
+        \item $x y$ is also a real number.
+              \begin{proof}
+                  For all $n \geq 1$
+                  \begin{equation*}
+                      a_{n} \leq M_{a}
+                  \end{equation*}
+                  For all $j, k \geq N_{a}$,
+                  \begin{equation*}
+                      d(a_{j}, a_{k}) \leq \varepsilon / M_{a}
+                  \end{equation*}
+                  For all $n \geq 1$
+                  \begin{equation*}
+                      b_{n} \leq M_{b}
+                  \end{equation*}
+                  For all $j, k \geq N_{b}$,
+                  \begin{equation*}
+                      d(b_{j}, b_{k}) \leq \varepsilon / M_{b}
+                  \end{equation*}
+                  Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
+                  \begin{equation*}
+                      d(a_{j} b_{j}, a_{k} b_{k}) \leq d(a_{j} b_{j}, a_{k} b_{j}) + d(a_{k} b_{j}, a_{k} b_{j})
+                      \leq |b_{j}| \varepsilon / M_{a} + |a_{k}|\varepsilon / M_{b}
+                      \leq M_{a} \varepsilon / M_{a} + M_{b} \varepsilon / M_{b} = \varepsilon
+                  \end{equation*}
+              \end{proof}
+        \item if $x = x'$, then $x y = x' y$.
+              \begin{proof}
+                  For all $n \geq 1$,
+                  \begin{equation*}
+                      b_{n} \leq M
+                  \end{equation*}
+                  For all $n \geq N$,
+                  \begin{equation*}
+                      d(a_{n}, a'_{n}) \leq \varepsilon / M
+                  \end{equation*}
+                  Then
+                  \begin{equation}
+                      d(a_{n} b_{n}, a'_{n} b_{n}) \leq |b_{n}| \varepsilon / M \leq M \varepsilon / M = \varepsilon
+                  \end{equation}
+              \end{proof}
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}[rational = real]
+    \begin{equation}
+        \LIM_{n \to \infty} q = q
+    \end{equation}
+    i.e. $0.5, 0.5, \dots = 0.5$.
+\end{definition}
+
+\begin{definition}[negation]
+    \begin{equation}
+        -x := (-1) \times x
+    \end{equation}
+\end{definition}
+
+\begin{definition}[subtraction]
+    \begin{equation}
+        x - y := x + (-y)
+    \end{equation}
+\end{definition}
+
+\begin{proposition}[commutative ring]
+    Let $x, y, z$ be reals, then
+    \begin{gather}
+        x + y = y + x \\
+        (x + y) + z = x + (y + z) \\
+        x + 0 = 0 + x = x \\
+        x + (-x) = (-x) + x = 0 \\
+        x y = y x \\
+        (x y) z = x (y z) \\
+        x 1 = 1 x = x \\
+        x (y + z) = x y + x z \\
+        (y + x) x = y x + z x
+    \end{gather}
+\end{proposition}
+
+\begin{definition}[sequences bounded away from 0]
+    A sequence $(a_{n})_{n = 1}^{\infty}$ of rational numbers is away from 0 if and only if
+    there exists a rational number $c > 0$ such that $|a_{n}| \geq c$ for all $n \geq 1$.
+\end{definition}
+
+\begin{lemma}
+    Let $x$ be a non-zero real number.
+    Then $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+    is bounded away from 0.
+\end{lemma}
+
+\begin{proof}
+    Suppose $x = \LIM_{n \to \infty} b_{n}$.
+    Then for all $j, k \geq N$
+    \begin{equation*}
+        d(b_{j}, b_{k}) \leq \varepsilon / 2
+    \end{equation*}
+    Since
+    \begin{equation*}
+        x \neq \LIM_{n \to \infty} 0
+    \end{equation*}
+    Then for some $n_{0} \geq N$
+    \begin{equation*}
+        d(b_{n_{0}}, 0) > \varepsilon
+    \end{equation*}
+    Then
+    \begin{gather*}
+        d(b_{n_{0}}, b_{k}) \leq \varepsilon / 2 \\
+        \varepsilon < d(b_{n_{0}}, 0) \leq d(b_{n_{0}}, b_{k}) + d(b_{k}, 0)
+        \leq \varepsilon / 2 + d(b_{k}, 0) \\
+        d(b_{k}, 0) > \varepsilon / 2
+    \end{gather*}
+    Let $a_{n} := \varepsilon / 2$ if $n < N$ and $a_{n} := b_{n}$ if $n \geq N$, then
+    \begin{equation*}
+        x = \LIM_{n \to \infty} a_{n}
+    \end{equation*}
+    Then for all $n \geq 1$,
+    \begin{equation*}
+        |a_{n}| \geq \varepsilon / 2
+    \end{equation*}
+\end{proof}
+
+\begin{lemma}
+    Suppose that $(a_{n})_{n = 1}^{\infty}$ is a Cauchy sequence which is bounded away from 0.
+    Then the sequence $(a_{n}^{-1})_{n = 1}^{\infty}$ is also a Cauchy sequence.
+\end{lemma}
+
+\begin{proof}
+    There exists a rational number $c$ such that for all $n \geq 1$,
+    \begin{equation*}
+        |a_{n}| \geq c
+    \end{equation*}
+    For all $j, k \geq N$,
+    \begin{equation*}
+        d(a_{j}, a_{k}) \leq \varepsilon \times c^{2}
+    \end{equation*}
+    Then
+    \begin{equation*}
+        d(a_{j}^{-1}, a_{k}^{-1}) = \left| \frac{a_{k} - a_{j}}{a_{j} a_{k}} \right|
+        \leq d(a_{j}, a_{k}) / c^{2} \leq \varepsilon
+    \end{equation*}
+\end{proof}
+
+\begin{definition}[reciprocal]
+    Let $x$ be a non-zero real number.
+    Let $(a_{n})_{n = 1}^{\infty}$ be a Cauchy sequence bounded away from 0 such that
+    $x = (a_{n})_{n = 1}^{\infty}$.
+    Define the reciprocal
+    \begin{equation}
+        x^{-1} := \LIM_{n \to \infty} a_{n}^{-1}
+    \end{equation}
+\end{definition}
+
+\begin{lemma}[reciprocal is well-defined]
+    Let $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$
+    be two Cauchy sequences bounded away from 0 such that
+    $\LIM_{n \to \infty} a_{n} = \LIM_{n \to \infty} b_{n}$.
+    Then
+    \begin{equation*}
+        \LIM_{n \to \infty} a_{n}^{-1} = \LIM_{n \to \infty} b_{n}^{-1}
+    \end{equation*}
+\end{lemma}
+
+\begin{proof}
+    \begin{gather*}
+        \LIM_{n \to \infty} a_{n}^{-1} \times \LIM_{n \to \infty} a_{n} \times \LIM_{n \to \infty} \times b_{n}^{-1} =
+        \LIM_{n \to \infty} a_{n}^{-1} \times \LIM_{n \to \infty} b_{n} \times \LIM_{n \to \infty} \times b_{n}^{-1} \\
+        \LIM_{n \to \infty} a_{n}^{-1} a_{n} b_{n}^{-1} = \LIM_{n \to \infty} a_{n}^{-1} b_{n} b_{n}^{-1} \\
+        \LIM_{n \to \infty} b_{n}^{-1} = \LIM_{n \to \infty} a_{n}^{-1}
+    \end{gather*}
+\end{proof}
+
+\begin{definition}[reciprocal = rational]
+    \begin{equation*}
+        \LIM_{n \to \infty} q^{-1} = q^{-1}
+    \end{equation*}
+\end{definition}
+
+\begin{proposition}
+    \begin{equation*}
+        x x^{-1} = x^{-1} x = 1
+    \end{equation*}
+\end{proposition}
+
+\begin{proposition}[field]
+    Let $x, y, z$ be real numbers.
+    \begin{gather}
+        x + y = y + z \\
+        (x + y) + z = x + (y + z) \\
+        x + 0 = 0 + x = x \\
+        x + (-x) = (-x) + x = 0 \\
+        x y = y x \\
+        (x y) z = x (y z) \\
+        x 1 = 1 x = x \\
+        x (y + z) = x y + x z \\
+        (y + z) x = y x + z x \\
+        x x^{-1} = x^{-1} x = 1 \text{ for } x \neq 0
+    \end{gather}
+\end{proposition}
+
+\begin{definition}[divisionaa]
+    \begin{equation}
+        x / y := x \times y^{-1}
+    \end{equation}
+\end{definition}
+
+\begin{proposition}[cancelation law]
+    If $x z = yz$ and $z \neq 0$, then $x = y$.
+\end{proposition}
+
+\subsection{Ordering}
+\begin{definition}[sequence positively and negatively bounded away from 0]
+    Let $(a_{n})_{n = 1}^{\infty}$ be a sequence of rationals.
+    The sequence is positively bounded away from 0 if and only if
+    there exists a positive rational $c > 0$ such that
+    $a_{n} \geq c$ for all $n \geq 1$.
+    The sequence is negatively bounded away from 0 if and only if
+    there exists a negative rational $-c < 0$ such that
+    $a_{n} \leq -c$ for all $n \geq 1$.
+\end{definition}
+
+\begin{definition}[positive and negative]
+    A real number $x$ is positive if and only if it can be written as
+    $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+    which is positively bounded away from 0.
+    $x$ is negative if and only if it can be written as
+    $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+    which is negatively bounded away from 0.
 \end{definition}
 
 \section{Limits of Sequences}
