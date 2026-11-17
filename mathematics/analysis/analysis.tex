@@ -1448,7 +1448,7 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
     \end{gather}
 \end{proposition}
 
-\begin{definition}[divisionaa]
+\begin{definition}[divisiona]
     \begin{equation}
         x / y := x \times y^{-1}
     \end{equation}
@@ -1469,13 +1469,252 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
     $a_{n} \leq -c$ for all $n \geq 1$.
 \end{definition}
 
-\begin{definition}[positive and negative]
+\begin{definition}[positive and negative bounded away from 0]
     A real number $x$ is positive if and only if it can be written as
     $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
     which is positively bounded away from 0.
     $x$ is negative if and only if it can be written as
     $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
     which is negatively bounded away from 0.
+\end{definition}
+
+\begin{definition}[positive and negative]
+    A real number $x$ is positive if and only if it can be written as
+    $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+    which is positively bounded away from 0.
+    $x$ is negative if and only if it can be written as
+    $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+    which is negatively bounded away from 0.
+\end{definition}
+
+\begin{proposition}[properties of postive reals]
+    \label{PROP:PROPERTIES_OF_POSITIVE_REALS}
+    For each real number $x$,
+    \begin{itemize}
+        \item exactly one of the following three statement is true:
+              (a) $x$ is 0;
+              (b) $x$ is positive;
+              (c) $x$ is negative.
+              \begin{proof}
+                  If $x \neq 0$, then there exists a rational number $c > 0$ such that for all $n \geq 1$,
+                  \begin{gather*}
+                      |a_{n}| \geq c \\
+                      a_{n} \geq c \text{ or } a_{n} \leq -c
+                  \end{gather*}
+                  For all $j, k \geq N$,
+                  \begin{gather*}
+                      d(a_{j}, a_{k}) \leq c / 2 \\
+                      -c / 2 \leq a_{j} - a_{k} \leq c / 2 \\
+                      a_{k} - c / 2 \leq a_{j} \leq a_{k} + c / 2
+                  \end{gather*}
+                  If $a_{k} \geq c$, then
+                  \begin{equation*}
+                      c / 2 \leq a_{j} \leq 3 c / 2
+                  \end{equation*}
+                  If $a_{k} \leq - c$, then
+                  \begin{equation*}
+                      - 3 c / 2 \leq a_{j} \leq - c / 2
+                  \end{equation*}
+              \end{proof}
+        \item $x$ is negative if and only if $-x$ is positive.
+              \begin{proof}
+                  For all $n \geq 1$, there exists a negative rational number $-c < 0$ such that
+                  \begin{equation*}
+                      a_{n} \leq -c
+                  \end{equation*}
+                  Then
+                  \begin{equation*}
+                      -a_{n} \geq c
+                  \end{equation*}
+              \end{proof}
+        \item if $x$ and $y$ are positive, then $x + y$ and $x y$ are also positive.
+              \begin{proof}
+                  For all $n \geq 1$, there exists positive rational numbers $c_{1}, c_{2} > 0$ such that
+                  \begin{gather*}
+                      a_{n} \geq c_{1} \\
+                      b_{n} \geq c_{2}
+                  \end{gather*}
+                  Then
+                  \begin{gather*}
+                      a_{n} + b_{n} \geq c_{1} + c_{2} \\
+                      a_{n} b_{n} \geq c_{1} c_{2}
+                  \end{gather*}
+              \end{proof}
+    \end{itemize}
+\end{proposition}
+
+\begin{definition}[absolute value]
+    Let $x$ be a rational number.
+    $|x|$ equal to $x$ if $x$ is positive, $-x$ when $x$ is negative, 0 when $x$ is 0.
+\end{definition}
+
+\begin{definition}[ordering]
+    Let $x, y$ be real numbers.
+    $x > y$ if and only if $x - y$ is a positive real number.
+    $x < y$ if and only if $x - y$ is a negative real number.
+    $x \geq y$ if and only if $x > y$ or $x = y$.
+    $x \leq y$ if and only if $x < y$ or $x = y$.
+\end{definition}
+
+\begin{proposition}[ordered field]
+    Let $x, y, z$ be real numbers, then
+    \begin{itemize}
+        \item (order trichotomy)
+              Exactly one of the three statements $x = y$, $x < y$, $x > y$ is true.
+        \item (antisymmetric)
+              $x < y$ if and only if $y > x$.
+        \item (transitive)
+              If $x < y$ and $y < z$, then $x < z$.
+        \item (addition preserves order)
+              If $x < y$, then $x + z < y + z$.
+        \item (positive multiplication preserves order)
+              If $x < y$ and $z$ is positive, then $x z < y z$.
+              \begin{proof}
+                  Since $x < y$, then $y - x$ is positive.
+                  Then by Proposition \ref{PROP:PROPERTIES_OF_POSITIVE_REALS},
+                  $(y - x) z = y z - x z$ is positive.
+                  Then $x z < y z$.
+              \end{proof}
+    \end{itemize}
+\end{proposition}
+
+\begin{proposition}
+    Let $x$ be a positive real number, then $x^{-1}$ is also positive.
+    If $y$ is another positive number and $x > y$, then $x^{-1} < y^{-1}$.
+\end{proposition}
+
+\begin{proof}
+\end{proof}
+
+\begin{proposition}
+    Let $a_{1}, a_{2}, \dots$ be a Cauchy sequence of non-negative rational numbers.
+    Then $\LIM_{n \to \infty} a_{n}$ is a non-negative real number.
+\end{proposition}
+
+\begin{proof}
+    Suppose $x := \LIM_{n \to \infty} a_{n}$ is a negative number.
+    Then $x = \LIM_{n \to \infty} b_{n}$ for some sequence $b_{n}$
+    which is negatively bounded away from 0.
+    Then for all $n \geq 1$, there exists a negative rational $-c < 0$ such that
+    \begin{equation*}
+        b_{n} \leq -c
+    \end{equation*}
+    For all $n \geq 1$,
+    \begin{gather*}
+        |b_{n} - a_{n}| \leq c / 2 \\
+        -c / 2 \leq b_{n} - a_{n} \leq c / 2 \\
+        a_{n} \leq b_{n} + c / 2 \leq - c / 2
+    \end{gather*}
+    Since
+    \begin{equation*}
+        a_{n} \geq 0
+    \end{equation*}
+    Contradiction.
+\end{proof}
+
+\begin{proposition}
+    Let $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$ be Cauchy sequences
+    of rationals such that $a_{n} \geq b_{n}$ for all $n \geq 1$.
+    Then $\LIM_{n \to \infty} a_{n} \geq \LIM_{n \to \infty} b_{n}$.
+\end{proposition}
+
+\begin{proof}
+    For all $n \geq 1$,
+    \begin{equation*}
+        a_{n} - b_{n} \geq 0
+    \end{equation*}
+    Then $\LIM_{n \to \infty} (a_{n} - b_{n})$ is non-negative.
+\end{proof}
+
+\begin{proposition}[bounding of reals]
+    Let $x$ be a positive real number.
+    Then there exists a positive rational number such that $q \leq x$.
+    And there exists a positive integer $N$ such that $x \leq N$.
+\end{proposition}
+
+\begin{proof}
+    For all $n \geq 1$,
+    \begin{equation*}
+        c \leq a_{n} \leq M \leq N
+    \end{equation*}
+\end{proof}
+
+\begin{proposition}[Archimendean property]
+    Let $x$ be a real number, and $\varepsilon$ be
+    a positive real number.
+    There exists a positive integer $M$ such that $M \varepsilon > x$.
+\end{proposition}
+
+\begin{proof}
+    If $x$ is positive, then
+    \begin{equation*}
+        x < 2 x / \varepsilon \times \varepsilon \leq M \varepsilon
+    \end{equation*}
+\end{proof}
+
+\begin{proposition}[integer part]
+    For every real number $x$, there is exactly only one integer $N$ such that
+    $N \leq x < N + 1$.
+\end{proposition}
+
+\begin{proof}
+    Suppose for any $N \leq x$, $N + 1 \leq x$.
+    Then $N + M \leq x$ for any integer $M$.
+    When $M = 1$, $N + 1 \leq x$.
+    Suppose $N + M \leq x$.
+    Then
+    \begin{equation*}
+        (N + M) + 1 \leq x
+    \end{equation*}
+    This closes induction.
+
+    Then for every integer $M$
+    \begin{equation*}
+        N + M N = (M + 1) N \leq x
+    \end{equation*}
+    Contradiction.
+\end{proof}
+
+\begin{proposition}
+    For every positive real number $x$ there exists a positive integer $N$ such that
+    $x > 1 / N > 0$.
+\end{proposition}
+
+\begin{proof}
+    With Archimendean property,
+    there exists a positive integer $N$ such that
+    \begin{gather*}
+        N > 1 / x \\
+        x > 1 / N > 0
+    \end{gather*}
+\end{proof}
+
+\begin{proposition}
+    Given any two real numbers $x < y$, there exists a rational number $q$
+    such that $x < q < y$.
+\end{proposition}
+
+\begin{proof}
+    There exists a positive integer $N$ such that
+    \begin{gather*}
+        y - x > 1 / N > 0 \\
+        N y - N x > 1
+    \end{gather*}
+    Suppose $q \leq x < y$ or $x < y \leq q$ for all $q$.
+    Then there exists an integer $N_{1}$ such that
+    \begin{equation*}
+        N_{1} \leq N x < N y < N_{1} + 1
+    \end{equation*}
+    Then
+    \begin{equation*}
+        N y - N x < 1
+    \end{equation*}
+    Contradiction.
+\end{proof}
+
+\subsection{Least Upper Bound}
+\begin{definition}[upper bound]
+
 \end{definition}
 
 \section{Limits of Sequences}
