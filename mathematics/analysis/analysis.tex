@@ -1640,6 +1640,7 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \end{proof}
 
 \begin{proposition}[Archimendean property]
+    \label{PROP:ARCHIMENDEAN_PROPERTY}
     Let $x$ be a real number, and $\varepsilon$ be
     a positive real number.
     There exists a positive integer $M$ such that $M \varepsilon > x$.
@@ -1714,8 +1715,68 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 
 \subsection{Least Upper Bound}
 \begin{definition}[upper bound]
-
+    Let $E$ be a subset of $R$ and $M$ be a real number.
+    $M$ is an upper bound of $E$ if and only if $x < M$ for every element $x$ in $E$.
 \end{definition}
+
+\begin{definition}[least upper bound]
+    Let $E$ be a subset of $R$ and $M$ be a real number.
+    $M$ is a least upper bound for $E$ if and only if
+    $M$ is an upper bound for $E$ and any other upper bound $M' \geq M$.
+\end{definition}
+
+\begin{proposition}[uniqueness of least upper bound]
+    Let $E$ be a subset of $R$. Then $E$ can have at most one least upper bound.
+\end{proposition}
+
+\begin{proof}
+    Suppose $M_{1}$ and $M_{2}$ are two least upper bounds.
+    Then
+    \begin{gather*}
+        M_{1}\leq M_{2} \\
+        M_{2} \leq M_{1}\\
+        M_{1}= M_{2}
+    \end{gather*}
+\end{proof}
+
+\begin{theorem}[existence of least upper bound]
+    Let $E$ be a non-empty subset of $R$.
+    If $E$ has an upper bound $M$, then it must have exactly one least upper bound.
+\end{theorem}
+
+\begin{proof}
+    Let $n \geq 1$ be a positive integer.
+    By Proposition \ref{PROP:ARCHIMENDEAN_PROPERTY} and
+    let $\varepsilon = 1 / n, x = M$,
+    there exists an integer $K$ such that
+    \begin{equation*}
+        K / n \geq M
+    \end{equation*}
+    Let $x_{0}$ be some element in $E$.
+    Then by Proposition \ref{PROP:ARCHIMENDEAN_PROPERTY} and
+    let $\varepsilon = 1, x = -n x_{0}$,
+    there exists an integer $L$ such that
+    \begin{equation*}
+        L / n < x_{0}
+    \end{equation*}
+    Since $K / n$ is an upper bound for $E$ and $L / n$ is not,
+    then there exists an integer
+    $L < m_{n} \leq K$ such that $m_{n} / n$ is an upper bound for $E$,
+    but $(m n - 1) / n$ is not.
+\end{proof}
+
+\begin{lemma}
+    Let $E$ be a non-empty subset of $R$,
+    and let $n \geq 1, L < K$ be integers.
+    Suppose that $K/n$ is an upper bound for $E$,
+    $L / n$ is not. Then there exists an integer $L < m \leq K$
+    such that $m / n$ is an upper bound for $E$,
+    but $(m - 1) / n$ is not.
+\end{lemma}
+
+\begin{proof}
+
+\end{proof}
 
 \section{Limits of Sequences}
 
@@ -1732,7 +1793,6 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \appendix
 \section{Tools}
 \begin{definition}[implication]
-    \label{def:implication}
     ``If P, then Q'' = ``If not Q, then not P''.
 \end{definition}
 
