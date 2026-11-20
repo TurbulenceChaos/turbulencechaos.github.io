@@ -1677,6 +1677,7 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \end{proof}
 
 \begin{proposition}
+    \label{PROP:X_1_N_0}
     For every positive real number $x$ there exists a positive integer $N$ such that
     $x > 1 / N > 0$.
 \end{proposition}
@@ -1713,10 +1714,25 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
     Contradiction.
 \end{proof}
 
+\begin{lemma}
+    Let $(a_{n})_{n = 1}^{\infty}$ be a Cauchy sequence of rationals,
+    and let $x$ be a real number.
+
+    If $a_{n} \leq x$ for all $n \geq 1$, then
+    \begin{equation*}
+        \LIM_{n \to \infty} a_{n} \leq x
+    \end{equation*}
+
+    If $a_{n} \geq x$ for all $n \geq 1$, then
+    \begin{equation*}
+        \LIM_{n \to \infty} a_{n} \geq x
+    \end{equation*}
+\end{lemma}
+
 \subsection{Least Upper Bound}
 \begin{definition}[upper bound]
     Let $E$ be a subset of $R$ and $M$ be a real number.
-    $M$ is an upper bound of $E$ if and only if $x < M$ for every element $x$ in $E$.
+    $M$ is an upper bound of $E$ if and only if $x \leq M$ for every element $x$ in $E$.
 \end{definition}
 
 \begin{definition}[least upper bound]
@@ -1737,6 +1753,65 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
         M_{2} \leq M_{1}\\
         M_{1}= M_{2}
     \end{gather*}
+\end{proof}
+
+\begin{lemma}
+    Let $E$ be a non-empty subset of $R$,
+    and let $n \geq 1, L < K$ be integers.
+    Suppose that $K/n$ is an upper bound for $E$,
+    $L / n$ is not. Then there exists an integer $L < m \leq K$
+    such that $m / n$ is an upper bound for $E$,
+    but $(m - 1) / n$ is not.
+\end{lemma}
+
+\begin{proof}
+    Suppose for all $L < m \leq K$ and
+    $m / n$ is upper bound, $(m - 1) / n$ is also upper bound.
+    Then $(m - N) / n$ is upper bound for all $N \geq 1$.
+
+    When $N = 1$, $(m - 1) / n$ is upper bound.
+    Suppose $(m - N) / n$ is upper bound.
+    Then $(m - N - 1) / n$ is also upper bound.
+
+    Let $N = m - L$, then
+    $(m - (m - L)) / n = L / n$ is upper bound.
+    Contradiction.
+\end{proof}
+
+\begin{lemma}
+    Let $E$ be a non-empty subset of $R$,
+    and let $n \geq 1, m, m'$ be integers such that
+    $m / n$ and $m' / n'$ are upper bounds,
+    but $(m - 1) / n$ and $(m' - 1) / n$ are not.
+    Then $m = m'$.
+\end{lemma}
+
+\begin{proof}
+    Suppose $m < m'$, then $m \leq m' - 1$.
+    Then
+    \begin{equation*}
+        m / n \leq (m' - 1) / n < x_{0} \leq m / n
+    \end{equation*}
+    Contradiction.
+\end{proof}
+
+\begin{lemma}
+    \label{LEM:Q_CAUCHY_SEQUENCE}
+    Let $q_{1}, q_{2}, q_{3}, \dots$ be a sequence of rational numbers such that
+    $|q_{n} - q_{n}'| \leq \frac{1}{M}$ whenever $M \geq 1$ is an integer and $n, n' \geq M$.
+    Then $q_{1}, q_{2}, q_{3}, \dots$ is a Cauchy sequence.
+    And if $S := \LIM_{n \to \infty} q_{n}$, then
+    $|q_{M} - S| \leq \frac{1}{M}$ for every $M \geq 1$.
+\end{lemma}
+
+\begin{proof}
+    For every $\varepsilon > 0$,
+    there exists a positive integer $M$
+    such that $\varepsilon > 1 / M > 0$ by Proposition \ref{PROP:X_1_N_0}.
+    Then for all $n, n' > M$,
+    \begin{equation*}
+        |q_{n} - q_{n}'| \leq \frac{1}{M} < \varepsilon
+    \end{equation*}
 \end{proof}
 
 \begin{theorem}[existence of least upper bound]
@@ -1762,20 +1837,56 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
     Since $K / n$ is an upper bound for $E$ and $L / n$ is not,
     then there exists an integer
     $L < m_{n} \leq K$ such that $m_{n} / n$ is an upper bound for $E$,
-    but $(m n - 1) / n$ is not.
-\end{proof}
+    but $(m_{n} - 1) / n$ is not.
 
-\begin{lemma}
-    Let $E$ be a non-empty subset of $R$,
-    and let $n \geq 1, L < K$ be integers.
-    Suppose that $K/n$ is an upper bound for $E$,
-    $L / n$ is not. Then there exists an integer $L < m \leq K$
-    such that $m / n$ is an upper bound for $E$,
-    but $(m - 1) / n$ is not.
-\end{lemma}
+    Let $N \geq 1$ be a positive integer,
+    and let $n, n'$ be integers such that $n, n' \geq N$.
+    Since $m_{n} / n$ is upper bound and $(m_{n'} - 1) / n'$ is not, then
+    \begin{gather*}
+        \frac{m_{n}}{n} > \frac{m_{n'} - 1}{n'} \\
+        \frac{m_{n}}{n} - \frac{m_{n'}}{n'} > \frac{-1}{n'} \geq \frac{-1}{N}
+    \end{gather*}
+    And since $m_{n'} / n'$ is upper bound and $(m_{n} - 1) / n$
+    \begin{gather*}
+        \frac{m_{n'}}{n'} > \frac{m_{n} - 1}{n} \\
+        \frac{m_{n}}{n} - \frac{m_{n'}}{n'} < \frac{1}{n} \leq \frac{1}{N}
+    \end{gather*}
+    Thus
+    \begin{equation*}
+        \left| \frac{m_{n}}{n} - \frac{m_{n'}}{n'} \right| \leq \frac{1}{N}
+        \text{ for all } n, n' \geq N
+    \end{equation*}
+    Then $m_{n} / n$ is a Cauchy sequence by Lemma \ref{LEM:Q_CAUCHY_SEQUENCE}.
 
-\begin{proof}
+    Define the real number $S$ as
+    \begin{equation*}
+        S := \LIM_{n \to \infty} \frac{m_{n}}{n}
+    \end{equation*}
+    Then
+    \begin{equation*}
+        S = \LIM_{n \to \infty} \frac{m_{n}}{n} - \LIM_{n \to \infty} \frac{1}{n}
+        = \LIM_{n \to \infty} \frac{m_{n} - 1}{n}
+    \end{equation*}
 
+    For all $n \geq 1$,
+    \begin{equation*}
+        x \leq \frac{m_{n}}{n}
+    \end{equation*}
+    Then
+    \begin{equation*}
+        x \leq \LIM_{n \to \infty} \frac{m_{n}}{n} = S
+    \end{equation*}
+    Thus $S$ is upper bound.
+
+    Suppose $y$ is an upper bound for $E$, then for all $n \geq 1$,
+    \begin{equation*}
+        y \geq \frac{m_{n} - 1}{n}
+    \end{equation*}
+    Then
+    \begin{equation*}
+        y \geq \LIM_{n \to \infty} \frac{m_{n} - 1}{n} = S
+    \end{equation*}
+    Thus $S$ is a least upper bound.
 \end{proof}
 
 \section{Limits of Sequences}
