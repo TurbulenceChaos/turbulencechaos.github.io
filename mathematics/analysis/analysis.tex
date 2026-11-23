@@ -1889,6 +1889,32 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
     Thus $S$ is a least upper bound.
 \end{proof}
 
+\begin{definition}[supremum]
+  Let $E$ be a subset of real numbers.
+  If $E$ is non-empty and has some upper bound,
+  define supremum $\sup(E)$ to be the least upper bound of $E$.
+  If $E$ is non-empty and has no upper bound, $\sup(E) := +\infty$.
+  If $E$ is empty, $\sup(E) := -\infty$.
+\end{definition}
+
+\begin{proposition}
+  There exists a positive real number $x$ such that $x^{2} = 2$.
+\end{proposition}
+
+\begin{proof}
+  Let $E := {y \in \mathbb{R} : y \geq 0 \text{ and } y^{2} < 2}$ be a subset of real number.
+  Then there exists a least upper bound $x := \sup(E)$.
+  Suppose $x^{2} < 2$.
+  Let $0 < \varepsilon < 1$, then
+  \begin{equation*}
+    (x + \varepsilon)^{2} = x^{2} + 2 x \varepsilon + \varepsilon^{2}
+    < x^{2} + 4 \varepsilon + \varepsilon = x^{2} + 5 \varepsilon
+  \end{equation*}
+  Choose $0 < \varepsilon < 1$ such that $x^{2} + 5 \varepsilon < 2$,
+  $\varepsilon < \frac{2 - x^{2}}{5}$.
+  Then $(x + \varepsilon)^{2} < 2$, $x + \varepsilon \in E$.
+\end{proof}
+
 \section{Limits of Sequences}
 
 \section{Power Series}
