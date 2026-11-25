@@ -18,23 +18,86 @@
 
 \section{Calculating}
 \begin{definition}
-  \label{DEF:MUL_ASSOC}
 \begin{verbatim}
-[mul_assoc]
 mul_assoc a b c => a * b * c = a * (b * c)
 \end{verbatim}
 \end{definition}
 
 \begin{definition}
-  \label{DEF:MUL_COMM}
 \begin{verbatim}
-[mul_comm]
 mul_comm a b => a * b = b * a
 \end{verbatim}
 \end{definition}
 
+\begin{proposition}
+  Let $a, b, c$ be real numbers, then  
+  \begin{equation*}
+    a b c = b (a c)
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}~
+\begin{verbatim}
+example (a b c : ℝ) : a * b * c = b * (a * c) := by
+  rw [mul_comm a]
+  rw [mul_assoc]
+\end{verbatim}
+\end{proof}
+
+\begin{proposition}
+  Let $a, b, c$ be real numbers.
+  If $a b = c d$ and $e = f$, then
+  \begin{equation*}
+    a (b e) = c (d f)
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}~
+\begin{verbatim}
+variable (a b c d e f : ℝ)
+
+example (h : a * b = c * d)
+(h' : e = f) :
+a * (b * e) = c * (d * f) := by
+ rw [h']
+ rw [← mul_assoc]
+ rw [h]
+ rw [mul_assoc]
+\end{verbatim}
+\end{proof}
+
+\begin{definition}
+\begin{verbatim}
+two_mul a => 2 * a = a * a
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+add_mul a b c => (a + b) * c = a * c + b * c
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+mul_add a b c => a * (b + c) = a * b + a * c
+\end{verbatim}
+\end{definition}
+
+\begin{proposition}
+  \begin{equation*}
+    (a + b) (a + b) = a a + 2 (a b) + b b
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}~
+\begin{verbatim}
+
+\end{verbatim}
+\end{proof}
+
 \end{document}
 
-%%% Local Variables:
-%%% TeX-engine: luatex
-%%% End:
+% Local Variables:
+% TeX-engine: luatex
+% End:
