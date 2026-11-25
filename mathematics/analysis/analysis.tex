@@ -10,421 +10,421 @@
 
 \section{Introduction}
 \begin{definition}[analysis]
-    Analysis of real numbers, sequences and series of real numbers, real-valued functions, and geometry
-    \cite{TAO_2022_ANALYSIS_1, TAO_2022_ANALYSIS_2}.
+  Analysis of real numbers, sequences and series of real numbers, real-valued functions, and geometry
+  \cite{TAO_2022_ANALYSIS_1, TAO_2022_ANALYSIS_2}.
 \end{definition}
 
 \section{Natural Number}
 \begin{definition}[natural number]
-    A natural number is any element of the set
-    \begin{equation}
-        \mathbb{N} := {0, 1, 2, 3, \dots}
-    \end{equation}
+  A natural number is any element of the set
+  \begin{equation}
+    \mathbb{N} := {0, 1, 2, 3, \dots}
+  \end{equation}
 \end{definition}
 
 \begin{axiom}[0]
-    0 is a natural number.
+  0 is a natural number.
 \end{axiom}
 
 \begin{axiom}[successor]
-    If $n$ is a natural number, then $n{++}$ is also a natural number.
+  If $n$ is a natural number, then $n{++}$ is also a natural number.
 \end{axiom}
 
 \begin{definition}[notation]
-    $1 := 0{++}$, $2 := 1{++}$, $3 := 2{++}$, $\dots$
+  $1 := 0{++}$, $2 := 1{++}$, $3 := 2{++}$, $\dots$
 \end{definition}
 
 \begin{axiom}[$n{++} \neq 0$]
-    0 is not the successor of any natural number $n$.
+  0 is not the successor of any natural number $n$.
 \end{axiom}
 
 \begin{axiom}[$n{++} \neq m{++}$]
-    Different natural numbers must have different successors.
+  Different natural numbers must have different successors.
 
-    If $n \neq m$, then $n{++} \neq m{++}$.
-    Equivalently, if $n{++} = m{++}$, then $n = m$.
+  If $n \neq m$, then $n{++} \neq m{++}$.
+  Equivalently, if $n{++} = m{++}$, then $n = m$.
 \end{axiom}
 
 \begin{axiom}[principle of mathematical induction]
-    Let $P(n)$ be any property pertaining to a natural number $n$.
-    Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true,
-    $P(n{++})$ is also true. Then $P(n)$ is true for every natural number $n$.
+  Let $P(n)$ be any property pertaining to a natural number $n$.
+  Suppose that $P(0)$ is true, and suppose that whenever $P(n)$ is true,
+  $P(n{++})$ is also true. Then $P(n)$ is true for every natural number $n$.
 \end{axiom}
 
 \begin{lemma}[recursive definition of sequence]
-    $a_{0} = c$ and $a_{n{++} = f_{n}(a_{n})}$ for each natural number $n$.
+  $a_{0} = c$ and $a_{n{++} = f_{n}(a_{n})}$ for each natural number $n$.
 \end{lemma}
 
 \subsection{Addition}
 \begin{definition}[addition]
-    Define $0+m:=m$. Suppose inductively that we have defined $n+m$.
-    Then $(n{++})+m:=(n+m){++}$.
+  Define $0+m:=m$. Suppose inductively that we have defined $n+m$.
+  Then $(n{++})+m:=(n+m){++}$.
 \end{definition}
 
 $a_{n} = n+m$ and $f_{n}(a_{n}) = a_{n}{++}$
 
 \begin{lemma}
-    $n+0=n$
+  $n+0=n$
 \end{lemma}
 
 \begin{lemma}
-    $n+(m{++})=(n+m){++}$
+  $n+(m{++})=(n+m){++}$
 \end{lemma}
 
 \begin{proposition}[addition is commutative]
-    \begin{equation}
-        n+m = m+n
-    \end{equation}
+  \begin{equation}
+    n+m = m+n
+  \end{equation}
 \end{proposition}
 
 \begin{proposition}[addition is associative]
-    \begin{equation}
-        (a+b)+c = a+(b+c)
-    \end{equation}
+  \begin{equation}
+    (a+b)+c = a+(b+c)
+  \end{equation}
 \end{proposition}
 
 \begin{proposition}[cancellation law]
-    If $a+b = a+c$, then $b=c$.
+  If $a+b = a+c$, then $b=c$.
 \end{proposition}
 
 \begin{definition}
-    A natural number $n$ is positive if and only if $n \neq 0$.
+  A natural number $n$ is positive if and only if $n \neq 0$.
 \end{definition}
 
 \begin{lemma}
-    If $a$ is a positive natural number and $b$ is a natural number,
-    then $a+b$ is positive.
+  If $a$ is a positive natural number and $b$ is a natural number,
+  then $a+b$ is positive.
 \end{lemma}
 
 \begin{lemma}
-    If $a+b = 0$, then $a=0$ and $b=0$.
+  If $a+b = 0$, then $a=0$ and $b=0$.
 \end{lemma}
 
 \begin{lemma}
-    If $a$ is a positive number, then there exists exactly one natural number $b$
-    such that $b{++} = a$.
+  If $a$ is a positive number, then there exists exactly one natural number $b$
+  such that $b{++} = a$.
 \end{lemma}
 
 \begin{definition}[order]~
-    \begin{itemize}
-        \item $n \geq m$ or $m \leq n$ if and only if $n=m+a$ for some natural number $a$
-        \item $n>m$ or $m<n$ if and only if $n \geq m$ and $n \neq m$
-    \end{itemize}
+  \begin{itemize}
+  \item $n \geq m$ or $m \leq n$ if and only if $n=m+a$ for some natural number $a$
+  \item $n>m$ or $m<n$ if and only if $n \geq m$ and $n \neq m$
+  \end{itemize}
 \end{definition}
 
 \begin{proposition}[properties of order]~
-    \begin{itemize}
-        \item reflexive: $a \geq a$
-        \item transitive: If $a \geq b$ and $b \geq c$, then $a \geq c$
-        \item antisymmetric: If $a \geq b$ and $b \geq a$, then $a=b$
-        \item addition preserve order: $a \geq b$ if and only if $a+c \geq b+c$
-        \item $a<b$ if and only if $a{++} \leq b$
-        \item $a<b$ if and only if $b=a+d$ for some positive number $d$
-    \end{itemize}
+  \begin{itemize}
+  \item reflexive: $a \geq a$
+  \item transitive: If $a \geq b$ and $b \geq c$, then $a \geq c$
+  \item antisymmetric: If $a \geq b$ and $b \geq a$, then $a=b$
+  \item addition preserve order: $a \geq b$ if and only if $a+c \geq b+c$
+  \item $a<b$ if and only if $a{++} \leq b$
+  \item $a<b$ if and only if $b=a+d$ for some positive number $d$
+  \end{itemize}
 \end{proposition}
 
 \begin{proposition}[trichotomy of order]
-    Exactly one of following statement is true:
-    $a<b$, $a=b$, or $a>b$.
+  Exactly one of following statement is true:
+  $a<b$, $a=b$, or $a>b$.
 \end{proposition}
 
 \begin{proposition}[strong principle of induction]
-    Let $m_{0}$ be a natural number.
-    Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$,
-    then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
+  Let $m_{0}$ be a natural number.
+  Suppose that for each $m \geq m_{0}$, if $P(m')$ is true for all $m_{0} \leq m' < m$,
+  then $P(m)$ is also true. Then $P(m)$ is true for all $m \geq m_{0}$.
 \end{proposition}
 
 \begin{example}[Fibonacci sequence]
-    \begin{gather}
-        F_{0} = 0 \\
-        F_{1} = 1 \\
-        F_{n} = F_{n-1} + F_{n-2}
-    \end{gather}
+  \begin{gather}
+    F_{0} = 0 \\
+    F_{1} = 1 \\
+    F_{n} = F_{n-1} + F_{n-2}
+  \end{gather}
 \end{example}
 
 \subsection{Multiplication}
 \begin{definition}[multiplication]
-    Define $0 \times m := 0$.
-    Suppose inductively that we have defined $n \times m$.
-    Then $(n{++}) \times m := (n \times m) + m$.
+  Define $0 \times m := 0$.
+  Suppose inductively that we have defined $n \times m$.
+  Then $(n{++}) \times m := (n \times m) + m$.
 \end{definition}
 
 \begin{lemma}
-    $n \times 0 = 0 \times n$
+  $n \times 0 = 0 \times n$
 \end{lemma}
 
 \begin{lemma}
-    $n \times (m{++}) = (n \times m) + n$
+  $n \times (m{++}) = (n \times m) + n$
 \end{lemma}
 
 \begin{proposition}[multiplication is commutative]
-    \begin{equation}
-        n \times m = m \times n
-    \end{equation}
+  \begin{equation}
+    n \times m = m \times n
+  \end{equation}
 \end{proposition}
 
 \begin{lemma}[zero divisor]
-    $n \times m = 0$ if and only if at least one of $n$ and $m$ is equal to 0.
-    If $n$ and $m$ are both positive, then $nm$ is also positive.
+  $n \times m = 0$ if and only if at least one of $n$ and $m$ is equal to 0.
+  If $n$ and $m$ are both positive, then $nm$ is also positive.
 \end{lemma}
 
 \begin{proposition}[distributive law]
-    \begin{equation}
-        a(b+c)=(b+c)a=bc+ca
-    \end{equation}
+  \begin{equation}
+    a(b+c)=(b+c)a=bc+ca
+  \end{equation}
 \end{proposition}
 
 \begin{proposition}[multiplication is associative]
-    \begin{equation}
-        (ab)c=a(bc)
-    \end{equation}
+  \begin{equation}
+    (ab)c=a(bc)
+  \end{equation}
 \end{proposition}
 
 \begin{lemma}[multiplication preserve order]
-    If $a<b$ and $c$ is positive, then $ac<nc$.
+  If $a<b$ and $c$ is positive, then $ac<nc$.
 \end{lemma}
 
 \begin{proposition}[cancellation law]
-    If $ac=bc$ and $c$ is positive, then $a=b$.
+  If $ac=bc$ and $c$ is positive, then $a=b$.
 \end{proposition}
 
 \begin{proposition}[Euclid's division lemma]
-    Let $n$ be a natural number and $q$ be a positive natural number.
-    Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
+  Let $n$ be a natural number and $q$ be a positive natural number.
+  Then there exist natural numbers $m$ and $r$, such that $0 \leq r < q$ and $n=mq+r$.
 \end{proposition}
 
 \begin{proof}
-    $0 = 0 \times q + 0$ and $0 \leq r < q$.
-    Suppose that $n=mq+r$ and $0 \leq r < q$.
-    Then $n{++}=mq+(r{++})$ and $0 \leq r{++} \leq q$.
-    If $r{++}=q$, $n{++}=mq+q=(m+1)q+0$.
-    If $r{++}<q$, $n{++}=mq+r{++}$.
+  $0 = 0 \times q + 0$ and $0 \leq r < q$.
+  Suppose that $n=mq+r$ and $0 \leq r < q$.
+  Then $n{++}=mq+(r{++})$ and $0 \leq r{++} \leq q$.
+  If $r{++}=q$, $n{++}=mq+q=(m+1)q+0$.
+  If $r{++}<q$, $n{++}=mq+r{++}$.
 \end{proof}
 
 \begin{definition}[Exponentiation]
-    Define $m^{0}:=1$, in particular $0^{0}:=1$.
-    Suppose recursively that $m^{n}$ has been defined for some natural number $n$,
-    then define $m^{n{++}}:=m^{n} \times m$.
+  Define $m^{0}:=1$, in particular $0^{0}:=1$.
+  Suppose recursively that $m^{n}$ has been defined for some natural number $n$,
+  then define $m^{n{++}}:=m^{n} \times m$.
 \end{definition}
 
 \section{Set Theory}
 \begin{definition}[set]
-    Define a set $A$ to be any unordered collection of objects.
-    If $x$ is an element of A, then $x \in A$, otherwise $x \notin A$.
+  Define a set $A$ to be any unordered collection of objects.
+  If $x$ is an element of A, then $x \in A$, otherwise $x \notin A$.
 \end{definition}
 
 \begin{axiom}[sets are objects]
-    If $A$ is a set, then $A$ is also an object.
+  If $A$ is a set, then $A$ is also an object.
 \end{axiom}
 
 \begin{axiom}[equality of sets]
-    $A=B$ if and only if every element of $A$ is an element of $B$ and vice versa.
+  $A=B$ if and only if every element of $A$ is an element of $B$ and vice versa.
 \end{axiom}
 
 \begin{axiom}[empty set]
-    There exists an empty set $\emptyset$ which contains no elements.
+  There exists an empty set $\emptyset$ which contains no elements.
 \end{axiom}
 
 \begin{lemma}[single choice]
-    If $A$ is a non-empty set, then there exists an object $x$ such that $x \in A$.
+  If $A$ is a non-empty set, then there exists an object $x$ such that $x \in A$.
 \end{lemma}
 
 \begin{axiom}[singleton and pair sets]
-    If $a$ is an object, then there exists a singleton set $\{a\}$ whose only element is $a$.
-    If $a$ and $b$ are objects, then there exists a pair set $\{a,b\}$ whose only elements are $a$ and $b$.
+  If $a$ is an object, then there exists a singleton set $\{a\}$ whose only element is $a$.
+  If $a$ and $b$ are objects, then there exists a pair set $\{a,b\}$ whose only elements are $a$ and $b$.
 \end{axiom}
 
 \begin{axiom}[pairwise union]
-    If $A$ and $B$ are two sets, then there exists a union of $A$ and $B$ set $A \cup B$,
-    which consists of all the elements which belong to $A$ or $B$ or both.
-    \begin{equation}
-        x \in A \cup B \Longleftrightarrow x \in A \text{ or } x \in B
-    \end{equation}
+  If $A$ and $B$ are two sets, then there exists a union of $A$ and $B$ set $A \cup B$,
+  which consists of all the elements which belong to $A$ or $B$ or both.
+  \begin{equation}
+    x \in A \cup B \Longleftrightarrow x \in A \text{ or } x \in B
+  \end{equation}
 \end{axiom}
 
 \begin{proposition}[properties of union]~
-    \begin{itemize}
-        \item $\{a,b\} = \{a\} \cup \{b\}$
-        \item commutative: $A \cup B = B \cup A$
-        \item associative: $(A \cup B) \cup C = A \cup (B \cup C)$
-    \end{itemize}
+  \begin{itemize}
+  \item $\{a,b\} = \{a\} \cup \{b\}$
+  \item commutative: $A \cup B = B \cup A$
+  \item associative: $(A \cup B) \cup C = A \cup (B \cup C)$
+  \end{itemize}
 \end{proposition}
 
 \begin{definition}[subsets]
-    $A$ is a subset of $B$, denoted $A \subseteq B$,
-    if and only if every element of $A$ is also an element of $B$.
+  $A$ is a subset of $B$, denoted $A \subseteq B$,
+  if and only if every element of $A$ is also an element of $B$.
 
-    $A$ is a proper subset of $B$, denoted $A \subsetneq B$,
-    if $A \subseteq B$ and $A \neq B$.
+  $A$ is a proper subset of $B$, denoted $A \subsetneq B$,
+  if $A \subseteq B$ and $A \neq B$.
 \end{definition}
 
 \begin{axiom}[axiom of specification]
-    Let $A$ be a set and $P(x)$ be a property pertaining to $x$ for each $x \in A$.
-    Then there exists a set $\{x \in A : P(x) \text{ is true}\}$
-    whose elements are precisely the elements $x$ in $A$ for which $P(x)$ is true.
+  Let $A$ be a set and $P(x)$ be a property pertaining to $x$ for each $x \in A$.
+  Then there exists a set $\{x \in A : P(x) \text{ is true}\}$
+  whose elements are precisely the elements $x$ in $A$ for which $P(x)$ is true.
 \end{axiom}
 
 \begin{definition}[intersections]
-    The intersection of two sets is defined to be the set
-    \begin{equation}
-        A \cap B := \{x \in A : x \in B\}
-    \end{equation}
+  The intersection of two sets is defined to be the set
+  \begin{equation}
+    A \cap B := \{x \in A : x \in B\}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[difference sets]
-    Define $A-B$ or $A \backslash B$ to be set $A$ with elements of $B$ removed
-    \begin{equation}
-        A \backslash B := \{x \in A : x \notin B\}
-    \end{equation}
+  Define $A-B$ or $A \backslash B$ to be set $A$ with elements of $B$ removed
+  \begin{equation}
+    A \backslash B := \{x \in A : x \notin B\}
+  \end{equation}
 \end{definition}
 
 \begin{axiom}[replacement]
-    If $P(x,y)$ is a property pertaining to $x$ and $y$,
-    such that for each $x \in A$ there is at most one $y$ for which $P(x,y)$ is true.
-    Then there exists a set $\{y : P(x,y) \text{ is true for some } x \in A\}$.
+  If $P(x,y)$ is a property pertaining to $x$ and $y$,
+  such that for each $x \in A$ there is at most one $y$ for which $P(x,y)$ is true.
+  Then there exists a set $\{y : P(x,y) \text{ is true for some } x \in A\}$.
 \end{axiom}
 
 \begin{axiom}[infinity]
-    There exists a set $\mathbb{N}$, whose elements are called natural numbers,
-    as well as an object 0 in $\mathbb{N}$,
-    and an object $n{++}$ assigned to every $n \in \mathbb{N}$,
-    such that the Peano axioms hold.
+  There exists a set $\mathbb{N}$, whose elements are called natural numbers,
+  as well as an object 0 in $\mathbb{N}$,
+  and an object $n{++}$ assigned to every $n \in \mathbb{N}$,
+  such that the Peano axioms hold.
 \end{axiom}
 
 \subsection{Cartesian Product}
 \begin{definition}[ordered pair]
-    If $x$ and $y$ are any objects,
-    define the ordered pair $(x,y)$ to be a new object.
-    Two ordered pairs $(x,y)$ and $(x',y')$ are equal if and only if both their components match
-    \begin{equation}
-        (x,y) = (x',y') \Longleftrightarrow \text{$x = x'$ and $y = y'$.}
-    \end{equation}
+  If $x$ and $y$ are any objects,
+  define the ordered pair $(x,y)$ to be a new object.
+  Two ordered pairs $(x,y)$ and $(x',y')$ are equal if and only if both their components match
+  \begin{equation}
+    (x,y) = (x',y') \Longleftrightarrow \text{$x = x'$ and $y = y'$.}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[Cartesian product]
-    If $X$ and $Y$ are sets, then define Cartesian product $X \times Y$ to be the collection of ordered pair
-    \begin{equation}
-        X \times Y = \{(x,y): x \in X, y \in Y\}
-    \end{equation}
+  If $X$ and $Y$ are sets, then define Cartesian product $X \times Y$ to be the collection of ordered pair
+  \begin{equation}
+    X \times Y = \{(x,y): x \in X, y \in Y\}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[ordered sequence of $n$ elements]
-    If $(x_{1},\dots,x_{n})$ is an ordered n-tuple,
-    define Cartesian product $X_{1} \times \dots \times X_{n}$ by
-    \begin{equation}
-        \prod_{1 \leq i \leq n}X_{i} :=
-        \{(x_{i})_{1 \leq i \leq n}: x_{i} \in X_{i} \text{ for all } 1 \leq i \leq n\}
-    \end{equation}
+  If $(x_{1},\dots,x_{n})$ is an ordered n-tuple,
+  define Cartesian product $X_{1} \times \dots \times X_{n}$ by
+  \begin{equation}
+    \prod_{1 \leq i \leq n}X_{i} :=
+    \{(x_{i})_{1 \leq i \leq n}: x_{i} \in X_{i} \text{ for all } 1 \leq i \leq n\}
+  \end{equation}
 \end{definition}
 
 \begin{lemma}[finite choice]
-    Let $X_{i}$ be a non-empty set, then there exists an n-tuple $(x_{i})_{1 \leq i \leq n}$
-    such that $x_{i} \in X_{i}$ for all $1 \leq i \leq n$.
+  Let $X_{i}$ be a non-empty set, then there exists an n-tuple $(x_{i})_{1 \leq i \leq n}$
+  such that $x_{i} \in X_{i}$ for all $1 \leq i \leq n$.
 \end{lemma}
 
 \section{Function}
 \begin{definition}[function]
-    Let $X$, $Y$ be sets, and let $P(x,y)$ be a property pertaining to
-    an object $x \in X$ and an object $y \in Y$, such that
-    for every $x \in X$, there is exactly only one $y \in Y$ for which
-    $P(x,y)$ is true.
-    Then the function $f: X \to Y$ is defined by $P$ on the domain $X$ and codomain (range)
-    to be the unique object $f(x) \in Y$ for which $P(x,f(x))$ is true.
+  Let $X$, $Y$ be sets, and let $P(x,y)$ be a property pertaining to
+  an object $x \in X$ and an object $y \in Y$, such that
+  for every $x \in X$, there is exactly only one $y \in Y$ for which
+  $P(x,y)$ is true.
+  Then the function $f: X \to Y$ is defined by $P$ on the domain $X$ and codomain (range)
+  to be the unique object $f(x) \in Y$ for which $P(x,f(x))$ is true.
 \end{definition}
 
 \begin{definition}[equality of functions]
-    Two functions $f: X \to Y$ and $g: X' \to Y'$ are equal if their domains and codomains agree,
-    and $f(x) = g(x)$ for all $x \in X$.
+  Two functions $f: X \to Y$ and $g: X' \to Y'$ are equal if their domains and codomains agree,
+  and $f(x) = g(x)$ for all $x \in X$.
 \end{definition}
 
 \begin{definition}[composition]
-    Let $f: X \to Y$ and $g: Y \to Z$ be two functions,
-    such that the codomain of $f$ is the same set as the domain of $g$.
-    Then define composition $g \circ f: X \to Z$ to the function
-    \begin{equation}
-        (g \circ f)(x) := g(f(x))
-    \end{equation}
+  Let $f: X \to Y$ and $g: Y \to Z$ be two functions,
+  such that the codomain of $f$ is the same set as the domain of $g$.
+  Then define composition $g \circ f: X \to Z$ to the function
+  \begin{equation}
+    (g \circ f)(x) := g(f(x))
+  \end{equation}
 \end{definition}
 
 \begin{definition}[injective]
-    A function is one-to-one if every element in $X$ maps to different element in $Y$
-    \begin{equation}
-        x \neq x' \Longrightarrow f(x) \neq f(x')
-    \end{equation}
-    Equivalently,
-    \begin{equation}
-        f(x) = f(x') \Longrightarrow x = x'
-    \end{equation}
+  A function is one-to-one if every element in $X$ maps to different element in $Y$
+  \begin{equation}
+    x \neq x' \Longrightarrow f(x) \neq f(x')
+  \end{equation}
+  Equivalently,
+  \begin{equation}
+    f(x) = f(x') \Longrightarrow x = x'
+  \end{equation}
 \end{definition}
 
 \begin{definition}[surjective]
-    A function is onto if every element in $Y$ comes from applying $f$ to some element in $X$.
-    \begin{equation}
-        \text{For every $y \in Y$, there exists $x \in X$ such that $f(x) = y$.}
-    \end{equation}
+  A function is onto if every element in $Y$ comes from applying $f$ to some element in $X$.
+  \begin{equation}
+    \text{For every $y \in Y$, there exists $x \in X$ such that $f(x) = y$.}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[bijective]
-    A function is bijective or invertible if it is both one-to-one and onto.
+  A function is bijective or invertible if it is both one-to-one and onto.
 \end{definition}
 
 \subsection{Images}
 \begin{definition}[images of sets]
-    If $f: X \to Y$ is a function from $X$ to $Y$, and $S$ is a subset of $X$,
-    define $f(S)$ to be the set
-    \begin{equation}
-        f(S) := \{f(x) : x \in S\}
-    \end{equation}
+  If $f: X \to Y$ is a function from $X$ to $Y$, and $S$ is a subset of $X$,
+  define $f(S)$ to be the set
+  \begin{equation}
+    f(S) := \{f(x) : x \in S\}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[inverse images]
-    If $U$ is a subset of $Y$, define the set $f^{-1}(U)$ to be the set
-    \begin{equation}
-        f^{-1}(U) := \{x \in X : f(x) \in U\}
-    \end{equation}
+  If $U$ is a subset of $Y$, define the set $f^{-1}(U)$ to be the set
+  \begin{equation}
+    f^{-1}(U) := \{x \in X : f(x) \in U\}
+  \end{equation}
 \end{definition}
 
 \begin{axiom}[power set axiom]
-    Let $X$ and $Y$ be sets. Then there exists a set $Y^{X}$
-    which consists of all the functions from $X$ to $Y$
-    \begin{equation}
-        f \in Y^{X} \Longleftrightarrow \text{$f$ is a function with domain $X$ and codomain $Y$.}
-    \end{equation}
+  Let $X$ and $Y$ be sets. Then there exists a set $Y^{X}$
+  which consists of all the functions from $X$ to $Y$
+  \begin{equation}
+    f \in Y^{X} \Longleftrightarrow \text{$f$ is a function with domain $X$ and codomain $Y$.}
+  \end{equation}
 \end{axiom}
 
 \begin{axiom}[union]
-    Let $A$ be a set whose elements are sets.
-    Then there exists a set $\bigcup A$
-    \begin{equation}
-        x \in \bigcup A \Longleftrightarrow \text{$x \in S$ for some $S \in A$.}
-    \end{equation}
+  Let $A$ be a set whose elements are sets.
+  Then there exists a set $\bigcup A$
+  \begin{equation}
+    x \in \bigcup A \Longleftrightarrow \text{$x \in S$ for some $S \in A$.}
+  \end{equation}
 \end{axiom}
 
 \section{Cardinality of Sets}
 \begin{definition}[ordinal and cardinal]
-    The cardinals are One, Two, ..., and are used to count how many things there are in a set.
+  The cardinals are One, Two, ..., and are used to count how many things there are in a set.
 
-    THe ordinals are First, Second, ..., and are used to order a sequence of objects.
+  THe ordinals are First, Second, ..., and are used to order a sequence of objects.
 \end{definition}
 
 Natural numbers can be used to count the cardinality of sets, as long as the set is finite.
 
 \begin{definition}[equal cardinality]
-    $X$ and $Y$ have equal cardinality if and only if there exists a bijection $f: X \to Y$ from $X$ to $Y$.
+  $X$ and $Y$ have equal cardinality if and only if there exists a bijection $f: X \to Y$ from $X$ to $Y$.
 \end{definition}
 
 \begin{proposition}[properties of equal cardinality]~
-    \begin{itemize}
-        \item $X$ has equal cardinality with $X$.
-        \item If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$.
-        \item If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$,
-              then $X$ has equal cardinality with $Z$.
-    \end{itemize}
+  \begin{itemize}
+  \item $X$ has equal cardinality with $X$.
+  \item If $X$ has equal cardinality with $Y$, then $Y$ has equal cardinality with $X$.
+  \item If $X$ has equal cardinality with $Y$ and $Y$ has equal cardinality with $Z$,
+    then $X$ has equal cardinality with $Z$.
+  \end{itemize}
 \end{proposition}
 
 \begin{definition}[cardinality $n$]
-    A set X has cardinality $n$ or $n$ elements if and only if it has equality cardinality with
-    $\{i \in \mathbb{N}: 1 \leq i \leq n\}$.
+  A set X has cardinality $n$ or $n$ elements if and only if it has equality cardinality with
+  $\{i \in \mathbb{N}: 1 \leq i \leq n\}$.
 \end{definition}
 
 \begin{proposition}[uniqueness of cardinality]
@@ -436,7 +436,7 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \end{definition}
 
 \begin{theorem}[$\mathbb{N}$ is infinite]
-    The set of natural number $\mathbb{N}$ is an infinite set.
+  The set of natural number $\mathbb{N}$ is an infinite set.
 \end{theorem}
 
 \begin{proof}
@@ -449,1444 +449,1477 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 
 \section{Integers}
 \begin{definition}[$\mathbb{Z}$]
-    An integer is an expression of the form $a \mathbin{\text{---}} b$,
-    where $a$ and $b$ are natural numbers.
-    Two integers are considered to be equal $a \mathbin{\text{---}} b = c \mathbin{\text{---}} d$
-    if and only if $a + d = c + b$.
+  An integer is an expression of the form $a \mathbin{\text{---}} b$,
+  where $a$ and $b$ are natural numbers.
+  Two integers are considered to be equal $a \mathbin{\text{---}} b = c \mathbin{\text{---}} d$
+  if and only if $a + d = c + b$.
 \end{definition}
 
 \begin{definition}[sum]
-    \begin{equation}
-        (a \mathbin{\text{---}}  b) + (c \mathbin{\text{---}} d) := (a + c) \mathbin{\text{---}} (b + d)
-    \end{equation}
+  \begin{equation}
+    (a \mathbin{\text{---}}  b) + (c \mathbin{\text{---}} d) := (a + c) \mathbin{\text{---}} (b + d)
+  \end{equation}
 \end{definition}
 
 \begin{definition}[product]
-    \begin{equation}
-        (a \mathbin{\text{---}}  b) \times (c \mathbin{\text{---}} d) := (ac + bd) \mathbin{\text{---}} (ad + bc)
-    \end{equation}
+  \begin{equation}
+    (a \mathbin{\text{---}}  b) \times (c \mathbin{\text{---}} d) := (ac + bd) \mathbin{\text{---}} (ad + bc)
+  \end{equation}
 \end{definition}
 
 \begin{lemma}[substitution axiom verified]
-    Let $a, b, a', b', c, d$ be natural numbers. If $(a \mathbin{\text{---}} b) = (a' \mathbin{\text{---}} b')$, then
-    $(a \mathbin{\text{---}} b) + (c \mathbin{\text{---}} d) = (a' \mathbin{\text{---}} b') + (c \mathbin{\text{---}} d)$
-    and
-    $(a \mathbin{\text{---}} b) \times (c \mathbin{\text{---}} d) = (a' \mathbin{\text{---}} b') \times (c \mathbin{\text{---}} d)$,
-    and also
-    $(c \mathbin{\text{---}} d) + (a \mathbin{\text{---}} b) = (c \mathbin{\text{---}} d) + (a' \mathbin{\text{---}} b')$
-    and
-    $(c \mathbin{\text{---}} d) \times (a \mathbin{\text{---}} b) = (c \mathbin{\text{---}} d) \times (a' \mathbin{\text{---}} b')$.
+  Let $a, b, a', b', c, d$ be natural numbers. If $(a \mathbin{\text{---}} b) = (a' \mathbin{\text{---}} b')$, then
+  $(a \mathbin{\text{---}} b) + (c \mathbin{\text{---}} d) = (a' \mathbin{\text{---}} b') + (c \mathbin{\text{---}} d)$
+  and
+  $(a \mathbin{\text{---}} b) \times (c \mathbin{\text{---}} d) = (a' \mathbin{\text{---}} b') \times (c \mathbin{\text{---}} d)$,
+  and also
+  $(c \mathbin{\text{---}} d) + (a \mathbin{\text{---}} b) = (c \mathbin{\text{---}} d) + (a' \mathbin{\text{---}} b')$
+  and
+  $(c \mathbin{\text{---}} d) \times (a \mathbin{\text{---}} b) = (c \mathbin{\text{---}} d) \times (a' \mathbin{\text{---}} b')$.
 \end{lemma}
 
 \begin{definition}[negation]
-    If $a \mathbin{\text{---}} b$ is an integer, we define the negation $-(a \mathbin{\text{---}} b)$ to be
-    $(b \mathbin{\text{---}} a)$.
-    In particular if $n = n \mathbin{\text{---}} 0$ is a positive natural number,
-    we define its negation $-n = 0 \mathbin{\text{---}} n$.
+  If $a \mathbin{\text{---}} b$ is an integer, we define the negation $-(a \mathbin{\text{---}} b)$ to be
+  $(b \mathbin{\text{---}} a)$.
+  In particular if $n = n \mathbin{\text{---}} 0$ is a positive natural number,
+  we define its negation $-n = 0 \mathbin{\text{---}} n$.
 \end{definition}
 
 \begin{lemma}[trichotomy of integers]
-    Let $x$ be an integer. Then exactly one of the following three statement is true:
-    (a) $x$ is 0;
-    (b) $x$ is equal to a positive natural number $n$;
-    (c) $x$ is the negation $-n$ of a positive natural number $n$.
+  Let $x$ be an integer. Then exactly one of the following three statement is true:
+  (a) $x$ is 0;
+  (b) $x$ is equal to a positive natural number $n$;
+  (c) $x$ is the negation $-n$ of a positive natural number $n$.
 \end{lemma}
 
 \begin{proposition}[commutative ring]
-    Let $x, y, z$ be integers, then
-    \begin{gather}
-        x + y = y + x \\
-        (x + y) + z = x + (y + z) \\
-        x + 0 = 0 + x = x \\
-        x + (-x) = (-x) + x = 0 \\
-        x y = y x \\
-        (x y) z = x (y z) \\
-        x 1 = 1 x = x \\
-        x (y + z) = x y + x z \\
-        (y + x) x = y x + z x
-    \end{gather}
+  Let $x, y, z$ be integers, then
+  \begin{gather}
+    x + y = y + x \\
+    (x + y) + z = x + (y + z) \\
+    x + 0 = 0 + x = x \\
+    x + (-x) = (-x) + x = 0 \\
+    x y = y x \\
+    (x y) z = x (y z) \\
+    x 1 = 1 x = x \\
+    x (y + z) = x y + x z \\
+    (y + x) x = y x + z x
+  \end{gather}
 \end{proposition}
 
 \begin{definition}[substraction]
-    \begin{equation}
-        x - y := x + (-y)
-    \end{equation}
+  \begin{equation}
+    x - y := x + (-y)
+  \end{equation}
 \end{definition}
 
 \begin{proposition}[zero divisor]
-    Let $a$ and $b$ be integers such that $a b = 0$.
-    Then either $a = 0$ or $b = 0$ (or both).
+  Let $a$ and $b$ be integers such that $a b = 0$.
+  Then either $a = 0$ or $b = 0$ (or both).
 \end{proposition}
 
 \begin{proposition}[cancellation law]
-    If $a, b , c$ are integers such that $a c = b c$ and $c$ is non-zero, then $a = b$.
+  If $a, b , c$ are integers such that $a c = b c$ and $c$ is non-zero, then $a = b$.
 \end{proposition}
 
 \begin{definition}[order]
-    Let $n$ and $m$ be integers.
-    $n \geq m$ or $m \leq n$ if and only if $n = m + a$ for some natural number $a$.
-    $n > m$ or $n < m$ if and only if $n \geq m$ and $n \neq m$.
+  Let $n$ and $m$ be integers.
+  $n \geq m$ or $m \leq n$ if and only if $n = m + a$ for some natural number $a$.
+  $n > m$ or $n < m$ if and only if $n \geq m$ and $n \neq m$.
 \end{definition}
 
 \begin{lemma}[properties of order]
-    Let $a, b, c$ be integers, then
-    \begin{itemize}
-        \item $a > b$ if and only if $a - b$ is a positive natural number.
-        \item (addition preserves order)
-              If $a > b$, then $a + c > b + c$.
-        \item (positive multiplication preserves order)
-              If $a > b$ and $c$ is positive, then $a c > b c$.
-        \item (negation reverses order)
-              If $a > b$, then $-a < -b$.
-        \item (order is transitive)
-              If $a > b$ and $b > c$, then $a > c$.
-        \item (order trichotomy)
-              Exactly one of the statements $a > b$, $a < b$, or $a = b$ is true.
-    \end{itemize}
+  Let $a, b, c$ be integers, then
+  \begin{itemize}
+  \item $a > b$ if and only if $a - b$ is a positive natural number.
+  \item (addition preserves order)
+    If $a > b$, then $a + c > b + c$.
+  \item (positive multiplication preserves order)
+    If $a > b$ and $c$ is positive, then $a c > b c$.
+  \item (negation reverses order)
+    If $a > b$, then $-a < -b$.
+  \item (order is transitive)
+    If $a > b$ and $b > c$, then $a > c$.
+  \item (order trichotomy)
+    Exactly one of the statements $a > b$, $a < b$, or $a = b$ is true.
+  \end{itemize}
 \end{lemma}
 
 \section{Rationals}
 \begin{definition}[$\mathbb{Q}$]
-    A rational number is an expression of the form $a // b$,
-    where $a$ and $b$ are integers and $b \neq 0$.
-    $a // 0$ is not considered to be a rational number.
-    $a // b = c // d$ if and only if $a d = c b$.
+  A rational number is an expression of the form $a // b$,
+  where $a$ and $b$ are integers and $b \neq 0$.
+  $a // 0$ is not considered to be a rational number.
+  $a // b = c // d$ if and only if $a d = c b$.
 \end{definition}
 
 \begin{definition}[sum]
-    \begin{equation}
-        (a // b) + (c // d) := (a d + b c) // (b d)
-    \end{equation}
+  \begin{equation}
+    (a // b) + (c // d) := (a d + b c) // (b d)
+  \end{equation}
 \end{definition}
 
 \begin{definition}[multiplication]
-    \begin{equation}
-        (a // b) \times (c // d) := (a c) // (b d)
-    \end{equation}
+  \begin{equation}
+    (a // b) \times (c // d) := (a c) // (b d)
+  \end{equation}
 \end{definition}
 
 \begin{definition}[negation]
-    \begin{equation}
-        -(a // b) := (-a) // b
-    \end{equation}
+  \begin{equation}
+    -(a // b) := (-a) // b
+  \end{equation}
 \end{definition}
 
 \begin{lemma}[substitution axiom verified]
-    Let $a, b, c, d, a', b'$ be natural numbers.
-    If $a // b = a' // b'$, then $a // b + c // d = a' // b' + c // d$, and
-    $(a // b) \times (c // d) = (a' // b') \times (c // d)$, and
-    $-(a // b) = -(a' // b')$.
+  Let $a, b, c, d, a', b'$ be natural numbers.
+  If $a // b = a' // b'$, then $a // b + c // d = a' // b' + c // d$, and
+  $(a // b) \times (c // d) = (a' // b') \times (c // d)$, and
+  $-(a // b) = -(a' // b')$.
 \end{lemma}
 
 \begin{definition}[reciprocal]
-    If $x = a // b$ is a non-zero rational (so that $a, b \neq 0$), then
-    \begin{equation}
-        x^{-1} := b // a
-    \end{equation}
+  If $x = a // b$ is a non-zero rational (so that $a, b \neq 0$), then
+  \begin{equation}
+    x^{-1} := b // a
+  \end{equation}
 \end{definition}
 
 \begin{proposition}[field]
-    Let $x, y, z$ be rationals.
-    \begin{gather}
-        x + y = y + z \\
-        (x + y) + z = x + (y + z) \\
-        x + 0 = 0 + x = x \\
-        x + (-x) = (-x) + x = 0 \\
-        x y = y x \\
-        (x y) z = x (y z) \\
-        x 1 = 1 x = x \\
-        x (y + z) = x y + x z \\
-        (y + z) x = y x + z x \\
-        x x^{-1} = x^{-1} x = 1 \text{ for } x \neq 0
-    \end{gather}
+  Let $x, y, z$ be rationals.
+  \begin{gather}
+    x + y = y + z \\
+    (x + y) + z = x + (y + z) \\
+    x + 0 = 0 + x = x \\
+    x + (-x) = (-x) + x = 0 \\
+    x y = y x \\
+    (x y) z = x (y z) \\
+    x 1 = 1 x = x \\
+    x (y + z) = x y + x z \\
+    (y + z) x = y x + z x \\
+    x x^{-1} = x^{-1} x = 1 \text{ for } x \neq 0
+  \end{gather}
 \end{proposition}
 
 \begin{definition}[quotient]
-    Let $x$ and $y$ are two rationals and $y \neq 0$, then
-    \begin{equation}
-        x / y := x \times y^{-1}
-    \end{equation}
+  Let $x$ and $y$ are two rationals and $y \neq 0$, then
+  \begin{equation}
+    x / y := x \times y^{-1}
+  \end{equation}
 \end{definition}
 
 \begin{definition}[substraction]
-    \begin{equation}
-        x - y := x + (-y)
-    \end{equation}
+  \begin{equation}
+    x - y := x + (-y)
+  \end{equation}
 \end{definition}
 
 \begin{definition}[positive and negative]
-    A rational number $x$ is positive if and only if $x = a // b$ for some positive integers $a$ and $b$.
-    It is said to be negative if and only if $x = -y$ for some positive rational $y$.
+  A rational number $x$ is positive if and only if $x = a // b$ for some positive integers $a$ and $b$.
+  It is said to be negative if and only if $x = -y$ for some positive rational $y$.
 \end{definition}
 
 \begin{lemma}[trichotomy of rationals]
-    Let $x$ be a rational number. Then exactly one of the following three statements is true:
-    (a) $x = 0$;
-    (b) $x$ is a positive rational number;
-    (c) $x$ is a negative rational number.
+  Let $x$ be a rational number. Then exactly one of the following three statements is true:
+  (a) $x = 0$;
+  (b) $x$ is a positive rational number;
+  (c) $x$ is a negative rational number.
 \end{lemma}
 
 \begin{definition}[order]
-    Let $x$ and $y$ be rational numbers.
-    $x > y$ if and only if $x - y$ is a positive rational number, and
-    $x < y$ if and only if $x - y$ is a negative rational number.
-    $x \geq y$ if and only if either $x > y$ or $x = y$.
+  Let $x$ and $y$ be rational numbers.
+  $x > y$ if and only if $x - y$ is a positive rational number, and
+  $x < y$ if and only if $x - y$ is a negative rational number.
+  $x \geq y$ if and only if either $x > y$ or $x = y$.
 \end{definition}
 
 \begin{proposition}[ordered field]
-    Let $x, y, z$ be rational numbers, then
-    \begin{itemize}
-        \item (order trichotomy)
-              Exactly one of the three statements $x = y$, $x < y$, $x > y$ is true.
-        \item (antisymmetric)
-              $x < y$ if and only if $y > x$.
-        \item (transitive)
-              If $x < y$ and $y < z$, then $x < z$.
-        \item (addition preserves order)
-              If $x < y$, then $x + z < y + z$.
-        \item (positive multiplication preserves order)
-              If $x < y$ and $z$ is positive, then $x z < y z$.
-    \end{itemize}
+  Let $x, y, z$ be rational numbers, then
+  \begin{itemize}
+  \item (order trichotomy)
+    Exactly one of the three statements $x = y$, $x < y$, $x > y$ is true.
+  \item (antisymmetric)
+    $x < y$ if and only if $y > x$.
+  \item (transitive)
+    If $x < y$ and $y < z$, then $x < z$.
+  \item (addition preserves order)
+    If $x < y$, then $x + z < y + z$.
+  \item (positive multiplication preserves order)
+    If $x < y$ and $z$ is positive, then $x z < y z$.
+  \end{itemize}
 \end{proposition}
 
 \subsection{Absolute Value}
 \begin{definition}[absolute value]
-    If $x$ is a rational number, then the absolute value $|x|$ of $x$ is defined as
-    $|x| := x$ if $x$ is positive;
-    $|x| := -x$ if $x$ is negative;
-    $|x| := 0$ if $x = 0$.
+  If $x$ is a rational number, then the absolute value $|x|$ of $x$ is defined as
+  $|x| := x$ if $x$ is positive;
+  $|x| := -x$ if $x$ is negative;
+  $|x| := 0$ if $x = 0$.
 \end{definition}
 
 \begin{definition}[distance]
-    Let $x$ and $y$ be rational numbers.
-    \begin{equation}
-        d(x, y) := |x - y|
-    \end{equation}
+  Let $x$ and $y$ be rational numbers.
+  \begin{equation}
+    d(x, y) := |x - y|
+  \end{equation}
 \end{definition}
 
 \begin{proposition}[properties of absolute value]
-    Let $x, y, z$ be rational numbers.
-    \begin{itemize}
-        \item (non-degeneracy) $|x| = 0$ if and only if $x = 0$.
-        \item (triangle inequality) $|x + y| \leq |x| + |y|$.
-        \item $-y \leq x \leq y$ if and only if $y \geq |x|$.
-              In particular, $-|x| \leq x \leq |x|$.
-        \item (multiplicativity) $|x y| = |x| |y|$.
-              In particular, $|-x| = |x|$.
-    \end{itemize}
+  Let $x, y, z$ be rational numbers.
+  \begin{itemize}
+  \item (non-degeneracy) $|x| = 0$ if and only if $x = 0$.
+  \item (triangle inequality) $|x + y| \leq |x| + |y|$.
+  \item $-y \leq x \leq y$ if and only if $y \geq |x|$.
+    In particular, $-|x| \leq x \leq |x|$.
+  \item (multiplicativity) $|x y| = |x| |y|$.
+    In particular, $|-x| = |x|$.
+  \end{itemize}
 \end{proposition}
 
 \begin{proposition}[properties of distance]~
-    \begin{itemize}
-        \item (non-degeneracy) $d(x, y) \geq 0$.
-              $d(x, y) = 0$ if and only if $x = y$.
-        \item (symmetry) $d(x, y) = d(y, x)$.
-        \item (triangle inequality) $d(x, z) \leq d(x, y) + d(y, z)$.
-    \end{itemize}
+  \begin{itemize}
+  \item (non-degeneracy) $d(x, y) \geq 0$.
+    $d(x, y) = 0$ if and only if $x = y$.
+  \item (symmetry) $d(x, y) = d(y, x)$.
+  \item (triangle inequality) $d(x, z) \leq d(x, y) + d(y, z)$.
+  \end{itemize}
 \end{proposition}
 
 \begin{proof}~
-    \begin{itemize}
-        \item $d(x, z) = |x - z| = |(x - y) + (y - z)| \leq |x - y| + |y - z| = d(x, y) + d(y, z)$.
+  \begin{itemize}
+  \item $d(x, z) = |x - z| = |(x - y) + (y - z)| \leq |x - y| + |y - z| = d(x, y) + d(y, z)$.
 
-              $d(x, z) = d(x - y, z - y) = |(x - y) - (z - y)| \leq |x - y| + |z - y| = d(x, y) + d(z, y)$.
-    \end{itemize}
+    $d(x, z) = d(x - y, z - y) = |(x - y) - (z - y)| \leq |x - y| + |z - y| = d(x, y) + d(z, y)$.
+  \end{itemize}
 \end{proof}
 
 \begin{definition}[$\varepsilon$-closeness]
-    Let $\varepsilon > 0, x, y$ be rational numbers.
-    $y$ is $\varepsilon$-close to $x$ if and only if $d(y, x) \leq \varepsilon$.
+  Let $\varepsilon > 0, x, y$ be rational numbers.
+  $y$ is $\varepsilon$-close to $x$ if and only if $d(y, x) \leq \varepsilon$.
 \end{definition}
 
 \begin{proposition}[properties of $\varepsilon$-close]
-    Let $x, y, z, w$ be rational numbers.
-    \begin{itemize}
-        \item If $x = y$, then $x$ is $\varepsilon$-close to $y$ for every $\varepsilon > 0$.
-              Conversely, if $x$ is $\varepsilon$-close to $y$ for every $\varepsilon > 0$,
-              then $x = y$.
-        \item Let $\varepsilon > 0$. If $x$ is $\varepsilon$-close to $y$,
-              then $y$ is $\varepsilon$-close to x.
-        \item Let $\varepsilon, \delta > 0$. If $x$ is $\varepsilon$-close to $y$,
-              and $y$ is $\delta$-close to $z$,
-              then $x$ and $z$ are $(\varepsilon + \delta)$-close.
-              \begin{proof}
-                  $d(x, z) \leq d(x, y) + d(y, z) \leq \varepsilon + \delta$.
-              \end{proof}
-        \item Let $\varepsilon, \delta > 0$. If $x$ and $y$ are $\varepsilon$-close,
-              and $z$ and $w$ are $\delta$-close,
-              then $x + z$ and $y + w$ are $(\varepsilon + \delta)$-close,
-              and $x - z$ and $y - w$ are also $(\varepsilon + \delta)$-close.
-              \begin{proof}
-                  $d(x + z, y + w) \leq d(x + z, y + z) + d(y + z, y + w) = d(x, y) + d(z, w) \leq \varepsilon + \delta$.
-              \end{proof}
-        \item Let $\varepsilon > 0$. If $x$ and $y$ are $\varepsilon$-close,
-              then they are also $\varepsilon'$-close for every $\varepsilon' > \varepsilon$.
-              \begin{proof}
-                  $d(x, y) \leq \varepsilon < \varepsilon'$.
-              \end{proof}
-        \item Let $\varepsilon > 0$. If $y$ and $z$ are both $\varepsilon$-close to $x$,
-              and $w$ is between $y$ and $z$ (i.e. $y \leq w \leq z$ or $z \leq w \leq y$),
-              then $w$ is also $\varepsilon$-close to $x$.
-              \begin{lemma}
-                  Let $x, y, z$ be rational numbers, such that $x \leq y \leq z$.
-                  Then either $|y| \leq |x|$ or $|y| \leq |z|$ (or both).
-              \end{lemma}
-              \begin{proof}~
-                  \begin{itemize}
-                      \item If $y = 0$, then $|y| = 0 \leq |x|$ and $|y| = 0 \leq |z|$.
-                      \item If $y > 0$, then $0 < y \leq z$, then $|y| \leq |z|$.
-                      \item If $y < 0$, then $-y \leq -x < 0$, then $|y| \leq |x|$.
-                  \end{itemize}
-              \end{proof}
-              \begin{proof}
-                  Suppose $y \leq w \leq z$, then
-                  \begin{equation*}
-                      y - x \leq w - x \leq z - x
-                  \end{equation*}
-                  Then either
-                  \begin{equation*}
-                      |w-x|\leq |y-x|
-                  \end{equation*}
-                  or
-                  \begin{equation*}
-                      |w-x|\leq |z-x|
-                  \end{equation*}
-                  Then either
-                  \begin{equation*}
-                      d(w,x) \leq d(y,x) \leq \varepsilon
-                  \end{equation*}
-                  or
-                  \begin{equation*}
-                      d(w,x) \leq d(z,x) \leq \varepsilon
-                  \end{equation*}
-              \end{proof}
-        \item Let $\varepsilon > 0$. If $x$ and $y$ are $\varepsilon$-close, and $z$ is non-zero,
-              then $x z$ and $y z$ are $\varepsilon|z|$-close.
-              \begin{proof}
-                  $d(x z, y z) = |x z - y z| = |z| |x - y| \leq |z| \varepsilon$.
-              \end{proof}
-        \item Let $\varepsilon, \delta > 0$. If $x$ and $y$ are $\varepsilon$-close,
-              and $z$ and $w$ are $\delta$-close,
-              then $x z$ and $y w$ are $(\varepsilon |z| + \delta |x| + \varepsilon \delta)$-close.
-              \begin{proof}
-                  \begin{equation*}
-                      d(x z, y w) \leq d(x z, y z) + d(y z, y w) \leq |z| d(x, y) + |y| d(z, w)
-                  \end{equation*}
-                  Since
-                  \begin{equation*}
-                      d(y, 0) \leq d(y, x) + d(x, 0)
-                  \end{equation*}
-                  then
-                  \begin{equation*}
-                      d(x z, y w) \leq |z| d(x, y) + (d(y, x) + |x|) d(z, w)
-                      \leq |z| \varepsilon + \varepsilon \delta + |x| \delta
-                  \end{equation*}
-              \end{proof}
-    \end{itemize}
+  Let $x, y, z, w$ be rational numbers.
+  \begin{itemize}
+  \item If $x = y$, then $x$ is $\varepsilon$-close to $y$ for every $\varepsilon > 0$.
+    Conversely, if $x$ is $\varepsilon$-close to $y$ for every $\varepsilon > 0$,
+    then $x = y$.
+  \item Let $\varepsilon > 0$. If $x$ is $\varepsilon$-close to $y$,
+    then $y$ is $\varepsilon$-close to x.
+  \item Let $\varepsilon, \delta > 0$. If $x$ is $\varepsilon$-close to $y$,
+    and $y$ is $\delta$-close to $z$,
+    then $x$ and $z$ are $(\varepsilon + \delta)$-close.
+    \begin{proof}
+      $d(x, z) \leq d(x, y) + d(y, z) \leq \varepsilon + \delta$.
+    \end{proof}
+  \item Let $\varepsilon, \delta > 0$. If $x$ and $y$ are $\varepsilon$-close,
+    and $z$ and $w$ are $\delta$-close,
+    then $x + z$ and $y + w$ are $(\varepsilon + \delta)$-close,
+    and $x - z$ and $y - w$ are also $(\varepsilon + \delta)$-close.
+    \begin{proof}
+      $d(x + z, y + w) \leq d(x + z, y + z) + d(y + z, y + w) = d(x, y) + d(z, w) \leq \varepsilon + \delta$.
+    \end{proof}
+  \item Let $\varepsilon > 0$. If $x$ and $y$ are $\varepsilon$-close,
+    then they are also $\varepsilon'$-close for every $\varepsilon' > \varepsilon$.
+    \begin{proof}
+      $d(x, y) \leq \varepsilon < \varepsilon'$.
+    \end{proof}
+  \item Let $\varepsilon > 0$. If $y$ and $z$ are both $\varepsilon$-close to $x$,
+    and $w$ is between $y$ and $z$ (i.e. $y \leq w \leq z$ or $z \leq w \leq y$),
+    then $w$ is also $\varepsilon$-close to $x$.
+    \begin{lemma}
+      Let $x, y, z$ be rational numbers, such that $x \leq y \leq z$.
+      Then either $|y| \leq |x|$ or $|y| \leq |z|$ (or both).
+    \end{lemma}
+    \begin{proof}~
+      \begin{itemize}
+      \item If $y = 0$, then $|y| = 0 \leq |x|$ and $|y| = 0 \leq |z|$.
+      \item If $y > 0$, then $0 < y \leq z$, then $|y| \leq |z|$.
+      \item If $y < 0$, then $-y \leq -x < 0$, then $|y| \leq |x|$.
+      \end{itemize}
+    \end{proof}
+    \begin{proof}
+      Suppose $y \leq w \leq z$, then
+      \begin{equation*}
+        y - x \leq w - x \leq z - x
+      \end{equation*}
+      Then either
+      \begin{equation*}
+        |w-x|\leq |y-x|
+      \end{equation*}
+      or
+      \begin{equation*}
+        |w-x|\leq |z-x|
+      \end{equation*}
+      Then either
+      \begin{equation*}
+        d(w,x) \leq d(y,x) \leq \varepsilon
+      \end{equation*}
+      or
+      \begin{equation*}
+        d(w,x) \leq d(z,x) \leq \varepsilon
+      \end{equation*}
+    \end{proof}
+  \item Let $\varepsilon > 0$. If $x$ and $y$ are $\varepsilon$-close, and $z$ is non-zero,
+    then $x z$ and $y z$ are $\varepsilon|z|$-close.
+    \begin{proof}
+      $d(x z, y z) = |x z - y z| = |z| |x - y| \leq |z| \varepsilon$.
+    \end{proof}
+  \item Let $\varepsilon, \delta > 0$. If $x$ and $y$ are $\varepsilon$-close,
+    and $z$ and $w$ are $\delta$-close,
+    then $x z$ and $y w$ are $(\varepsilon |z| + \delta |x| + \varepsilon \delta)$-close.
+    \begin{proof}
+      \begin{equation*}
+        d(x z, y w) \leq d(x z, y z) + d(y z, y w) \leq |z| d(x, y) + |y| d(z, w)
+      \end{equation*}
+      Since
+      \begin{equation*}
+        d(y, 0) \leq d(y, x) + d(x, 0)
+      \end{equation*}
+      then
+      \begin{equation*}
+        d(x z, y w) \leq |z| d(x, y) + (d(y, x) + |x|) d(z, w)
+        \leq |z| \varepsilon + \varepsilon \delta + |x| \delta
+      \end{equation*}
+    \end{proof}
+  \end{itemize}
 \end{proposition}
 
 \subsection{Exponentiation}
 \begin{definition}[exponentiation]
-    Let $x$ be a rational number.
-    $x^{0} := 1$. In particular, $0^{0} := 1$.
-    $x^{n + 1} := x^{n} \times x$.
+  Let $x$ be a rational number.
+  $x^{0} := 1$. In particular, $0^{0} := 1$.
+  $x^{n + 1} := x^{n} \times x$.
 \end{definition}
 
 \begin{proposition}[properties of exponentiation]
-    Let $x$ and $y$ be rational numbers.
-    \begin{itemize}
-        \item $x^{n} x^{m} = x^{n + m}$, $(x^{n})^{m} = x^{nm}$, and $(x y)^{n} = x^{n} y^{n}$.
-        \item Suppose $n > 0$. Then $x^{n} = 0$ if and only if $x = 0$.
-        \item If $x \geq y \geq 0$, then $x^{n} \geq y^{n} \geq 0$.
-              If $x > y \geq 0$ and $n > 0$, then $x^{n} > y^{n} \geq 0$.
-        \item $|x^{n}| = |x|^{n}$.
-    \end{itemize}
+  Let $x$ and $y$ be rational numbers.
+  \begin{itemize}
+  \item $x^{n} x^{m} = x^{n + m}$, $(x^{n})^{m} = x^{nm}$, and $(x y)^{n} = x^{n} y^{n}$.
+  \item Suppose $n > 0$. Then $x^{n} = 0$ if and only if $x = 0$.
+  \item If $x \geq y \geq 0$, then $x^{n} \geq y^{n} \geq 0$.
+    If $x > y \geq 0$ and $n > 0$, then $x^{n} > y^{n} \geq 0$.
+  \item $|x^{n}| = |x|^{n}$.
+  \end{itemize}
 \end{proposition}
 
 \begin{definition}[negative exponentiation]
-    Let $x$ be a non-zero rational number.
-    Then for any negative integer $-n$, $x^{-n} := 1 / x^{n}$.
+  Let $x$ be a non-zero rational number.
+  Then for any negative integer $-n$, $x^{-n} := 1 / x^{n}$.
 \end{definition}
 
 \begin{proposition}[properties of exponentiation]
-    Let $x$ and $y$ be non-zero rational numbers, and let $n$ and $m$ be integers.
-    \begin{itemize}
-        \item $x^{n} x^{m} = x^{n + m}$, $(x^{n})^{m} = x^{nm}$, and $(x y)^{n} = x^{n} y^{n}$.
-        \item If $x \geq y > 0$, then $x^{n} \geq y^{n} > 0$ if $n$ is positive,
-              and $0 < x^{n} < y^{n}$ if $n$ is negative.
-        \item If $x, y > 0, n \neq 0, x^{n} = y^{n}$, then $x = y$
-        \item $|x^{n}| = |x|^{n}$.
-    \end{itemize}
+  Let $x$ and $y$ be non-zero rational numbers, and let $n$ and $m$ be integers.
+  \begin{itemize}
+  \item $x^{n} x^{m} = x^{n + m}$, $(x^{n})^{m} = x^{nm}$, and $(x y)^{n} = x^{n} y^{n}$.
+  \item If $x \geq y > 0$, then $x^{n} \geq y^{n} > 0$ if $n$ is positive,
+    and $0 < x^{n} < y^{n}$ if $n$ is negative.
+  \item If $x, y > 0, n \neq 0, x^{n} = y^{n}$, then $x = y$
+  \item $|x^{n}| = |x|^{n}$.
+  \end{itemize}
 \end{proposition}
 
 \subsection{Gaps in Rational Numbers}
 \begin{proposition}[integer part]
-    Let $x$ be a rational number.
-    Then there exists a unique integer $n$ such that $n \leq x < n + 1$.
-    In particular there exists a natural number $N$ such that $N > x$.
+  \label{PROP:INTEGER_PART_RATIONAL}
+  Let $x$ be a rational number.
+  Then there exists a unique integer $n$ such that $n \leq x < n + 1$.
+  In particular there exists a natural number $N$ such that $N > x$.
 \end{proposition}
 
 \begin{proof}
-    Existence:
-    \begin{itemize}
-        \item If $x = 0$, then $0 \leq x < 1$.
-        \item If $x > 0$, then suppose $x = a / b = (m b + r) / b = m + r / b$,
-              where $0 \leq r < b$.
-              Then $m \leq x < m + 1$.
-        \item If $x < 0$, then suppose $x = -m - r / b$.
-              Then $-m - 1 \leq x < -m$.
-    \end{itemize}
-    Uniqueness:
+  Existence:
+  \begin{itemize}
+  \item If $x = 0$, then $0 \leq x < 1$.
+  \item If $x > 0$, then suppose $x = a / b = (m b + r) / b = m + r / b$,
+    where $0 \leq r < b$.
+    Then $m \leq x < m + 1$.
+  \item If $x < 0$, then suppose $x = -m - r / b$.
+    Then $-m - 1 \leq x < -m$.
+  \end{itemize}
+  Uniqueness:
 
-    Suppose
-    \begin{equation*}
-        n_{1} \leq x < n_{1} + 1
-    \end{equation*}
-    and
-    \begin{equation*}
-        n_{2} \leq x < n_{2} + 1
-    \end{equation*}
-    Suppose $n_{1} < n_{2}$, then
-    \begin{equation*}
-        n_{1} + 1 \leq n_{2} \leq x < n_{1} + 1
-    \end{equation*}
-    Contradict.
+  Suppose
+  \begin{equation*}
+    n_{1} \leq x < n_{1} + 1
+  \end{equation*}
+  and
+  \begin{equation*}
+    n_{2} \leq x < n_{2} + 1
+  \end{equation*}
+  Suppose $n_{1} < n_{2}$, then
+  \begin{equation*}
+    n_{1} + 1 \leq n_{2} \leq x < n_{1} + 1
+  \end{equation*}
+  Contradict.
 \end{proof}
 
 \begin{proposition}[intersperse]
-    If $x$ and $y$ are two rational numbers such that $x < y$.
-    Then there exists a third rational $z$ such that $x < z < y$.
+  If $x$ and $y$ are two rational numbers such that $x < y$.
+  Then there exists a third rational $z$ such that $x < z < y$.
 \end{proposition}
 
 \begin{proof}
-    $z = (x + y) / 2$.
+  $z = (x + y) / 2$.
 \end{proof}
 
 \begin{definition}[infinite descent]
-    A sequence $a_{0}, a_{1}, a_{2}, \dots$ of numbers is said to be infinite descent if
-    $a_{n} > a_{n + 1}$ for all natural numbers $n$.
+  A sequence $a_{0}, a_{1}, a_{2}, \dots$ of numbers is said to be infinite descent if
+  $a_{n} > a_{n + 1}$ for all natural numbers $n$.
 \end{definition}
 
 \begin{lemma}[principle of infinite descent]
-    It is not possible to have a sequence of natural numbers which is infinite descent.
+  It is not possible to have a sequence of natural numbers which is infinite descent.
 \end{lemma}
 
 \begin{proof}
-    Suppose for sake of contradiction that
-    $a_{0} > a_{1} > a_{2} > \dots$ is a sequence of natural numbers which is infinite descent,
-    then $a_{n} \geq k$ for all $k \in \mathbb{N}$ and all $n \in \mathbb{N}$.
+  Suppose for sake of contradiction that
+  $a_{0} > a_{1} > a_{2} > \dots$ is a sequence of natural numbers which is infinite descent,
+  then $a_{n} \geq k$ for all $k \in \mathbb{N}$ and all $n \in \mathbb{N}$.
 
-    When $k = 0$, $a_{n} \geq 0$ for all $n \in \mathbb{N}$.
+  When $k = 0$, $a_{n} \geq 0$ for all $n \in \mathbb{N}$.
 
-    Suppose $a_{n} \geq k$ for all $n \in \mathbb{N}$.
+  Suppose $a_{n} \geq k$ for all $n \in \mathbb{N}$.
 
-    Then
-    \begin{gather*}
-        a_{n} > a_{n + 1} \geq k \\
-        a_{n} \geq k + 1
-    \end{gather*}
+  Then
+  \begin{gather*}
+    a_{n} > a_{n + 1} \geq k \\
+    a_{n} \geq k + 1
+  \end{gather*}
 
-    This closes the induction.
+  This closes the induction.
 
-    When $k = a_{n} + 1$,
-    \begin{equation*}
-        a_{n} \geq a_{n} + 1
-    \end{equation*}
-    Contradiction.
+  When $k = a_{n} + 1$,
+  \begin{equation*}
+    a_{n} \geq a_{n} + 1
+  \end{equation*}
+  Contradiction.
 \end{proof}
 
 \begin{proposition}[$\sqrt{2}$]
-    There does not exist any rational number $x$ for which $x^{2} = 2$.
+  There does not exist any rational number $x$ for which $x^{2} = 2$.
 \end{proposition}
 
 \begin{proof}
-    Suppose $x = p / q$, where $p, q$ are natural numbers.
+  Suppose $x = p / q$, where $p, q$ are natural numbers.
 
-    Then
-    \begin{gather*}
-        x^{2} = p^{2} / q^{2} = 2 \\
-        p^{2} = 2 q^{2}
-    \end{gather*}
-    $p > q$ and $p$ is even.
+  Then
+  \begin{gather*}
+    x^{2} = p^{2} / q^{2} = 2 \\
+    p^{2} = 2 q^{2}
+  \end{gather*}
+  $p > q$ and $p$ is even.
 
-    Let $p = 2 k$, then
-    \begin{gather*}
-        4 k^{2} = 2 q^{2} \\
-        q^{2} = 2 k^{2}
-    \end{gather*}
-    $q > k$ and $q$ is even.
+  Let $p = 2 k$, then
+  \begin{gather*}
+    4 k^{2} = 2 q^{2} \\
+    q^{2} = 2 k^{2}
+  \end{gather*}
+  $q > k$ and $q$ is even.
 
-    Repeat this process
-    \begin{equation*}
-        p > q > k > ...
-    \end{equation*}
-    Contradict with principle of infinite descent.
+  Repeat this process
+  \begin{equation*}
+    p > q > k > ...
+  \end{equation*}
+  Contradict with principle of infinite descent.
 \end{proof}
 
 \begin{proposition}
-    For every rational number $\varepsilon > 0$,
-    there exists a non-negative rational number $x$ such that $x^{2} < 2 < (x + \varepsilon)^{2}$.
+  For every rational number $\varepsilon > 0$,
+  there exists a non-negative rational number $x$ such that $x^{2} < 2 < (x + \varepsilon)^{2}$.
 \end{proposition}
 
 \begin{proof}
-    When $\varepsilon \geq 1$,
-    \begin{equation*}
-        1^{2} < 2 < (1 + \varepsilon)^2.
-    \end{equation*}
+  When $\varepsilon \geq 1$,
+  \begin{equation*}
+    1^{2} < 2 < (1 + \varepsilon)^2.
+  \end{equation*}
 
-    When $0 < \varepsilon < 1$, suppose for sake of contradiction that there is no $x$ for which
-    $x^{2} < 2 < (x + \varepsilon)^{2}$.
+  When $0 < \varepsilon < 1$, suppose for sake of contradiction that there is no $x$ for which
+  $x^{2} < 2 < (x + \varepsilon)^{2}$.
 
-    Then for every $x^{2} < 2$,
-    \begin{equation*}
-        (x + \varepsilon)^{2} < 2
-    \end{equation*}
+  Then for every $x^{2} < 2$,
+  \begin{equation*}
+    (x + \varepsilon)^{2} < 2
+  \end{equation*}
 
-    Let $x = 0$, then
-    \begin{equation*}
-        (0 + \varepsilon)^{2} = \varepsilon^{2} < 2
-    \end{equation*}
+  Let $x = 0$, then
+  \begin{equation*}
+    (0 + \varepsilon)^{2} = \varepsilon^{2} < 2
+  \end{equation*}
 
-    Suppose $(n \varepsilon)^{2} < 2$, then
-    \begin{equation*}
-        (n \varepsilon + \varepsilon)^{2} = ((n + 1) \varepsilon) < 2
-    \end{equation*}
-    This closes induction.
+  Suppose $(n \varepsilon)^{2} < 2$, then
+  \begin{equation*}
+    (n \varepsilon + \varepsilon)^{2} = ((n + 1) \varepsilon) < 2
+  \end{equation*}
+  This closes induction.
 
-    Let $n > 2 / \varepsilon$, then
-    \begin{equation*}
-        (n \varepsilon)^{2} > 4
-    \end{equation*}
-    Contradiction.
+  Let $n > 2 / \varepsilon$, then
+  \begin{equation*}
+    (n \varepsilon)^{2} > 4
+  \end{equation*}
+  Contradiction.
 \end{proof}
 
 \section{Real Numbers}
 \subsection{Cauchy Sequences}
 \begin{definition}[sequence]
-    A sequence $(a_{n})_{n = m}^{\infty}$ of rational numbers
-    is a collection of rationals $a_{m}, a_{m + 1}, a_{m + 2}, \dots$.
+  A sequence $(a_{n})_{n = m}^{\infty}$ of rational numbers
+  is a collection of rationals $a_{m}, a_{m + 1}, a_{m + 2}, \dots$.
 \end{definition}
 
 \begin{definition}[$\varepsilon$-steadiness]
-    Let $\varepsilon > 0$.
-    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is $\varepsilon$-steady
-    if and only if $d(a_{j}, a_{k}) \leq \varepsilon$ for all $j, k$.
+  Let rational $\varepsilon > 0$.
+  The sequence $a_{0}, a_{1}, a_{2}, \dots$ is $\varepsilon$-steady
+  if and only if $d(a_{j}, a_{k}) \leq \varepsilon$ for all $j, k$.
 \end{definition}
 
 \begin{definition}[eventual $\varepsilon$-steadiness]
-    Let $\varepsilon > 0$.
-    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is eventual $\varepsilon$-steady
-    if and only if there exists a natural number $N \geq 0$ such that
-    $d(a_{j}, a_{k}) \leq \varepsilon$ for all $j, k \geq N$.
+  Let rational $\varepsilon > 0$.
+  The sequence $a_{0}, a_{1}, a_{2}, \ldots$ is eventual $\varepsilon$-steady
+  if and only if there exists a natural number $N \geq 0$ such that
+  $d(a_{j}, a_{k}) \leq \varepsilon$ for all $j, k \geq N$.
 \end{definition}
 
+\begin{lemma}
+  Let $0 < a, b \leq c$ be integers.
+  Then
+  \begin{equation*}
+    |a - b| \leq c
+  \end{equation*}
+\end{lemma}
+
+\begin{proof}
+  If $a \leq b$, then
+  \begin{equation*}
+    |a - b| = b - a \leq b \leq c
+  \end{equation*}
+  If $a > b$, then
+  \begin{equation*}
+    |a - b| = a - b \leq a \leq c
+  \end{equation*}
+  Thus
+  \begin{equation*}
+    |a - b| \leq c
+  \end{equation*}
+\end{proof}
+
 \begin{definition}[Cauchy sequence]
-    A sequence $(a_{n})_{n = 0}^{\infty}$ is a Cauchy sequence if and only if for every rational $\varepsilon > 0$,
-    the sequence $(a_{n})_{n = 0}^{\infty}$ is eventually $\varepsilon$-steady.
+  \label{DEF:CAUCHY_SEQUENCE_RATIONAL}
+  A sequence $(a_{n})_{n = 0}^{\infty}$ is a Cauchy sequence if and only if for every rational $\varepsilon > 0$,
+  the sequence $(a_{n})_{n = 0}^{\infty}$ is eventually $\varepsilon$-steady.
 \end{definition}
 
 \begin{definition}
-    The sequence $(1 / n)_{n = 1}^{\infty}$ is a Cauchy sequence.
+  The sequence $(\frac{1}{n})_{n = 1}^{\infty}$ is a Cauchy sequence.
 \end{definition}
 
 \begin{proof}
-    For all $j, k \geq N$,
-    \begin{gather*}
-        0 < 1 / j, 1 / k \leq 1 / N \\
-        |1 / j  - 1 / k| \leq 1 / N
-    \end{gather*}
-    Choose an $N$ such that $1 / N \leq \varepsilon$ or $N \geq 1 / \varepsilon$.
+  For all $j, k \geq N$,
+  \begin{gather*}
+    0 < \frac{1}{j} \leq \frac{1}{N} \\
+    0 < \frac{1}{k} \leq \frac{1}{N} \\
+    \left| \frac{1}{j} - \frac{1}{k} \right| \leq \frac{1}{N}
+  \end{gather*}
+  Choose an $N$ such that $\frac{1}{N} \leq \varepsilon$
+  or $N \geq \frac{1}{\varepsilon}$
+  by Proposition \ref{PROP:INTEGER_PART_RATIONAL}.
+  Then
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq \varepsilon \text{ for every } \varepsilon > 0
+  \end{equation*}
 \end{proof}
 
 \begin{definition}[bounded sequence]
-    Let $M \geq 0$ be rational.
-    A finite sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded by $M$ if and only if
-    $|a_{i}| \leq M$ for all $1 \leq i \leq n$.
-    A infinite sequence $(a_{n})_{n = 1}^{\infty}$ is bounded by $M$ if and only if
-    $|a_{i}| \leq M$ for all $i \geq 1$.
-    A sequence is bounded if and only if it is bounded by $M$ for some rational $M \geq 0$.
+  Let $M \geq 0$ be rational.
+  A finite sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded by $M$ if and only if
+  $|a_{i}| \leq M$ for all $1 \leq i \leq n$.
+  A infinite sequence $(a_{n})_{n = 1}^{\infty}$ is bounded by $M$ if and only if
+  $|a_{i}| \leq M$ for all $i \geq 1$.
+  A sequence is bounded if and only if it is bounded by $M$ for some rational $M \geq 0$.
 \end{definition}
 
 \begin{lemma}[finite sequences are bounded]
-    Every finite sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded.
+  Every finite sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded.
 \end{lemma}
 
 \begin{proof}
-    When $n = 1$,
-    \begin{equation*}
-        |a_{1}| \leq |a_{1}|
-    \end{equation*}
+  When $n = 1$,
+  \begin{equation*}
+    |a_{1}| \leq |a_{1}|
+  \end{equation*}
 
-    Suppose $a_{1}, a_{2}, \dots, a_{n}$ is bounded by $M$, then
-    \begin{equation*}
-        |a_{i}| \leq M \text{ for all } 1 \leq i \leq n
-    \end{equation*}
+  Suppose $a_{1}, a_{2}, \dots, a_{n}$ is bounded by $M$, then
+  \begin{equation*}
+    |a_{i}| \leq M \text{ for all } 1 \leq i \leq n
+  \end{equation*}
 
-    Then
-    \begin{equation*}
-        |a_{i}| \leq M + |a_{n + 1}| \text{ for all } 1 \leq i \leq n + 1
-    \end{equation*}
-    This closes induction.
+  Then
+  \begin{equation*}
+    |a_{i}| \leq M + |a_{n + 1}| \text{ for all } 1 \leq i \leq n + 1
+  \end{equation*}
+  This closes induction.
 \end{proof}
 
 \begin{lemma}[Cauchy sequences are bounded]
-    Every Cauchy sequence $(a_{n})_{n = 1}^{\infty}$ is bounded.
+  Every Cauchy sequence $(a_{n})_{n = 1}^{\infty}$ is bounded.
 \end{lemma}
 
 \begin{proof}
-    For every $\varepsilon > 0$, there exists a natural number $N \geq 1$ such that
-    $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k \geq N$.
+  For every $\varepsilon > 0$, there exists a natural number $N \geq 1$ such that
+  $|a_{j} - a_{k}| \leq \varepsilon$ for all $j, k \geq N$.
 
-    Then
-    \begin{equation*}
-        d(a_{j}, 0) \leq d(a_{j}, a_{k}) + d(a_{k}, 0) = |a_{j} - a_{k}| + |a_{k}| \leq \varepsilon + |a_{k}|
-        \text{ for all } j \geq N
-    \end{equation*}
+  Then
+  \begin{equation*}
+    d(a_{j}, 0) \leq d(a_{j}, a_{k}) + d(a_{k}, 0) = |a_{j} - a_{k}| + |a_{k}| \leq \varepsilon + |a_{k}|
+    \text{ for all } j \geq N
+  \end{equation*}
 
-    For $n < N$, sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded.
+  For $n < N$, sequence $a_{1}, a_{2}, \dots, a_{n}$ is bounded.
 \end{proof}
 
 \subsection{Equivalent Sequences}
 \begin{definition}[$\varepsilon$-close sequences]
-    Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be two sequences,
-    and let $\varepsilon > 0$.
-    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is
-    $\varepsilon$-close to the sequence $b_{0}, b_{1}, b_{2}, \dots$
-    if and only if $d(a_{n}, b_{n}) \leq \varepsilon$ for all $n = 0, 1, 2, \dots$.
+  Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be two sequences,
+  and let $\varepsilon > 0$.
+  The sequence $a_{0}, a_{1}, a_{2}, \dots$ is
+  $\varepsilon$-close to the sequence $b_{0}, b_{1}, b_{2}, \dots$
+  if and only if $d(a_{n}, b_{n}) \leq \varepsilon$ for all $n = 0, 1, 2, \dots$.
 \end{definition}
 
 \begin{definition}[eventually $\varepsilon$-close sequences]
-    Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be two sequences,
-    and let $\varepsilon > 0$.
-    The sequence $a_{0}, a_{1}, a_{2}, \dots$ is
-    eventually $\varepsilon$-close to the sequence $b_{0}, b_{1}, b_{2}, \dots$
-    if and only if there exists an $N \geq 0$ such that
-    $d(a_{n}, b_{n}) \leq \varepsilon$ for all $n \geq N$.
+  Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be two sequences,
+  and let $\varepsilon > 0$.
+  The sequence $a_{0}, a_{1}, a_{2}, \dots$ is
+  eventually $\varepsilon$-close to the sequence $b_{0}, b_{1}, b_{2}, \dots$
+  if and only if there exists an $N \geq 0$ such that
+  $d(a_{n}, b_{n}) \leq \varepsilon$ for all $n \geq N$.
 \end{definition}
 
 \begin{definition}[equivalent sequences]
-    Two sequences $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ are equivalent
-    if and only if for every rational $\varepsilon > 0$,
-    the sequences $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ are eventually $\varepsilon$-close.
+  Two sequences $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ are equivalent
+  if and only if for every rational $\varepsilon > 0$,
+  the sequences $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ are eventually $\varepsilon$-close.
 \end{definition}
 
 \begin{lemma}
-    \begin{equation*}
-        10^{-m} < 10^{-n} \text{ whenever } m > n
-    \end{equation*}
+  \begin{equation*}
+    10^{-m} < 10^{-n} \text{ whenever } m > n
+  \end{equation*}
 \end{lemma}
 
 \begin{proof}
-    Since $m > n$, then
-    \begin{equation*}
-        m = n + k
-    \end{equation*}
+  Since $m > n$, then
+  \begin{equation*}
+    m = n + k
+  \end{equation*}
 
-    When $k = 1$,
-    \begin{equation*}
-        10^{-(n + 1)} < 10^{-n}
-    \end{equation*}
+  When $k = 1$,
+  \begin{equation*}
+    10^{-(n + 1)} < 10^{-n}
+  \end{equation*}
 
-    Suppose
-    \begin{equation}
-        10^{-(n + k)} < 10^{-n}
-    \end{equation}
+  Suppose
+  \begin{equation}
+    10^{-(n + k)} < 10^{-n}
+  \end{equation}
 
-    Then
-    \begin{equation*}
-        10^{-(n + k + 1)} < 10^{-n}
-    \end{equation*}
-    This closes induction.
+  Then
+  \begin{equation*}
+    10^{-(n + k + 1)} < 10^{-n}
+  \end{equation*}
+  This closes induction.
 \end{proof}
 
 \begin{lemma}
-    \begin{equation*}
-        10^{-n} \leq 1 / n \text{ for } n > 0
-    \end{equation*}
+  \begin{equation*}
+    10^{-n} \leq 1 / n \text{ for } n > 0
+  \end{equation*}
 \end{lemma}
 
 \begin{proof}
-    When $n = 1$,
-    \begin{equation*}
-        10^{-1} \leq 1
-    \end{equation*}
+  When $n = 1$,
+  \begin{equation*}
+    10^{-1} \leq 1
+  \end{equation*}
 
-    Suppose
-    \begin{equation*}
-        10^{-n} \leq 1 / n
-    \end{equation*}
+  Suppose
+  \begin{equation*}
+    10^{-n} \leq 1 / n
+  \end{equation*}
 
-    Then
-    \begin{equation*}
-        10^{-(n + 1)} \leq 1 / n < 1 / (n + 1)
-    \end{equation*}
-    This closes induction.
+  Then
+  \begin{equation*}
+    10^{-(n + 1)} \leq 1 / n < 1 / (n + 1)
+  \end{equation*}
+  This closes induction.
 \end{proof}
 
 \begin{proposition}
-    Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be the sequences
-    $a_{n} = 1 + 10^{-n}$ and $b_{n} = 1 - 10^{-n}$. Then the sequences $a_{n}, b_{n}$ are equivalent.
+  Let $(a_{n})_{n = 0}^{\infty}$ and $(b_{n})_{n = 0}^{\infty}$ be the sequences
+  $a_{n} = 1 + 10^{-n}$ and $b_{n} = 1 - 10^{-n}$. Then the sequences $a_{n}, b_{n}$ are equivalent.
 \end{proposition}
 
 \begin{proof}
-    For all $n \geq N$,
-    \begin{gather*}
-        d(a_{n}, b_{n}) = |a_{n} - b_{n}| = 2 \times 10^{-n} \leq 2 \times 10^{-N}
-    \end{gather*}
-    Choose $N$ such that
-    \begin{equation*}
-        2 \times 10^{-N} \leq 2 / N \leq \varepsilon
-    \end{equation*}
+  For all $n \geq N$,
+  \begin{gather*}
+    d(a_{n}, b_{n}) = |a_{n} - b_{n}| = 2 \times 10^{-n} \leq 2 \times 10^{-N}
+  \end{gather*}
+  Choose $N$ such that
+  \begin{equation*}
+    2 \times 10^{-N} \leq 2 / N \leq \varepsilon
+  \end{equation*}
 \end{proof}
 
 \subsection{Real Numbers}
 \begin{definition}[$\mathbb{R}$]
-    A real number (irrational) is defined to be an object of the form
-    $\LIM_{n \to \infty} a_{n}$,
-    where $(a_{n})_{n = 1}^{\infty}$ is a Cauchy sequence of rational numbers.
-    Two real numbers $\LIM_{n \to \infty} a_{n}$ and $\LIM_{n \to \infty} b_{n}$ are equal
-    if and only if $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$ are equivalent Cauchy sequences.
+  A real number (irrational) is defined to be an object of the form
+  $\LIM_{n \to \infty} a_{n}$,
+  where $(a_{n})_{n = 1}^{\infty}$ is a Cauchy sequence of rational numbers.
+  Two real numbers $\LIM_{n \to \infty} a_{n}$ and $\LIM_{n \to \infty} b_{n}$ are equal
+  if and only if $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$ are equivalent Cauchy sequences.
 \end{definition}
 
 \begin{definition}[transcendental numbers]
-    $\pi, e$
+  $\pi, e$
 \end{definition}
 
 \begin{proposition}[$\LIM$ is well-defined]
-    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, z = \LIM_{n \to \infty} c_{n}$ be real numbers.
-    \begin{itemize}
-        \item (reflexivity) $x = x$.
-              \begin{proof}
-                  For all $n \geq 1$,
-                  \begin{equation*}
-                      d(a_{n}, a_{n}) = 0 < \varepsilon
-                  \end{equation*}
-              \end{proof}
-        \item (symmetry) if $x = y$, then $y = x$.
-              \begin{proof}
-                  For all $n \geq N$,
-                  \begin{equation*}
-                      d(a_{n}, b_{n}) \leq \varepsilon
-                  \end{equation*}
-                  Then
-                  \begin{equation*}
-                      d(b_{n}, a_{n}) \leq \varepsilon
-                  \end{equation*}
-              \end{proof}
-        \item (transitive) if $x = y$ and $y = z$, then $x = z$.
-              \begin{proof}
-                  For all $n \geq N_{a}$,
-                  \begin{equation*}
-                      d(a_{n}, b_{n}) \leq \varepsilon / 2
-                  \end{equation*}
-                  For all $n \geq N_{b}$,
-                  \begin{equation*}
-                      d(b_{n}, c_{n}) \leq \varepsilon / 2
-                  \end{equation*}
-                  Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
-                  \begin{equation*}
-                      d(a_{n}, c_{n}) \leq \varepsilon
-                  \end{equation*}
-              \end{proof}
-    \end{itemize}
+  Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, z = \LIM_{n \to \infty} c_{n}$ be real numbers.
+  \begin{itemize}
+  \item (reflexivity) $x = x$.
+    \begin{proof}
+      For all $n \geq 1$,
+      \begin{equation*}
+        d(a_{n}, a_{n}) = 0 < \varepsilon
+      \end{equation*}
+    \end{proof}
+  \item (symmetry) if $x = y$, then $y = x$.
+    \begin{proof}
+      For all $n \geq N$,
+      \begin{equation*}
+        d(a_{n}, b_{n}) \leq \varepsilon
+      \end{equation*}
+      Then
+      \begin{equation*}
+        d(b_{n}, a_{n}) \leq \varepsilon
+      \end{equation*}
+    \end{proof}
+  \item (transitive) if $x = y$ and $y = z$, then $x = z$.
+    \begin{proof}
+      For all $n \geq N_{a}$,
+      \begin{equation*}
+        d(a_{n}, b_{n}) \leq \varepsilon / 2
+      \end{equation*}
+      For all $n \geq N_{b}$,
+      \begin{equation*}
+        d(b_{n}, c_{n}) \leq \varepsilon / 2
+      \end{equation*}
+      Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
+      \begin{equation*}
+        d(a_{n}, c_{n}) \leq \varepsilon
+      \end{equation*}
+    \end{proof}
+  \end{itemize}
 \end{proposition}
 
 \begin{definition}[addition]
-    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
-    Define the sum
-    \begin{equation}
-        x + y := \LIM_{n \to \infty} (a_{n} + b_{n})
-    \end{equation}
+  Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
+  Define the sum
+  \begin{equation}
+    x + y := \LIM_{n \to \infty} (a_{n} + b_{n})
+  \end{equation}
 \end{definition}
 
 \begin{lemma}[sum of Cauchy sequences is Cauchy]
-    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
-    Then $x + y$ is also a real number.
+  Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
+  Then $x + y$ is also a real number.
 \end{lemma}
 
 \begin{proof}
-    For all $j, k \geq N_{a}$
-    \begin{equation*}
-        d(a_{j}, a_{k}) \leq \varepsilon / 2
-    \end{equation*}
-    For all $j, k \geq N_{b}$
-    \begin{equation*}
-        d(b_{j}, b_{k}) \leq \varepsilon / 2
-    \end{equation*}
-    Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
-    \begin{equation*}
-        d(a_{j} + b_{j}, a_{k} + b_{k}) \leq \varepsilon
-    \end{equation*}
+  For all $j, k \geq N_{a}$
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq \varepsilon / 2
+  \end{equation*}
+  For all $j, k \geq N_{b}$
+  \begin{equation*}
+    d(b_{j}, b_{k}) \leq \varepsilon / 2
+  \end{equation*}
+  Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
+  \begin{equation*}
+    d(a_{j} + b_{j}, a_{k} + b_{k}) \leq \varepsilon
+  \end{equation*}
 \end{proof}
 
 \begin{lemma}[axiom of subsititution verified]
-    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, x' = \LIM_{n \to \infty} a'_{n}$
-    be real numbers.
-    Suppose that $x = x'$, then
-    \begin{equation}
-        x + y = x' + y
-    \end{equation}
+  Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, x' = \LIM_{n \to \infty} a'_{n}$
+  be real numbers.
+  Suppose that $x = x'$, then
+  \begin{equation}
+    x + y = x' + y
+  \end{equation}
 \end{lemma}
 
 \begin{proof}
-    For all $n \geq N$
-    \begin{equation*}
-        d(a_{n}, a'_{n}) \leq \varepsilon
-    \end{equation*}
-    Then
-    \begin{equation*}
-        d(a_{n} + b_{n}, a'_{n} + b_{n}) \leq \varepsilon
-    \end{equation*}
+  For all $n \geq N$
+  \begin{equation*}
+    d(a_{n}, a'_{n}) \leq \varepsilon
+  \end{equation*}
+  Then
+  \begin{equation*}
+    d(a_{n} + b_{n}, a'_{n} + b_{n}) \leq \varepsilon
+  \end{equation*}
 \end{proof}
 
 \begin{definition}[multiplication]
-    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
-    Define the product
-    \begin{equation*}
-        x y := \LIM_{n \to \infty} a_{n} b_{n}
-    \end{equation*}
+  Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}$ be real numbers.
+  Define the product
+  \begin{equation*}
+    x y := \LIM_{n \to \infty} a_{n} b_{n}
+  \end{equation*}
 \end{definition}
 
 \begin{proposition}[multiplication is well-defined]
-    Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, x' = \LIM_{n \to \infty} a'_{n}$
-    be real numbers.
-    \begin{itemize}
-        \item $x y$ is also a real number.
-              \begin{proof}
-                  For all $n \geq 1$
-                  \begin{equation*}
-                      a_{n} \leq M_{a}
-                  \end{equation*}
-                  For all $j, k \geq N_{a}$,
-                  \begin{equation*}
-                      d(a_{j}, a_{k}) \leq \varepsilon / M_{a}
-                  \end{equation*}
-                  For all $n \geq 1$
-                  \begin{equation*}
-                      b_{n} \leq M_{b}
-                  \end{equation*}
-                  For all $j, k \geq N_{b}$,
-                  \begin{equation*}
-                      d(b_{j}, b_{k}) \leq \varepsilon / M_{b}
-                  \end{equation*}
-                  Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
-                  \begin{equation*}
-                      d(a_{j} b_{j}, a_{k} b_{k}) \leq d(a_{j} b_{j}, a_{k} b_{j}) + d(a_{k} b_{j}, a_{k} b_{j})
-                      \leq |b_{j}| \varepsilon / M_{a} + |a_{k}|\varepsilon / M_{b}
-                      \leq M_{a} \varepsilon / M_{a} + M_{b} \varepsilon / M_{b} = \varepsilon
-                  \end{equation*}
-              \end{proof}
-        \item if $x = x'$, then $x y = x' y$.
-              \begin{proof}
-                  For all $n \geq 1$,
-                  \begin{equation*}
-                      b_{n} \leq M
-                  \end{equation*}
-                  For all $n \geq N$,
-                  \begin{equation*}
-                      d(a_{n}, a'_{n}) \leq \varepsilon / M
-                  \end{equation*}
-                  Then
-                  \begin{equation}
-                      d(a_{n} b_{n}, a'_{n} b_{n}) \leq |b_{n}| \varepsilon / M \leq M \varepsilon / M = \varepsilon
-                  \end{equation}
-              \end{proof}
-    \end{itemize}
+  Let $x = \LIM_{n \to \infty} a_{n}, y = \LIM_{n \to \infty} b_{n}, x' = \LIM_{n \to \infty} a'_{n}$
+  be real numbers.
+  \begin{itemize}
+  \item $x y$ is also a real number.
+    \begin{proof}
+      For all $n \geq 1$
+      \begin{equation*}
+        a_{n} \leq M_{a}
+      \end{equation*}
+      For all $j, k \geq N_{a}$,
+      \begin{equation*}
+        d(a_{j}, a_{k}) \leq \varepsilon / M_{a}
+      \end{equation*}
+      For all $n \geq 1$
+      \begin{equation*}
+        b_{n} \leq M_{b}
+      \end{equation*}
+      For all $j, k \geq N_{b}$,
+      \begin{equation*}
+        d(b_{j}, b_{k}) \leq \varepsilon / M_{b}
+      \end{equation*}
+      Let $n \geq N_{a} \geq \max(N_{a}, N_{b})$, then
+      \begin{equation*}
+        d(a_{j} b_{j}, a_{k} b_{k}) \leq d(a_{j} b_{j}, a_{k} b_{j}) + d(a_{k} b_{j}, a_{k} b_{j})
+        \leq |b_{j}| \varepsilon / M_{a} + |a_{k}|\varepsilon / M_{b}
+        \leq M_{a} \varepsilon / M_{a} + M_{b} \varepsilon / M_{b} = \varepsilon
+      \end{equation*}
+    \end{proof}
+  \item if $x = x'$, then $x y = x' y$.
+    \begin{proof}
+      For all $n \geq 1$,
+      \begin{equation*}
+        b_{n} \leq M
+      \end{equation*}
+      For all $n \geq N$,
+      \begin{equation*}
+        d(a_{n}, a'_{n}) \leq \varepsilon / M
+      \end{equation*}
+      Then
+      \begin{equation}
+        d(a_{n} b_{n}, a'_{n} b_{n}) \leq |b_{n}| \varepsilon / M \leq M \varepsilon / M = \varepsilon
+      \end{equation}
+    \end{proof}
+  \end{itemize}
 \end{proposition}
 
 \begin{definition}[rational = real]
-    \begin{equation}
-        \LIM_{n \to \infty} q = q
-    \end{equation}
-    i.e. $0.5, 0.5, \dots = 0.5$.
+  \begin{equation}
+    \LIM_{n \to \infty} q = q
+  \end{equation}
+  i.e. $0.5, 0.5, \dots = 0.5$.
 \end{definition}
 
 \begin{definition}[negation]
-    \begin{equation}
-        -x := (-1) \times x
-    \end{equation}
+  \begin{equation}
+    -x := (-1) \times x
+  \end{equation}
 \end{definition}
 
 \begin{definition}[subtraction]
-    \begin{equation}
-        x - y := x + (-y)
-    \end{equation}
+  \begin{equation}
+    x - y := x + (-y)
+  \end{equation}
 \end{definition}
 
 \begin{proposition}[commutative ring]
-    Let $x, y, z$ be reals, then
-    \begin{gather}
-        x + y = y + x \\
-        (x + y) + z = x + (y + z) \\
-        x + 0 = 0 + x = x \\
-        x + (-x) = (-x) + x = 0 \\
-        x y = y x \\
-        (x y) z = x (y z) \\
-        x 1 = 1 x = x \\
-        x (y + z) = x y + x z \\
-        (y + x) x = y x + z x
-    \end{gather}
+  Let $x, y, z$ be reals, then
+  \begin{gather}
+    x + y = y + x \\
+    (x + y) + z = x + (y + z) \\
+    x + 0 = 0 + x = x \\
+    x + (-x) = (-x) + x = 0 \\
+    x y = y x \\
+    (x y) z = x (y z) \\
+    x 1 = 1 x = x \\
+    x (y + z) = x y + x z \\
+    (y + x) x = y x + z x
+  \end{gather}
 \end{proposition}
 
 \begin{definition}[sequences bounded away from 0]
-    A sequence $(a_{n})_{n = 1}^{\infty}$ of rational numbers is away from 0 if and only if
-    there exists a rational number $c > 0$ such that $|a_{n}| \geq c$ for all $n \geq 1$.
+  A sequence $(a_{n})_{n = 1}^{\infty}$ of rational numbers is away from 0 if and only if
+  there exists a rational number $c > 0$ such that $|a_{n}| \geq c$ for all $n \geq 1$.
 \end{definition}
 
 \begin{lemma}
-    Let $x$ be a non-zero real number.
-    Then $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
-    is bounded away from 0.
+  Let $x$ be a non-zero real number.
+  Then $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+  is bounded away from 0.
 \end{lemma}
 
 \begin{proof}
-    Suppose $x = \LIM_{n \to \infty} b_{n}$.
-    Then for all $j, k \geq N$
-    \begin{equation*}
-        d(b_{j}, b_{k}) \leq \varepsilon / 2
-    \end{equation*}
-    Since
-    \begin{equation*}
-        x \neq \LIM_{n \to \infty} 0
-    \end{equation*}
-    Then for some $n_{0} \geq N$
-    \begin{equation*}
-        d(b_{n_{0}}, 0) > \varepsilon
-    \end{equation*}
-    Then
-    \begin{gather*}
-        d(b_{n_{0}}, b_{k}) \leq \varepsilon / 2 \\
-        \varepsilon < d(b_{n_{0}}, 0) \leq d(b_{n_{0}}, b_{k}) + d(b_{k}, 0)
-        \leq \varepsilon / 2 + d(b_{k}, 0) \\
-        d(b_{k}, 0) > \varepsilon / 2
-    \end{gather*}
-    Let $a_{n} := \varepsilon / 2$ if $n < N$ and $a_{n} := b_{n}$ if $n \geq N$, then
-    \begin{equation*}
-        x = \LIM_{n \to \infty} a_{n}
-    \end{equation*}
-    Then for all $n \geq 1$,
-    \begin{equation*}
-        |a_{n}| \geq \varepsilon / 2
-    \end{equation*}
+  Suppose $x = \LIM_{n \to \infty} b_{n}$.
+  Then for all $j, k \geq N$
+  \begin{equation*}
+    d(b_{j}, b_{k}) \leq \varepsilon / 2
+  \end{equation*}
+  Since
+  \begin{equation*}
+    x \neq \LIM_{n \to \infty} 0
+  \end{equation*}
+  Then for some $n_{0} \geq N$
+  \begin{equation*}
+    d(b_{n_{0}}, 0) > \varepsilon
+  \end{equation*}
+  Then
+  \begin{gather*}
+    d(b_{n_{0}}, b_{k}) \leq \varepsilon / 2 \\
+    \varepsilon < d(b_{n_{0}}, 0) \leq d(b_{n_{0}}, b_{k}) + d(b_{k}, 0)
+    \leq \varepsilon / 2 + d(b_{k}, 0) \\
+    d(b_{k}, 0) > \varepsilon / 2
+  \end{gather*}
+  Let $a_{n} := \varepsilon / 2$ if $n < N$ and $a_{n} := b_{n}$ if $n \geq N$, then
+  \begin{equation*}
+    x = \LIM_{n \to \infty} a_{n}
+  \end{equation*}
+  Then for all $n \geq 1$,
+  \begin{equation*}
+    |a_{n}| \geq \varepsilon / 2
+  \end{equation*}
 \end{proof}
 
 \begin{lemma}
-    Suppose that $(a_{n})_{n = 1}^{\infty}$ is a Cauchy sequence which is bounded away from 0.
-    Then the sequence $(a_{n}^{-1})_{n = 1}^{\infty}$ is also a Cauchy sequence.
+  Suppose that $(a_{n})_{n = 1}^{\infty}$ is a Cauchy sequence which is bounded away from 0.
+  Then the sequence $(a_{n}^{-1})_{n = 1}^{\infty}$ is also a Cauchy sequence.
 \end{lemma}
 
 \begin{proof}
-    There exists a rational number $c$ such that for all $n \geq 1$,
-    \begin{equation*}
-        |a_{n}| \geq c
-    \end{equation*}
-    For all $j, k \geq N$,
-    \begin{equation*}
-        d(a_{j}, a_{k}) \leq \varepsilon \times c^{2}
-    \end{equation*}
-    Then
-    \begin{equation*}
-        d(a_{j}^{-1}, a_{k}^{-1}) = \left| \frac{a_{k} - a_{j}}{a_{j} a_{k}} \right|
-        \leq d(a_{j}, a_{k}) / c^{2} \leq \varepsilon
-    \end{equation*}
+  There exists a rational number $c$ such that for all $n \geq 1$,
+  \begin{equation*}
+    |a_{n}| \geq c
+  \end{equation*}
+  For all $j, k \geq N$,
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq \varepsilon \times c^{2}
+  \end{equation*}
+  Then
+  \begin{equation*}
+    d(a_{j}^{-1}, a_{k}^{-1}) = \left| \frac{a_{k} - a_{j}}{a_{j} a_{k}} \right|
+    \leq d(a_{j}, a_{k}) / c^{2} \leq \varepsilon
+  \end{equation*}
 \end{proof}
 
 \begin{definition}[reciprocal]
-    Let $x$ be a non-zero real number.
-    Let $(a_{n})_{n = 1}^{\infty}$ be a Cauchy sequence bounded away from 0 such that
-    $x = (a_{n})_{n = 1}^{\infty}$.
-    Define the reciprocal
-    \begin{equation}
-        x^{-1} := \LIM_{n \to \infty} a_{n}^{-1}
-    \end{equation}
+  Let $x$ be a non-zero real number.
+  Let $(a_{n})_{n = 1}^{\infty}$ be a Cauchy sequence bounded away from 0 such that
+  $x = (a_{n})_{n = 1}^{\infty}$.
+  Define the reciprocal
+  \begin{equation}
+    x^{-1} := \LIM_{n \to \infty} a_{n}^{-1}
+  \end{equation}
 \end{definition}
 
 \begin{lemma}[reciprocal is well-defined]
-    Let $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$
-    be two Cauchy sequences bounded away from 0 such that
-    $\LIM_{n \to \infty} a_{n} = \LIM_{n \to \infty} b_{n}$.
-    Then
-    \begin{equation*}
-        \LIM_{n \to \infty} a_{n}^{-1} = \LIM_{n \to \infty} b_{n}^{-1}
-    \end{equation*}
+  Let $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$
+  be two Cauchy sequences bounded away from 0 such that
+  $\LIM_{n \to \infty} a_{n} = \LIM_{n \to \infty} b_{n}$.
+  Then
+  \begin{equation*}
+    \LIM_{n \to \infty} a_{n}^{-1} = \LIM_{n \to \infty} b_{n}^{-1}
+  \end{equation*}
 \end{lemma}
 
 \begin{proof}
-    \begin{gather*}
-        \LIM_{n \to \infty} a_{n}^{-1} \times \LIM_{n \to \infty} a_{n} \times \LIM_{n \to \infty} \times b_{n}^{-1} =
-        \LIM_{n \to \infty} a_{n}^{-1} \times \LIM_{n \to \infty} b_{n} \times \LIM_{n \to \infty} \times b_{n}^{-1} \\
-        \LIM_{n \to \infty} a_{n}^{-1} a_{n} b_{n}^{-1} = \LIM_{n \to \infty} a_{n}^{-1} b_{n} b_{n}^{-1} \\
-        \LIM_{n \to \infty} b_{n}^{-1} = \LIM_{n \to \infty} a_{n}^{-1}
-    \end{gather*}
+  \begin{gather*}
+    \LIM_{n \to \infty} a_{n}^{-1} \times \LIM_{n \to \infty} a_{n} \times \LIM_{n \to \infty} \times b_{n}^{-1} =
+    \LIM_{n \to \infty} a_{n}^{-1} \times \LIM_{n \to \infty} b_{n} \times \LIM_{n \to \infty} \times b_{n}^{-1} \\
+    \LIM_{n \to \infty} a_{n}^{-1} a_{n} b_{n}^{-1} = \LIM_{n \to \infty} a_{n}^{-1} b_{n} b_{n}^{-1} \\
+    \LIM_{n \to \infty} b_{n}^{-1} = \LIM_{n \to \infty} a_{n}^{-1}
+  \end{gather*}
 \end{proof}
 
 \begin{definition}[reciprocal = rational]
-    \begin{equation*}
-        \LIM_{n \to \infty} q^{-1} = q^{-1}
-    \end{equation*}
+  \begin{equation*}
+    \LIM_{n \to \infty} q^{-1} = q^{-1}
+  \end{equation*}
 \end{definition}
 
 \begin{proposition}
-    \begin{equation*}
-        x x^{-1} = x^{-1} x = 1
-    \end{equation*}
+  \begin{equation*}
+    x x^{-1} = x^{-1} x = 1
+  \end{equation*}
 \end{proposition}
 
 \begin{proposition}[field]
-    Let $x, y, z$ be real numbers.
-    \begin{gather}
-        x + y = y + z \\
-        (x + y) + z = x + (y + z) \\
-        x + 0 = 0 + x = x \\
-        x + (-x) = (-x) + x = 0 \\
-        x y = y x \\
-        (x y) z = x (y z) \\
-        x 1 = 1 x = x \\
-        x (y + z) = x y + x z \\
-        (y + z) x = y x + z x \\
-        x x^{-1} = x^{-1} x = 1 \text{ for } x \neq 0
-    \end{gather}
+  Let $x, y, z$ be real numbers.
+  \begin{gather}
+    x + y = y + z \\
+    (x + y) + z = x + (y + z) \\
+    x + 0 = 0 + x = x \\
+    x + (-x) = (-x) + x = 0 \\
+    x y = y x \\
+    (x y) z = x (y z) \\
+    x 1 = 1 x = x \\
+    x (y + z) = x y + x z \\
+    (y + z) x = y x + z x \\
+    x x^{-1} = x^{-1} x = 1 \text{ for } x \neq 0
+  \end{gather}
 \end{proposition}
 
 \begin{definition}[divisiona]
-    \begin{equation}
-        x / y := x \times y^{-1}
-    \end{equation}
+  \begin{equation}
+    x / y := x \times y^{-1}
+  \end{equation}
 \end{definition}
 
 \begin{proposition}[cancelation law]
-    If $x z = yz$ and $z \neq 0$, then $x = y$.
+  If $x z = yz$ and $z \neq 0$, then $x = y$.
 \end{proposition}
 
 \subsection{Ordering}
 \begin{definition}[sequence positively and negatively bounded away from 0]
-    Let $(a_{n})_{n = 1}^{\infty}$ be a sequence of rationals.
-    The sequence is positively bounded away from 0 if and only if
-    there exists a positive rational $c > 0$ such that
-    $a_{n} \geq c$ for all $n \geq 1$.
-    The sequence is negatively bounded away from 0 if and only if
-    there exists a negative rational $-c < 0$ such that
-    $a_{n} \leq -c$ for all $n \geq 1$.
+  Let $(a_{n})_{n = 1}^{\infty}$ be a sequence of rationals.
+  The sequence is positively bounded away from 0 if and only if
+  there exists a positive rational $c > 0$ such that
+  $a_{n} \geq c$ for all $n \geq 1$.
+  The sequence is negatively bounded away from 0 if and only if
+  there exists a negative rational $-c < 0$ such that
+  $a_{n} \leq -c$ for all $n \geq 1$.
 \end{definition}
 
 \begin{definition}[positive and negative bounded away from 0]
-    A real number $x$ is positive if and only if it can be written as
-    $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
-    which is positively bounded away from 0.
-    $x$ is negative if and only if it can be written as
-    $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
-    which is negatively bounded away from 0.
+  A real number $x$ is positive if and only if it can be written as
+  $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+  which is positively bounded away from 0.
+  $x$ is negative if and only if it can be written as
+  $x = \LIM_{n = 1}^{\infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+  which is negatively bounded away from 0.
 \end{definition}
 
 \begin{definition}[positive and negative]
-    A real number $x$ is positive if and only if it can be written as
-    $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
-    which is positively bounded away from 0.
-    $x$ is negative if and only if it can be written as
-    $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
-    which is negatively bounded away from 0.
+  A real number $x$ is positive if and only if it can be written as
+  $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+  which is positively bounded away from 0.
+  $x$ is negative if and only if it can be written as
+  $x = \LIM_{n \to \infty} a_{n}$ for some Cauchy sequence $(a_{n})_{n = 1}^{\infty}$
+  which is negatively bounded away from 0.
 \end{definition}
 
 \begin{proposition}[properties of postive reals]
-    \label{PROP:PROPERTIES_OF_POSITIVE_REALS}
-    For each real number $x$,
-    \begin{itemize}
-        \item exactly one of the following three statement is true:
-              (a) $x$ is 0;
-              (b) $x$ is positive;
-              (c) $x$ is negative.
-              \begin{proof}
-                  If $x \neq 0$, then there exists a rational number $c > 0$ such that for all $n \geq 1$,
-                  \begin{gather*}
-                      |a_{n}| \geq c \\
-                      a_{n} \geq c \text{ or } a_{n} \leq -c
-                  \end{gather*}
-                  For all $j, k \geq N$,
-                  \begin{gather*}
-                      d(a_{j}, a_{k}) \leq c / 2 \\
-                      -c / 2 \leq a_{j} - a_{k} \leq c / 2 \\
-                      a_{k} - c / 2 \leq a_{j} \leq a_{k} + c / 2
-                  \end{gather*}
-                  If $a_{k} \geq c$, then
-                  \begin{equation*}
-                      c / 2 \leq a_{j} \leq 3 c / 2
-                  \end{equation*}
-                  If $a_{k} \leq - c$, then
-                  \begin{equation*}
-                      - 3 c / 2 \leq a_{j} \leq - c / 2
-                  \end{equation*}
-              \end{proof}
-        \item $x$ is negative if and only if $-x$ is positive.
-              \begin{proof}
-                  For all $n \geq 1$, there exists a negative rational number $-c < 0$ such that
-                  \begin{equation*}
-                      a_{n} \leq -c
-                  \end{equation*}
-                  Then
-                  \begin{equation*}
-                      -a_{n} \geq c
-                  \end{equation*}
-              \end{proof}
-        \item if $x$ and $y$ are positive, then $x + y$ and $x y$ are also positive.
-              \begin{proof}
-                  For all $n \geq 1$, there exists positive rational numbers $c_{1}, c_{2} > 0$ such that
-                  \begin{gather*}
-                      a_{n} \geq c_{1} \\
-                      b_{n} \geq c_{2}
-                  \end{gather*}
-                  Then
-                  \begin{gather*}
-                      a_{n} + b_{n} \geq c_{1} + c_{2} \\
-                      a_{n} b_{n} \geq c_{1} c_{2}
-                  \end{gather*}
-              \end{proof}
-    \end{itemize}
+  \label{PROP:PROPERTIES_OF_POSITIVE_REALS}
+  For each real number $x$,
+  \begin{itemize}
+  \item exactly one of the following three statement is true:
+    (a) $x$ is 0;
+    (b) $x$ is positive;
+    (c) $x$ is negative.
+    \begin{proof}
+      If $x \neq 0$, then there exists a rational number $c > 0$ such that for all $n \geq 1$,
+      \begin{gather*}
+        |a_{n}| \geq c \\
+        a_{n} \geq c \text{ or } a_{n} \leq -c
+      \end{gather*}
+      For all $j, k \geq N$,
+      \begin{gather*}
+        d(a_{j}, a_{k}) \leq c / 2 \\
+        -c / 2 \leq a_{j} - a_{k} \leq c / 2 \\
+        a_{k} - c / 2 \leq a_{j} \leq a_{k} + c / 2
+      \end{gather*}
+      If $a_{k} \geq c$, then
+      \begin{equation*}
+        c / 2 \leq a_{j} \leq 3 c / 2
+      \end{equation*}
+      If $a_{k} \leq - c$, then
+      \begin{equation*}
+        - 3 c / 2 \leq a_{j} \leq - c / 2
+      \end{equation*}
+    \end{proof}
+  \item $x$ is negative if and only if $-x$ is positive.
+    \begin{proof}
+      For all $n \geq 1$, there exists a negative rational number $-c < 0$ such that
+      \begin{equation*}
+        a_{n} \leq -c
+      \end{equation*}
+      Then
+      \begin{equation*}
+        -a_{n} \geq c
+      \end{equation*}
+    \end{proof}
+  \item if $x$ and $y$ are positive, then $x + y$ and $x y$ are also positive.
+    \begin{proof}
+      For all $n \geq 1$, there exists positive rational numbers $c_{1}, c_{2} > 0$ such that
+      \begin{gather*}
+        a_{n} \geq c_{1} \\
+        b_{n} \geq c_{2}
+      \end{gather*}
+      Then
+      \begin{gather*}
+        a_{n} + b_{n} \geq c_{1} + c_{2} \\
+        a_{n} b_{n} \geq c_{1} c_{2}
+      \end{gather*}
+    \end{proof}
+  \end{itemize}
 \end{proposition}
 
 \begin{definition}[absolute value]
-    Let $x$ be a rational number.
-    $|x|$ equal to $x$ if $x$ is positive, $-x$ when $x$ is negative, 0 when $x$ is 0.
+  Let $x$ be a rational number.
+  $|x|$ equal to $x$ if $x$ is positive, $-x$ when $x$ is negative, 0 when $x$ is 0.
 \end{definition}
 
 \begin{definition}[ordering]
-    Let $x, y$ be real numbers.
-    $x > y$ if and only if $x - y$ is a positive real number.
-    $x < y$ if and only if $x - y$ is a negative real number.
-    $x \geq y$ if and only if $x > y$ or $x = y$.
-    $x \leq y$ if and only if $x < y$ or $x = y$.
+  Let $x, y$ be real numbers.
+  $x > y$ if and only if $x - y$ is a positive real number.
+  $x < y$ if and only if $x - y$ is a negative real number.
+  $x \geq y$ if and only if $x > y$ or $x = y$.
+  $x \leq y$ if and only if $x < y$ or $x = y$.
 \end{definition}
 
 \begin{proposition}[ordered field]
-    Let $x, y, z$ be real numbers, then
-    \begin{itemize}
-        \item (order trichotomy)
-              Exactly one of the three statements $x = y$, $x < y$, $x > y$ is true.
-        \item (antisymmetric)
-              $x < y$ if and only if $y > x$.
-        \item (transitive)
-              If $x < y$ and $y < z$, then $x < z$.
-        \item (addition preserves order)
-              If $x < y$, then $x + z < y + z$.
-        \item (positive multiplication preserves order)
-              If $x < y$ and $z$ is positive, then $x z < y z$.
-              \begin{proof}
-                  Since $x < y$, then $y - x$ is positive.
-                  Then by Proposition \ref{PROP:PROPERTIES_OF_POSITIVE_REALS},
-                  $(y - x) z = y z - x z$ is positive.
-                  Then $x z < y z$.
-              \end{proof}
-    \end{itemize}
+  Let $x, y, z$ be real numbers, then
+  \begin{itemize}
+  \item (order trichotomy)
+    Exactly one of the three statements $x = y$, $x < y$, $x > y$ is true.
+  \item (antisymmetric)
+    $x < y$ if and only if $y > x$.
+  \item (transitive)
+    If $x < y$ and $y < z$, then $x < z$.
+  \item (addition preserves order)
+    If $x < y$, then $x + z < y + z$.
+  \item (positive multiplication preserves order)
+    If $x < y$ and $z$ is positive, then $x z < y z$.
+    \begin{proof}
+      Since $x < y$, then $y - x$ is positive.
+      Then by Proposition \ref{PROP:PROPERTIES_OF_POSITIVE_REALS},
+      $(y - x) z = y z - x z$ is positive.
+      Then $x z < y z$.
+    \end{proof}
+  \end{itemize}
 \end{proposition}
 
 \begin{proposition}
-    Let $x$ be a positive real number, then $x^{-1}$ is also positive.
-    If $y$ is another positive number and $x > y$, then $x^{-1} < y^{-1}$.
+  Let $x$ be a positive real number, then $x^{-1}$ is also positive.
+  If $y$ is another positive number and $x > y$, then $x^{-1} < y^{-1}$.
 \end{proposition}
 
 \begin{proof}
 \end{proof}
 
 \begin{proposition}
-    Let $a_{1}, a_{2}, \dots$ be a Cauchy sequence of non-negative rational numbers.
-    Then $\LIM_{n \to \infty} a_{n}$ is a non-negative real number.
+  Let $a_{1}, a_{2}, \dots$ be a Cauchy sequence of non-negative rational numbers.
+  Then $\LIM_{n \to \infty} a_{n}$ is a non-negative real number.
 \end{proposition}
 
 \begin{proof}
-    Suppose $x := \LIM_{n \to \infty} a_{n}$ is a negative number.
-    Then $x = \LIM_{n \to \infty} b_{n}$ for some sequence $b_{n}$
-    which is negatively bounded away from 0.
-    Then for all $n \geq 1$, there exists a negative rational $-c < 0$ such that
-    \begin{equation*}
-        b_{n} \leq -c
-    \end{equation*}
-    For all $n \geq 1$,
-    \begin{gather*}
-        |b_{n} - a_{n}| \leq c / 2 \\
-        -c / 2 \leq b_{n} - a_{n} \leq c / 2 \\
-        a_{n} \leq b_{n} + c / 2 \leq - c / 2
-    \end{gather*}
-    Since
-    \begin{equation*}
-        a_{n} \geq 0
-    \end{equation*}
-    Contradiction.
+  Suppose $x := \LIM_{n \to \infty} a_{n}$ is a negative number.
+  Then $x = \LIM_{n \to \infty} b_{n}$ for some sequence $b_{n}$
+  which is negatively bounded away from 0.
+  Then for all $n \geq 1$, there exists a negative rational $-c < 0$ such that
+  \begin{equation*}
+    b_{n} \leq -c
+  \end{equation*}
+  For all $n \geq 1$,
+  \begin{gather*}
+    |b_{n} - a_{n}| \leq c / 2 \\
+    -c / 2 \leq b_{n} - a_{n} \leq c / 2 \\
+    a_{n} \leq b_{n} + c / 2 \leq - c / 2
+  \end{gather*}
+  Since
+  \begin{equation*}
+    a_{n} \geq 0
+  \end{equation*}
+  Contradiction.
 \end{proof}
 
 \begin{proposition}
-    Let $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$ be Cauchy sequences
-    of rationals such that $a_{n} \geq b_{n}$ for all $n \geq 1$.
-    Then $\LIM_{n \to \infty} a_{n} \geq \LIM_{n \to \infty} b_{n}$.
+  Let $(a_{n})_{n = 1}^{\infty}$ and $(b_{n})_{n = 1}^{\infty}$ be Cauchy sequences
+  of rationals such that $a_{n} \geq b_{n}$ for all $n \geq 1$.
+  Then $\LIM_{n \to \infty} a_{n} \geq \LIM_{n \to \infty} b_{n}$.
 \end{proposition}
 
 \begin{proof}
-    For all $n \geq 1$,
-    \begin{equation*}
-        a_{n} - b_{n} \geq 0
-    \end{equation*}
-    Then $\LIM_{n \to \infty} (a_{n} - b_{n})$ is non-negative.
+  For all $n \geq 1$,
+  \begin{equation*}
+    a_{n} - b_{n} \geq 0
+  \end{equation*}
+  Then $\LIM_{n \to \infty} (a_{n} - b_{n})$ is non-negative.
 \end{proof}
 
 \begin{proposition}[bounding of reals]
-    Let $x$ be a positive real number.
-    Then there exists a positive rational number such that $q \leq x$.
-    And there exists a positive integer $N$ such that $x \leq N$.
+  \label{RPOP:BOUNDING_OF_REALS}
+  Let $x$ be a positive real number.
+  Then there exists a positive rational number such that $q \leq x$.
+  And there exists a positive integer $N$ such that $x \leq N$.
 \end{proposition}
 
 \begin{proof}
-    For all $n \geq 1$,
-    \begin{equation*}
-        c \leq a_{n} \leq M \leq N
-    \end{equation*}
+  For all $n \geq 1$,
+  \begin{equation*}
+    c \leq a_{n} \leq M \leq N
+  \end{equation*}
 \end{proof}
 
 \begin{proposition}[Archimendean property]
-    \label{PROP:ARCHIMENDEAN_PROPERTY}
-    Let $x$ be a real number, and $\varepsilon$ be
-    a positive real number.
-    There exists a positive integer $M$ such that $M \varepsilon > x$.
+  \label{PROP:ARCHIMENDEAN_PROPERTY}
+  Let $x$ be a real number, and $\varepsilon$ be
+  a positive real number.
+  There exists a positive integer $M$ such that $M \varepsilon > x$.
 \end{proposition}
 
 \begin{proof}
-    If $x$ is positive, then
-    \begin{equation*}
-        x < 2 x / \varepsilon \times \varepsilon \leq M \varepsilon
-    \end{equation*}
+  If $x$ is positive, then
+  \begin{equation*}
+    x < 2 x / \varepsilon \times \varepsilon \leq M \varepsilon
+  \end{equation*}
 \end{proof}
 
 \begin{proposition}[integer part]
-    For every real number $x$, there is exactly only one integer $N$ such that
-    $N \leq x < N + 1$.
+  For every real number $x$, there is exactly only one integer $N$ such that
+  $N \leq x < N + 1$.
 \end{proposition}
 
 \begin{proof}
-    Suppose for any $N \leq x$, $N + 1 \leq x$.
-    Then $N + M \leq x$ for any integer $M$.
-    When $M = 1$, $N + 1 \leq x$.
-    Suppose $N + M \leq x$.
-    Then
-    \begin{equation*}
-        (N + M) + 1 \leq x
-    \end{equation*}
-    This closes induction.
+  Suppose for any $N \leq x$, $N + 1 \leq x$.
+  Then $N + M \leq x$ for any integer $M$.
+  When $M = 1$, $N + 1 \leq x$.
+  Suppose $N + M \leq x$.
+  Then
+  \begin{equation*}
+    (N + M) + 1 \leq x
+  \end{equation*}
+  This closes induction.
 
-    Then for every integer $M$
-    \begin{equation*}
-        N + M N = (M + 1) N \leq x
-    \end{equation*}
-    Contradiction.
+  Then for every integer $M$
+  \begin{equation*}
+    N + M N = (M + 1) N \leq x
+  \end{equation*}
+  Contradiction.
 \end{proof}
 
 \begin{proposition}
-    \label{PROP:X_1_N_0}
-    For every positive real number $x$ there exists a positive integer $N$ such that
-    $x > 1 / N > 0$.
+  \label{PROP:X_1_N_0}
+  For every positive real number $x$ there exists a positive integer $N$ such that
+  $x > 1 / N > 0$.
 \end{proposition}
 
 \begin{proof}
-    With Archimendean property,
-    there exists a positive integer $N$ such that
-    \begin{gather*}
-        N > 1 / x \\
-        x > 1 / N > 0
-    \end{gather*}
+  With Archimendean property,
+  there exists a positive integer $N$ such that
+  \begin{gather*}
+    N > 1 / x \\
+    x > 1 / N > 0
+  \end{gather*}
 \end{proof}
 
 \begin{proposition}
-    Given any two real numbers $x < y$, there exists a rational number $q$
-    such that $x < q < y$.
+  Given any two real numbers $x < y$, there exists a rational number $q$
+  such that $x < q < y$.
 \end{proposition}
 
 \begin{proof}
-    There exists a positive integer $N$ such that
-    \begin{gather*}
-        y - x > 1 / N > 0 \\
-        N y - N x > 1
-    \end{gather*}
-    Suppose $q \leq x < y$ or $x < y \leq q$ for all $q$.
-    Then there exists an integer $N_{1}$ such that
-    \begin{equation*}
-        N_{1} \leq N x < N y < N_{1} + 1
-    \end{equation*}
-    Then
-    \begin{equation*}
-        N y - N x < 1
-    \end{equation*}
-    Contradiction.
+  There exists a positive integer $N$ such that
+  \begin{gather*}
+    y - x > 1 / N > 0 \\
+    N y - N x > 1
+  \end{gather*}
+  Suppose $q \leq x < y$ or $x < y \leq q$ for all $q$.
+  Then there exists an integer $N_{1}$ such that
+  \begin{equation*}
+    N_{1} \leq N x < N y < N_{1} + 1
+  \end{equation*}
+  Then
+  \begin{equation*}
+    N y - N x < 1
+  \end{equation*}
+  Contradiction.
 \end{proof}
 
 \begin{lemma}
-    Let $(a_{n})_{n = 1}^{\infty}$ be a Cauchy sequence of rationals,
-    and let $x$ be a real number.
+  Let $(a_{n})_{n = 1}^{\infty}$ be a Cauchy sequence of rationals,
+  and let $x$ be a real number.
 
-    If $a_{n} \leq x$ for all $n \geq 1$, then
-    \begin{equation*}
-        \LIM_{n \to \infty} a_{n} \leq x
-    \end{equation*}
+  If $a_{n} \leq x$ for all $n \geq 1$, then
+  \begin{equation*}
+    \LIM_{n \to \infty} a_{n} \leq x
+  \end{equation*}
 
-    If $a_{n} \geq x$ for all $n \geq 1$, then
-    \begin{equation*}
-        \LIM_{n \to \infty} a_{n} \geq x
-    \end{equation*}
+  If $a_{n} \geq x$ for all $n \geq 1$, then
+  \begin{equation*}
+    \LIM_{n \to \infty} a_{n} \geq x
+  \end{equation*}
 \end{lemma}
 
 \subsection{Least Upper Bound}
 \begin{definition}[upper bound]
-    Let $E$ be a subset of $R$ and $M$ be a real number.
-    $M$ is an upper bound of $E$ if and only if $x \leq M$ for every element $x$ in $E$.
+  Let $E$ be a subset of $R$ and $M$ be a real number.
+  $M$ is an upper bound of $E$ if and only if $x \leq M$ for every element $x$ in $E$.
 \end{definition}
 
 \begin{definition}[least upper bound]
-    Let $E$ be a subset of $R$ and $M$ be a real number.
-    $M$ is a least upper bound for $E$ if and only if
-    $M$ is an upper bound for $E$ and any other upper bound $M' \geq M$.
+  Let $E$ be a subset of $R$ and $M$ be a real number.
+  $M$ is a least upper bound for $E$ if and only if
+  $M$ is an upper bound for $E$ and any other upper bound $M' \geq M$.
 \end{definition}
 
 \begin{proposition}[uniqueness of least upper bound]
-    Let $E$ be a subset of $R$. Then $E$ can have at most one least upper bound.
+  Let $E$ be a subset of $R$. Then $E$ can have at most one least upper bound.
 \end{proposition}
 
 \begin{proof}
-    Suppose $M_{1}$ and $M_{2}$ are two least upper bounds.
-    Then
-    \begin{gather*}
-        M_{1}\leq M_{2} \\
-        M_{2} \leq M_{1}\\
-        M_{1}= M_{2}
-    \end{gather*}
+  Suppose $M_{1}$ and $M_{2}$ are two least upper bounds.
+  Then
+  \begin{gather*}
+    M_{1}\leq M_{2} \\
+    M_{2} \leq M_{1}\\
+    M_{1}= M_{2}
+  \end{gather*}
 \end{proof}
 
 \begin{lemma}
-    Let $E$ be a non-empty subset of $R$,
-    and let $n \geq 1, L < K$ be integers.
-    Suppose that $K/n$ is an upper bound for $E$,
-    $L / n$ is not. Then there exists an integer $L < m \leq K$
-    such that $m / n$ is an upper bound for $E$,
-    but $(m - 1) / n$ is not.
+  Let $E$ be a non-empty subset of $R$,
+  and let $n \geq 1, L < K$ be integers.
+  Suppose that $K/n$ is an upper bound for $E$,
+  $L / n$ is not. Then there exists an integer $L < m \leq K$
+  such that $m / n$ is an upper bound for $E$,
+  but $(m - 1) / n$ is not.
 \end{lemma}
 
 \begin{proof}
-    Suppose for all $L < m \leq K$ and
-    $m / n$ is upper bound, $(m - 1) / n$ is also upper bound.
-    Then $(m - N) / n$ is upper bound for all $N \geq 1$.
+  Suppose for all $L < m \leq K$ and
+  $m / n$ is upper bound, $(m - 1) / n$ is also upper bound.
+  Then $(m - N) / n$ is upper bound for all $N \geq 1$.
 
-    When $N = 1$, $(m - 1) / n$ is upper bound.
-    Suppose $(m - N) / n$ is upper bound.
-    Then $(m - N - 1) / n$ is also upper bound.
+  When $N = 1$, $(m - 1) / n$ is upper bound.
+  Suppose $(m - N) / n$ is upper bound.
+  Then $(m - N - 1) / n$ is also upper bound.
 
-    Let $N = m - L$, then
-    $(m - (m - L)) / n = L / n$ is upper bound.
-    Contradiction.
+  Let $N = m - L$, then
+  $(m - (m - L)) / n = L / n$ is upper bound.
+  Contradiction.
 \end{proof}
 
 \begin{lemma}
-    Let $E$ be a non-empty subset of $R$,
-    and let $n \geq 1, m, m'$ be integers such that
-    $m / n$ and $m' / n'$ are upper bounds,
-    but $(m - 1) / n$ and $(m' - 1) / n$ are not.
-    Then $m = m'$.
+  Let $E$ be a non-empty subset of $R$,
+  and let $n \geq 1, m, m'$ be integers such that
+  $m / n$ and $m' / n'$ are upper bounds,
+  but $(m - 1) / n$ and $(m' - 1) / n$ are not.
+  Then $m = m'$.
 \end{lemma}
 
 \begin{proof}
-    Suppose $m < m'$, then $m \leq m' - 1$.
-    Then
-    \begin{equation*}
-        m / n \leq (m' - 1) / n < x_{0} \leq m / n
-    \end{equation*}
-    Contradiction.
+  Suppose $m < m'$, then $m \leq m' - 1$.
+  Then
+  \begin{equation*}
+    m / n \leq (m' - 1) / n < x_{0} \leq m / n
+  \end{equation*}
+  Contradiction.
 \end{proof}
 
 \begin{lemma}
-    \label{LEM:Q_CAUCHY_SEQUENCE}
-    Let $q_{1}, q_{2}, q_{3}, \dots$ be a sequence of rational numbers such that
-    $|q_{n} - q_{n}'| \leq \frac{1}{M}$ whenever $M \geq 1$ is an integer and $n, n' \geq M$.
-    Then $q_{1}, q_{2}, q_{3}, \dots$ is a Cauchy sequence.
-    And if $S := \LIM_{n \to \infty} q_{n}$, then
-    $|q_{M} - S| \leq \frac{1}{M}$ for every $M \geq 1$.
+  \label{LEM:Q_CAUCHY_SEQUENCE}
+  Let $q_{1}, q_{2}, q_{3}, \dots$ be a sequence of rational numbers such that
+  $|q_{n} - q_{n}'| \leq \frac{1}{M}$ whenever $M \geq 1$ is an integer and $n, n' \geq M$.
+  Then $q_{1}, q_{2}, q_{3}, \dots$ is a Cauchy sequence.
+  And if $S := \LIM_{n \to \infty} q_{n}$, then
+  $|q_{M} - S| \leq \frac{1}{M}$ for every $M \geq 1$.
 \end{lemma}
 
 \begin{proof}
-    For every $\varepsilon > 0$,
-    there exists a positive integer $M$
-    such that $\varepsilon > 1 / M > 0$ by Proposition \ref{PROP:X_1_N_0}.
-    Then for all $n, n' > M$,
-    \begin{equation*}
-        |q_{n} - q_{n}'| \leq \frac{1}{M} < \varepsilon
-    \end{equation*}
+  For every $\varepsilon > 0$,
+  there exists a positive integer $M$
+  such that $\varepsilon > 1 / M > 0$ by Proposition \ref{PROP:X_1_N_0}.
+  Then for all $n, n' > M$,
+  \begin{equation*}
+    |q_{n} - q_{n}'| \leq \frac{1}{M} < \varepsilon
+  \end{equation*}
 \end{proof}
 
 \begin{theorem}[existence of least upper bound]
-    Let $E$ be a non-empty subset of $R$.
-    If $E$ has an upper bound $M$, then it must have exactly one least upper bound.
+  Let $E$ be a non-empty subset of $R$.
+  If $E$ has an upper bound $M$, then it must have exactly one least upper bound.
 \end{theorem}
 
 \begin{proof}
-    Let $n \geq 1$ be a positive integer.
-    By Proposition \ref{PROP:ARCHIMENDEAN_PROPERTY} and
-    let $\varepsilon = 1 / n, x = M$,
-    there exists an integer $K$ such that
-    \begin{equation*}
-        K / n \geq M
-    \end{equation*}
-    Let $x_{0}$ be some element in $E$.
-    Then by Proposition \ref{PROP:ARCHIMENDEAN_PROPERTY} and
-    let $\varepsilon = 1, x = -n x_{0}$,
-    there exists an integer $L$ such that
-    \begin{equation*}
-        L / n < x_{0}
-    \end{equation*}
-    Since $K / n$ is an upper bound for $E$ and $L / n$ is not,
-    then there exists an integer
-    $L < m_{n} \leq K$ such that $m_{n} / n$ is an upper bound for $E$,
-    but $(m_{n} - 1) / n$ is not.
+  Let $n \geq 1$ be a positive integer.
+  By Proposition \ref{PROP:ARCHIMENDEAN_PROPERTY} and
+  let $\varepsilon = 1 / n, x = M$,
+  there exists an integer $K$ such that
+  \begin{equation*}
+    K / n \geq M
+  \end{equation*}
+  Let $x_{0}$ be some element in $E$.
+  Then by Proposition \ref{PROP:ARCHIMENDEAN_PROPERTY} and
+  let $\varepsilon = 1, x = -n x_{0}$,
+  there exists an integer $L$ such that
+  \begin{equation*}
+    L / n < x_{0}
+  \end{equation*}
+  Since $K / n$ is an upper bound for $E$ and $L / n$ is not,
+  then there exists an integer
+  $L < m_{n} \leq K$ such that $m_{n} / n$ is an upper bound for $E$,
+  but $(m_{n} - 1) / n$ is not.
 
-    Let $N \geq 1$ be a positive integer,
-    and let $n, n'$ be integers such that $n, n' \geq N$.
-    Since $m_{n} / n$ is upper bound and $(m_{n'} - 1) / n'$ is not, then
-    \begin{gather*}
-        \frac{m_{n}}{n} > \frac{m_{n'} - 1}{n'} \\
-        \frac{m_{n}}{n} - \frac{m_{n'}}{n'} > \frac{-1}{n'} \geq \frac{-1}{N}
-    \end{gather*}
-    And since $m_{n'} / n'$ is upper bound and $(m_{n} - 1) / n$
-    \begin{gather*}
-        \frac{m_{n'}}{n'} > \frac{m_{n} - 1}{n} \\
-        \frac{m_{n}}{n} - \frac{m_{n'}}{n'} < \frac{1}{n} \leq \frac{1}{N}
-    \end{gather*}
-    Thus
-    \begin{equation*}
-        \left| \frac{m_{n}}{n} - \frac{m_{n'}}{n'} \right| \leq \frac{1}{N}
-        \text{ for all } n, n' \geq N
-    \end{equation*}
-    Then $m_{n} / n$ is a Cauchy sequence by Lemma \ref{LEM:Q_CAUCHY_SEQUENCE}.
+  Let $N \geq 1$ be a positive integer,
+  and let $n, n'$ be integers such that $n, n' \geq N$.
+  Since $m_{n} / n$ is upper bound and $(m_{n'} - 1) / n'$ is not, then
+  \begin{gather*}
+    \frac{m_{n}}{n} > \frac{m_{n'} - 1}{n'} \\
+    \frac{m_{n}}{n} - \frac{m_{n'}}{n'} > \frac{-1}{n'} \geq \frac{-1}{N}
+  \end{gather*}
+  And since $m_{n'} / n'$ is upper bound and $(m_{n} - 1) / n$
+  \begin{gather*}
+    \frac{m_{n'}}{n'} > \frac{m_{n} - 1}{n} \\
+    \frac{m_{n}}{n} - \frac{m_{n'}}{n'} < \frac{1}{n} \leq \frac{1}{N}
+  \end{gather*}
+  Thus
+  \begin{equation*}
+    \left| \frac{m_{n}}{n} - \frac{m_{n'}}{n'} \right| \leq \frac{1}{N}
+    \text{ for all } n, n' \geq N
+  \end{equation*}
+  Then $m_{n} / n$ is a Cauchy sequence by Lemma \ref{LEM:Q_CAUCHY_SEQUENCE}.
 
-    Define the real number $S$ as
-    \begin{equation*}
-        S := \LIM_{n \to \infty} \frac{m_{n}}{n}
-    \end{equation*}
-    Then
-    \begin{equation*}
-        S = \LIM_{n \to \infty} \frac{m_{n}}{n} - \LIM_{n \to \infty} \frac{1}{n}
-        = \LIM_{n \to \infty} \frac{m_{n} - 1}{n}
-    \end{equation*}
+  Define the real number $S$ as
+  \begin{equation*}
+    S := \LIM_{n \to \infty} \frac{m_{n}}{n}
+  \end{equation*}
+  Then
+  \begin{equation*}
+    S = \LIM_{n \to \infty} \frac{m_{n}}{n} - \LIM_{n \to \infty} \frac{1}{n}
+    = \LIM_{n \to \infty} \frac{m_{n} - 1}{n}
+  \end{equation*}
 
-    For all $n \geq 1$,
-    \begin{equation*}
-        x \leq \frac{m_{n}}{n}
-    \end{equation*}
-    Then
-    \begin{equation*}
-        x \leq \LIM_{n \to \infty} \frac{m_{n}}{n} = S
-    \end{equation*}
-    Thus $S$ is upper bound.
+  For all $n \geq 1$,
+  \begin{equation*}
+    x \leq \frac{m_{n}}{n}
+  \end{equation*}
+  Then
+  \begin{equation*}
+    x \leq \LIM_{n \to \infty} \frac{m_{n}}{n} = S
+  \end{equation*}
+  Thus $S$ is upper bound.
 
-    Suppose $y$ is an upper bound for $E$, then for all $n \geq 1$,
-    \begin{equation*}
-        y \geq \frac{m_{n} - 1}{n}
-    \end{equation*}
-    Then
-    \begin{equation*}
-        y \geq \LIM_{n \to \infty} \frac{m_{n} - 1}{n} = S
-    \end{equation*}
-    Thus $S$ is a least upper bound.
+  Suppose $y$ is an upper bound for $E$, then for all $n \geq 1$,
+  \begin{equation*}
+    y \geq \frac{m_{n} - 1}{n}
+  \end{equation*}
+  Then
+  \begin{equation*}
+    y \geq \LIM_{n \to \infty} \frac{m_{n} - 1}{n} = S
+  \end{equation*}
+  Thus $S$ is a least upper bound.
 \end{proof}
 
 \begin{definition}[supremum]
@@ -1916,6 +1949,153 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \end{proof}
 
 \section{Limits of Sequences}
+\begin{definition}[distance]
+  Let $x, y$ be two real numbers, define their distance as
+  \begin{equation}
+    \label{EQ:DISTANCE_BETWEEN_REAL_NUMBERS}
+    d(x, y) := |x - y|
+  \end{equation}
+\end{definition}
+
+\begin{definition}[$\varepsilon$-close real numbers]
+  Let $\varepsilon > 0$ be a real number.
+  $x, y$ are $\varepsilon$-close if and only if
+  \begin{equation}
+    d(y, x) \leq \varepsilon
+  \end{equation}
+\end{definition}
+
+\begin{definition}[Cauchy sequences of reals]
+  \label{DEF:CAUCHY_SEQUENCE_REAL}
+  Let $\varepsilon$ be a real number.
+  A sequence $(a_{n})_{n = N}^{\infty}$ of real numbers is $\varepsilon$-steady
+  if and only if $a_{j}, a_{k}$ are $\varepsilon$-close for every $j, k \geq N$.
+  $(a_{n})_{n = m}^{\infty}$ is eventually $\varepsilon$-steady
+  if and only if there exists an $N \geq m$ such that
+  $(a_{n})_{n = N}^{\infty}$ is $\varepsilon$-steady.
+  $(a_{n})_{n = m}^{\infty}$ is a Cauchy sequence
+  if and only if it is eventually $\varepsilon$-steady for every $\varepsilon > 0$.
+\end{definition}
+
+\begin{proposition}
+  Let $(a_{n})_{n = m}^{\infty}$ be a sequence of rational numbers.
+  Then $(a_{n})_{n = m}^{\infty}$ is a Cauchy sequence in the sense of
+  Definition \ref{DEF:CAUCHY_SEQUENCE_RATIONAL}
+  if and only if it is a Cauchy sequence in the sense of
+  Definition \ref{DEF:CAUCHY_SEQUENCE_REAL}.
+\end{proposition}
+
+\begin{proof}
+  For all $j, k \geq N$,
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq \varepsilon' \text{ for every rational } \varepsilon' > 0
+  \end{equation*}
+  For every real $\varepsilon > 0$, there exists a rational $\varepsilon' < \varepsilon$
+  by Proposition \ref{RPOP:BOUNDING_OF_REALS} such that
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq \varepsilon' \leq \varepsilon
+  \end{equation*}
+\end{proof}
+
+\begin{definition}[convergence]
+  Let $\varepsilon > 0, L$ be real numbers.
+  A sequence $(a_{n})_{n = N}^{\infty}$ is $\varepsilon$-close to $L$
+  if and only if $a_{n}$ is $\varepsilon$-close to $L$ for every $n \geq N$.
+  A sequence $(a_{n})_{n = m}^{\infty}$ is eventually $\varepsilon$-close to $L$
+  if and only if there exists an $N \geq m$ such that
+  $(a_{n})_{n = N}^{\infty}$ is $\varepsilon$-close to $L$.
+  A sequence $(a_{n})_{n = m}^{\infty}$ converges to $L$
+  if and only if it is eventually $\varepsilon$-close to $L$ for every real $\varepsilon > 0$.
+\end{definition}
+
+\begin{proposition}[uniqueness of limits]
+  Let $(a_{n})_{n = m}^{\infty}$ be a real sequence,
+  and let $L \neq L'$ be two real numbers.
+  Then it is not possible for $(a_{n})_{n = m}^{\infty}$
+  to converge to $L$ while also converging to $L'$.
+\end{proposition}
+
+\begin{proof}
+  Suppose for all $n \geq N$,
+  \begin{gather*}
+    d(a_{n}, L) \leq \varepsilon / 2 \\
+    d(a_{n}, L') \leq \varepsilon / 2
+  \end{gather*}
+  Then
+  \begin{equation*}
+    d(L, L') \leq d(L, a_{n}) + d(a_{n}, L') \leq \varepsilon
+  \end{equation*}
+  Let $\varepsilon = d(L, L') / 2$, then
+  \begin{gather*}
+    d(L, L') \leq d(L, L') / 2 \\
+    d(L, L') \leq 0
+  \end{gather*}
+  Since $d(L, L') > 0$, contradiction.
+\end{proof}
+
+\begin{definition}[limit]
+  If a sequence $(a_{n})_{n = m}^{\infty}$ converges to some real number $L$,
+  then $(a_{n})_{n = m}^{\infty}$ is convergent and its limit is $L$,
+  \begin{equation}
+    \label{EQ:LIMIT}
+    L = \lim_{n \to \infty} a_{n}
+  \end{equation}
+  If a sequence $(a_{n})_{n = m}^{\infty}$ is not converging to any real number $L$,
+  then $(a_{n})_{n = m}^{\infty}$ is divergent.
+\end{definition}
+
+\begin{proposition}
+  \begin{equation}
+    \lim_{n \to \infty} \frac{1}{n} = 0
+  \end{equation}
+\end{proposition}
+
+\begin{proof}
+  For all $n \geq N$,
+  \begin{equation*}
+    |a_{n} - 0| = |\frac{1}{n} - 0| = \frac{1}{n} \leq \frac{1}{N}
+  \end{equation*}
+  Let $N > \frac{1}{\varepsilon}$, then
+  \begin{equation*}
+    \frac{1}{N} < \varepsilon
+  \end{equation*}
+\end{proof}
+
+\begin{proposition}[convergent sequences are Cauchy]
+  Suppose $(a_{n})_{n = m}^{\infty}$ is a convergent sequence of real numbers.
+  Then $(a_{n})_{n = m}^{\infty}$ is also a Cauchy sequence.
+\end{proposition}
+
+\begin{proof}
+  Suppose $\lim_{n \to \infty} a_{n} = L$, then
+  for all $n \geq N$,
+  \begin{equation*}
+    d(a_{n}, L) \leq \varepsilon / 2
+  \end{equation*}
+  Then for all $j, k \geq N$,
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq d(a_{j}, L) + d(L, a_{k}) \leq \varepsilon
+  \end{equation*}
+  $(a_{n})_{n = m}^{\infty}$ is also a Cauchy sequence.
+\end{proof}
+
+\begin{proposition}[LIM = lim]
+  Suppose that $(a_{n})_{n = m}^{\infty}$ is a Cauchy sequence of rational numbers.
+  Then $(a_{n})_{n = m}^{\infty}$ converges to $\LIM_{n \to \infty} a_{n}$,
+  \begin{equation*}
+    \LIM_{n \to \infty} a_{n} = \lim_{n \to \infty} a_{n}
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}
+  For all $j, k \geq N$,
+  \begin{equation*}
+    d(a_{j}, a_{k}) \leq \varepsilon \text{ for every rational } \varepsilon > 0
+  \end{equation*}
+  \begin{equation*}
+    d(a_{n}, \LIM_{n \to \infty} a_{n})
+  \end{equation*}
+\end{proof}
 
 \section{Power Series}
 
@@ -1930,26 +2110,26 @@ Natural numbers can be used to count the cardinality of sets, as long as the set
 \appendix
 \section{Tools}
 \begin{definition}[implication]
-    ``If P, then Q'' = ``If not Q, then not P''.
+  ``If P, then Q'' = ``If not Q, then not P''.
 \end{definition}
 
 \begin{lemma}[de mongan laws]~
-    \begin{itemize}
-        \item not ``A and B'' = ``not A or not B''
-        \item not ``A or B'' = ``not A and not B''
-    \end{itemize}
+  \begin{itemize}
+  \item not ``A and B'' = ``not A or not B''
+  \item not ``A or B'' = ``not A and not B''
+  \end{itemize}
 \end{lemma}
 
 \begin{axiom}[subsititution axiom]
-    Given any two objects $x$ and $y$, if $x = y$, then $f(x) = f(y)$ for all functions or operations.
-    For any property $P(x)$ pertaining to $x$, if $x=y$ , then $P(x)$ and $P(y)$ are equivalent statements.
+  Given any two objects $x$ and $y$, if $x = y$, then $f(x) = f(y)$ for all functions or operations.
+  For any property $P(x)$ pertaining to $x$, if $x=y$ , then $P(x)$ and $P(y)$ are equivalent statements.
 \end{axiom}
 
 \begin{definition}[conjunction and disjunction]~
-    \begin{itemize}
-        \item The statement ``X and Y'' is true if $X$ and $Y$ are both true.
-        \item The statement ``X or Y'' is true if either $X$ or $Y$ is true, or both.
-    \end{itemize}
+  \begin{itemize}
+  \item The statement ``X and Y'' is true if $X$ and $Y$ are both true.
+  \item The statement ``X or Y'' is true if either $X$ or $Y$ is true, or both.
+  \end{itemize}
 \end{definition}
 
 \printbibliography
