@@ -38,9 +38,12 @@ mul_comm a b => a * b = b * a
 
 \begin{proof}~
 \begin{verbatim}
-example (a b c : ℝ) : a * b * c = b * (a * c) := by
-  rw [mul_comm a] -- b * a * c   = b * (a * c)
-  rw [mul_assoc]  -- b * (a * c) = b * (a * c)
+example (a b c : ℝ) : a * b * c = b * (a * c) :=
+  calc
+    a * b * c = b * a * c := by
+      rw [mul_comm a]
+    _ = b * (a * c) := by
+      rw [mul_assoc]
 \end{verbatim}
 \end{proof}
 
@@ -56,13 +59,16 @@ example (a b c : ℝ) : a * b * c = b * (a * c) := by
 \begin{verbatim}
 variable (a b c d e f : ℝ)
 
-example (h : a * b = c * d)
-(h' : e = f) :
-a * (b * e) = c * (d * f) := by
- rw [h']          -- a * (b * f) = c * (d * f)
- rw [← mul_assoc] -- a * b * f   = c * (d * f)
- rw [h]           -- c * d * f   = c * (d * f)
- rw [mul_assoc]   -- c * (d * f) = c * (d * f)
+example (h : a * b = c * d) (h' : e = f) : a * (b * e) = c * (d * f) :=
+  calc
+    a * (b * e) = a * (b * f) := by
+      rw [h']
+    _ = a * b * f := by
+      rw [← mul_assoc]
+    _ = c * d * f := by
+      rw [h]
+    _ = c * (d * f) := by
+      rw [mul_assoc]
 \end{verbatim}
 \end{proof}
 
@@ -91,7 +97,7 @@ add_assoc a b c => a + b + c = a + (b + c)
 \end{definition}
 
 \begin{proposition}
-  Let $a, b$ be real numbers.
+  Let $a, b$ be real numbers, then
   \begin{equation*}
     (a + b) (a + b) = a a + 2 (a b) + b b
   \end{equation*}
@@ -99,14 +105,179 @@ add_assoc a b c => a + b + c = a + (b + c)
 
 \begin{proof}~
 \begin{verbatim}
-example (a b : ℝ) : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b := by
-  rw [mul_add]           -- (a + b) * a + (a + b) * b       = a * a + 2 * (a * b) + b * b
-  rw [add_mul]           -- a * a + b * a + (a + b) * b     = a * a + 2 * (a * b) + b * b
-  rw [add_mul]           -- a * a + b * a + (a * b + b * b) = a * a + 2 * (a * b) + b * b
-  rw [mul_comm b a]      -- a * a + a * b + (a * b + b * b) = a * a + 2 * (a * b) + b * b
-  rw [← add_assoc]       -- a * a + a * b + a * b + b * b   = a * a + 2 * (a * b) + b * b
-  rw [add_assoc (a * a)] -- a * a + (a * b + a * b) + b * b = a * a + 2 * (a * b) + b * b
-  rw [← two_mul]         -- a * a + 2 * (a * b) + b * b     = a * a + 2 * (a * b) + b * b
+example (a b : ℝ) : (a + b) * (a + b) = a * a + 2 * (a * b) + b * b :=
+  calc
+    (a + b) * (a + b) = (a + b) * a + (a + b) * b := by
+      rw [mul_add]
+    _ = a * a + b * a + (a + b) * b := by
+      rw [add_mul]
+    _ = a * a + b * a + (a * b + b * b) := by
+      rw [add_mul]
+    _ = a * a + a * b + (a * b + b * b) := by
+      rw [mul_comm b a]
+    _ = a * a + a * b + a * b + b * b := by
+      rw [← add_assoc]
+    _ = a * a + (a * b + a * b) + b * b := by
+      rw [add_assoc (a * a)]
+    _ = a * a + 2 * (a * b) + b * b := by
+      rw [← two_mul]
+\end{verbatim}
+\end{proof}
+
+\begin{definition}
+\begin{verbatim}
+pow_two a => a ^ 2 = a * a
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+mul_sub a b c => a * (b - c) = a * b - a * c
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+add_sub a b c => a + (b - c) = a + b - c
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+sub_sub a b c => a - b - c = a - (b + c)
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+sub_add a b c => a - b + c = a - (b - c)
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+add_zero a => a + 0 = a
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+sub_zero a => a - 0 = a
+\end{verbatim}
+\end{definition}
+
+\begin{definition}
+\begin{verbatim}
+sub_self a => a - a = 0
+\end{verbatim}
+\end{definition}
+
+\begin{proposition}
+  Let $a, b$ be real numbers, then
+  \begin{equation*}
+    (a + b) (a - b) = a^{2} - b^{2}
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}~
+\begin{verbatim}
+example (a b : ℝ) : (a + b) * (a - b) = a ^ 2 - b ^ 2 :=
+  calc
+    (a + b) * (a - b) = a * (a - b) + b * (a - b) := by
+      rw [add_mul]
+    _ = a * a - a * b + b * (a - b) := by
+      rw [mul_sub]
+    _ = a * a - a * b + (b * a - b * b) := by
+      rw [mul_sub]
+    _ = a * a - a * b + b * a - b * b := by
+      rw [add_sub]
+    _ = a * a - (a * b - b * a) - b * b := by
+      rw [sub_add]
+    _ = a * a - (a * b - a * b) - b * b := by
+      rw [mul_comm b a]
+    _ = a * a - 0 - b * b := by
+      rw [sub_self]
+    _ = a * a - b * b := by
+      rw [sub_zero]
+    _ = a ^ 2 - b * b := by
+      rw [← pow_two]
+    _ = a ^ 2 - b ^ 2 := by
+      rw [← pow_two]
+\end{verbatim}
+\end{proof}
+
+\begin{definition}[tactic]
+ \verb|ring| proves identities in any commutative ring.
+\end{definition}
+
+\begin{example}~
+\begin{verbatim}
+example (a b : ℝ) : (a + b) * (a - b) = a ^ 2 - b ^ 2 := by
+  ring
+\end{verbatim}
+\end{example}
+
+\begin{definition}[tactic]
+\begin{verbatim}
+exact h => closes the main goal if its target type matches that of h
+\end{verbatim}
+\end{definition}
+
+\begin{proposition}
+  Let $a, b, c, d$ be real numbers.
+  If $c = d a + b$ and $b = a d$, then
+  \begin{equation*}
+    c = 2 a d
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}~
+\begin{verbatim}
+variable (a b c d : ℝ)
+
+example (hyp : c = d * a + b) (hyp' : b = a * d) : c = 2 * a * d := by
+  rw [hyp'] at hyp
+  rw [mul_comm d a] at hyp
+  rw [← two_mul] at hyp
+  rw [← mul_assoc] at hyp
+  exact hyp
+
+example (hyp : c = d * a + b) (hyp' : b = a * d) : c = 2 * a * d :=
+  calc
+    c = d * a + b := hyp
+    _ = d * a + a * d := by
+      rw [hyp']
+    _ = a * d + a * d := by
+      rw [mul_comm]
+    _ = 2 * (a * d) := by
+      rw [← two_mul]
+    _ = 2 * a * d := by
+      rw [mul_assoc]
+\end{verbatim}
+\end{proof}
+
+\begin{definition}[tactic]
+\begin{verbatim}
+nth_rw
+\end{verbatim}
+\end{definition}
+
+\begin{proposition}
+  Let $a, b, c$ be natural numbers.
+  If $a + b = c$, then
+  \begin{equation*}
+    (a + b) (a + b) = a * c + b * c
+  \end{equation*}
+\end{proposition}
+
+\begin{proof}~
+\begin{verbatim}
+example (a b c : ℕ) (h : a + b = c) : (a + b) * (a + b) = a * c + b * c := by
+  calc
+    (a + b) * (a + b) = (a + b) * c := by
+      nth_rw 2 [h]
+    _ = a * c + b * c := by
+      rw [add_mul]
 \end{verbatim}
 \end{proof}
 
